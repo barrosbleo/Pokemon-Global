@@ -1,0 +1,251 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	font-family: Verdana, Arial;
+	font-size: 12px;
+    
+	background: #f1f2ed;
+    color: #000000;
+}
+
+a {
+	color: #991E1E;
+	text-decoration: none;
+}
+
+a:hover {
+	color: #FF0000;
+}
+
+#wrapper {
+	/* margin: 10px; */
+}
+
+#header, .sub-content, #left-navigation ul {
+    background: #fff;
+
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+}
+
+#header {
+    margin-bottom: 10px;
+    border: 1px solid #E76224;
+    
+    background: #FB7E37;
+    color: #EDFCF5;
+    box-shadow: inset 0 1px 0 #FFB57B, 0 1px 3px #B6B6B6;
+    text-transform: uppercase;
+    text-shadow: 0 1px 3px #864009;
+    font-family: sans-serif;
+    border-radius: 0px;
+}
+
+#header h1 {
+    text-align: center;
+	
+    padding: 10px 0;
+    font-size: 18pt;
+}
+
+#left-navigation {
+	float: left;
+	width: 200px;
+}
+
+#left-navigation ul {
+	border: 1px solid #1D3181;
+	margin-bottom: 10px;
+	margin-left: 10px;
+}
+
+#left-navigation ul li {
+	list-style: none;
+}
+
+#left-navigation ul li a {
+	padding: 3px 0 3px 13px;
+	display: block;
+}
+
+#left-navigation ul li h3, .sub-content-header h3 {
+	font-size: 14pt;
+	border-bottom: 1px solid #1D3181;
+	padding: 5px 0 5px 5px;
+    
+	background: #3552C4;
+    
+	color: #EDFCF5;
+    
+    /* border-radius to fix the background */
+    
+	box-shadow: inset 0 1px 0 #708ACC;
+	text-transform: uppercase;
+	font-family: sans-serif;
+	-webkit-border-top-left-radius: 10px;
+    
+	-webkit-border-top-right-radius: 10px;
+    -moz-border-radius-topleft: 10px;
+    -moz-border-radius-topright: 10px;
+    
+	border-top-left-radius: 10px;
+    
+	border-top-right-radius: 10px;
+	text-shadow: 0 1px 3px #212D61;
+}
+
+#content {
+	margin-left: 210px;
+	margin-bottom: 50px;
+}
+
+.sub-content {
+	border: 1px solid #1D3181;
+	padding-bottom: 10px;
+	margin-right: 10px;
+}
+
+.sub-content-header {
+	margin-bottom: 10px;
+    text-align: center;
+}
+
+.center {
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.center-text {
+	text-align: center;
+}
+
+.small {
+	font-size: 10px;
+}
+
+.large {
+    font-size: 18px;
+}
+
+.notice, .error {
+	width: 50%;
+	margin: 10px auto;
+	text-align: center;
+	padding: 5px;
+}
+
+.notice {
+	border: 1px solid #69AD4A;
+	background-color: #BEFF99;
+	color: #1D4E16;
+}
+
+.error {
+	border: 1px solid #AA0000;
+	background-color: #FF9999;
+}
+
+.bottom-padded {
+	padding-bottom: 10px;
+}
+
+
+.pretty-table {
+	border-collapse: collapse;
+}
+
+.pretty-table th {
+    background-color: #6BDA5C;
+    color: #15570F;
+    text-transform: uppercase;
+    box-shadow: inset 0 1px 0 #C6F6C0;
+    text-shadow: 0 1px 0 #A3FF8C;
+}
+
+.pretty-table th, .pretty-table td {
+	padding: 5px;
+	border: 1px solid #747474;
+}
+
+.pretty-table tr:nth-child(odd) {
+    background-color:#ddd;
+}
+
+.pretty-table tr:nth-child(even) {
+    background-color:#fff;
+}
+
+input[type="text"], textarea, select {
+    border: 1px solid #999999;
+}
+
+input[type="text"], textarea {
+    padding: 5px;
+}
+
+select {
+    padding: 2px;
+}
+
+option {
+    padding: 1px 10px 0 10px;
+}
+
+input[type="text"]:focus, textarea:focus, select:focus {
+    border: 1px solid #FF6600;
+    -webkit-box-shadow: 0px 0px 10px rgba(255, 100, 0, 0.5);
+    -moz-box-shadow: 0px 0px 10px rgba(255, 100, 0, 0.5);
+    box-shadow: 0px 0px 10px rgba(255, 100, 0, 0.5);
+}
+
+input[type="submit"] {
+    border: 1px solid #046600;
+    background: #479933;
+    padding: 3px 10px;
+    color: #FFFFFF;
+    font-weight: bold;
+    border-radius: 15px;
+    box-shadow: inset 0 1px 0 #8ECF89;
+}
+
+input[type="submit"]:hover {
+    border: 1px solid #854717;
+    background: #B8640A;
+    color: #FFFFFF;
+    box-shadow: inset 0 1px 0 #F8B476, 0 1px 3px #BB876E;
+    cursor: pointer;
+}
+
+#left-navigation ul li:hover {
+    background: #E6E6E6;
+}
+
+#left-navigation ul li:last-child {
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+#left-navigation ul li:first-child {
+    background: none;
+}
+
+table.tablesorter thead tr .header {
+	background-image:url(bg.gif);
+	background-repeat:no-repeat;
+	background-position:center right;
+	cursor:pointer;
+	padding-right: 30px;
+}
+
+table.tablesorter thead tr .headerSortUp {
+	background-image:url(asc.gif);
+}
+
+table.tablesorter thead tr .headerSortDown {
+	background-image:url(desc.gif);
+}
+
