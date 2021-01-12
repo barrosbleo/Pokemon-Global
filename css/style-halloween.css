@@ -1,0 +1,589 @@
+ /*
+	Author: Roby Layouts
+	Author address: http://robylayouts.com/
+	Contact: madroby17@gmail.com
+	Description: Pokemon Helios RPG - Members Area Layout - Halloween.
+	Date: 25/10/2014
+	Modified: 03/11/2014
+*/
+
+.main-ads {
+    display: none;
+}
+
+#twitter-widget-0 {
+	margin: 10px auto;
+	position: relative;
+	display: block;
+	
+}
+
+* {
+	margin: 0;
+	padding: 0;
+}
+
+a {
+    color: #59B372;
+    text-decoration: none;
+    font-size: 13px;
+}
+a:hover {
+    text-decoration: underline;
+}
+input[type=submit] {
+    color: white;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15);
+    background: #B42441;
+    min-width: 70px;
+    border-radius: 2px;
+    border: none;
+    padding: 3px 10px;
+    margin: 2px;
+	transition: all 0.2s ease-out;
+	outline: none;
+}
+input[type=submit]:hover {
+    background: #DB812E;
+}
+input[type=submit]:active {
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+}
+html, body {
+	width: 100%;
+	height: 100%;
+}
+
+body {
+	font-family: 'Lato', sans-serif  !important;
+	font-size: 14px  !important;
+	color: #ECF0F1 !important;
+	background: #303030 url(../images/layout/halloween/bg.jpg) no-repeat;
+	background-size: cover;
+	background-attachment: fixed;
+	background-position: center center;
+}
+
+#header {
+    height: 61px;
+    width: 100%;
+    background: url(../images/layout/halloween/top.png) repeat-x;
+}
+#header:before {
+    content: "";
+    position: absolute;
+    top: 22px;
+    border: 8px solid #000;
+    -webkit-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    -o-transform: rotate(45deg);
+	transform: rotate(45deg);
+    left: 292px;
+}
+#header .info-box {
+    height: 60px;
+    width: 300px;
+    background: black url(../images/layout/top-info.png) repeat-x;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+#header .info-box li {
+    font-size: 12px;
+    display: block;
+    height: 30px;
+    line-height: 30px;
+	padding-left: 40px;
+}
+#header .info-box li:last-child {
+    position: absolute;
+    top: 0;
+    right: 40px;
+}
+#header .info-box li a {
+	font-size: 12px;
+	color: #FFF;
+}
+#header .info-box li .new {
+	color: #e74c3c;
+}
+#header .info-box li span {
+    background: url(../images/layout/info-icons.png) no-repeat;
+    display: block;
+    width: 22px;
+    height: 25px;
+    position: absolute;
+    margin-top: 2px;
+    left: 10px;
+}
+#header .info-box li:nth-child(1) > span { background-position: 0 0; } 
+#header .info-box li:nth-child(2) > span { background-position: 0 -25px; } 
+#header .info-box li:nth-child(3) > span { background-position: 0 -50px; }
+#header .user-info {
+    position: absolute;
+    top: 5px;
+    left: 325px;
+}
+#header .user-info p.username { font-size: 14px; }
+#header .user-info p { font-size: 12px; margin: 0;}
+#header .user-info span {
+    display: block;
+    width: 100px;
+    height: 1px;
+    background: #f39c12;
+    /* margin: 0px 0; */
+}
+#header .logo {
+    width: 300px;
+    height: 74px;
+    background: url(../images/layout/halloween/logo.png) no-repeat;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+#header .online {
+	position: absolute;
+	color: #FFF;
+	top: 5px;
+	right: 10px;
+	z-index: 2;
+	font-size: 10px;
+}
+
+.nav { margin: 130px 10px 0 10px; position: relative; }
+.nav.left { float: left; }
+.nav.right { float: right; }
+.nav li { display: block; }
+.nav.left:before {
+    content: "";
+    background: url(../images/layout/halloween/bat.png) no-repeat;
+    position: absolute;
+    bottom: -85px;
+    left: 50px;
+    width: 169px;
+    height: 105px;
+    z-index: -10;
+}
+.nav li.header {
+	background: linear-gradient(#aa1f23, #841C20);
+	height: 28px;
+	width: 170px;
+	border: 1px solid #731619;
+	border-bottom-color: #3c0a0c;
+	box-shadow: 0px 1px 0px #d42f35 inset;
+	line-height: 28px;
+	color: #FFF;
+	padding-left: 13px;
+	position: relative;
+}
+.nav li a {
+	/* width: 165px; */
+	background: #1c1c1c;
+	box-shadow: #181818 0px 1px inset;
+	display: block;
+	padding: 1px 20px !important;
+	/* height: 25px; */
+	line-height: 25px;
+	/* text-decoration: none; */
+	color: #ECF0F1;
+	font-size: 12px;
+}
+.nav li a:hover {
+    padding: 1px 30px;
+    /* width: 160px; */
+    transition: all 0.2s ease;
+    background: #202020 !important;
+	box-shadow: inset -2px 0 0 #9F0;
+}
+.nav .starter {
+    background: #1C1C1C;
+    /* width: 182px; */
+    margin: auto;
+    padding: 10px 0;
+    text-align: center;
+    font-size: 12px;
+}
+.nav .starter .next_level_p {
+    background: linear-gradient(#008DFF, #00658B);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.25);
+    display: block;
+    margin: 5px auto 0 auto;
+    border-radius: 2px;
+    color: #FFF;
+}
+
+
+#content {
+	margin: 130px 210px 0 210px;
+	min-height: 70%;
+	background: rgba(0, 0, 0, 0.4);
+	position: relative;
+}
+div#content:after {
+	background: url(../images/layout/halloween/pum.png) no-repeat;
+	width: 600px;
+	height: 300px;
+	position: absolute;
+	content: "";
+	top: -205px;
+	left: 20%;
+	z-index: -10;
+}
+#content .header {
+	width: 100%;
+	height: 30px;
+	line-height: 30px;
+	background: linear-gradient(#111, #000);
+	box-shadow: #5C5C5C 0px 1px 0px inset;
+	border-radius: 3px 3px 0px 0px;
+}
+#content .header p {
+	padding-left: 25px;
+	font-size: 12px;
+}
+#content .header.in {
+	border-radius: 0;
+}
+
+.profile { text-align: left; }
+.profile .trainer-card {
+    width: 459px;
+    margin: 10px auto 20px auto;
+    background: #000 url(../images/layout/halloween/tc-bg.jpg) no-repeat;
+    height: 294px;
+    box-shadow: inset 3px 3px black, inset -3px -3px black;
+	position: relative;
+}
+.profile .trainer-card .tc-img {
+    width: 453px;
+    height: 72px;
+    background: url(../images/layout/halloween/tc-img.png) no-repeat;
+    margin: auto;
+    position: relative;
+    top: 3px;
+}
+.profile .trainer-card .tc-img .t-info {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: #111111;
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.15);
+    padding-left: 15px;
+    width: 220px;
+    height: 25px;
+    line-height: 25px;
+    font-size: 12px;
+    /*font-weight: bold;*/
+}
+.profile .trainer-card table {
+    margin-top: 2px;
+    margin-left: 10px;
+}
+.profile .trainer-card .box {
+    width: 96px;
+    height: 96px;
+    background: rgba(38, 38, 38, 0.9);
+    border: 2px solid #151515;
+	
+	vertical-align: middle;
+	display: inherit;
+	text-align: center;
+}
+.profile .trainer-card .box:hover > .info {
+    display: block !important;
+    position: absolute;
+    left: -180px;
+    background: #39507B;
+    padding: 10px;
+    border-radius: 2px;
+    font-size: 12px !important;
+    border: 2px solid white;
+    top: 0;
+    width: 120px;
+}
+.profile .trainer-card .box .info a {
+    color: #E7AB15;
+    font-size: 12px;
+}
+.profile .trainer-card table img {
+    max-width: 96px;
+    max-height: 96px;
+}
+.profile .trainer-card .avatar {
+	position: absolute;
+	top: 140px;
+	right: 40px;
+}
+.profile .statics .info {
+	width: 100%;
+	text-align: center;
+	font-size: 12px;
+}
+.profile .statics .fixed-stats {
+	width: 100%;
+	margin-top: 20px;
+	color: #FFF !important;
+}
+.profile .statics .fixed-stats .stats {
+	width: 250px;
+	min-height: 200px;
+	background: #2C3E50;
+	border-radius: 2px;
+	margin: auto;
+	padding-left: 57px;
+}
+.profile .statics .fixed-stats .badges {
+	width: 140px;
+	margin: auto;
+	color: #FFF !important;
+}
+.profile .statics .fixed-stats .badges p {
+	/* padding: 4px 0; */
+	font-size: 12px;
+	background: #8B1D1D;
+	/* height: 10px; */
+	line-height: 10px;
+	margin: 2px 0;
+	padding: 5px 10px;
+	border-radius: 3px;
+}
+.profile .about {
+	padding-bottom: 40px;
+}
+.profile .signature {
+	width: 70%;
+	min-height: 50px;
+	margin: 20px auto 0 auto;
+}
+.profile .links a {
+    width: 100px;
+    font-size: 10px;
+    color: white;
+    text-transform: lowercase;
+    display: inline-block;
+    height: 23px;
+    line-height: 23px;
+    background: linear-gradient(#E74C3C, #AA3529);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.25), 0 1px 3px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    margin: 2px;
+    border-radius: 2px;
+}
+.profile .links {
+    margin: 10px auto;
+    width: 425px;
+}
+
+.pretty-table {
+    border-collapse: collapse;
+    margin: auto;
+    width: 100%;
+}
+.pretty-table th {
+    background: linear-gradient(#111, #000);
+    height: 27px;
+    font-size: 13px;
+    font-weight: 100;
+    box-shadow: #5C5C5C 0px 1px 0px inset, rgba(29, 29, 29, 0) 0px 1px 0px, rgba(37, 37, 37, 0) 0px 2px 0px;
+    text-align: center;
+}
+.pretty-table td {
+    padding: 10px;
+	text-align: center;
+	
+    border-bottom: 1px solid #000000;
+	
+    border-left: 1px solid #000000;
+}
+.pretty-table td a:hover {
+	text-decoration: underline;
+}
+.pretty-table td a {
+	text-decoration: none;
+	color: #2484CD;
+}
+	/* Maps */
+#maps {
+	width: 700px;
+	margin: auto;
+}
+
+#maps .nav {
+	background: #0E0E0E;
+	/*border: 1px solid #000;*/
+	border-radius: 10px;
+	height: 400px;
+	padding-top: 20px;
+	width: 250px;
+	text-align: center;
+	vertical-align: top;
+	color: #FFF;
+	text-shadow: 0 1px 0 #000;
+	font-size: 13px;
+	box-shadow: inset 1px 1px 0 black,  inset -1px -1px 0 black, inset 2px 2px 0 #292929, inset -2px -2px 0 #292929;
+}
+
+#maps #mySprite {
+	-webkit-transition: 0.15s;
+	-moz-transition: 0.15s;
+	-ms-transition: 0.15s;
+	-o-transition: 0.15s;
+	transition: 0.15s;
+}
+
+#maps .team {
+	width: 246px;
+	margin: auto;
+	background: #0F0F0F;
+	box-shadow: inset 0 1px 0 #1B1B1B, 
+				inset 0 -1px 0 #1B1B1B;
+	border-bottom: 1px solid #000;
+	border-top: 1px solid #000;
+	margin-top: 5px;
+}
+
+#maps .info-box {
+	font-size: 13px;
+	width: 246px;
+	height: 50px;
+	background: #161616;
+	border: 1px solid #000;
+	box-shadow: inset 1px 1px #292929, 
+				inset -1px -1px #292929;
+	text-align: center;
+	line-height: 18px;
+	position: absolute;
+	margin: -480px 0 0 80px;
+}
+
+#maps .info-box img {
+	margin-top: 5px;
+}
+
+#maps .info-box a {
+	color: #0D4E94;
+	text-decoration: none;
+}
+
+#maps .info-box a:hover {
+	text-decoration: underline;
+	color: #09F;
+}
+
+#maps .info-box .close {
+	font-size: 8px;
+	text-transform: uppercase;
+	color: #C40F0F !important;
+	cursor: pointer;
+	position: absolute;
+	margin: -27px 0 0 -33px;
+}
+
+#maps .found-cash {
+	margin: 40px auto 0 auto;
+	background: #360000;
+	width: 246px;
+	height: 20px;
+	line-height: 20px;
+	font-size: 12px;
+	text-align: center;
+	border-top: 1px solid #0C0000;
+	border-bottom: 1px solid #0C0000;
+}
+
+#maps .not-found {
+	margin-top: 30px;
+	font-size: 11px;
+	text-align: center;
+}
+
+#maps small {
+	border-bottom: 1px solid #464545;
+	border-top: 1px solid #464545;
+	width: 246px;
+	height: 46px;
+	background: #313131;
+	display: block;
+	margin-left: 2px;
+	box-shadow: 0 1px 0 #000, 0 -1px 0 #000;
+	line-height: 15px;
+}
+
+#maps .bottom-txt {
+	text-align: center; 
+	font-size: small;
+	color: #CECECE;
+}
+
+#maps .table {
+	margin-left: 20px;
+	padding-top: 50px;
+}
+
+.green-gradient-bg {
+	background: linear-gradient(#4BB748, #587D34);
+	box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+
+.pagination li {
+    display: inline-block;
+}
+.pagination li a {
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    display: block;
+    margin: 15px 4px;
+    background: #2265A3;
+    border-radius: 2px;
+    color: white;
+}
+.pagination li a:hover {
+    background: #B92147;
+}
+
+
+#footer {
+    height: 20px;
+    line-height: 20px;
+    font-size: 12px;
+    position: absolute;
+    bottom: 0;
+    text-align: center;
+    width: 100%;
+    background: #111;
+}
+#footer p {
+    display: inline-block;
+    padding-right: 20px;
+}
+#footer p.info {
+    color: #B42424;
+}
+#footer p.credits {
+    color: #569C28;
+}
+#footer p.info a {
+	color: #7E7E7E;
+	text-decoration: none;
+}
+#footer p.credits a {
+	color: #1D7ED8;
+	text-decoration: none;
+}
+
+.profile .statics .fixed-stats .stats td {
+    padding: 0px 10px;
+}
+
+.profile .trainer-card td {
+	padding: 4px;
+}
+
+textarea, input[type="password"], input[type="text"] {
+	color: #38486B !important;
+}
