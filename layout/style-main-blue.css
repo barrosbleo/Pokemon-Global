@@ -1,0 +1,583 @@
+/*
+	Author: Roberts Ozols
+	Author adress: http://www.robyspot.com/
+	Contact: madroby17@gmail.com
+	Description: Pokemon Helios RPG Layout.
+	Date: 22/11/2013
+*/
+
+/* CSS Reset */
+* {
+	margin: 0;
+	padding: 0;
+	cursor: url('cursor.png'), auto;;
+}
+
+a , input, #header img {
+	cursor: url('cursor-hover.png'), auto;
+}
+
+img {
+	border: none;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:link {
+	color: #E09000;
+}
+
+a:focus {
+	color: #E09000;
+}
+
+a:visited {
+	color: #E09000;
+}
+
+a:hover {
+	color: #C5E000;
+}
+
+::-webkit-input-placeholder { /* WebKit browsers */
+    color: #202020;
+}
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    color: #202020;
+}
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+    color: #202020;
+}
+:-ms-input-placeholder { /* Internet Explorer 10+ */
+    color: #202020;
+}
+
+/* Transitions */
+#header img, a, input {
+	transition: all 0.2s;
+	-o-transition: all 0.2s;
+	-ms-transition: all 0.2s;
+	-moz-transition: all 0.2s;
+	-webkit-transition: all 0.2s;
+} 
+
+body {
+	background-color: #202020;
+}
+
+#wrapper {
+	font-family: Arial, Verdana;
+}
+
+#header {
+	background: url('header-blue.png') repeat-x;
+	width: 100%;
+	height: 52px;
+	position: fixed;
+	z-index: 10;
+	top: 0;
+}
+
+#header img {
+	margin: 15px;
+	width: 25px;
+}
+
+#header img:hover {
+	transform: scale(1.5);
+	-o-transform: scale(1.5);
+	-ms-transform: scale(1.5);
+	-moz-transform: scale(1.5);
+	-webkit-transform: scale(1.5);
+}
+
+#header .tuo {
+	color: #FDFDFD;
+	float: right;
+	margin: 15px;
+	font-size: 11px;
+	text-transform: uppercase;
+	text-shadow: 0 1px 0 #010444;
+	background: rgba(0, 7, 43, 0.5);
+	padding: 5px 10px 5px 10px;
+	border: 1px solid #000218;
+	box-shadow: inset 0 0 3px #00010A, 0 1px 0 #163966, inset 0 7px 0 rgba(0, 9, 51, 0.5);
+}
+
+#section {
+	max-width: 1080px;	
+	width: 80%;
+	margin: auto auto;
+}
+
+#section  .banner {
+	background: url('logo.png') no-repeat;
+	width: 254px;
+	height: 154px;
+	margin: 70px 0 -100px 0;
+	float: right;
+	display: block;
+}
+
+#section #poke {
+	margin: -210px 0 0 135px;
+	background: url('login-sprite.png') no-repeat;
+	width: 300px;
+	height: 220px;
+}
+
+#section #login {
+    width: 229px;
+    height: 300px;
+    background: rgba(18, 18, 18, 0.9);
+    border: 1px solid black;
+    border-radius: 10px;
+    box-shadow: inset 1px 1px 0 #303030, inset -1px -1px 0 #303030;
+	position: relative;
+}
+
+#section #login .top {
+    background: url('top-login.png') no-repeat;
+    width: 234px;
+    height: 38px;
+	margin: -4px 0 15px -2px;
+}
+
+#section input[type="text"], input[type="password"] {
+	text-align: center;
+	width: 150px;
+	height: 25px;
+	border: 1px solid #070707;
+	outline: none;
+	background: #0F0F0F;
+	box-shadow: inset 0 1px 3px #0A0A0A, 0 1px 0 #1C1C1C;
+	margin: 10px 0 0 37px;
+	color: #4D4D4D;
+}
+
+#section input[type="text"]:focus, #section input[type="password"]:focus {
+	border-color: #000;
+	color: #FFB800;
+}
+
+#section #login input[type="submit"] {
+	background: url('button-login.png') no-repeat;
+	border: none;
+	text-indent: -9999px;
+	width: 62px;
+	height: 24px;
+	margin: 10px 0 10px 125px;
+	outline: none;
+}
+
+#section #login input[type="submit"]:hover {
+	background: url('button-login-hover.png') no-repeat;
+}
+
+#section #ph {
+    background: #121212;
+    border: 1px solid black;
+    box-shadow: inset 1px 1px 0 #303030, inset -1px -1px 0 #303030;
+    height: 280px;
+	width: 550px;
+	margin-top: 50px;
+	border-radius: 10px;
+}
+
+#section #ph .ph {
+	background: url('ph.png') no-repeat;
+	width: 63px;
+	height: 43px;
+	margin: 0 0 20px 20px;
+}
+
+#section #ph p{
+	color: #B1B1B1;
+	padding: 15px;
+	font-size: 14px;
+	text-shadow: 0 1px 0 black;
+}
+
+#section #ph p:first-letter {
+    padding-left: 20px;
+}
+
+#section .forums {
+	float: left;
+	margin: -33px 0 -40px 30px;
+	display: block;
+	position: relative;
+	width: 170px;
+	height: 140px;
+	background: url('forums.png') no-repeat;
+}
+
+#section .hr {
+	width: 100%;
+	border-top: 1px solid #111;
+	border-bottom: 1px solid #272727;
+	margin: 40px 0 0 0;
+}
+
+#promo, #champion  {
+    width: 200px;
+    height: 230px;
+    float: right;
+    background: #0C0C0C;
+    margin: 20px;
+    border: 1px solid #030303;
+    box-shadow: inset 0 1px 0 #222, inset 0 -1px 0 #222;
+    text-align: center;
+}
+#promo p, #champion p {
+	color: #800;
+	text-align: center;
+	font-size: 30px;
+	padding-top: 10px;
+	font-family: arial;
+}
+
+#champion p {
+	color: #094FB8;
+}
+
+#champion img {
+	max-height: 120px;
+	max-width: 120px;
+}
+
+#champion ol {
+	color: #FFF;
+	font-size: 9px;
+}
+
+#promo span, #champion span {
+    color: #FF7000;
+    padding-top: 20px;
+    display: block;
+    font-size: 11px;
+    text-transform: uppercase;
+    text-shadow: 0 1px 0 black;
+}
+
+#section #news {
+    background: #181818;
+	border: 1px solid #0F0F0F;
+	box-shadow: inset 1px 1px 0 #313131, inset -1px -1px 0 #313131;
+	height: auto;
+	min-height: 200px;
+	width: 500px;
+	margin: 40px;
+	border-bottom-right-radius: 40px;
+	border-top-left-radius: 40px;
+}
+
+#section #news .title {
+	width: 233px;
+	height: 37px;
+	float: right;
+	background: url('news.png') no-repeat;
+	text-align: center;
+	font-size: 11px;
+	text-transform: uppercase;
+	line-height: 35px;
+	color: #FFF;
+	margin: -1px
+}
+
+#section #news .msg {
+	padding: 62px 10px 10px 10px;
+	font-size: 14px;
+	color: #8F8F8F;
+	text-shadow: 0 1px 0 #000;
+}
+
+#section #news .msg:first-letter {
+    padding-left: 20px;
+}
+
+#section #news .by {
+	margin: 40px 0 0 310px;
+	position: absolute;
+	background: #0C0C0C;
+	padding: 3px 15px 3px 15px;
+	color: #FFF;
+	font-size: 12px;
+}
+
+#section  #update img {
+	float: right;
+	margin: -70px 200px 0 0;
+}
+
+#section  #update .bigText {
+	color: #C5C5C5;
+	font-size: 36px;
+	font-family: Verdana;
+	margin: 100px 0 20px 100px;
+}
+
+#section #update .smallText {
+	color: #EDEDED;
+	font-size: 18px;
+	font-family: Verdana;
+	margin-left: 150px;
+}
+
+#section #login .success {
+	position: absolute;
+	margin: -60px 0 0 -20px;
+	background: #45C72C;
+	border: 1px solid #002702;
+	box-shadow: inset 0 1px 0 #99F874;
+	width: 250px;
+	padding: 5px 10px 5px 10px;
+	text-align: center;
+	color: #022B00;
+	text-shadow: 0 1px 0 #96F361;
+}
+
+#section #login .error {
+	position: absolute;
+	margin: -60px 0 0 -50px;
+	background: #C72C2C;
+	border: 1px solid #270000;
+	box-shadow: inset 0 1px 0 #F87474;
+	width: 300px;
+	padding: 5px 10px 5px 10px;
+	text-align: center;
+	color: #2B0000;
+	text-shadow: 0 1px 0 #F36161;
+	font-size: 14px;
+}
+
+#section #login .nav {
+	width: 150px;
+	height: 30px;
+	background: #0C3FA8;
+	display: block;
+	margin: 7px 0 10px 0;
+	box-shadow: inset 1px 1px 0 #265ED0, 0 1px 0 #202020;
+	border: 1px solid #000633;
+	border-left: none;
+	line-height: 30px;
+	color: #FFF;
+	font-size: 12px;
+	padding-left: 10px;
+	text-shadow: 0 0 5px #4373D6, 0 1px 0 #06002E;
+	font-family: Verdana, Arial;
+}
+
+#section #login .stroke {
+	width: 200px;
+	margin: auto;
+	border-top: 1px solid #090909;
+	border-bottom: 1px solid #1D1D1D;
+	position: relative;
+	margin-bottom: 10px;
+}
+
+#section #login .nav:hover {
+	padding-left: 30px;
+}
+
+#section #register {
+	width: 610px;
+	margin: auto;
+	padding: 30px;
+	margin-top: 50px;
+}
+
+#section #register .title {
+	width: 605px;
+	text-align: center;
+	color: #FFF;
+	height: 37px;
+	background: url('content.png') repeat-x;
+	position: relative;
+	margin-bottom: -6px;
+	border-left: 1px solid #000;
+	border-right: 1px solid #000;
+	border-top-left-radius: 10px;
+	border-top-right-radius: 10px;
+	line-height: 37px;
+}
+
+#section #register table {
+	border-collapse: collapse;
+}
+
+#section #register th {
+	background: #880303;
+	box-shadow: inset 0 1px 0 #AD2626;
+	color: #FFF;
+	border: 1px solid #300;
+	font-size: 13px;
+	padding: 0 10px 0 10px;
+	width: 200px;
+}
+
+#section #register td {
+	background: #161616;
+	border: 1px solid #0C0C0C;
+	box-shadow: inset 0 1px 0 #202020;
+}
+
+#section #register input[type="text"],
+#section #register input[type="password"] {
+	margin: 2px 0 2px 120px;
+}
+
+#section #register .table {
+	text-align: center;
+	clear: both;
+	margin: auto;
+}
+
+#section #register .table td {
+	width: 96px;
+	height: 96px;
+	border: none;
+	border-top: 1px solid #000;
+}
+
+.regErrorMsg {
+	margin: 100px 0 0 860px;
+	position: absolute;
+}
+ 
+.regErrorMsg  .errors {
+	font-size: 13px;
+	color: #FFF;
+	background: #9E1D1D;
+	width: 300px;
+	padding: 5px;
+	border: 1px solid #270000;
+	margin: 5px;
+	box-shadow: inset 0 1px 0 #C54646;
+}
+
+#section .ip-error {
+    color: #FF0029;
+    font-size: 40px;
+    font-family: cursive;
+}
+
+.content-header {
+	display: none;
+}
+
+.chatroom {
+	margin: 80px auto 0 auto;
+}
+
+.chatroom ul {
+	background: #1B1B1B;
+	border: 1px solid #000;
+	border-radius: 10px;
+	padding: 10px;
+	color: #B1B1B1;
+	text-shadow: 0 1px 0 #000;
+	font-size: 14px;
+	box-shadow: inset 0 1px 0 #F00, inset 0 -1px 0 #F00;
+}
+
+.chatroom ul li {
+	display: block;
+}	
+
+.chatroom .rules {
+	color: #82DF1E;
+	font-size: 30px;
+	padding: 10px 0 0 20px;
+}
+
+#reset-pass {
+	width: 400px;
+	margin: auto;
+	color: white;
+	font-size: 13px;
+	background: #121212;
+	padding: 10px;
+	border-radius: 10px;
+	margin-top: 100px;
+}
+
+#reset-pass .title {
+	background: #06F;
+	padding: 10px;
+	position: absolute;
+	margin: -40px 0 0 -12px;
+	border-top-left-radius: 10px;
+	box-shadow: inset 0 1px 0 #558CDF, 1px 1px 3px #000
+}
+
+#reset-pass .title.index {
+	margin: -35px 0 0 -12px;
+}
+
+.success {
+	width: 500px;
+	margin: auto;
+	background: #45C72C;
+	border: 1px solid #002702;
+	box-shadow: inset 0 1px 0 #99F874;
+	padding: 5px;
+	text-align: center;
+	color: #022B00;
+	text-shadow: 0 1px 0 #96F361;
+}
+
+.error {
+	width: 500px;
+	margin: auto;
+	background: #C72C2C;
+	border: 1px solid #270000;
+	box-shadow: inset 0 1px 0 #F87474;
+	padding: 5px;
+	text-align: center;
+	color: #2B0000;
+	text-shadow: 0 1px 0 #F36161;
+	font-size: 14px;
+}
+
+#footer {
+	width: 100%;
+	height: 50px;
+	background: #0E0E0E;
+	color: #AAA;
+	text-shadow: 0 1px 0 #000;
+	font-size: 12px;
+	text-align: center;
+	border-top: 1px solid #000;
+	box-shadow: inset 0 1px 0 #222;
+	padding-top: 13px;
+}
+
+#footer .social {
+	float: left;
+	margin: -10px 0 0 100px;
+}
+
+#footer .count {
+	float: right;
+	margin: -20px 100px 0 0;
+}
+
+#footerUpdate {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	height: 50px;
+	background: #0E0E0E;
+	color: #AAA;
+	text-shadow: 0 1px 0 #000;
+	font-size: 12px;
+	text-align: center;
+	border-top: 1px solid #000;
+	box-shadow: inset 0 1px 0 #222;
+	padding-top: 13px;
+}

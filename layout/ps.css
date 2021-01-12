@@ -1,0 +1,480 @@
+/*
+	Author: Roberts Ozols
+	Author adress: http://www.robyspot.com/
+	Contact: madroby17@gmail.com
+	Description: Pokemon Helios RPG - Members Area Layout.
+	Date: 22/11/2013
+*/
+
+
+.event {
+	font-size: 14px;
+	color: #FFF;
+	width: 100px;
+	background: #FF8500;
+	padding: 10px;
+	border: 1px solid #3D1D00;
+	box-shadow: inset 0 1px 0 #EC9B43;
+	float: right;
+	margin: 40px 0 0 40px;
+}
+
+.event center {
+	color: #752F07;
+	text-shadow: 0 1px 0 #FFB686;
+	font-size: 18px;
+}
+
+.event  small {
+	font-size: 9px;
+	color: #000;
+}
+
+#breadcrumb { 
+	background: #000000;
+}
+
+.content .subheader .bg_center{
+	border-top: 1px solid #2755a7;
+	border-bottom: 1px solid #2755a7;
+    text-align:center;
+}
+
+
+table {
+	border: 1px solid #2755a7;
+        text-align:center;
+}
+
+th, td {
+	border: 1px solid #0E0E0E;
+}
+
+.content .subheader .bg_center, th{
+	background: #880303;
+	box-shadow: inset 0 1px 0 #AD2626;
+	color: #FFF;
+}
+
+a {
+	color: #3c91d9;
+}	
+
+.content hr {
+	border-bottom: 1px dashed #cfe0ff;
+    width: 80%;
+    margin: 0 auto;
+}	
+	
+
+/* ----- CSS ----- */
+
+*{
+	margin: 0;
+	padding: 0;
+	font-family: Arial;
+	
+}
+
+body{
+	font-size: 12px;
+	background: #202020;
+}
+
+.staff {
+	float: right;
+	margin: 40px;
+	width: 150px;
+	height: 40px;
+	background: #0070FF;
+	text-align: center;
+	line-height: 40px;
+	color: #FFF;
+	font-size: 20px;
+	box-shadow: inset 0 1px 0 #659CEE, 0 1px 3px #000;
+	border: 1px solid #00092E;
+}
+
+#header {
+	height: 150px;
+}
+
+#header {	
+	background: url('helios.png') no-repeat;
+	width: 320px;
+	height: 145px;
+	margin: auto;
+}
+
+
+.navigation{
+	width: 170px;
+	padding: 0 10px;
+	margin: 20px 0 20px 0;
+}
+
+.navigation_left {
+	float: left; 
+} 
+
+.navigation_right {
+	float: right; 
+} 
+
+.navigation .navigation_title {
+	font-size: 18px;
+	font-weight: bold;
+}
+
+.navigation ul {
+	font-size: 12px;
+	list-style-type: none;
+	text-align:center;
+}
+
+.navigation li a {	
+	background: #151515;
+	border: 1px solid #000;
+	box-shadow: 0 1px 0 #2E2E2E;
+	margin-bottom: 1px;
+	border-top: none;
+	height: 28px;
+	display: block;
+	-moz-transition: 0.2s;
+	-webkit-transition: 0.2s;
+	-o-transition: 0.2s;
+	transition: 0.2s;
+	color: #C4C4C4;
+	line-height: 28px;
+}
+
+.navigation li a:hover{
+	background: #0F0F0F;
+	color: #FFC200; 
+	text-decoration: none;
+}
+
+.navigation p {
+	padding-left: 10px;
+	padding-bottom: 20px;
+	padding-top: 5px;
+	text-align: justify;
+}
+
+.navigation .online_count {
+	font-size: 10px;
+	color: #FFEB00;
+	background: #101010;
+	width: 20px;
+	height: 20px;
+	line-height: 20px;
+	border: 1px solid #000;
+	box-shadow: 0 0 1px #000 inset, 0 1px 0 #363636;
+	margin: 3px 0 0 10px;
+	position: absolute;
+}
+
+.navigation .starter {
+	background: #161616;
+	border: 1px solid #000;
+	color: #FFF;
+	font-size: 11px;
+	border-top: none;
+}
+
+.navigation .next_level {
+	background: #111;
+	width: 90%;
+	height: 13px;
+	display: block;
+	margin: 5px 5px 5px 5px;
+	border: 1px solid #000;
+	box-shadow: inset 0 1px 0 #1F1F1F;
+	border-radius: 10px;
+	font-size: 10px;
+	line-height: 13px;
+	color: #FFF;
+}
+
+.navigation .next_level .next_level_p {
+	display: block;
+	background: #06F;
+	border: 1px solid #081857;	
+	box-shadow: inset 0 1px 0 #76A5F8;
+	border-radius: 10px;
+	margin: -1px;
+}
+
+.navigation .new {
+	position: absolute;
+	color: #F00;
+	font-size: 7px;
+	text-shadow: 0 0 10px;
+	margin: -3px 0 0 27px;
+}
+
+.content {
+	margin-left: 10px;
+	margin-right: 10px;
+    margin:0px;
+	background: #161616;
+	border-radius: 10px;
+	padding-bottom: 10px;
+    text-align:center;
+	border: 1px solid #0b0b0b;
+	border-top: none;
+	color: #FFF;
+}
+
+.with_navigation_left {
+	margin-left: 200px;
+    text-align:center;
+}
+
+.with_navigation_right {
+	margin-right: 200px;
+    text-align:center;	
+}
+
+.content .subheader {
+	font-size: 11px;
+	height: 14px;
+	margin-bottom: 10px;
+}
+
+.content .subheader .left{
+	float:left;
+}
+
+.content .subheader .right{
+	float:right;
+}
+
+.content .subheader .bg_center{
+	height: 15px;
+	padding-top: 1px;
+	float:left;
+}
+
+.content .subheader .no_bg{
+	height: 18px;
+	padding-top: 1px;
+}
+
+.content .subheader .bg_left{
+	width: 9px;
+	height: 18px;
+	float:left;
+}
+
+.content .subheader .bg_right{
+	width: 9px;
+	height: 18px;
+	float:left;
+	padding: 0;
+}
+
+
+#panel1 {
+	position: absolute;
+	left: 20px;
+	top: 20px;
+	width: 400px;
+	border: 1px solid #000;
+	text-align: center;
+	height: 100px;
+	overflow: hidden;
+	background-color: #121212;
+	z-index: 9999;
+	font-size: 12px;
+	color: #FFF;
+	box-shadow: inset 1px 1px 0 #5C5C5C, inset -1px -1px 0 #5C5C5C;
+}
+
+#panel1 td {
+	border: none;
+	background: none;
+	box-shadow: none;
+	padding-top: 5px;
+}
+
+#panel1 .hide-show {
+	position: absolute;
+	bottom: 0;
+	margin-left: -40px;
+}
+
+#footer {
+	clear: both;
+	width: 100%;
+	height: 55px;
+	background: #0E0E0E;   
+	color: #AAA;
+	text-shadow: 0 1px 0 #000;
+	font-size: 12px;
+	text-align: center;
+	border-top: 1px solid #000;
+	box-shadow: inset 0 1px 0 #222;
+	padding-top: 13px;
+}
+
+#footer .social {
+	float: left;
+	margin: -10px 0 0 100px;
+}
+
+#footer .count {
+	float: right;
+	margin: -20px 100px 0 0;
+}
+
+h3 {
+	font-size: 24px;
+	margin-bottom: 5px;
+	padding-top: 10px;
+}
+
+h4{
+	font-size: 14px;
+	background: url('nav.png') no-repeat; 
+	text-shadow: 0px 1px 0px black;
+	color: white;
+	height: 34px;
+	line-height: 34px;
+	margin-bottom: -3px;
+	margin-top: -2px;
+	position: relative;
+}
+
+h3 a, h4 a {
+	color: #342456;
+}
+
+h2 a:hover, h3 a:hover {
+	text-decoration: none;
+}
+
+/* ----- PARAGRAPHS ----- */
+
+.content p {
+	padding-bottom: 10px;
+	text-align:justify;
+	line-height: 1.4em;
+}
+
+
+
+/* ----- LINKS ----- */
+
+a{
+	text-decoration: none;
+}
+a:hover{
+	text-decoration: underline; 
+}
+a:visited {
+
+}
+a:active, a:focus{
+	text-decoration: underline; 
+}
+
+/* ----- TABLES ----- */
+
+table {
+	border-spacing: 0px;
+	border-collapse: collapse;
+}
+
+th, td {
+	padding: 5px;
+}
+
+.pretty-table {
+	width: 600px;
+	margin: auto;
+}
+
+.profile-table {
+	width: 600px; 
+}
+
+.team-table {
+	width: 100px;
+	margin: auto; 
+}
+
+.battle {
+	width: 350px;
+	margin: auto; 
+	text-align: center;
+}
+
+/* NEED ADD in map.php <table class="map"> */
+.map {
+	border: none;
+	width: 100px;
+}
+
+/* ----- FORMS ----- */
+
+label {
+	width: 150px;
+	display: block;
+	float:left;
+}
+
+/* ----- Pagination ----- */
+.pagination {
+	width: 400px;
+	margin: auto;
+	height: 40px;
+	margin-top: 20px;
+	line-height: 40px;
+}
+
+.pagination ul, .pagination ul li {
+	margin: 0px;
+    list-style: none;
+    float: left;
+	background: rgba(146, 192, 212, 0.5);
+}
+
+.pagination ul li a{
+	display: block;
+	text-shadow: 0px 1px 0px lightgray;
+	padding-left: 20px;
+	padding-right: 20px;
+	
+	-moz-transition: 0.2s;
+	-webkit-transition: 0.2s;
+	-o-transition: 0.2s;
+	transition: 0.2s;
+	color: #000000;
+	background: 
+}
+
+
+.pagination li a:hover{
+	background: lightblue;
+	color: #76001b; 
+	text-decoration: none;
+}
+
+/* ----- FIX ----- */
+
+.text-center {
+	text-align: center;
+}
+
+.info {
+	text-align: center;
+}
+
+.error {
+	text-align: center;
+}
+
+input [type=submit] {
+	align: middle;
+}

@@ -1,0 +1,8 @@
+	/* Mozilla FireFox margin fix */
+#section {
+	margin-top: 130px;
+}
+
+#section .banner {
+	margin: -40px 0px -100px 0;
+}
