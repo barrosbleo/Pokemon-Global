@@ -1,0 +1,105 @@
+<?php
+include('modules/lib.php');
+include '_header.php';
+
+if (isLoggedIn()) { redirect('index.php'); }
+
+if ($_POST['submit']) {
+	$username = (string) $_POST['username'];
+	$email = (string) $_POST['email'];
+	
+	$sqlUsername = cleanSql($username);
+	$htmlUsername = cleanHtml($username);
+	
+	$sqlEmail = cleanSql($email);
+	$htmlEmail = cleanHtml($email);
+	
+	
+	if ($username && $email) {
+		$passwordlenth = 25;
+		$charset = 'abcdefghijklmnoprstovwxy1234567890';
+		
+		for ($x = 1; $x <= $passwordlenth; $x++) {
+			$rand = rand() % strlen($charset);
+			$temp = substr($charset, $rand, 1);
+			$key .= $temp;
+		}
+		
+		//$key_sha1 = sha1($key);
+		
+		$query = mysql_query("
+			SELECT * 
+			FROM `users`
+			WHERE `username` = '{$sqlUsername}'
+			AND `email` = '{$sqlEmail}'
+		") or die(mysql_error());
+
+		$row = mysql_num_rows($query);
+		
+		if ($row != 0) {
+			$update = mysql_query("
+				UPDATE `users`
+				SET `reset_key` = '{$key}'
+				WHERE `email` = '{$sqlEmail}'
+			");
+			
+			//Send e-mail
+			
+			$to = $email;
+			$subject = $lang['pwd_forgot_00'];
+			$headers = $lang['pwd_forgot_01'];
+			$body	= '
+				'.$lang['pwd_forgot_02'].' '.$username.', 
+				'.$lang['pwd_forgot_03'].'
+				
+				http://pkmnhelios.net/forgot_password/reset.php?key='.$key.'&username='.urlencode($username).'
+			
+				'.$lang['pwd_forgot_04'].'
+				    '.$key.'
+					
+				'.$lang['pwd_forgot_05'].'
+			';		
+			
+			mail($to, $subject, $body, $headers);
+			echo '<p class="successF">'.$lang['pwd_forgot_06'].' '.$htmlEmail.'</p>';
+		} else {
+			echo'<p class="errorF">'.$lang['pwd_forgot_07'].'
+			<br><a href="password_forgot.php">'.$lang['pwd_forgot_08'].'</p>';
+		}
+	}
+		else {
+			echo '<p class="errorF">'.$lang['pwd_forgot_09'].'
+			<br><a href="password_forgot.php">'.$lang['pwd_forgot_08'].'</p>';
+		}
+
+}  else {
+?>
+<div class="content">
+	<div class="wrap">
+		<table>
+			<tr>
+				<td>
+					<div class="poke three"></div>
+					
+					<div class="login forgot">
+						<?php echo $msg;?>
+						
+						<form method="POST" action="" autocomplete="off">
+							<div class="title"><?php echo $lang['pwd_forgot_10'];?></div>
+							
+							<label><?php echo $lang['pwd_forgot_11'];?></label>
+							<input type="text" name="username" autofocus="on">
+							
+							<label><?php echo $lang['pwd_forgot_12'];?></label>
+							<input type="text" name="email">
+							
+							<input type="submit" name="submit" value="<?php echo $lang['pwd_forgot_13'];?>" class="btn">
+						</form>
+					</div>
+					<?php include '_footer.php'; ?>
+				</td>
+			</tr>
+		</table>
+	</div>
+</div>
+<?php } ?>
