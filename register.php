@@ -81,11 +81,11 @@ if(count($_POST) > 0) {
 		$errors[] = $lang['register_captcha_missing'];
 	}
 */	
-	$query = $conn->query("SELECT `id` FROM `users` WHERE `username`='{$sqlUsername}' LIMIT 3");
-	if(mysqli_num_rows($query) == 3) {
+	$query = "SELECT `id` FROM `users` WHERE `username`='{$sqlUsername}' LIMIT 1";//aumentar o limit permite criar mais de uma conta com mesmo nome
+	if(numRows($query, $conn) == 1) {
 		$errors[] =  $lang['register_taken_username'];
 	}
-/*bloqueia o cadastro se o ip ja foi usado	
+//bloqueia o cadastro se o ip ja foi usado	
 	if (isset($_SERVER['HTTP_X_FORWARDED_FOR']) && $_SERVER['HTTP_X_FORWARDED_FOR'] != '') {
 	    $ip = cleanSql($_SERVER['HTTP_X_FORWARDED_FOR']);
 	} else {
@@ -94,20 +94,27 @@ if(count($_POST) > 0) {
 	
 	if (isset($_GET['ref'])) {
 		$refId = (int) $_GET['ref']; 
-		$query = mysql_query("SELECT * FROM `users` WHERE `id`='{$refId}'");
-		$refRow = mysql_fetch_assoc($query);
+		$query = "SELECT * FROM `users` WHERE `id`='{$refId}'";
+		$refRow = fetchAssoc($query, $conn);
 		if ($refRow['ip'] == $ip) {
 			$errors[] = $lang['register_match_ip'];
 		}
 	}
-	*/
+	//if (isset($_GET['ref'])) {
+	//	$refId = (int) $_GET['ref']; 
+	//	$query = mysql_query("SELECT * FROM `users` WHERE `id`='{$refId}'");
+	//	$refRow = mysql_fetch_assoc($query);
+	//	if ($refRow['ip'] == $ip) {
+	//		$errors[] = $lang['register_match_ip'];
+	//	}
+	//}
+
 	$oneDayAgo = time() - (60*60*24);
-	$query = $conn->query("SELECT `id` FROM `users` WHERE `ip`='{$ip}' AND `signup_date`>='{$oneDayAgo}' LIMIT 1");
-	if(mysqli_num_rows($query) == 1) {
+	$query = "SELECT `id` FROM `users` WHERE `ip`='{$ip}' AND `signup_date`>='{$oneDayAgo}' LIMIT 1";
+	if(numRows($query, $conn) != 1) {
 		$errors[] = $lang['register_already_ip'];
 	}
 	
-
    /* if(mysql_num_rows(mysql_query("SELECT id FROM users WHERE ip = '{$ip}'")) != 0) {  
 		include '_header.php'; 
 		echo '<div class="ip-error">Sorry, but there\'s already an account registered under this IP. <br /> 
@@ -129,13 +136,17 @@ if(count($_POST) > 0) {
 			) VALUES (
 				'{$sqlUsername}', '{$sqlPassword}', '{$sqlEmail}', '{$time}', '{$money}', '{$ip}', '{$ip}', '$refId', '1')
 		");
-		$uid = mysqli_insert_id();
+		$uid = $conn->insert_id;
 		
 		
-		$pokeQuery  = $conn->query("SELECT * FROM `pokemon` WHERE `name`='{$pokemon}'");
-		$pokemonRow = mysqli_fetch_assoc($pokeQuery);
+		$pokeQuery  = "SELECT * FROM `pokemon` WHERE `name`='{$pokemon}'";
+		$pokemonRow = fetchAssoc($pokeQuery, $conn);
 		$level = DEFAULT_STARTER_LEVEL;
-		$exp   = levelToExp($level);
+		$exp   = levelToExp($level);		
+		//$pokeQuery  = $conn->query("SELECT * FROM `pokemon` WHERE `name`='{$pokemon}'");
+		//$pokemonRow = mysqli_fetch_assoc($pokeQuery);
+		//$level = DEFAULT_STARTER_LEVEL;
+		//$exp   = levelToExp($level);
 		
 		// give them a pokemon
 		$query = $conn->query("
@@ -145,7 +156,7 @@ if(count($_POST) > 0) {
 				'{$uid}', '{$pokemon}', '{$level}', '{$exp}', '{$pokemonRow['move1']}', '{$pokemonRow['move2']}', '{$pokemonRow['move3']}', '{$pokemonRow['move4']}'
 			)
 		");
-		$pid = mysqli_insert_id();
+		$pid = $conn->insert_id;
 		
 		// put the pokemon in the first slot
 		$conn->query("UPDATE `users` SET `poke1`='{$pid}' WHERE `id`='{$uid}'");
