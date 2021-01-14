@@ -13,6 +13,8 @@ include('pokemon.php');
 include('logs.php');
 include('security.php');
 include('language.php');
+include('numrows.php');
+include('fetchassoc.php');
 
 
 ?>
