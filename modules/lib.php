@@ -4,6 +4,8 @@
 //carrega-lo em todos os arquivos que necessitarem as bibliotecas
 //carregar neste arquivo os plugins necessários
 //atentar que alguns dependem de outros, então existe ordem de importação
+include('errorhandler.php');
+include('phpconf.php');
 include('config.php');
 include('conn.php');
 include('general.php');
