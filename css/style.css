@@ -112,30 +112,33 @@ body {
     display: inline-block;
 }
 
-.header .menu li a {
+.header .menu li p {
     text-transform: uppercase;
     display: block;
 }
 
-.header .menu li a span {
+.header .menu li p:hover {
+	cursor:pointer;
+}
+
+.header .menu li p span {
     display: inline-block;
     background: url(../images/layout/menu.png) no-repeat;
     height: 8px;
     width: 8px;
     margin: 0 8px;
-
     transition: all 0.5s ease;
     position: relative;
 }
 
-.header .menu li a:hover span {
+.header .menu li p:hover span {
     transform: rotate(360deg);
 }
 
-.header .menu li:nth-child(1) a span { background-position: 0 0; }
-.header .menu li:nth-child(2) a span { background-position: -8px 0; }
-.header .menu li:nth-child(3) a span { background-position: -16px 0; }
-.header .menu li:nth-child(4) a span { background-position: -24px 0; }
+.header .menu li:nth-child(1) p span { background-position: 0 0; }
+.header .menu li:nth-child(2) p span { background-position: -8px 0; }
+.header .menu li:nth-child(3) p span { background-position: -16px 0; }
+.header .menu li:nth-child(4) p span { background-position: -24px 0; }
 
 .header .logo {
     width: 300px;
@@ -203,7 +206,7 @@ p.success { background: #4673C3; }
 	position: relative;
 }
 
-.login form {  padding-top: 20px; }
+.login .form {  padding-top: 20px; }
 
 .login input[type="text"],
 .login input[type="password"] {
@@ -239,8 +242,7 @@ p.success { background: #4673C3; }
 .login .btn:hover {
     background: #73BDEF;
 }
-
-.login .btn:focus {
+.login .btn:active {
     top: 2px;
     box-shadow: none;
 }
@@ -251,7 +253,7 @@ p.success { background: #4673C3; }
 
 .login .nav li { display: block; }
 
-.login .nav li a { 
+.login .nav li p{ 
 	margin: 5px 20%;
 	background: #F28312;
 	padding: 2px 10px;
@@ -259,6 +261,7 @@ p.success { background: #4673C3; }
 	display: block;
 	border-radius: 2px;
 	text-align: center;
+	cursor:pointer;
 }
 
 .login .nav li a:hover { text-decoration: underline; }

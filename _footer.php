@@ -31,9 +31,9 @@ if(isset($uid)) :
 }(document, 'script', 'facebook-jssdk'));</script>
 <br />
 <?php
-$query = mysql_query("SELECT `id` FROM users ORDER BY `id` DESC LIMIT 1");
+$query = "SELECT `id` FROM users ORDER BY `id` DESC LIMIT 1";
 if($query){
-	$lastId = mysql_fetch_assoc($query);
+	$lastId = fetchAssoc($query, $conn);
 	echo "Total Members: " . number_format($lastId['id']) . "";
 }
 ?>
@@ -42,14 +42,10 @@ if($query){
 </div>	
 </body>
 </html>
-
 <?php
-
 else :
 ?>
-
 <br>
-
 <div id="footer" align="center">
 	<p class="info"><?php echo $lang['footer_legal_read'];?><?php echo $lang['footer_cr_title'];?> | <a href="legalinfo.php" title="<?php echo $lang['footer_legal_read'];?>"><?php echo $lang['footer_legal'];?></a></p>
 </div>
@@ -58,8 +54,5 @@ else :
 
 <?php
 endif;
-
-if($connection){mysql_close($connection);}
 if($conn){mysqli_close($conn);}
-
 ?>

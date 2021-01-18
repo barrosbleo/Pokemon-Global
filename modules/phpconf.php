@@ -1,10 +1,10 @@
 <?php
-
-if(!is_dir('tmp')){
-	mkdir('tmp');
+$path = $_SERVER['DOCUMENT_ROOT'];
+if(!is_dir($path.'/tmp')){
+	mkdir($path.'/tmp');
 }
 
-session_save_path('tmp');
+session_save_path($path.'/tmp');
 session_start();
 
 

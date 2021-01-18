@@ -1,10 +1,8 @@
 <?php
-include('modules/lib.php');
-include '_header.php';
 
 ?>
 
-
+<div id="chatroomPage" = style="display:none">
 <div class="chatroom" style="margin-top: 10px; text-align: center;">
 	<center style="margin: 10px 0;">
 
@@ -32,6 +30,6 @@ include '_header.php';
 		<li> [-] Ordinary bans will last for about 5 hours. Serious offences can earn you a permanent ban on chat and in-game.</li>
 	</ul>
 </div>
+</div>
 <?php
-	include '_footer.php';
 ?>

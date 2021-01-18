@@ -1,6 +1,4 @@
 <?php
-include('modules/lib.php');
-include '_header.php';
 
 if (isLoggedIn()) { redirect('index.php'); }
 
@@ -74,6 +72,7 @@ if ($_POST['submit']) {
 
 }  else {
 ?>
+<div id="password_forgotPage" = style="display:none">
 <div class="content">
 	<div class="wrap">
 		<table>
@@ -96,10 +95,10 @@ if ($_POST['submit']) {
 							<input type="submit" name="submit" value="<?php echo $lang['pwd_forgot_13'];?>" class="btn">
 						</form>
 					</div>
-					<?php include '_footer.php'; ?>
 				</td>
 			</tr>
 		</table>
 	</div>
+</div>
 </div>
 <?php } ?>

@@ -1,10 +1,12 @@
 <?php
 	// count online users past 60 min
 	$oTime = time() - (60*60);
-	$online = mysql_num_rows(mysql_query("SELECT * FROM `users` WHERE `lastseen` >= '{$oTime}' ORDER BY `lastseen` DESC"));
+	$query = "SELECT * FROM `users` WHERE `lastseen` >= '{$oTime}' ORDER BY `lastseen` DESC";
+	$online = numRows($query, $conn);
 	
 	// count total users
-	$usersTotal = mysql_num_rows(mysql_query("SELECT `id` FROM `users`"));
+	$query = "SELECT `id` FROM `users`";
+	$usersTotal = numRows($query, $conn);
 	
 	// change game style on events (Temporary)
 	$eventStyle = '';
@@ -253,10 +255,10 @@ echo '
 				<li><a href="http://robytoby.com" alt="<?php echo $lang['social_rl_1'];?>"><span><?php echo $lang['social_rl_2'];?></span></a></li>
 			</ul>
 			<ul class="menu">
-				<li><a href="login.php"><span></span><?php echo $lang['menu_login'];?></a></li>
-				<li><a href="register.php"><span></span><?php echo $lang['menu_register'];?></a></li>
-				<li><a href="index.php"><span></span><?php echo $lang['menu_news'];?></a></li>
-				<li><a href="chatroom.php"><span></span><?php echo $lang['menu_chatroom'];?></a></li>
+				<li><p onclick="loadPage('login');"><span></span><?php echo $lang['menu_login'];?></p></li>
+				<li><p onclick="loadPage('register');"><span></span><?php echo $lang['menu_register'];?></p></li>
+				<li><p onclick="loadPage('news');"><span></span><?php echo $lang['menu_news'];?></p></li>
+				<li><p onclick="loadPage('chatroom');"><span></span><?php echo $lang['menu_chatroom'];?></p></li>
 			</ul>
 		</div>	
 
@@ -264,9 +266,6 @@ echo '
 			<li class="beta"><?php echo $lang['lang_beta'];?></li>
 			<li><a href="?lang=en" title="<?php echo $lang['lang_en'];?>"><img src="images/lang/en.png"></a></li>	
 			<li><a href="?lang=pt-br" title="<?php echo $lang['lang_pt-br'];?>"><img src="images/lang/pt-br.png"></a></li>	
-			<!--<li><a href="?lang=es" title="<?php//=$lang['lang_es'];?>"><img src="images/lang/es.png"></a></li>	
-			<li><a href="?lang=ph" title="<?php//=$lang['lang_ph'];?>"><img src="images/lang/ph.png"></a></li>	
-			<li><a href="?lang=lv" title="<?php//=$lang['lang_lv'];?>"><img src="images/lang/lv.png"></a></li>-->
 		</ul>
 		
 	</div>
