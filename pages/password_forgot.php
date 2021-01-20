@@ -2,12 +2,12 @@
 
 if (isLoggedIn()) { redirect('index.php'); }
 
-if ($_POST['submit']) {
+if (isset($_POST['submit'])) {
 	$username = (string) $_POST['username'];
 	$email = (string) $_POST['email'];
 	
-	$sqlUsername = cleanSql($username);
-	$htmlUsername = cleanHtml($username);
+	$sqlUsername = cleanSql($username, $conn);
+	$htmlUsername = cleanHtml($username, $conn);
 	
 	$sqlEmail = cleanSql($email);
 	$htmlEmail = cleanHtml($email);
@@ -81,7 +81,7 @@ if ($_POST['submit']) {
 					<div class="poke three"></div>
 					
 					<div class="login forgot">
-						<?php echo $msg;?>
+						
 						
 						<form method="POST" action="" autocomplete="off">
 							<div class="title"><?php echo $lang['pwd_forgot_10'];?></div>
