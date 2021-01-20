@@ -99,15 +99,6 @@
 					<li><a href="/clans/createclan.php"><?php echo $lang['header_submenu_03_03'];?></a></li>
 				</ul>
 			</li>
-			<!--
-            <li class="dropdown">
-				<a href="#" class="dropdown-toggle" data-toggle="dropdown"><?//=$lang['header_menu_04'];?> <span class="caret"></span></a>
-				<ul class="dropdown-menu" role="menu">
-					<li><a href="/gyms.php"><?php//=$lang['header_submenu_04_01'];?></a></li>
-					<li><a href="/fix.php"><?php//=$lang['header_submenu_04_02'];?></a></li>
-				</ul>
-			</li>
-			-->
 			
             <li class="dropdown">
 				<a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo $lang['header_menu_05'];?> <span class="caret"></span></a>
@@ -132,7 +123,6 @@
 				<a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo $lang['header_menu_07'];?> <span class="caret"></span></a>
 				<ul class="dropdown-menu" role="menu">
 					<li><a href="/snow_machine.php"><?php echo $lang['header_submenu_07_01'];?></a></li>
-					<!--<li><a href="/lottery.php"><?php//=$lang['header_submenu_07_02'];?></a></li>-->
 					<li><a href="/donate.php"><?php echo $lang['header_submenu_07_03'];?></a></li>
 					<li><a href="/collection_machine.php"><?php echo $lang['header_submenu_07_05'];?></a></li>
 				</ul>
@@ -156,14 +146,6 @@
 				</ul>
 			</li>
 			
-            <!--<li class="dropdown">
-				<a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php//=$lang['header_menu_10'];?> <span class="caret"></span></a>
-				<ul class="dropdown-menu" role="menu">
-					<li><a href="/asdd"><?php//=$lang['header_submenu_10_01'];?></a></a>
-					<li><a href="#"><?php//=$lang['header_submenu_11_02'];?></a></li>
-				</ul>
-			</li>-->
-			
             <li class="dropdown">
 				<a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo $lang['header_menu_11'];?> <span class="caret"></span></a>
 				<ul class="dropdown-menu" role="menu">
@@ -181,14 +163,7 @@
 				$suid = array(1,3);
 				if(in_array($_SESSION['userid'], $suid)) : 
 			?>
-			<!--<li class="dropdown">
-				<a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo $lang['header_menu_12'];?> <span class="caret"></span></a>
-				<ul class="dropdown-menu" role="menu">
-					<li><a href="/fiftyfifty"><?php//=$lang['header_submenu_12_01'];?></a></a>
-					<li><a href="/dailyprize.php"><?php//=$lang['header_submenu_12_02'];?></a></a>
-					<li><a href="/luckyhour.php"><?php//=$lang['header_submenu_12_03'];?></a></a>
-				</ul>
-			</li>-->
+			
 			<?php endif; ?>
 		</ul>
 	</div>
@@ -196,15 +171,15 @@
 </nav>
 
 <?php
-	$usersQuery = mysql_query("SELECT `poke1` FROM `users` WHERE id='{$_SESSION['userid']}'");
+	$usersQuery = "SELECT `poke1` FROM `users` WHERE id='{$_SESSION['userid']}'";
 	if ($usersQuery) {
-	$usersRow = mysql_fetch_object($usersQuery);
+	$usersRow = fetchObj($usersQuery, $conn);
 							
 	$starterID = $usersRow->poke1;
 								
-	$pokeQuery = mysql_query("SELECT * FROM `user_pokemon` WHERE `id`='{$starterID}'");
+	$pokeQuery = "SELECT * FROM `user_pokemon` WHERE `id`='{$starterID}'";
 	if ($pokeQuery) {
-	$pokeRow = mysql_fetch_object($pokeQuery);
+	$pokeRow = fetchObj($pokeQuery, $conn);
 	
 	$pokename = $pokeRow->name;
 	$pokelevel = $pokeRow->level;

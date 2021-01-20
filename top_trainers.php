@@ -17,7 +17,7 @@ echo '
 		</tr>
 ';
 	
-$query = mysql_query("
+$query = "
 	SELECT
 		`users`.`id`,
 		`users`.`username`,
@@ -33,9 +33,10 @@ $query = mysql_query("
 	GROUP BY `user_pokemon`.`uid`
 	ORDER BY `total_exp` DESC
 	LIMIT 20
-");
+";
 $i=1;
-while ($row = mysql_fetch_assoc($query)) {
+$result = $conn->query($query);
+while ($row = $result->fetch_assoc()) {
 	echo '
 		<tr>
 			<td >'.$i++.'</td>

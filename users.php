@@ -24,13 +24,13 @@ $sortKey   = isset($sort) && in_array($sort, array_keys($sorts)) ? $sort : 1 ;
 $orderSql  = $sorts[$sortKey];
 
 if (!empty($search)) {
-	$searchSqlSafe  = cleanSql($search);
+	$searchSqlSafe  = cleanSql($search, $conn);
 	$searchHtmlSafe = cleanHtml($search);
 	$searchSql      = " WHERE `username` LIKE '%{$searchSqlSafe}%' ";
 }
 
-$countQuery = mysql_query("SELECT `id` FROM `users` {$searchSql}");
-$numRows    = mysql_num_rows($countQuery);
+$countQuery = "SELECT `id` FROM `users` {$searchSql}";
+$numRows    = numRows($countQuery, $conn);
 $pagination = new Pagination($numRows);
 
 if (!empty($search)) {
@@ -39,7 +39,7 @@ if (!empty($search)) {
 include '_header.php';
 printHeader($lang['users_title']);
 
-$query = mysql_query("SELECT * FROM `users` {$searchSql} {$orderSql} LIMIT {$pagination->itemsPerPage} OFFSET {$pagination->startItem}");
+$query = "SELECT * FROM `users` {$searchSql} {$orderSql} LIMIT {$pagination->itemsPerPage} OFFSET {$pagination->startItem}";
 
 
 
@@ -58,7 +58,7 @@ echo '
 		</form>
 ';
 
-if (mysql_num_rows($query) == 0) {
+if (numRows($query, $conn) == 0) {
 	echo '<div class="info">'.$lang['users_02'].'</div>';
 } else {
 	echo '		
@@ -71,7 +71,8 @@ if (mysql_num_rows($query) == 0) {
 				<th>'.$lang['users_06'].'</th>
 			</tr>
 	';
-	while($row = mysql_fetch_assoc($query))
+$result = $conn->query($query);
+	while($row = $result->fetch_assoc())
 	{
 		$row = cleanHtml($row);
 		$banText = $row['banned'] == 1 ? '&nbsp;[<span style="color: #FF0000; font-size: 8pt;">'.$lang['users_07'].'</span>]' : '' ;

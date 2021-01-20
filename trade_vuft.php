@@ -21,13 +21,13 @@ $sortKey   = isset($sort) && in_array($sort, array_keys($sorts)) ? $sort : 1 ;
 $orderSql  = $sorts[$sortKey];
 
 if (!empty($search)) {
-	$searchSqlSafe  = cleanSql($search);
+	$searchSqlSafe  = cleanSql($search, $conn);
 	$searchHtmlSafe = cleanHtml($search);
 	$searchSql      = " WHERE `name` LIKE '%{$searchSqlSafe}%' ";
 }
 
-$countQuery = mysql_query("SELECT `id` FROM `trade_pokemon` {$searchSql}");
-$numRows    = mysql_num_rows($countQuery);
+$countQuery = "SELECT `id` FROM `trade_pokemon` {$searchSql}";
+$numRows    = numRows($countQuery, $conn);
 $pagination = new Pagination($numRows);
 
 if (!empty($_GET['a'])) {
@@ -39,7 +39,7 @@ if (!empty($search)) {
 }
 
 
-$query = mysql_query("SELECT * FROM `trade_pokemon` {$searchSql} {$orderSql} LIMIT {$pagination->itemsPerPage} OFFSET {$pagination->startItem}");
+$query = "SELECT * FROM `trade_pokemon` {$searchSql} {$orderSql} LIMIT {$pagination->itemsPerPage} OFFSET {$pagination->startItem}";
 
 
 
@@ -53,7 +53,7 @@ echo '
 	</form>
 ';
 
-if (mysql_num_rows($query) == 0) {
+if (numRows($query, $conn) == 0) {
 	echo '<div class="info">'.$lang['trade_vuft_03'].'</div>';
 } else {
 
@@ -87,9 +87,10 @@ if (mysql_num_rows($query) == 0) {
 				<th>'.$lang['trade_vuft_10'].'</th>
 			</tr>
 	';
-	while ($pokemon = mysql_fetch_assoc($query)) {
-		$query2 = mysql_query("SELECT * FROM `users` WHERE `id`='{$pokemon['uid']}'");
-		$urow = mysql_fetch_assoc($query2);
+$result = $conn->query($query);
+	while ($pokemon = $result->fetch_assoc()) {
+		$query2 = "SELECT * FROM `users` WHERE `id`='{$pokemon['uid']}'";
+		$urow = fetchAssoc($query2, $conn);
 		
 		echo '
 			<tr>

@@ -6,11 +6,11 @@ if (!isLoggedIn()) {
 }
 
 $uid = (int) $_SESSION['userid'];
-$userTokens = getUserToken($uid);
+$userTokens = getUserToken($uid, $conn);
 
-$query = mysql_query("SELECT * FROM `token_shop_pokemon` ORDER BY `price` ASC");
+$query = "SELECT * FROM `token_shop_pokemon` ORDER BY `price` ASC";
 
-if (mysql_num_rows($query) == 0) {
+if (numRows($query, $conn) == 0) {
     include '_header.php';
     echo '
         <div class="error">'.$lang['token_shop_00'].'</div>
@@ -20,7 +20,8 @@ if (mysql_num_rows($query) == 0) {
 
 $salePokemon = array();
 
-while ($row = mysql_fetch_assoc($query)) {
+$result = $conn->query($query);
+while ($row = $result->fetch_assoc()) {
     $salePokemon[ $row['name'] ] = $row['price'];
 }
 
@@ -37,8 +38,8 @@ if (isset($_POST['buyPoke'])) {
 			echo '<div class="error">'.$lang['token_shop_01'].'</div>';
 		} else {
 			$userTokens -= $price;
-			updateUserToken($uid, $userTokens);
-			giveUserPokemon($uid, $pokeName, 50, levelToExp(50), 'Scratch', 'Scratch', 'Scratch', 'Scratch');
+			updateUserToken($uid, $userTokens, $conn);
+			giveUserPokemon($uid, $pokeName, 50, levelToExp(50), 'Scratch', 'Scratch', 'Scratch', 'Scratch', $conn);
             
 			echo '
 				<div class="notice" style="color: #000000;">
@@ -68,8 +69,8 @@ $items = array(
 		'price' => 1
 	)
 );
-$query = mysql_query("SELECT * FROM `user_items` WHERE `uid`='{$uid}'");
-$itemAmounts = mysql_fetch_assoc($query);
+$query = "SELECT * FROM `user_items` WHERE `uid`='{$uid}'";
+$itemAmounts = fetchAssoc($query, $conn);
 
 if (isset($_POST['buy_items'])) {
 	
@@ -98,8 +99,8 @@ if (isset($_POST['buy_items'])) {
 		echo'<div class="success">'.$lang['token_shop_07'].'</div>';
 		
 		$updateSql = implode(', ', $updateSqlArray);
-		mysql_query("UPDATE `user_items` SET {$updateSql} WHERE `uid`='{$uid}'");
-		mysql_query("UPDATE `users` SET `token`=`token`-$totalCost WHERE `id`='{$uid}'");
+		$conn->query("UPDATE `user_items` SET {$updateSql} WHERE `uid`='{$uid}'");
+		$conn->query("UPDATE `users` SET `token`=`token`-$totalCost WHERE `id`='{$uid}'");
 		$userTokens -= $totalCost;
 		$itemAmounts = $newItemAmounts;
 	}

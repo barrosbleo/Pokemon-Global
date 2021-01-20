@@ -39,14 +39,14 @@ switch ($_GET['a']) {
 			$_POST['pokemon'][$key] = (int) $value;	
 		}
 		
-		$query = mysql_query("SELECT `poke1`,`poke2`,`poke3`,`poke4`,`poke5`,`poke6` FROM `users` WHERE `id`='{$uid}'");
-		$myTeam = mysql_fetch_assoc($query);
+		$query = "SELECT `poke1`,`poke2`,`poke3`,`poke4`,`poke5`,`poke6` FROM `users` WHERE `id`='{$uid}'";
+		$myTeam = fetchAssoc($query, $conn);
 		
 		$nonInTeamSql = " `id` NOT IN ('".implode("', '", $myTeam)."') ";
 		$puftSql = " `id` IN ('".implode("', '", $_POST['pokemon'])."') ";
-		$query = mysql_query("SELECT * FROM `user_pokemon` WHERE {$nonInTeamSql} AND {$puftSql} AND `uid`='{$uid}' ORDER BY `name`");
+		$query = "SELECT * FROM `user_pokemon` WHERE {$nonInTeamSql} AND {$puftSql} AND `uid`='{$uid}' ORDER BY `name`";
 		
-		if ( mysql_num_rows($query) != count($_POST['pokemon']) ) {
+		if ( numRows($query, $conn) != count($_POST['pokemon']) ) {
 			echo '<div class="error">'.$lang['trade_05'].'</div>';
 			break;
 		}
@@ -54,17 +54,18 @@ switch ($_GET['a']) {
 		echo '<div class="notice">'.$lang['trade_06'].'</div>';
 		
 		echo '<div style="text-align: center;">';
-		while ($p = mysql_fetch_assoc($query)) {
+$result = $conn->query($query);
+		while ($p = $result->fetch_assoc()) {
 			echo '
 				<img src="images/pokemon/'.$p['name'].'.png" /><br />
 				'.$p['name'].'<br />
 				'.$lang['trade_07'].' '.$p['level'].'<br />
 			';
-			$p['name'] = mysql_real_escape_string($p['name']);
-			mysql_query("INSERT INTO `trade_pokemon` (`uid`, `name`, `exp`, `level`, `move1`, `move2`, `move3`, `move4`)
+			$p['name'] = $conn->real_escape_string($p['name']);
+			$conn->query("INSERT INTO `trade_pokemon` (`uid`, `name`, `exp`, `level`, `move1`, `move2`, `move3`, `move4`)
 				VALUES ('{$p['uid']}', '{$p['name']}', '{$p['exp']}', '{$p['level']}', '{$p['move1']}', '{$p['move2']}', '{$p['move3']}', '{$p['move4']}')");
 				
-			mysql_query("DELETE FROM `user_pokemon` WHERE `id`='{$p['id']}'");
+			$conn->query("DELETE FROM `user_pokemon` WHERE `id`='{$p['id']}'");
 		}
 		echo '</div>';
 	break;
@@ -75,14 +76,14 @@ switch ($_GET['a']) {
 
 	case 'mao':
 		$tid = (int) $_GET['id'];
-		$query = mysql_query("SELECT * FROM `trade_pokemon` WHERE `id`='{$tid}' LIMIT 1");
+		$query = "SELECT * FROM `trade_pokemon` WHERE `id`='{$tid}' LIMIT 1";
 		
-		if (mysql_num_rows($query) == 0) {
+		if (numRows($query, $conn) == 0) {
 			echo '<div class="error">'.$lang['trade_08'].'</div>';
 			break;
 		}
 		
-		$tpoke = mysql_fetch_assoc($query);
+		$tpoke = fetchAssoc($query, $conn);
 		echo '
 			<div style="text-align: center;">
 				<img src="images/pokemon/'.$tpoke['name'].'.png" /><br />
@@ -91,11 +92,11 @@ switch ($_GET['a']) {
 			</div>
 		';
 		
-		$query = mysql_query("SELECT `poke1`,`poke2`,`poke3`,`poke4`,`poke5`,`poke6` FROM `users` WHERE `id`='{$uid}'");
-		$myTeam = mysql_fetch_assoc($query);
+		$query = "SELECT `poke1`,`poke2`,`poke3`,`poke4`,`poke5`,`poke6` FROM `users` WHERE `id`='{$uid}'";
+		$myTeam = fetchAssoc($query, $conn);
 		
 		$nonInTeamSql = " `id` NOT IN ('".implode("', '", $myTeam)."') ";
-		$query = mysql_query("SELECT * FROM `user_pokemon` WHERE {$nonInTeamSql} AND `uid`='{$uid}' ORDER BY `name`");
+		$query = "SELECT * FROM `user_pokemon` WHERE {$nonInTeamSql} AND `uid`='{$uid}' ORDER BY `name`";
 		
 		echo '
 			<form action="?a=mao_process&id='.$tid.'" method="post">
@@ -109,7 +110,8 @@ switch ($_GET['a']) {
 					<th>'.$lang['trade_12'].'</th>
 				</tr>
 		';
-		while ($pokemon = mysql_fetch_assoc($query)) {
+$result = $conn->query($query);
+		while ($pokemon = $result->fetch_assoc()) {
 			echo '
 				<tr>
 					<td><input type="checkbox" name="pokemon[]" value="'.$pokemon['id'].'" /></td>
@@ -139,9 +141,9 @@ switch ($_GET['a']) {
 		//print_r($_POST);
 		
 		$tid = (int) $_GET['id'];
-		$query = mysql_query("SELECT * FROM `trade_pokemon` WHERE `id`='{$tid}' LIMIT 1");
+		$query = "SELECT * FROM `trade_pokemon` WHERE `id`='{$tid}' LIMIT 1";
 		
-		if (mysql_num_rows($query) == 0) {
+		if (numRows($query, $conn) == 0) {
 			echo '<div class="error">'.$lang['trade_14'].'</div>';
 			break;
 		}
@@ -155,46 +157,47 @@ switch ($_GET['a']) {
 			$_POST['pokemon'][$key] = (int) $value;	
 		}
 		
-		$query = mysql_query("SELECT `poke1`,`poke2`,`poke3`,`poke4`,`poke5`,`poke6` FROM `users` WHERE `id`='{$uid}'");
-		$myTeam = mysql_fetch_assoc($query);
+		$query = "SELECT `poke1`,`poke2`,`poke3`,`poke4`,`poke5`,`poke6` FROM `users` WHERE `id`='{$uid}'";
+		$myTeam = fetchAssoc($query, $conn);
 		
 		$nonInTeamSql = " `id` NOT IN ('".implode("', '", $myTeam)."') ";
 		$offerSql = " `id` IN ('".implode("', '", $_POST['pokemon'])."') ";
-		$query = mysql_query("SELECT * FROM `user_pokemon` WHERE {$nonInTeamSql} AND {$offerSql} AND `uid`='{$uid}' ORDER BY `name`");
+		$query = "SELECT * FROM `user_pokemon` WHERE {$nonInTeamSql} AND {$offerSql} AND `uid`='{$uid}' ORDER BY `name`";
 		
-		if ( mysql_num_rows($query) != count($_POST['pokemon']) ) {
+		if ( numRows($query, $conn) != count($_POST['pokemon']) ) {
 			echo '<div class="error">'.$lang['trade_16'].'</div>';
 			break;
 		}
 		
-		$query2 = mysql_query("SELECT `oid` FROM `offer_pokemon` ORDER BY `oid` DESC LIMIT 1");
-		$oid = mysql_fetch_assoc($query2);
+		$query2 = "SELECT `oid` FROM `offer_pokemon` ORDER BY `oid` DESC LIMIT 1";
+		$oid = fetchAssoc($query2, $conn);
 		$oid = $oid['oid']+1;
 		
 		echo '<div class="notice">'.$lang['trade_17'].'</div>';
 		
 		echo '<div style="text-align: center;">';
-		while ($p = mysql_fetch_assoc($query)) {
+$result = $conn->query($query);
+		while ($p = $result->fetch_assoc()) {
 			echo '
 				<img src="images/pokemon/'.$p['name'].'.png" /><br />
 				'.$p['name'].'<br />
 				'.$lang['trade_07'].' '.$p['level'].'<br />
 			';
 			
-			$p['name'] = mysql_real_escape_string($p['name']);
+			$p['name'] = $conn->real_escape_string($p['name']);
 			
-			mysql_query("INSERT INTO `offer_pokemon` (`tid`, `oid`, `uid`, `name`, `exp`, `level`, `move1`, `move2`, `move3`, `move4`)
+			$conn->query("INSERT INTO `offer_pokemon` (`tid`, `oid`, `uid`, `name`, `exp`, `level`, `move1`, `move2`, `move3`, `move4`)
 				VALUES ('{$tid}', '{$oid}', '{$p['uid']}', '{$p['name']}', '{$p['exp']}', '{$p['level']}', '{$p['move1']}', '{$p['move2']}', '{$p['move3']}', '{$p['move4']}')");
 				
-			mysql_query("DELETE FROM `user_pokemon` WHERE `id`='{$p['id']}'");
+			$conn->query("DELETE FROM `user_pokemon` WHERE `id`='{$p['id']}'");
 		}
 		echo '</div>';
 	break;
 	
 	case 'vao':
-		$query = mysql_query("SELECT * FROM `trade_pokemon` WHERE `uid`='{$uid}'");
+		$query = "SELECT * FROM `trade_pokemon` WHERE `uid`='{$uid}'";
 		
-		if (mysql_num_rows($query) == 0) {
+		if (numRows($query, $conn) == 0) {
 			echo '<div class="error">'.$lang['trade_18'].'</div>';
 			break;
 		}
@@ -210,9 +213,10 @@ switch ($_GET['a']) {
 					<th>'.$lang['trade_19'].'</th>
 				</tr>
 		';
-		while ($pokemon = mysql_fetch_assoc($query)) {
-			$query2 = mysql_query("SELECT * FROM `offer_pokemon` WHERE `tid`='{$pokemon['id']}' GROUP BY `oid`");
-			$numOffers = mysql_num_rows($query2);
+$result = $conn->query($query);
+		while ($pokemon = $result->fetch_assoc()) {
+			$query2 = "SELECT * FROM `offer_pokemon` WHERE `tid`='{$pokemon['id']}' GROUP BY `oid`";
+			$numOffers = numRows($query2, $conn);
 			echo '
 				<tr>
 					<td><img src="images/pokemon/'.$pokemon['name'].'.png" /></td>
@@ -240,14 +244,14 @@ switch ($_GET['a']) {
 	case 'vo':
 		$tid = (int) $_GET['id'];
 		
-		$query = mysql_query("SELECT * FROM `trade_pokemon` WHERE `uid`='{$uid}' AND `id`='{$tid}'");
+		$query = "SELECT * FROM `trade_pokemon` WHERE `uid`='{$uid}' AND `id`='{$tid}'";
 		
-		if (mysql_num_rows($query) == 0) {
+		if (numRows($query, $conn) == 0) {
 			echo '<div class="error">'.$lang['trade_21'].'</div>';
 			break;
 		}
 		
-		$tpoke = mysql_fetch_assoc($query);
+		$tpoke = fetchAssoc($query, $conn);
 		echo '
 			<div style="text-align: center;">
 				<img src="images/pokemon/'.$tpoke['name'].'.png" /><br />
@@ -256,17 +260,18 @@ switch ($_GET['a']) {
 			</div>
 		';
 		
-		$query = mysql_query("SELECT * FROM `offer_pokemon` WHERE `tid`='{$tid}'");
+		$query = "SELECT * FROM `offer_pokemon` WHERE `tid`='{$tid}'";
 		
-		if (mysql_num_rows($query) == 0) {
+		if (numRows($query, $conn) == 0) {
 			echo '<div class="info">'.$lang['trade_22'].'</div>';
 			break;
 		}
 		
 		$offers = array();
-		while ($p = mysql_fetch_assoc($query)) {
-			$query2 = mysql_query("SELECT * FROM `users` WHERE `id`='{$p['uid']}'");
-			$username = mysql_fetch_assoc($query2);
+$result = $conn->query($query);
+		while ($p = $result->fetch_assoc()) {
+			$query2 = "SELECT * FROM `users` WHERE `id`='{$p['uid']}'";
+			$username = fetchAssoc($query2, $conn);
 			$username = $username['username'];
 			$p['username'] = $username;
 			$offers[$p['oid']][] = $p;
@@ -325,16 +330,16 @@ switch ($_GET['a']) {
 	case 'decline':
 		$oid = (int) $_GET['id'];
 		
-		$query = mysql_query("SELECT `tid` FROM `offer_pokemon` WHERE `oid`='{$oid}' LIMIT 1");
+		$query = "SELECT `tid` FROM `offer_pokemon` WHERE `oid`='{$oid}' LIMIT 1";
 		
-		if (mysql_num_rows($query) == 0) {
+		if (numRows($query, $conn) == 0) {
 			echo '<div class="notice">'.$lang['trade_26'].'</div>';
 			break;
 		}
-		$row = mysql_fetch_assoc($query);
+		$row = fetchAssoc($query, $conn);
 		
-		$query = mysql_query("SELECT `uid` FROM `trade_pokemon` WHERE `id`='{$row['tid']}' LIMIT 1");
-		$row = mysql_fetch_assoc($query);
+		$query = "SELECT `uid` FROM `trade_pokemon` WHERE `id`='{$row['tid']}' LIMIT 1";
+		$row = fetchAssoc($query, $conn);
 		
 		if ($row['uid'] != $uid) {
 			echo '<div class="notice">'.$lang['trade_27'].'</div>';
@@ -343,30 +348,31 @@ switch ($_GET['a']) {
 		
 		echo '<div class="notice">'.$lang['trade_28'].'</div>';
 		
-		$query = mysql_query("SELECT * FROM `offer_pokemon` WHERE `oid`='{$oid}'");
-		while ($p = mysql_fetch_assoc($query)) {
-			$p['name'] = mysql_real_escape_string($p['name']);
-			mysql_query("INSERT INTO `user_pokemon` (`uid`, `name`, `exp`, `level`, `move1`, `move2`, `move3`, `move4`)
+		$query = "SELECT * FROM `offer_pokemon` WHERE `oid`='{$oid}'";
+$result = $conn->query($query);
+		while ($p = $result->fetch_assoc()) {
+			$p['name'] = $conn->real_escape_string($p['name']);
+			$conn->query("INSERT INTO `user_pokemon` (`uid`, `name`, `exp`, `level`, `move1`, `move2`, `move3`, `move4`)
 				VALUES ('{$p['uid']}', '{$p['name']}', '{$p['exp']}', '{$p['level']}', '{$p['move1']}', '{$p['move2']}', '{$p['move3']}', '{$p['move4']}')");
 				
-			mysql_query("DELETE FROM `offer_pokemon` WHERE `id`='{$p['id']}'");
+			$conn->query("DELETE FROM `offer_pokemon` WHERE `id`='{$p['id']}'");
 		}
 	break;
 	
 	case 'accept':
 		$oid = (int) $_GET['id'];
 		
-		$query = mysql_query("SELECT `tid` FROM `offer_pokemon` WHERE `oid`='{$oid}' LIMIT 1");
+		$query = "SELECT `tid` FROM `offer_pokemon` WHERE `oid`='{$oid}' LIMIT 1";
 		
-		if (mysql_num_rows($query) == 0) {
+		if (numRows($query, $conn) == 0) {
 			echo '<div class="notice">'.$lang['trade_26'].'</div>';
 			break;
 		}
-		$row = mysql_fetch_assoc($query);
+		$row = fetchAssoc($query, $conn);
 		$tid = $row['tid'];
 		
-		$query = mysql_query("SELECT `uid` FROM `trade_pokemon` WHERE `id`='{$tid}' LIMIT 1");
-		$row = mysql_fetch_assoc($query);
+		$query = "SELECT `uid` FROM `trade_pokemon` WHERE `id`='{$tid}' LIMIT 1";
+		$row = fetchAssoc($query, $conn);
 		
 		if ($row['uid'] != $uid) {
 			echo '<div class="notice">'.$lang['trade_27'].'</div>';
@@ -376,45 +382,47 @@ switch ($_GET['a']) {
 		echo '<div class="notice">'.$lang['trade_29'].'</div>';
 		
 		
-		$query = mysql_query("SELECT * FROM `offer_pokemon` WHERE `oid`='{$oid}'");
-		while ($p = mysql_fetch_assoc($query)) {
+		$query = "SELECT * FROM `offer_pokemon` WHERE `oid`='{$oid}'";
+$result = $conn->query($query);
+		while ($p = $result->fetch_assoc()) {
 			$tuid = $p['uid'];
-			$p['name'] = mysql_real_escape_string($p['name']);
-			mysql_query("INSERT INTO `user_pokemon` (`uid`, `name`, `exp`, `level`, `move1`, `move2`, `move3`, `move4`)
+			$p['name'] = $conn->real_escape_string($p['name']);
+			$conn->query("INSERT INTO `user_pokemon` (`uid`, `name`, `exp`, `level`, `move1`, `move2`, `move3`, `move4`)
 				VALUES ('{$uid}', '{$p['name']}', '{$p['exp']}', '{$p['level']}', '{$p['move1']}', '{$p['move2']}', '{$p['move3']}', '{$p['move4']}')");
 				
-			mysql_query("DELETE FROM `offer_pokemon` WHERE `id`='{$p['id']}'");
+			$conn->query("DELETE FROM `offer_pokemon` WHERE `id`='{$p['id']}'");
 		}
 		
-		$query = mysql_query("SELECT * FROM `offer_pokemon` WHERE `tid`='{$tid}'");
-		while ($p = mysql_fetch_assoc($query)) {
-			$p['name'] = mysql_real_escape_string($p['name']);
-			mysql_query("INSERT INTO `user_pokemon` (`uid`, `name`, `exp`, `level`, `move1`, `move2`, `move3`, `move4`)
+		$query = "SELECT * FROM `offer_pokemon` WHERE `tid`='{$tid}'";
+$result = $conn->query($query);
+		while ($p = $result->fetch_assoc()) {
+			$p['name'] = $conn->real_escape_string($p['name']);
+			$conn->query("INSERT INTO `user_pokemon` (`uid`, `name`, `exp`, `level`, `move1`, `move2`, `move3`, `move4`)
 				VALUES ('{$p['uid']}', '{$p['name']}', '{$p['exp']}', '{$p['level']}', '{$p['move1']}', '{$p['move2']}', '{$p['move3']}', '{$p['move4']}')");
 				
-			mysql_query("DELETE FROM `offer_pokemon` WHERE `id`='{$p['id']}'");
+			$conn->query("DELETE FROM `offer_pokemon` WHERE `id`='{$p['id']}'");
 		}
 		
 		
-		$query = mysql_query("SELECT * FROM `trade_pokemon` WHERE `id`='{$tid}'");
-		$p = mysql_fetch_assoc($query);
-		$p['name'] = mysql_real_escape_string($p['name']);
-		mysql_query("INSERT INTO `user_pokemon` (`uid`, `name`, `exp`, `level`, `move1`, `move2`, `move3`, `move4`)
+		$query = "SELECT * FROM `trade_pokemon` WHERE `id`='{$tid}'";
+		$p = fetchAssoc($query, $conn);
+		$p['name'] = $conn->real_escape_string($p['name']);
+		$conn->query("INSERT INTO `user_pokemon` (`uid`, `name`, `exp`, `level`, `move1`, `move2`, `move3`, `move4`)
 				VALUES ('{$tuid}', '{$p['name']}', '{$p['exp']}', '{$p['level']}', '{$p['move1']}', '{$p['move2']}', '{$p['move3']}', '{$p['move4']}')");
 				
-		mysql_query("DELETE FROM `trade_pokemon` WHERE `id`='{$p['id']}'");
+		$conn->query("DELETE FROM `trade_pokemon` WHERE `id`='{$p['id']}'");
 	break;
 	
 	case 'remove':
 		$tid = (int) $_GET['id'];
 		
-		$query = mysql_query("SELECT `uid` FROM `trade_pokemon` WHERE `id`='{$tid}' LIMIT 1");
+		$query = "SELECT `uid` FROM `trade_pokemon` WHERE `id`='{$tid}' LIMIT 1";
 		
-		if (mysql_num_rows($query) == 0) {
+		if (numRows($query, $conn) == 0) {
 			echo '<div class="notice">'.$lang['trade_30'].'</div>';
 			break;
 		}
-		$row = mysql_fetch_assoc($query);
+		$row = fetchAssoc($query, $conn);
 	
 		if ($row['uid'] != $uid) {
 			echo '<div class="notice">'.$lang['trade_27'].'</div>';
@@ -424,40 +432,42 @@ switch ($_GET['a']) {
 		echo '<div class="notice">'.$lang['trade_31'].'</div>';
 		
 		
-		$query = mysql_query("SELECT * FROM `offer_pokemon` WHERE `tid`='{$tid}'");
-		while ($p = mysql_fetch_assoc($query)) {
+		$query = "SELECT * FROM `offer_pokemon` WHERE `tid`='{$tid}'";
+$result = $conn->query($query);
+		while ($p = $result->fetch_assoc()) {
 			//$tuid = $p['uid'];
-			$p['name'] = mysql_real_escape_string($p['name']);
-			mysql_query("INSERT INTO `user_pokemon` (`uid`, `name`, `exp`, `level`, `move1`, `move2`, `move3`, `move4`)
+			$p['name'] = $conn->real_escape_string($p['name']);
+			$conn->query("INSERT INTO `user_pokemon` (`uid`, `name`, `exp`, `level`, `move1`, `move2`, `move3`, `move4`)
 				VALUES ('{$p['uid']}', '{$p['name']}', '{$p['exp']}', '{$p['level']}', '{$p['move1']}', '{$p['move2']}', '{$p['move3']}', '{$p['move4']}')");
 				
-			mysql_query("DELETE FROM `offer_pokemon` WHERE `id`='{$p['id']}'");
+			$conn->query("DELETE FROM `offer_pokemon` WHERE `id`='{$p['id']}'");
 		}
 		
-		$query = mysql_query("SELECT * FROM `trade_pokemon` WHERE `id`='{$tid}'");
-		$p = mysql_fetch_assoc($query);
-		$p['name'] = mysql_real_escape_string($p['name']);
-		mysql_query("INSERT INTO `user_pokemon` (`uid`, `name`, `exp`, `level`, `move1`, `move2`, `move3`, `move4`)
+		$query = "SELECT * FROM `trade_pokemon` WHERE `id`='{$tid}'";
+		$p = fetchAssoc($query, $conn);
+		$p['name'] = $conn->real_escape_string($p['name']);
+		$conn->query("INSERT INTO `user_pokemon` (`uid`, `name`, `exp`, `level`, `move1`, `move2`, `move3`, `move4`)
 				VALUES ('{$p['uid']}', '{$p['name']}', '{$p['exp']}', '{$p['level']}', '{$p['move1']}', '{$p['move2']}', '{$p['move3']}', '{$p['move4']}')");
 				
-		mysql_query("DELETE FROM `trade_pokemon` WHERE `id`='{$p['id']}'");
+		$conn->query("DELETE FROM `trade_pokemon` WHERE `id`='{$p['id']}'");
 	break;
 	
 	case 'va':	
-		$query = mysql_query("SELECT * FROM `offer_pokemon` WHERE `uid`='{$uid}'");
+		$query = "SELECT * FROM `offer_pokemon` WHERE `uid`='{$uid}'";
 		
-		if (mysql_num_rows($query) == 0) {
+		if (numRows($query, $conn) == 0) {
 			echo '<div class="error">'.$lang['trade_32'].'</div>';
 			break;
 		}
 		
 		$offers = array();
-		while ($p = mysql_fetch_assoc($query)) {
-			$query2 = mysql_query("SELECT * FROM `trade_pokemon` WHERE `id`='{$p['tid']}'");
-			$tradeRow = mysql_fetch_assoc($query2);
+$result = $conn->query($query);
+		while ($p = fetchAssoc($query, $conn)) {
+			$query2 = "SELECT * FROM `trade_pokemon` WHERE `id`='{$p['tid']}'";
+			$tradeRow = fetchAssoc($query2, $conn);
 
-			$query2 = mysql_query("SELECT * FROM `users` WHERE `id`='{$tradeRow['uid']}'");
-			$userRow = mysql_fetch_assoc($query2);
+			$query2 = "SELECT * FROM `users` WHERE `id`='{$tradeRow['uid']}'";
+			$userRow = fetchAssoc($query2, $conn);
 			
 			$tradeRow['username'] = $userRow['username'];
 			$p['r'] = $tradeRow;
@@ -519,13 +529,13 @@ switch ($_GET['a']) {
 	case 'reo':
 		$oid = (int) $_GET['id'];
 		
-		$query = mysql_query("SELECT `uid` FROM `offer_pokemon` WHERE `oid`='{$oid}' LIMIT 1");
+		$query = "SELECT `uid` FROM `offer_pokemon` WHERE `oid`='{$oid}' LIMIT 1";
 		
-		if (mysql_num_rows($query) == 0) {
+		if (numRows($query, $conn) == 0) {
 			echo '<div class="error">'.$lang['trade_37'].'</div>';
 			break;
 		}
-		$row = mysql_fetch_assoc($query);
+		$row = fetchAssoc($query, $conn);
 	
 		if ($row['uid'] != $uid) {
 			echo '<div class="error">'.$lang['trade_27'].'</div>';
@@ -535,14 +545,15 @@ switch ($_GET['a']) {
 		echo '<div class="notice">'.$lang['trade_38'].'</div>';
 		
 		
-		$query = mysql_query("SELECT * FROM `offer_pokemon` WHERE `oid`='{$oid}'");
-		while ($p = mysql_fetch_assoc($query)) {
+		$query = "SELECT * FROM `offer_pokemon` WHERE `oid`='{$oid}'";
+$result = $conn->query($query);
+		while ($p = $result->fetch_assoc()) {
 			//$tuid = $p['uid'];
-			$p['name'] = mysql_real_escape_string($p['name']);
-			mysql_query("INSERT INTO `user_pokemon` (`uid`, `name`, `exp`, `level`, `move1`, `move2`, `move3`, `move4`)
+			$p['name'] = $conn->real_escape_string($p['name']);
+			$conn->query("INSERT INTO `user_pokemon` (`uid`, `name`, `exp`, `level`, `move1`, `move2`, `move3`, `move4`)
 				VALUES ('{$p['uid']}', '{$p['name']}', '{$p['exp']}', '{$p['level']}', '{$p['move1']}', '{$p['move2']}', '{$p['move3']}', '{$p['move4']}')");
 				
-			mysql_query("DELETE FROM `offer_pokemon` WHERE `id`='{$p['id']}'");
+			$conn->query("DELETE FROM `offer_pokemon` WHERE `id`='{$p['id']}'");
 		}
 	break;
 }

@@ -30,11 +30,11 @@ include '_header.php';
 printHeader($lang['auct_title']);
 
 $uid = (int) $_SESSION['userid'];
-$sqlUsername = cleanSql($_SESSION['username']);
+$sqlUsername = cleanSql($_SESSION['username'], $conn);
 
-$query = mysql_query("SELECT * FROM `auction_pokemon` LIMIT 1");
+$query = "SELECT * FROM `auction_pokemon` LIMIT 1";
 
-if (mysql_num_rows($query) == 0) {
+if (numRows($query, $conn) == 0) {
 	echo '<div class="notice">'.$lang['auct_00'].'</div>';
 	include '_footer.php';
 	die();
@@ -44,12 +44,12 @@ if (isset($_POST['pid']) && isset($_POST['bid'])) {
 	$errors = array();
 	$pid = (int) $_POST['pid'];
 	$bid = (int) $_POST['bid'];
-	$query = mysql_query("SELECT * FROM `auction_pokemon` WHERE `id`='{$pid}'");
+	$query = "SELECT * FROM `auction_pokemon` WHERE `id`='{$pid}'";
 	
-	if (mysql_num_rows($query) == 0) {
+	if (numRows($query, $conn) == 0) {
 		$errors[] = $lang['auct_01'];
 	} else {
-		$auctionRow = mysql_fetch_assoc($query);
+		$auctionRow = fetchAssoc($query, $conn);
 		$time = time();
 		
 		if ($auctionRow['finish_time'] < $time) {
@@ -76,11 +76,11 @@ if (isset($_POST['pid']) && isset($_POST['bid'])) {
 			$lastBid = $auctionRow['current_bid'];
 			$bidId = $auctionRow['bidder_id'];
 			
-			mysql_query("UPDATE `users` SET `money`=`money`+{$lastBid} WHERE `id`='{$bidId}' LIMIT 1");
+			$conn->query("UPDATE `users` SET `money`=`money`+{$lastBid} WHERE `id`='{$bidId}' LIMIT 1");
 		}
 		
-		mysql_query("UPDATE `auction_pokemon` SET `bidder_id`='{$uid}', `bidder_username`='{$sqlUsername}', `current_bid`='{$bid}', `num_bids`=`num_bids`+1 WHERE `id`='{$pid}' LIMIT 1");
-		mysql_query("UPDATE `users` SET `money`=`money`-{$bid} WHERE `id`='{$uid}' LIMIT 1");
+		$conn->query("UPDATE `auction_pokemon` SET `bidder_id`='{$uid}', `bidder_username`='{$sqlUsername}', `current_bid`='{$bid}', `num_bids`=`num_bids`+1 WHERE `id`='{$pid}' LIMIT 1");
+		$conn->query("UPDATE `users` SET `money`=`money`-{$bid} WHERE `id`='{$uid}' LIMIT 1");
 		
 		echo '<div class="notice">'.$lang['auct_06'].' $'.number_format($bid).' '.$lang['auct_07'].' '.$auctionRow['name'].'.</div>';
 	}
@@ -117,7 +117,7 @@ foreach ($extraSqlArr as $k => $a) {
 	$links[] = $key == $k ? $a['text'] : '<a href="?s='.$k.'">'.$a['text'].'</a>' ;
 }
 
-$query = mysql_query("SELECT * FROM `auction_pokemon` {$extraSql}");
+$query = "SELECT * FROM `auction_pokemon` {$extraSql}";
 
 echo '
 	<img src="images/auction.png" /><br /><br />
@@ -132,7 +132,8 @@ echo '
 			<th>'.$lang['auct_18'].'</th>
 		</tr>
 ';
-while ($auctionRow = mysql_fetch_assoc($query)) {
+$result = $conn->query($query);
+while ($auctionRow = $result->fetch_assoc()) {
 	$secondsLeft = $auctionRow['finish_time']-time();
 	$amountArray = secsToTimeAmountArray($secondsLeft);
 	echo '

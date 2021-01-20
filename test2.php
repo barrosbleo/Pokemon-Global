@@ -10,13 +10,13 @@ if (!isLoggedIn()) {
 }
 $uid = (int) $_SESSION['userid'];
 
-$ip = mysql_query("select * from users where ip = '123.2.235.164'");
+$ip = "select * from users where ip = '123.2.235.164'";
 
-$count = mysql_num_rows($ip);
+$count = numRows($ip, $conn);
 
 echo 'IP: 123.2.235.164<br><br>IP count: '.$count.'<br><br>IP users:<br>';
 
-while($see = mysql_fetch_array($ip)) {
+while($see = fetchArray($ip, 2, $conn)) {
 	echo $see['username'].'<br>';
 } 
 ?>
@@ -29,13 +29,13 @@ MY `ip2` NEW ADDRESS
 <?php
 $newip = $_SERVER['REMOTE_ADDR'];
 
-$ip2 = mysql_query("select * from users where ip = '$newip'");
+$ip2 = "select * from users where ip = '$newip'";
 
-$count2 = mysql_num_rows($ip2);
+$count2 = numRows($ip2, $conn);
 
 echo 'IP: '.$newip.'<br><br>IP count: '.$count2.'<br><br>IP users:<br>';
 
-while($see2 = mysql_fetch_array($ip2)) {
+while($see2 = fetchArray($ip2, 2, $conn)) {
 	echo $see2['username'].'<br>';
 } 
 ?>

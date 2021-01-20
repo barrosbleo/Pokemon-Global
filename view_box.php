@@ -7,13 +7,13 @@ if (!isLoggedIn()) {
 }
 
 $gid   = (int) (isset($_GET['id']) ? $_GET['id'] : $_SESSION['userid']);
-$query = mysql_query("SELECT `username` FROM `users` WHERE `id`='{$gid}' LIMIT 1");
+$query = "SELECT `username` FROM `users` WHERE `id`='{$gid}' LIMIT 1";
 
-if(mysql_num_rows($query) == 0) {
+if(numRows($query, $conn) == 0) {
 	redirect('view_box.php');
 }
 
-$boxUsername = mysql_fetch_assoc($query);
+$boxUsername = fetchAssoc($query, $conn);
 $boxUsername = $boxUsername['username'];
 
 include '_header.php';
@@ -38,13 +38,13 @@ $orderSql  = $sorts[$sortKey];
 $searchSql = '';
 
 if (!empty($search)) {
-	$searchSqlSafe  = cleanSql($search);
+	$searchSqlSafe  = cleanSql($search, $conn);
 	$searchHtmlSafe = cleanHtml($search);
 	$searchSql      = " AND `name` LIKE '%{$searchSqlSafe}%' ";
 }
 
-$countQuery = mysql_query("SELECT `id` FROM `user_pokemon` WHERE `uid`='{$gid}' {$searchSql}");
-$numRows    = mysql_num_rows($countQuery);
+$countQuery = "SELECT `id` FROM `user_pokemon` WHERE `uid`='{$gid}' {$searchSql}";
+$numRows    = numRows($countQuery, $conn);
 
 $pagination = new Pagination($numRows);
 
@@ -60,7 +60,7 @@ if ($sortKey != 1) {
 	$pagination->addQueryStringVar('sort', $sortKey);
 }
 
-$query = mysql_query("SELECT * FROM `user_pokemon` WHERE `uid`='{$gid}' {$searchSql} {$orderSql} LIMIT {$pagination->itemsPerPage} OFFSET {$pagination->startItem}");
+$query = "SELECT * FROM `user_pokemon` WHERE `uid`='{$gid}' {$searchSql} {$orderSql} LIMIT {$pagination->itemsPerPage} OFFSET {$pagination->startItem}";
 
 	
 
@@ -77,7 +77,7 @@ echo '
 	</form>
 ';
 
-if (mysql_num_rows($query) == 0) {
+if (numRows($query, $conn) == 0) {
 	echo '<div class="info">'.$lang['view_box_02'].'</div>';
 } else {
 	$qs = '';
@@ -113,9 +113,10 @@ if (mysql_num_rows($query) == 0) {
 			</tr>
 	';
 
-	$teamIds = getUserTeamIds($uid);
+	$teamIds = getUserTeamIds($uid, $conn);
 	$genders = array('1' => 'Male', '2' => 'Female', '3' => 'Genderless');
-	while ($pokemon = mysql_fetch_assoc($query)) {
+	$result = $conn->query($query);
+	while ($pokemon = $result->fetch_assoc()) {
 
 		if (!isset($_GET['id'])) {
 			if (in_array($pokemon['id'], $teamIds)) {

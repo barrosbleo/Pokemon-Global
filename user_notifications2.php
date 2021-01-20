@@ -6,8 +6,8 @@ $uid = (int) $_SESSION['userid'];
 
 
 // username, money, tokens etc
-$query = mysql_query("SELECT * FROM `users` WHERE `id`='{$uid}' LIMIT 1");
-$userRow = mysql_fetch_assoc($query);
+$query = "SELECT * FROM `users` WHERE `id`='{$uid}' LIMIT 1";
+$userRow = fetchAssoc($query, $conn);
 
 $username            = cleanHtml($userRow['username']);
 $money               = $userRow['money'];
@@ -19,28 +19,29 @@ $newSales            = $userRow['newly_sold_pokes'];
 
 // total messages
 //$query = mysql_query("SELECT * FROM `messages` WHERE `recipient_uid`='{$uid}' AND `deleted_by_recipient`='0'");
-//$totalMessages = mysql_num_rows($query);
+//$totalMessages = numRows($query, $conn);
 
 // total unread messages
 //$query = mysql_query("SELECT * FROM `messages` WHERE `recipient_uid`='{$uid}' AND `read`='0' AND `deleted_by_recipient`='0'");
-//$totalUnreadMessages = mysql_num_rows($query);
+//$totalUnreadMessages = numRows($query, $conn);
 
 // total pokemon for sale
 // $query = mysql_query("SELECT * FROM `sale_pokemon` WHERE `uid`='{$uid}'");
-// $totalSalePoke = mysql_num_rows($query);
+// $totalSalePoke = numRows($query, $conn);
 
 // new sales
 // $query = mysql_query("SELECT * FROM `sale_history` WHERE `uid`='{$uid}' AND `seen`='0'");
-// $newSales = mysql_num_rows($query);
+// $newSales = numRows($query, $conn);
 
 // total trade offers
-$query = mysql_query("SELECT `id` FROM `trade_pokemon` WHERE `uid`='{$uid}'");
+$query = "SELECT `id` FROM `trade_pokemon` WHERE `uid`='{$uid}'";
 $tradeIds = array();
-while ($tradeId = mysql_fetch_assoc($query)) { $tradeIds[] = $tradeId['id']; }
+$result = $conn->query($query);
+while ($tradeId = $result->fetch_assoc()) { $tradeIds[] = $tradeId['id']; }
 $tradeIdSql = '\''.implode('\', \'', $tradeIds) .'\'';
 
-$query = mysql_query("SELECT * FROM `offer_pokemon` WHERE `tid` IN ({$tradeIdSql}) GROUP BY `oid`");
-$totalOffers = mysql_num_rows($query);
+$query = "SELECT * FROM `offer_pokemon` WHERE `tid` IN ({$tradeIdSql}) GROUP BY `oid`";
+$totalOffers = numRows($query, $conn);
 
 if ($totalUnreadMessages > 0) {
 	$totalUnreadMessages = '<font style="color: #e74c3c;">'.$totalUnreadMessages.'</font>';

@@ -12,8 +12,8 @@ logs($uid, $lang['bank_00']);
 ?>
 <?php
 // other stuff
-$user1 = mysql_query("SELECT * FROM `users` WHERE `id`='" . $_SESSION['userid'] . "'");
-$user = mysql_fetch_object($user1);
+$user1 = "SELECT * FROM `users` WHERE `id`='" . $_SESSION['userid'] . "'";
+$user = fetchObj($user1, $conn);
 
 //QUICK DRAW
 if($_GET['d'] == 1){
@@ -35,7 +35,7 @@ $_POST['damount'] = $_POST['damount'] * 1000000;
 }
 
 
-$_POST['damount'] = mysql_real_escape_string($_POST['damount']);
+$_POST['damount'] = $conn->real_escape_string($_POST['damount']);
 
 $dontlike = array(',', '$', '+', '-');
 $yoyo   = array('', '', '', '');
@@ -61,7 +61,7 @@ if (!preg_match('~^[a-z0-9 ]+$~i', $_POST['damount'])){
         echo $lang['bank_04'];
         $user->bank = $_POST['damount'] + $user->bank;
         $user->money = $user->money - $_POST['damount'];
-        $result = mysql_query("UPDATE `users` SET `bank` = '".$user->bank."', `money` = '".$user->money."' WHERE `id`='".$_SESSION['userid']."'");
+        $result = $conn->query("UPDATE `users` SET `bank` = '".$user->bank."', `money` = '".$user->money."' WHERE `id`='".$_SESSION['userid']."'");
 
 }
 
@@ -73,7 +73,7 @@ if (!preg_match('~^[a-z0-9 ]+$~i', $_POST['damount'])){
 if($_POST['withdraw'] != ""){
 
 
-$_POST['wamount'] = mysql_real_escape_string($_POST['wamount']);
+$_POST['wamount'] = $conn->real_escape_string($_POST['wamount']);
 
 $dontlike = array(',', '$', '+', '-');
 $yoyo   = array('', '', '', '');
@@ -100,7 +100,7 @@ if (!preg_match('~^[a-z0-9 ]+$~i', $_POST['wamount'])){
         echo $lang['bank_07'];
         $user->bank = $user->bank - $_POST['wamount'];
         $user->money = $user->money + $_POST['wamount'];
-        $result = mysql_query("UPDATE `users` SET `bank` = '".$user->bank."', `money` = '".$user->money."' WHERE `id`='".$_SESSION['userid']."'");
+        $result = $conn->query("UPDATE `users` SET `bank` = '".$user->bank."', `money` = '".$user->money."' WHERE `id`='".$_SESSION['userid']."'");
 logs($uid, $lang['bank_08']." $".$_POST['wamount']." !");
     }
 }

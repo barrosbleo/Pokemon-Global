@@ -4,8 +4,8 @@ $filename = end($exp);
 if ($filename != 'trade.php') { die(); }
 
 
-$query = mysql_query("SELECT `poke1`,`poke2`,`poke3`,`poke4`,`poke5`,`poke6` FROM `users` WHERE `id`='{$uid}'");
-$myTeam = mysql_fetch_assoc($query);
+$query = "SELECT `poke1`,`poke2`,`poke3`,`poke4`,`poke5`,`poke6` FROM `users` WHERE `id`='{$uid}'";
+$myTeam = fetchAssoc($query, $conn);
 $nonInTeamSql = " `id` NOT IN ('".implode("', '", $myTeam)."') ";
 
 $sorts = array
@@ -25,13 +25,13 @@ if (!isset($_GET['all'])) {
 	
 	
 	if (!empty($search)) {
-		$searchSqlSafe  = cleanSql($search);
+		$searchSqlSafe  = cleanSql($search, $conn);
 		$searchHtmlSafe = cleanHtml($search);
 		$searchSql      = " AND `name` LIKE '%{$searchSqlSafe}%' ";
 	}
 	
-	$query = mysql_query("SELECT * FROM `user_pokemon` WHERE {$nonInTeamSql} {$searchSql} AND `uid`='{$uid}' {$orderSql}");
-	$numRows = mysql_num_rows($query);
+	$query = "SELECT * FROM `user_pokemon` WHERE {$nonInTeamSql} {$searchSql} AND `uid`='{$uid}' {$orderSql}";
+	$numRows = numRows($query, $conn);
 	
 	$pagination = new Pagination($numRows);
 	
@@ -44,9 +44,9 @@ if (!isset($_GET['all'])) {
 	}
 	
 	
-	$query = mysql_query("SELECT * FROM `user_pokemon` WHERE {$nonInTeamSql} {$searchSql} AND `uid`='{$uid}' {$orderSql} LIMIT {$pagination->itemsPerPage} OFFSET {$pagination->startItem}");
+	$query = "SELECT * FROM `user_pokemon` WHERE {$nonInTeamSql} {$searchSql} AND `uid`='{$uid}' {$orderSql} LIMIT {$pagination->itemsPerPage} OFFSET {$pagination->startItem}";
 } else {
-$query = mysql_query("SELECT * FROM `user_pokemon` WHERE {$nonInTeamSql} AND `uid`='{$uid}' {$orderSql}");
+$query = "SELECT * FROM `user_pokemon` WHERE {$nonInTeamSql} AND `uid`='{$uid}' {$orderSql}";
 }
 
 echo '
@@ -64,7 +64,7 @@ if (!isset($_GET['all'])) {
 }
 
 
-if (mysql_num_rows($query) == 0) {
+if (numRows($query, $conn) == 0) {
 	echo '<div class="info">'.$lang['trade_puft_03'].'</div>';
 } else {
 	$qs = '';
@@ -100,7 +100,8 @@ if (mysql_num_rows($query) == 0) {
 				<th>'.$lang['trade_puft_07'].'</th>
 			</tr>
 	';
-	while ($pokemon = mysql_fetch_assoc($query)) {
+$result = $conn->query($query);
+	while ($pokemon = $result->fetch_assoc()) {
 		echo '
 			<tr>
 				<td><input type="checkbox" name="pokemon[]" value="'.$pokemon['id'].'" /></td>

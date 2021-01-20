@@ -29,7 +29,7 @@ $uid = (int) $_SESSION['userid'];
 $cells = array();
 
 
-$query = mysql_query("
+$query = "
 	SELECT
 		`users`.`id`,
 		`users`.`username`,
@@ -48,7 +48,7 @@ $query = mysql_query("
 		/* GROUP BY `user_pokemon`.`uid` */
 	ORDER BY `poke_exp` DESC
 	LIMIT 10
-");
+";
 if ($query) {
 	$cell = '
 		<center><h2 class="header2">'.$lang['stats_00'].'</h2></center><br />
@@ -62,7 +62,8 @@ if ($query) {
 			</tr>
 	';
 	$i=1;
-	while ($row = mysql_fetch_assoc($query)) {
+$result = $conn->query($query);
+	while ($row = $result->fetch_assoc()) {
 		$cell .= '
 			<tr>
 				<td>'.$i.'</td>
@@ -98,7 +99,7 @@ if ($query) {
 }
 
 
-$query = mysql_query("
+$query = "
 	SELECT
 		`users`.`id`,
 		`users`.`username`,
@@ -114,7 +115,7 @@ $query = mysql_query("
 	GROUP BY `user_pokemon`.`uid`
 	ORDER BY `total_exp` DESC
 	LIMIT 10
-");
+";
 if ($query) {
 	$cell = '
 		<center><h2 class="header2">'.$lang['stats_05'].'</h2></center><br />
@@ -126,7 +127,8 @@ if ($query) {
 			</tr>
 	';
 	$i=1;
-	while ($row = mysql_fetch_assoc($query)) {
+$result = $conn->query($query);
+	while ($row = $result->fetch_assoc()) {
 		$cell .= '
 			<tr>
 				<td>'.$i++.'</td>
@@ -141,7 +143,7 @@ if ($query) {
 }
 
 
-$query = mysql_query("
+$query = "
 	SELECT
 		COUNT( DISTINCT(`user_pokemon`.`name`) ) AS `num_uniques`,
 		`users`.`username`,
@@ -155,7 +157,7 @@ $query = mysql_query("
 	GROUP BY `uid`
 	ORDER BY `num_uniques`
 	DESC LIMIT 10
-");
+";
 
 if ($query) {
 	$cell = '
@@ -169,7 +171,8 @@ if ($query) {
 	';
 	
 	$i=1;
-	while ($row = mysql_fetch_assoc($query)) {
+$result = $conn->query($query);
+	while ($row = $result->fetch_assoc()) {
 		$cell .= '
 			<tr>
 				<td>'.$i++.'</td>
@@ -186,7 +189,7 @@ if ($query) {
 
 
 
-$query = mysql_query("
+$query = "
 	SELECT
 		ROUND( AVG(`exp`) ) AS `avg_exp`,
 		`users`.`username`,
@@ -200,7 +203,7 @@ $query = mysql_query("
 	GROUP BY `user_pokemon`.`uid`
 	ORDER BY `avg_exp`
 	DESC LIMIT 10
-");
+";
 
 if ($query) {
 	$cell = '
@@ -214,7 +217,8 @@ if ($query) {
 	';
 	
 	$i=1;
-	while ($row = mysql_fetch_assoc($query)) {
+$result = $conn->query($query);
+	while ($row = $result->fetch_assoc()) {
 		$cell .= '
 			<tr>
 				<td>'.$i++.'</td>
@@ -228,7 +232,7 @@ if ($query) {
 }
 
 
-$query = mysql_query("
+$query = "
 	SELECT
 		`id`,
 		`username`,
@@ -239,7 +243,7 @@ $query = mysql_query("
 		`admin`='0' AND `banned` = '0'
 	ORDER BY `won` DESC
 	LIMIT 10
-");
+";
 
 if ($query) {
 
@@ -253,7 +257,8 @@ if ($query) {
 			</tr>
 	';
 	$i=1;
-	while ($row = mysql_fetch_assoc($query)) {
+$result = $conn->query($query);
+	while ($row = $result->fetch_assoc()) {
 		$cell .= '
 			<tr>
 				<td>'.$i++.'</td>
@@ -266,7 +271,7 @@ if ($query) {
 	$cells[] = $cell;
 }
 
-$query = mysql_query("
+$query = "
 	SELECT
 		`id`,
 		`username`,
@@ -277,7 +282,7 @@ $query = mysql_query("
 		`admin`='0' AND `banned` = '0'
 	ORDER BY `money` DESC
 	LIMIT 10
-");
+";
 
 if ($query) {
 
@@ -293,7 +298,8 @@ if ($query) {
 		
 
 	$i=1;
-	while ($row = mysql_fetch_assoc($query)) {
+$result = $conn->query($query);
+	while ($row = $result->fetch_assoc()) {
 		$cell .=  '
 			<tr>
 				<td>'.$i++.'</td>
@@ -307,7 +313,7 @@ if ($query) {
 }
 
 
-$query = mysql_query("
+$query = "
 	SELECT
 		`id`,
 		`username`,
@@ -318,7 +324,7 @@ $query = mysql_query("
 		`admin`='0' AND `banned` = '0'
 	ORDER BY `bank` DESC
 	LIMIT 10
-");
+";
 
 if ($query) {
 
@@ -334,7 +340,8 @@ if ($query) {
 		
 
 	$i=1;
-	while ($row = mysql_fetch_assoc($query)) {
+$result = $conn->query($query);
+	while ($row = $result->fetch_assoc()) {
 		$cell .=  '
 			<tr>
 				<td>'.$i++.'</td>
@@ -351,7 +358,7 @@ if ($query) {
 
 
 
-$query = mysql_query("
+$query = "
 	SELECT
 		`id`,
 		`username`,
@@ -362,7 +369,7 @@ $query = mysql_query("
 		`admin`='0' AND `banned` = '0'
 	ORDER BY `mexp` DESC
 	LIMIT 10
-");
+";
 
 
 
@@ -375,7 +382,7 @@ $query = mysql_query("
 
 
 
-$query = mysql_query("
+$query = "
 	SELECT
 		`id`,
 		`username`,
@@ -386,7 +393,7 @@ $query = mysql_query("
 		`admin`='0' AND `banned` = '0'
 	ORDER BY `released` DESC
 	LIMIT 10
-");
+";
 
 if ($query) {
 
@@ -402,7 +409,8 @@ if ($query) {
 		
 
 	$i=1;
-	while ($row = mysql_fetch_assoc($query)) {
+$result = $conn->query($query);
+	while ($row = $result->fetch_assoc()) {
 		$cell .=  '
 			<tr>
 				<td>'.$i++.'</td>
@@ -429,7 +437,7 @@ if ($query) {
 
 
 
-$query = mysql_query("
+$query = "
 	SELECT
 		`id`,
 		`username`,
@@ -440,7 +448,7 @@ $query = mysql_query("
 		`admin`='0' AND `banned` = '0'
 	ORDER BY `token` DESC
 	LIMIT 10
-");
+";
 
 if ($query) {
 
@@ -456,7 +464,8 @@ if ($query) {
 		
 
 	$i=1;
-	while ($row = mysql_fetch_assoc($query)) {
+$result = $conn->query($query);
+	while ($row = $result->fetch_assoc()) {
 		$cell .=  '
 			<tr>
 				<td>'.$i++.'</td>
@@ -474,7 +483,7 @@ if ($query) {
 
 
 
-$query = mysql_query("
+$query = "
 	SELECT
 		`id`,
 		`username`,
@@ -485,7 +494,7 @@ $query = mysql_query("
 		`admin`='0' AND `banned` = '0'
 	ORDER BY `Referals` DESC
 	LIMIT 10
-");
+";
 
 if ($query) {
 
@@ -501,7 +510,8 @@ if ($query) {
 		
 
 	$i=1;
-	while ($row = mysql_fetch_assoc($query)) {
+$result = $conn->query($query);
+	while ($row = $result->fetch_assoc()) {
 		$cell .=  '
 			<tr>
 				<td>'.$i++.'</td>
@@ -521,7 +531,7 @@ if ($query) {
 
 
 
-$query = mysql_query("
+$query = "
 	SELECT
 		`id`,
 		`username`,
@@ -532,7 +542,7 @@ $query = mysql_query("
 		`admin`='0' AND `banned` = '0'
 	ORDER BY `champ_longest_run` DESC
 	LIMIT 10
-");
+";
 
 if ($query) {
 
@@ -548,7 +558,8 @@ if ($query) {
 		
 
 	$i=1;
-	while ($row = mysql_fetch_assoc($query)) {
+$result = $conn->query($query);
+	while ($row = $result->fetch_assoc()) {
 		$length = implode(', ', secsToTimeAmountArray($row['champ_longest_run']));
 		$cell .=  '
 			<tr>
@@ -578,7 +589,7 @@ if ($query) {
 
 
 
-$query = mysql_query("
+$query = "
 	SELECT
 		`id`,
 		`username`,
@@ -589,7 +600,7 @@ $query = mysql_query("
 		`admin`='0' AND `banned` = '0'
 	ORDER BY `champ_total_time` DESC
 	LIMIT 10
-");
+";
 
 if ($query) {
 
@@ -605,7 +616,8 @@ if ($query) {
 		
 
 	$i=1;
-	while ($row = mysql_fetch_assoc($query)) {
+$result = $conn->query($query);
+	while ($row = $result->fetch_assoc()) {
 		$length = implode(', ', secsToTimeAmountArray($row['champ_total_time']));
 		$cell .=  '
 			<tr>

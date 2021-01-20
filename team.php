@@ -16,7 +16,7 @@ $uid = (int) $_SESSION['userid'];
 
 
 if ((isset($_GET['a']) && in_array($_GET['a'], range(1,6))) && (isset($_GET['b']) && in_array($_GET['b'], range(1,6))) && $_GET['a'] != $_GET['b']) {
-    $team    = getUserTeamIds($uid);
+    $team    = getUserTeamIds($uid, $conn);
 	$first   = (int) $_GET['a'];
 	$second  = (int) $_GET['b'];
 	$fPokeId = (int) $team['poke'.$first ];
@@ -25,13 +25,13 @@ if ((isset($_GET['a']) && in_array($_GET['a'], range(1,6))) && (isset($_GET['b']
 	if ($fPokeId == 0 || $sPokeId == 0) {
 		// echo '<div class="error">You can not move this pokemon.</div>';
 	} else {
-		mysql_query("UPDATE `users` SET `poke{$second}`='{$fPokeId}', `poke{$first}`='{$sPokeId}' WHERE `id`='{$uid}' LIMIT 1");
+		$conn->query("UPDATE `users` SET `poke{$second}`='{$fPokeId}', `poke{$first}`='{$sPokeId}' WHERE `id`='{$uid}' LIMIT 1");
         redirect('team.php');
 	}
 }
 
 if (isset($_GET['box']) && in_array($_GET['box'], range(1,6))) {
-    $team    = getUserTeamIds($uid);
+    $team    = getUserTeamIds($uid, $conn);
     $position = (int) $_GET['box'];
     $pokeCount = 0;
     $validIds = array();
@@ -58,7 +58,7 @@ if (isset($_GET['box']) && in_array($_GET['box'], range(1,6))) {
         }
         $upSql = substr($upSql, 0, -2);
         // echo "UPDATE `users` SET {$upSql} WHERE `id`='{$uid}' LIMIT 1";
-	    mysql_query("UPDATE `users` SET {$upSql} WHERE `id`='{$uid}' LIMIT 1");
+	    $conn->query("UPDATE `users` SET {$upSql} WHERE `id`='{$uid}' LIMIT 1");
         redirect('team.php');
 	}
 }
@@ -81,7 +81,7 @@ printHeader($lang['team_title']);
 		</tr>
 ';
 
-$team = getUserTeamIds($uid);
+$team = getUserTeamIds($uid, $conn);
 $pokeCount = 0;
 for ($i=1; $i<=6; $i++) {
     $pid = $team['poke'.$i];
@@ -111,7 +111,7 @@ for ($i=1; $i<=6; $i++) {
 		continue;
 	}
 	
-	$pokemon = getUserPokemon($pid);
+	$pokemon = getUserPokemon($pid, $conn);
 	
 	echo '
         <tr>

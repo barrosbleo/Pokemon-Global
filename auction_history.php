@@ -53,7 +53,7 @@ foreach ($extraSqlArr as $k => $a) {
 	$links[] = $key == $k ? $a['text'] : '<a href="?s='.$k.'">'.$a['text'].'</a>' ;
 }
 
-$query = mysql_query("SELECT * FROM `auction_history` {$extraSql} LIMIT 100");
+$query = "SELECT * FROM `auction_history` {$extraSql} LIMIT 100";
 
 echo '
 	<img src="images/auction.png" /><br /><br />
@@ -61,7 +61,7 @@ echo '
 	'.implode(' &bull; ', $links).'<br /><br />
 ';
 
-if (mysql_num_rows($query) == 0) {
+if (numRows($query, $conn) == 0) {
 	echo '<div class="notice">'.$lang['auct_h_05'].'</div>';
 	include '_footer.php';
 	die();
@@ -77,7 +77,8 @@ echo '
 			<th>'.$lang['auct_h_10'].'</th>
 		</tr>
 ';
-while ($auctionRow = mysql_fetch_assoc($query)) {
+$conn->query($query);
+while ($auctionRow = $result->fetch_assoc()) {
 	
 	echo '
 		<tr>

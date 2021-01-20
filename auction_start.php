@@ -6,18 +6,18 @@ if (!isLoggedIn()) { redirect('login.php'); }
 if (!isset($_GET['id'])) { redirect('membersarea.php'); }
 $pid = (int) $_GET['id'];
 $uid = (int) $_SESSION['userid'];
-$sqlUsername = cleanSql($_SESSION['username']);
+$sqlUsername = cleanSql($_SESSION['username'], $conn);
 
 include '_header.php';
 printHeader($lang['auct_a_title']);
 
-$query = mysql_query("SELECT * FROM `user_pokemon` WHERE `id`='{$pid}' AND `uid`='{$uid}'");
-if (mysql_num_rows($query) == 0) { 
+$query = "SELECT * FROM `user_pokemon` WHERE `id`='{$pid}' AND `uid`='{$uid}'";
+if (numRows($query, $conn) == 0) { 
 	echo '<div class="error">'.$lang['auct_a_00'].'</div>';
 	include '_footer.php';
 	die();
 }
-$pokeRow = mysql_fetch_assoc($query);
+$pokeRow = fetchAssoc($query, $conn);
 
 if (in_array($pokeRow['id'], getUserTeamIds($uid))) { 
 	echo '<div class="error">'.$lang['auct_a_01'].'</div>';
@@ -46,7 +46,7 @@ if (isset($_POST['duration']) && in_array($_POST['duration'], range(0, 4))) {
 		);
 		$finishTime = time() + $times[ $_POST['duration'] ];
 		
-		$query = mysql_query("
+		$query = $conn->query("
 			INSERT INTO `auction_pokemon`
 			(
 				`owner_id`,
@@ -83,7 +83,7 @@ if (isset($_POST['duration']) && in_array($_POST['duration'], range(0, 4))) {
 			)
 		");
 		if ($query) {
-			mysql_query("DELETE FROM `user_pokemon` WHERE `id`='{$pid}' LIMIT 1");
+			$conn->query("DELETE FROM `user_pokemon` WHERE `id`='{$pid}' LIMIT 1");
 			updateUserMoney($uid, getUserMoney($uid)-$cost);
 		}
 		echo '<div class="notice">'.$lang['auct_a_03'].'</div>';
