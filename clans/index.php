@@ -15,7 +15,7 @@ printHeader('Clans');
 	</center>
 <?
 
-$query = mysql_query("
+$query = "
 	SELECT
 		`clans`.`id` AS `clan_id`,
 		`clans`.`name` AS `clan_name`,
@@ -26,7 +26,7 @@ $query = mysql_query("
 		(SELECT `id` FROM `users` WHERE `username`=`clans`.`owner` AND `clan`=`clans`.`id`) AS `owner_uid`
 	FROM `clans`
 	ORDER  BY `clan_exp` DESC 
-");
+";
 
 echo '
 	<table style="margin: 10px auto;" class="pretty-table">
@@ -39,8 +39,8 @@ echo '
 		</tr>
 ';
 
-
-while($result = mysql_fetch_assoc($query)) {
+$return = $conn->query($query);
+while($result = $return->fetch_assoc()) {
 	$result = cleanHtml($result);
 
 	echo '

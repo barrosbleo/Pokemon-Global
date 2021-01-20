@@ -8,11 +8,11 @@ if (!isLoggedIn()) {
 include '../_header.php';
 printHeader('Accept Members');
 
-$result1 = mysql_query("SELECT * FROM `users` WHERE `id` = '".$_SESSION['userid']."'");
-$user = mysql_fetch_array($result1);
+$result1 = "SELECT * FROM `users` WHERE `id` = '".$_SESSION['userid']."'";
+$user = fetchArray($result1, 2, $conn);
 $uclan = $user['clan']; 
-$clan1 = mysql_query("SELECT * FROM `clans` WHERE `id`='$uclan'");
-$clan = mysql_fetch_array($clan1);
+$clan1 = "SELECT * FROM `clans` WHERE `id`='$uclan'";
+$clan = fetchArray($clan1, 2, $conn);
 $cowner = $clan['owner_id'];
 
 if ($cowner != $_SESSION['userid']){
@@ -24,27 +24,27 @@ if ($cowner != $_SESSION['userid']){
 if ($_GET['accept'] !=""){
 $_GET['accept'] = (int) $_GET['accept'];
 
-$from_user1 = mysql_query("SELECT * FROM `users` WHERE `id`='".$_GET['accept']."'");
-$from_user = mysql_fetch_object($from_user1);
-$from_user2 = mysql_query("SELECT * FROM `applications` WHERE `userid`='".$_GET['accept']."'");
-$from_users = mysql_fetch_object($from_user2);
+$from_user1 = "SELECT * FROM `users` WHERE `id`='".$_GET['accept']."'";
+$from_user = fetchObj($from_user1, $conn);
+$from_user2 = "SELECT * FROM `applications` WHERE `userid`='".$_GET['accept']."'";
+$from_users = fetchObj($from_user2, $conn);
 
 
-		$checkifapp = mysql_query("SELECT * from `applications` WHERE `clanid` = '$uclan' AND `userid` = '".$from_user->id."'");
-		$username_exist2 = mysql_num_rows($checkifapp);
+		$checkifapp = "SELECT * from `applications` WHERE `clanid` = '$uclan' AND `userid` = '".$from_user->id."'";
+		$username_exist2 = numRows($checkifapp, $conn));
 
-		$result = mysql_query("DELETE FROM `applications` WHERE `userid`='".$from_user->id."' AND `clanid`='$uclan'");
+		$result = $conn->query("DELETE FROM `applications` WHERE `userid`='".$from_user->id."' AND `clanid`='$uclan'");
 
         $to = $from_user->id;
 		$clan = $uclan;
 
-		$checkuser = mysql_query("SELECT `id` FROM `users` WHERE `id`='".$from_user->id."'");
-		$username_exist = mysql_num_rows($checkuser);
+		$checkuser = "SELECT `id` FROM `users` WHERE `id`='".$from_user->id."'";
+		$username_exist = numRows($checkuser, $conn);
 		
 
 
 		if($username_exist > 0 && $username_exist2 > 0 && $from_user->clan == 0){
-		  $result = mysql_query("UPDATE `users` SET `clan`='".$from_users->clanid."', `clanxp` = '0' WHERE `id`='".$from_user->id."'");
+		  $result = $conn->query("UPDATE `users` SET `clan`='".$from_users->clanid."', `clanxp` = '0' WHERE `id`='".$from_user->id."'");
 		 echo "<a href='/profile.php?id=".$from_user->id."'>".$from_user->username."</a> has been added to the clan.";
 
 		}
@@ -56,17 +56,17 @@ $from_users = mysql_fetch_object($from_user2);
 		}
 
 
-        mysql_query("UPDATE `clans` SET `members` = `members` + 1 WHERE `id`='$uclan'");
+        $conn->query("UPDATE `clans` SET `members` = `members` + 1 WHERE `id`='$uclan'");
 
 
 	}
 if ($_GET['deny'] !=""){
 $_GET['deny'] = (int) $_GET['deny'];
-$from_user1 = mysql_query("SELECT * FROM `users` WHERE `id`='".$_GET['deny']."'");
-$from_user = mysql_fetch_object($from_user1);
+$from_user1 = "SELECT * FROM `users` WHERE `id`='".$_GET['deny']."'";
+$from_user = fetchObj($from_user1, $conn);
 
 
-$result = mysql_query("DELETE FROM `applications` WHERE `userid`='".$from_user->id."'");
+$result = $conn->query("DELETE FROM `applications` WHERE `userid`='".$from_user->id."'");
 echo "<div class='success'>You have declined the users request.</div>";
 }
 ?>
@@ -81,11 +81,12 @@ echo "<div class='success'>You have declined the users request.</div>";
 
 <?php
 
-$result = mysql_query("SELECT * FROM `applications` WHERE `clanid` = '$uclan' ORDER BY `id` ASC");
-	while($row = mysql_fetch_array($result)){
+$result = "SELECT * FROM `applications` WHERE `clanid` = '$uclan' ORDER BY `id` ASC";
+$return = $conn->query($result);
+	while($row = $return->fetch_array(MYSQLI_ASSOC)){
 
-$from_user1 = mysql_query("SELECT * FROM `users` WHERE `id`='".$row['userid']."'");
-$from_user = mysql_fetch_object($from_user1);
+$from_user1 = "SELECT * FROM `users` WHERE `id`='".$row['userid']."'";
+$from_user = fetchObj($from_user1, $conn);
 
 $row['reason'] = stripslashes($row['reason']);
     echo "

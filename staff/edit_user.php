@@ -21,8 +21,8 @@ if (isset($_GET['id'])) {
 
 $userid       = (int) $_POST['userid'];
 $username     = $_POST['username'];
-$usernameSql  = cleanSql($username);
-$usernameHtml = cleanHtml($username);
+$usernameSql  = cleanSql($username, $conn);
+$usernameHtml = cleanHtml($username, $conn);
 $foundUser = false;
 
 if (isset($_POST['find'])) {
@@ -36,10 +36,10 @@ if (isset($_POST['find'])) {
 		$username = '';
 	}
 	
-	$query = mysql_query("SELECT * FROM `users` {$whereSql} LIMIT 1");
+	$query = "SELECT * FROM `users` {$whereSql} LIMIT 1";
 	
-	if (mysql_num_rows($query) == 1) {
-		$userInfo = mysql_fetch_assoc($query);
+	if (numRows($query, $conn) == 1) {
+		$userInfo = fetchAssoc($query, $conn);
 		
 		$userid       = (int) $userInfo['id'];
 		$username     = $userInfo['username'];
@@ -143,8 +143,8 @@ if ((isset($_POST['find']) || isset($_GET['id'])) && $foundUser) {
         
         $clanId = (int) $_POST['clan'];
         if ($clanId != 0) {
-            $query = mysql_query("SELECT `id` FROM `clans` WHERE `id`='{$clanId}'");
-            if (mysql_num_rows($query) == 0) {
+            $query = "SELECT `id` FROM `clans` WHERE `id`='{$clanId}'";
+            if (numRows($query, $conn) == 0) {
                 $errors[] = 'Clan does not exist.';
             }
         }
@@ -154,11 +154,11 @@ if ((isset($_POST['find']) || isset($_GET['id'])) && $foundUser) {
         } else {
             echo '<div class="notice">You have edited the user.</div>';
             
-            $email     = cleanSql($email);
-            $signature = cleanSql($signature);
-            $banRason = cleanSql($banReason);
+            $email     = cleanSql($email, $conn);
+            $signature = cleanSql($signature, $conn);
+            $banRason = cleanSql($banReason, $conn);
 
-            mysql_query("
+            $conn->query("
                 UPDATE `users` SET
                     `money`     = '{$money}',
                     `bank`      = '{$bank}',
@@ -179,8 +179,8 @@ if ((isset($_POST['find']) || isset($_GET['id'])) && $foundUser) {
                 WHERE `id`='{$userid}'
             ");
             
-            $query = mysql_query("SELECT * FROM `users` WHERE `id`='{$userid}' LIMIT 1");
-            $userInfo = mysql_fetch_assoc($query);
+            $query = "SELECT * FROM `users` WHERE `id`='{$userid}' LIMIT 1";
+            $userInfo = fetchAssoc($query, $conn);
             
             $handle = fopen('edit_user_log.txt', 'a+');
             fwrite($handle, "{$_SESSION['username']} edited the user with the id {$userid}" . PHP_EOL);

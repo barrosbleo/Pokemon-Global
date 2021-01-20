@@ -11,9 +11,9 @@ stripos($_SERVER['QUERY_STRING'], 'SCRIPT') !== false
 		isset($_SERVER['HTTP_X_FORWARDED_FOR']) &&
 		$_SERVER['HTTP_X_FORWARDED_FOR'] != ''
 	){
-		$ip = cleanSql($_SERVER['HTTP_X_FORWARDED_FOR']);
+		$ip = cleanSql($_SERVER['HTTP_X_FORWARDED_FOR'], $conn);
 	}else{
-		$ip = cleanSql($_SERVER['REMOTE_ADDR']);
+		$ip = cleanSql($_SERVER['REMOTE_ADDR'], $conn);
 	}
 	$fh = @fopen('sqli_attempts.txt', 'a') or die();
 	fwrite($fh, $ip . ' ' . $_SERVER['SCRIPT_NAME'] . '?' . urldecode($_SERVER['QUERY_STRING']) . PHP_EOL);

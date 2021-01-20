@@ -8,11 +8,11 @@ if (!isLoggedIn()) {
 include '../_header.php';
 printHeader('Manage Members');
 
-$result1 = mysql_query("SELECT * FROM `users` WHERE `username` = '".$_SESSION['username']."'");
-$user = mysql_fetch_array($result1);
+$result1 = "SELECT * FROM `users` WHERE `username` = '".$_SESSION['username']."'";
+$user = fetchArray($result1, 2, $conn);
 $uclan = $user['clan']; 
-$clan1 = mysql_query("SELECT * FROM `clans` WHERE `id`='$uclan'");
-$clan = mysql_fetch_array($clan1);
+$clan1 = "SELECT * FROM `clans` WHERE `id`='$uclan'";
+$clan = fetchArray($clan1, 2, $conn);
 $cowner = $clan['owner'];
 
 if ($clan['owner'] != $user['username']){
@@ -21,11 +21,11 @@ if ($clan['owner'] != $user['username']){
 	die();
 }
 
-$clan1 = mysql_query("SELECT * FROM `clans` WHERE `id`='$user->clan'");
+$clan1 = "SELECT * FROM `clans` WHERE `id`='$user->clan'";
 
-$clan_class = mysql_fetch_object($clan1);
+$clan_class = fetchObj($clan1, $conn);
 
-$_GET['kick'] = mysql_real_escape_string($_GET['kick']);
+$_GET['kick'] = $conn->real_escape_string($_GET['kick']);
 
 if($_GET['kick'] != ""){
 
@@ -35,8 +35,8 @@ if ($clan_class->leader != $user->username){
 	die();
 }
 
-$from1 = mysql_query("SELECT * FROM `users` WHERE `clan`='$uclan' AND `id`='".$_GET['kick']."'");
-$from_user = mysql_fetch_object($from1);
+$from1 = "SELECT * FROM `users` WHERE `clan`='$uclan' AND `id`='".$_GET['kick']."'";
+$from_user = fetchObj($from1, $conn);
 
 if($from_user->clan != $uclan){
 echo "<div class='error'>Invalid User.</div>";
@@ -55,8 +55,8 @@ $errorz = 1;
 
 if($errorz != 1){
 
-$result = mysql_query("UPDATE `users` SET `clan`='' WHERE `id`='".$from_user->id."'");
-$result2 = mysql_query("UPDATE clans SET members = members - 1 WHERE id = '$uclan'");
+$result = $conn->query("UPDATE `users` SET `clan`='' WHERE `id`='".$from_user->id."'");
+$result2 = $conn->query("UPDATE clans SET members = members - 1 WHERE id = '$uclan'");
 echo "<div class='success'>You've just kicked <a href='/profile.php?id=".$from_user->id."'>".$from_user->username."</a> out of your clan.</div>";
 }
 }
@@ -75,9 +75,9 @@ $max_results = 3000;
 $from = (($page * $max_results) - $max_results);
 
 /* Query the db for total results. You need to edit the sql to fit your needs */
-$result = mysql_query("SELECT * FROM `users` WHERE `clan` = '$uclan'");
+$result = "SELECT * FROM `users` WHERE `clan` = '$uclan'";
 //echo $result;
-$total_results = mysql_num_rows($result);
+$total_results = numRows($result, $conn);
 $total_pages = ceil($total_results / $max_results);
 
 $pagination = '';
@@ -108,7 +108,7 @@ $pagination .= '<a href="/shop.php?page='.$next.'">Next</a>';
 }
 
 $uid = (int) $_SESSION['userid'];
-$query = mysql_query("SELECT * FROM `users` WHERE `clan` = '$uclan' LIMIT $from, $max_results");
+$query = "SELECT * FROM `users` WHERE `clan` = '$uclan' LIMIT $from, $max_results";
 $color="1";
 echo '<table class="pretty-table" class="t" border=4 width="55%" cellpadding="0" cellspacing="0" align="center" border="1" bordercolor="#444444">
 <tr>
@@ -117,8 +117,8 @@ echo '<table class="pretty-table" class="t" border=4 width="55%" cellpadding="0"
 <th>Options</th>
  
 </tr>';
-
-while($res1=mysql_fetch_array($query)){
+$result = $conn->query($query);
+while($res1=$result->fetch_array(MYSQLI_ASSOC)){
 
 
 echo "<tr bgcolor='#EEEEEE'>

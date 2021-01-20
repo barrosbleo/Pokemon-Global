@@ -29,7 +29,7 @@ echo '
 	</script>
 ';
 
-$query = mysql_query("SELECT * FROM `pokedex` ORDER BY `num` ASC");
+$query = "SELECT * FROM `pokedex` ORDER BY `num` ASC";
 
 echo '
 	<div style="text-align: center;">
@@ -59,8 +59,8 @@ echo '
 		</thead>
 		<tbody>
 ';
-
-while ($pokeRow = mysql_fetch_assoc($query)) {
+$result = $conn->query($query);
+while ($pokeRow = $result->fetch_assoc()) {
 echo '
 	<tr>
 		<td>'.$pokeRow['num'].'</td>

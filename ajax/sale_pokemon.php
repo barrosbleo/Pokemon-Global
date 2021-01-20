@@ -4,11 +4,11 @@ include('../modules/lib.php');
 $uid = (int) 6;
 $map = (int) $_GET['map'];
 
-$pokesQuery = mysql_query("SELECT * FROM `trade_pokemon` WHERE `uid`='{$uid}' ORDER BY `id`");
+$pokesQuery = "SELECT * FROM `trade_pokemon` WHERE `uid`='{$uid}' ORDER BY `id`";
 $pokesArray = array();
-
+$result = $conn->query($pokesQuery);
 $i = 0;
-while ($poke = mysql_fetch_assoc($pokesQuery)) {
+while ($poke = $result->fetch_assoc()) {
 	$pokesArray[$i]['id'] = $poke['id'];
 	$pokesArray[$i]['name']  = $poke['name'];
 	$pokesArray[$i]['level'] = $poke['level'];

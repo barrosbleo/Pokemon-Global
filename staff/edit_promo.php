@@ -37,7 +37,7 @@ if (isset($_POST['save'])) {
     } else {
         echo '<div class="notice">The promo has been edited.</div>';
         
-        $name = cleanSql($name);
+        $name = cleanSql($name, $conn);
         
         setConfigValue('promo_cost_money', $money);
         setConfigValue('promo_cost_tokens', $tokens);
@@ -45,7 +45,7 @@ if (isset($_POST['save'])) {
         setConfigValue('promo_pokemon_level', $level);
         setConfigValue('promo_last_update', time());
         
-        mysql_query("UPDATE `users` SET `got_promo`='0'");
+        $conn->query("UPDATE `users` SET `got_promo`='0'");
     }
 }
 

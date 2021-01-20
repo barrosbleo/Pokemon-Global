@@ -5,7 +5,7 @@
 $lang = array(
 	'lang_beta' => 'Languages BETA testing',
 	'lang_en' => 'English',
-	'lang_en' => 'Português',
+	'lang_pt-br' => 'Português',
 	'lang_es' => 'Español',
 	'lang_ph' => 'Pilipinas',
 	'lang_lv' => 'Latviešu',

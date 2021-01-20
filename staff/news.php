@@ -9,7 +9,7 @@ if (!isAdmin()) {
 include '_header.php';
 echoHeader('News List');
 
-$query = mysql_query("SELECT * FROM `news` ORDER BY `id` DESC");
+$query = "SELECT * FROM `news` ORDER BY `id` DESC";
 
 echo '
     <table class="pretty-table" style="margin-left: 10px; margin-right: 10px;">
@@ -21,7 +21,8 @@ echo '
             <th>By Who</th>
         </tr>
 ';
-while ($row = mysql_fetch_assoc($query)) {
+$result = $conn->query($query);
+while ($row = $result->fetch_assoc()) {
     $row = cleanHtml($row);
     echo '
         <tr>

@@ -42,7 +42,7 @@ if (isset($_POST['save'])) {
     } else {
         echo '<div class="notice">The pokemon has been edited.</div>';
         
-        $name = cleanSql($name);
+        $name = cleanSql($name, $conn);
         setConfigValue('snow_machine_price', $price);
         setConfigValue('snow_machine_pokemon', $name);
         setConfigValue('snow_machine_chance', $chance);

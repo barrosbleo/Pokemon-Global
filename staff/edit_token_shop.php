@@ -26,10 +26,10 @@ if (isset($_POST['addPoke'])) {
             echo '<div class="error">'.implode('</div><div class="error">', $errors).'</div>';
         } else {
         
-            $name    = cleanSql($name);
-            $price   = cleanSql($price);
+            $name    = cleanSql($name, $conn);
+            $price   = cleanSql($price, $conn);
 
-            $query = mysql_query("
+            $query = $conn->query("
                 INSERT INTO `token_shop_pokemon` (
                 	`name`, `price`
                 ) VALUES (
@@ -154,7 +154,7 @@ if (isset($_POST['save'])) {
         
         if (trim($name) == '') {
             $deletedPokemon = true;
-            mysql_query("DELETE FROM `token_shop_pokemon` WHERE `id`='{$pid}' LIMIT 1");
+            $conn->query("DELETE FROM `token_shop_pokemon` WHERE `id`='{$pid}' LIMIT 1");
             continue;
         } else if (!file_exists('../images/pokemon/'.$name.'.png')) {
             $errors[] = 'Could not find a picture for that pokemon.';
@@ -166,10 +166,10 @@ if (isset($_POST['save'])) {
             
             $errorPokeIds[] = $pid;
         } else {
-            $name    = cleanSql($name);
-            $price   = cleanSql($price);
+            $name    = cleanSql($name, $conn);
+            $price   = cleanSql($price, $conn);
             
-            mysql_query("UPDATE `token_shop_pokemon` SET `name`='{$name}', `price`='{$price}' WHERE `id`='{$pid}'") or die(mysql_error());
+            $conn->query("UPDATE `token_shop_pokemon` SET `name`='{$name}', `price`='{$price}' WHERE `id`='{$pid}'") or die(mysqli_error());
         }
     }
 }
@@ -199,7 +199,7 @@ if (isset($_POST['save']) && $deletedPokemon == true) {
 
 
 
-$query = mysql_query("SELECT * FROM `token_shop_pokemon` ORDER BY `price` ASC");
+$query = "SELECT * FROM `token_shop_pokemon` ORDER BY `price` ASC";
 
 echo '
     <br /><br />
@@ -210,7 +210,8 @@ echo '
 ';
 
 $i=0;
-while ($pokeInfo = mysql_fetch_assoc($query)) {
+$result = $conn->query($query);
+while ($pokeInfo = $result->fetch_assoc()) {
 
     $style = '';
     if (in_array($pokeInfo['id'], $errorPokeIds)) {

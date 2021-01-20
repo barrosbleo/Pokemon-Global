@@ -19,10 +19,11 @@ define('MAX_STAT', 255);
 
 
 if (!isset($_GET['add'])) {
-	$query = mysql_query("SELECT * FROM `pokedex` ORDER BY `num` ASC");
+	$query = "SELECT * FROM `pokedex` ORDER BY `num` ASC";
 	
 	echo '<form method="get" class="center-text bottom-padded"><select name="id" style="font-family:Consolas,Monaco,Lucida Console,Liberation Mono,DejaVu Sans Mono,Bitstream Vera Sans Mono,Courier New, monospace;">';
-	while ($row = mysql_fetch_assoc($query)) {
+	$result = $conn->query($query);
+	while ($row = $result->fetch_assoc()) {
 		$opttext = ' '.str_pad($row['name'], 30, ' ', STR_PAD_RIGHT) . str_pad('#'.$row['num'], 7, ' ', STR_PAD_LEFT) .' ';
 		$opttext = str_replace(' ', '&nbsp;', $opttext);
 		$attr = $pid == $row['id'] ? ' selected="selected" ' : '' ;
@@ -39,13 +40,13 @@ if (!isset($_GET['add'])) {
 
 
 
-	$query = mysql_query("SELECT * FROM `pokedex` WHERE `id`='{$pid}' LIMIT 1");
+	$query = "SELECT * FROM `pokedex` WHERE `id`='{$pid}' LIMIT 1";
 	
-	if (mysql_num_rows($query) == 0) {
+	if (numRows($query, $conn) == 0) {
 	    include '_footer.php';
 	    die();
 	}
-	$pokeInfo = mysql_fetch_assoc($query);
+	$pokeInfo = fetchAssoc($query, $conn);
 } else {
 	$pokeInfo = array(
 		'name'     => '',
@@ -144,16 +145,16 @@ if (isset($_POST['submit'])) {
 	} else {
 	    
 	    
-	    $name = cleanSql($name);
-	    $type1 = cleanSql($type1);
-	    $type2 = cleanSql($type2);
-	    $move1Name = cleanSql($move1Name);
-	    $move2Name = cleanSql($move2Name);
-	    $move3Name = cleanSql($move3Name);
-	    $move4Name = cleanSql($move4Name);
+	    $name = cleanSql($name, $conn);
+	    $type1 = cleanSql($type1, $conn);
+	    $type2 = cleanSql($type2, $conn);
+	    $move1Name = cleanSql($move1Name, $conn);
+	    $move2Name = cleanSql($move2Name, $conn);
+	    $move3Name = cleanSql($move3Name, $conn);
+	    $move4Name = cleanSql($move4Name, $conn);
 	    
 	    if (!isset($_GET['add'])) {
-	    	mysql_query("
+	    	$conn->query("
 		        UPDATE `pokedex` SET
 		            `name`   = '{$name}',
 		            `num`   = '{$num}',
@@ -172,10 +173,10 @@ if (isset($_POST['submit'])) {
 		        WHERE `id`='{$pid}' LIMIT 1
 		");
 		echo '<div class="notice">The pokemon has been edited.</div>';
-		$query = mysql_query("SELECT * FROM `pokedex` WHERE `id`='{$pid}' LIMIT 1");
-		$pokeInfo = mysql_fetch_assoc($query);
+		$query = "SELECT * FROM `pokedex` WHERE `id`='{$pid}' LIMIT 1";
+		$pokeInfo = fetchAssoc($query, $conn);
 	    } else {
-	    	mysql_query("
+	    	$conn->query("
 		        INSERT INTO `pokedex` (
 			        `name`,
 			        `num`,

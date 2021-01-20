@@ -2,16 +2,16 @@
 include('../modules/lib.php');
 include '_header.php';
 
-$result1 = mysql_query("SELECT * FROM `users` WHERE `username` = '".$_SESSION['username']."'");
-$user = mysql_fetch_array($result1);
+$result1 = "SELECT * FROM `users` WHERE `username` = '".$_SESSION['username']."'";
+$user = fetchArray($result1, $conn);
 
 
 
-$clan1 = mysql_query("SELECT * FROM `clans` WHERE `id`='$user->clan'");
+$clan1 = "SELECT * FROM `clans` WHERE `id`='$user->clan'";
 
-$clan_class = mysql_fetch_object($clan1);
+$clan_class = fetchObj($clan1, $conn);
 
-$_GET['kick'] = mysql_real_escape_string($_GET['kick']);
+$_GET['kick'] = $conn->real_escape_string($_GET['kick']);
 
 if($_GET['kick'] != ""){
 
@@ -21,8 +21,8 @@ if ($clan_class->leader != $user->username){
 	die();
 }
 
-$from1 = mysql_query("SELECT * FROM `users` WHERE `clan`='$user->clan' AND `id`='".$_GET['kick']."'");
-$from_user = mysql_fetch_object($from1);
+$from1 = "SELECT * FROM `users` WHERE `clan`='$user->clan' AND `id`='".$_GET['kick']."'";
+$from_user = fetchObj($from1, $conn);
 
 if($from_user->clan != $user->clan){
 echo Message("Invalid User.");
@@ -41,7 +41,7 @@ $errorz = 1;
 
 if($errorz != 1){
 
-$result = mysql_query("UPDATE `users` SET `clan`='0' WHERE `id`='".$from_user->id."'");
+$result = $conn->query("UPDATE `users` SET `clan`='0' WHERE `id`='".$from_user->id."'");
 
 echo Message("You've just kicked <a href='prof.php?user=".$from_user->username."'>".$from_user->username."</a> out of your clan.");
 
@@ -61,8 +61,8 @@ if ($clan_class->leader != $user->username){
 	die();
 }
 
-$from1 = mysql_query("SELECT * FROM `users` WHERE `clan`='$user->clan' AND `id`='".$_POST['nleader']."'");
-$from_user = mysql_fetch_object($from1);
+$from1 = "SELECT * FROM `users` WHERE `clan`='$user->clan' AND `id`='".$_POST['nleader']."'";
+$from_user = fetchObj($from1, $conn);
 
 if($from_user->clan != $user->clan){
 echo Message("Invalid User.");
@@ -81,7 +81,7 @@ $errorz = 1;
 
 if($errorz != 1){
 
-$result = mysql_query("UPDATE `clans` SET `leader`='".$from_user->username."' WHERE `id`='".$user->clan."'");
+$result = "UPDATE `clans` SET `leader`='".$from_user->username."' WHERE `id`='".$user->clan."'";
 
 echo Message("You've just appointed <a href='prof.php?user=".$from_user->username."'>".$from_user->username."</a> as the new leader of your clan.");
 
@@ -109,12 +109,12 @@ if ($clan_class->leader == $user->username){
 ?>
 </tr>
 <?
-$result = mysql_query("SELECT * FROM `users` WHERE `clan` = '".$user->clan."' ORDER BY `clanxp` DESC");
+$result = "SELECT * FROM `users` WHERE `clan` = '".$user->clan."' ORDER BY `clanxp` DESC";
+$return = $conn->query($result);
+while($line = $return->fetch_array(MYSQLI_ASSOC)) {
 
-while($line = mysql_fetch_array($result, MYSQL_ASSOC)) {
-
-$from2 = mysql_query("SELECT * FROM `clanranks` WHERE `clanid`='".$user->clan."' AND `userid`='".$line['id']."'");
-$from_clan = mysql_fetch_array($from2);
+$from2 = "SELECT * FROM `clanranks` WHERE `clanid`='".$user->clan."' AND `userid`='".$line['id']."'";
+$from_clan = fetchArray($from2, 2, $conn);
 
 if($from_clan->rank == ""){
 $from_clan->rank = " -- ";

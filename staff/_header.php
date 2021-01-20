@@ -40,8 +40,8 @@ if (!defined('GOT_CONFIG')) {
 				<li><a href="edit_token_shop.php">Edit Token Shop Pokemon</a></li>
 				<li><a href="edit_promo.php">Edit Promo</a></li>
 				<?php
-				$query = mysql_query("SELECT * FROM `new_images`");
-				$numImages = mysql_num_rows($query);
+				$query = "SELECT * FROM `new_images`";
+				$numImages = numRows($query, $conn);
 				?>
 				<li><a href="approve_sprites.php">Approve Sprites (<?php echo $numImages; ?>)</a></li>
 				<li><a href="ban_list.php">View Ban List</a></li>

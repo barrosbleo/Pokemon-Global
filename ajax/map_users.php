@@ -7,11 +7,11 @@ $map = (int) $_GET['map'];
 $time = time();
 $tenMinsAgo = $time - (60*10);
 
-$usersQuery = mysql_query("SELECT * FROM `users` WHERE `map_num`='{$map}' AND `map_lastseen`>='{$tenMinsAgo}'");
+$usersQuery = "SELECT * FROM `users` WHERE `map_num`='{$map}' AND `map_lastseen`>='{$tenMinsAgo}'";
 $usersArray = array();
-
+$result = $conn->query($usersQuery);
 $i = 0;
-while ($user = mysql_fetch_assoc($usersQuery)) {
+while ($user = $result->fetch_assoc()) {
 	if ($user['id'] == $uid) {
 		continue;
 	}

@@ -1,9 +1,9 @@
 <?php
 include('../modules/lib.php');
 
-$q = mysql_query("SELECT * FROM `pokemon`");
-
-while ($row = mysql_fetch_assoc($q)) {
+$q = "SELECT * FROM `pokemon`";
+$result = $conn->query($q);
+while ($row = $result->fetch_assoc()) {
 	//echo $row['num'] . ' - ' . $row['name'] . '<br/>';
 	@rename('images/'.$row['num'].'.png', 'images/Snow '.$row['name'].'.png');
 }

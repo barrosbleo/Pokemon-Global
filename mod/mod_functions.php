@@ -6,11 +6,11 @@ function echoHeader($header) {
 
 
 function getModProfileList() {
-	$query = mysql_query("SELECT `id`, `username` FROM `users` WHERE `mod`='1'");
+	$query = "SELECT `id`, `username` FROM `users` WHERE `mod`='1'";
 
 	$modLinks = array();
-
-	while ($row = mysql_fetch_assoc($query)) {
+$result = $conn->query($query);
+	while ($row = $result->fetch_assoc()) {
 		$row = cleanHtml($row);
 		$modLinks[] = '<a href="../profile.php?id='.$row['id'].'">'.$row['username'].'</a>';
 	}

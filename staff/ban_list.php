@@ -19,9 +19,9 @@ echo '
         </tr>
 ';
 
-$query = mysql_query("SELECT * FROM `users` WHERE `banned`='1' ORDER BY `id` ASC");
-
-while ($banRow = mysql_fetch_assoc($query)) {
+$query = "SELECT * FROM `users` WHERE `banned`='1' ORDER BY `id` ASC";
+$result = $conn->query($query);
+while ($banRow = $result->fetch_assoc()) {
     $banRow = cleanHtml($banRow);
     echo '
         <tr>

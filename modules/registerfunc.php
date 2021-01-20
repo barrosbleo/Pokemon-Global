@@ -6,6 +6,7 @@ $regPass = $_POST['password'];
 $regRePass = $_POST['repass'];
 $regMail = $_POST['regmail'];
 $regStarter = $_POST['regstarter'];
+$refId = $_POST['refid'];
 $error = 0;
 
 $regUser = trim($regUser);
@@ -15,7 +16,9 @@ if(isset($_POST['submit']) && $_POST['submit'] == "register"){
 	$sqlPassword = sha1($regPass);
 	$sqlEmail    = cleanSql($regMail, $conn);
 	$sqlPokemon  = cleanSql($regStarter, $conn);
+	$sqlRefId  = cleanSql($refId, $conn);
 	$time        = time();
+	
 	if(empty($regUser)){
 		$error = 1;
 		echo $lang['register_empty_username'];
@@ -64,14 +67,15 @@ if(isset($_POST['submit']) && $_POST['submit'] == "register"){
 		$ip = cleanSql($_SERVER['REMOTE_ADDR'], $conn);
 	}
 	//need to redo referral system
-	//if(isset($_GET['ref'])){
-	//	$refId = (int) $_GET['ref']; 
-	//	$query = "SELECT * FROM `users` WHERE `id`='{$refId}'";
-	//	$refRow = fetchAssoc($query, $conn);
-	//	if ($refRow['ip'] == $ip) {
-	//		$errors[] = $lang['register_match_ip'];
-	//	}
-	//}
+	if($sqlRefId >= 1){
+		$query = "SELECT * FROM `users` WHERE `id`='{$sqlRefId}'";
+		$refRow = fetchAssoc($query, $conn);
+		if ($refRow['ip'] == $ip) {
+			$error = 1;
+			echo $lang['register_match_ip'];
+		exit();
+		}
+	}
 	$oneDayAgo = time() - (60*60*24);
 	$query = "SELECT `id` FROM `users` WHERE `ip`='{$ip}' AND `signup_date`>='{$oneDayAgo}' LIMIT 1";
 	if(numRows($query, $conn) != 1){
@@ -88,11 +92,9 @@ if(isset($_POST['submit']) && $_POST['submit'] == "register"){
 	//create account
 	if($error != 1){
 		$money = DEFAULT_USER_MONEY;
-		//$refId = isset($_GET['ref']) ? (int) $_GET['ref'] : 0 ;
-		$refId = 0;
 		$conn->query("INSERT INTO `users` (`username`, `password`, `email`,`signup_date`, `money`, `ip`, `register_ip`, `ref_id`, `map_num`)
 			VALUES
-			('{$sqlUsername}', '{$sqlPassword}', '{$sqlEmail}', '{$time}', '{$money}', '{$ip}', '{$ip}', '$refId', '1')");
+			('{$sqlUsername}', '{$sqlPassword}', '{$sqlEmail}', '{$time}', '{$money}', '{$ip}', '{$ip}', '$sqlRefId', '1')");
 		$uid = $conn->insert_id;
 		
 		$pokeQuery  = "SELECT * FROM `pokemon` WHERE `name`='{$regStarter}'";
@@ -124,9 +126,8 @@ if(isset($_POST['submit']) && $_POST['submit'] == "register"){
 			);
 		");
 		
-		if(isset($_GET['ref'])){
-			$refId = (int) $_GET['ref']; 
-			$conn->query("UPDATE `users` SET `Referals`=`Referals`+1 WHERE `id`='{$refId}'");
+		if($sqlRefId >= 1){
+			$conn->query("UPDATE `users` SET `Referals`=`Referals`+1 WHERE `id`='{$sqlRefId}'");
 		}
 		echo "success";
 		

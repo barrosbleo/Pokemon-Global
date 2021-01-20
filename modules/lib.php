@@ -17,6 +17,7 @@ include('conn.php');
 include('numrows.php');
 include('fetchassoc.php');
 include('fetcharray.php');
+include('fetchobject.php');
 include('doquery.php');
 include('cleansql.php');
 

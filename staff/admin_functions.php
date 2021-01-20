@@ -25,10 +25,11 @@ function typeSelectBox($name = '', $selectType = '') {
 }
 
 function adminUsernameSelectBox($name = '', $selectUsername = '') {
-    $query = mysql_query("SELECT * FROM `users` WHERE `admin`='1'");
+    $query = "SELECT * FROM `users` WHERE `admin`='1'";
     
     $sbox = '<select name="'.$name.'">';
-    while ($user = mysql_fetch_assoc($query)) {
+	$result = $conn->query($query);
+    while ($user = $result->fetch_assoc()) {
         $sbox .= '<option value="'.$user['username'].'"';
         
         if ($user['username'] == $selectUsername) {
@@ -61,10 +62,11 @@ function numSelectBox($name = '', $selectNum = '', $start = 1, $end = 100, $attr
 }
 
 function shopCatSelectBox($name = '', $selectCat = '', $attrs = '') {
-    $query = mysql_query("SELECT DISTINCT(`category`) AS `cat`, `id` FROM `shop_pokemon` GROUP BY `cat`");
+    $query = "SELECT DISTINCT(`category`) AS `cat`, `id` FROM `shop_pokemon` GROUP BY `cat`";
     
     $sbox = '<select name="'.$name.'" '.$attrs.'>';
-    while ($catInfo = mysql_fetch_assoc($query)) {
+	$result = $conn->query($query);
+    while ($catInfo = $result->fetch_assoc()) {
         $sbox .= '<option value="'.$catInfo['cat'].'"';
         
         if ($catInfo['cat'] == $selectCat) {
@@ -84,11 +86,11 @@ function echoHeader($header) {
 
 
 function getAdminProfileList() {
-	$query = mysql_query("SELECT `id`, `username` FROM `users` WHERE `admin`='1'");
+	$query = "SELECT `id`, `username` FROM `users` WHERE `admin`='1'";
 
 	$adminLinks = array();
-
-	while ($row = mysql_fetch_assoc($query)) {
+$result = $conn->query($query);
+	while ($row = $result->fetch_assoc()) {
 		$row = cleanHtml($row);
 		$adminLinks[] = '<a href="../profile.php?id='.$row['id'].'">'.$row['username'].'</a>';
 	}
@@ -97,10 +99,11 @@ function getAdminProfileList() {
 }
 
 function moveSelectBox($name = '', $selectMove = '') {
-    $query = mysql_query("SELECT * FROM `moves` ORDER BY `name` ASC");
+    $query = "SELECT * FROM `moves` ORDER BY `name` ASC";
     
     $sbox = '<select name="'.$name.'">';
-    while ($moveInfo = mysql_fetch_assoc($query)) {
+	$result = $conn->query($query);
+    while ($moveInfo = $result->fetch_assoc()) {
         $sbox .= '<option value="'.$moveInfo['id'].'"';
         
         if ($moveInfo['name'] == $selectMove) {
@@ -115,7 +118,7 @@ function moveSelectBox($name = '', $selectMove = '') {
 }
 
 function clanSelectBox($name = '', $selectClan = '') {
-    $query = mysql_query("SELECT * FROM `clans` ORDER BY `name` ASC");
+    $query = "SELECT * FROM `clans` ORDER BY `name` ASC";
     
     $sbox = '
         <select name="'.$name.'">
@@ -127,8 +130,8 @@ function clanSelectBox($name = '', $selectClan = '') {
     }
     
     $sbox .= '></option>';
-    
-    while ($clanInfo = mysql_fetch_assoc($query)) {
+    $result = $conn->query($query);
+    while ($clanInfo = $result->fetch_assoc()) {
         $sbox .= '<option value="'.$clanInfo['id'].'"';
         
         if ($clanInfo['id'] == $selectClan) {
@@ -164,13 +167,13 @@ function genderSelectBox($name = '', $selectGender = '') {
 function moveIdToName($id) {
     $id = (int) $id;
     
-    $query = mysql_query("SELECT * FROM `moves` WHERE `id`='{$id}'");
+    $query = "SELECT * FROM `moves` WHERE `id`='{$id}'";
     
-    if (mysql_num_rows($query) == 0) {
+    if (numRows($query, $conn) == 0) {
         return false;
     }
     
-    $moveInfo = mysql_fetch_assoc($query);
+    $moveInfo = fetchAssoc($query, $conn);
     return $moveInfo['name'];
 }
 

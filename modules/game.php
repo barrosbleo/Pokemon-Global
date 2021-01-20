@@ -5,19 +5,7 @@
 //maintenance switches
 if ($maintenance == 1) { redirect('updates.php'); }
 
-//clean string before sending to mysql(needs to be rewrited)
-function cleanSql($input) {
-	if (is_array($input)) {
-		foreach ($input as $k => $v) {
-			$output[$k] = cleanSql($v);
-		}
-	} else {
-		$output = (string) $input;
-		$output = mysql_real_escape_string($output);
-	}
 
-	return $output;
-}
 
 //cleans string to pure html format(needs to be rewrited)
 function cleanHtml($input) {
@@ -34,11 +22,11 @@ function cleanHtml($input) {
 }
 
 //load configuration value
-function getConfigValue($name) {
-	$query = mysql_query("SELECT `value` FROM `config` WHERE `name`='{$name}'");
+function getConfigValue($name, $conn) {
+	$query = "SELECT `value` FROM `config` WHERE `name`='{$name}'";
 	
 	if ($query) {
-		$row = mysql_fetch_assoc($query);
+		$row = fetchAssoc($query, $conn);
 		return $row['value'];
 	}
 	
@@ -46,8 +34,8 @@ function getConfigValue($name) {
 }
 
 //set configuration value
-function setConfigValue($name, $value) {
-	$query = mysql_query("UPDATE `config` SET `value`='{$value}' WHERE `name`='{$name}'");
+function setConfigValue($name, $value, $conn) {
+	$query = $conn->query("UPDATE `config` SET `value`='{$value}' WHERE `name`='{$name}'");
 	return $query ? true : false ;
 }
 

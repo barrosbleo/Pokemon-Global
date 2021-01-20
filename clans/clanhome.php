@@ -9,14 +9,14 @@ include '../_header.php';
 printHeader('Clan Home');
 include '../bbcode.php';
 
-$sqlUsername = cleanSql($_SESSION['username']);
+$sqlUsername = cleanSql($_SESSION['username'], $conn);
 
-$query = mysql_query("SELECT * FROM `users` WHERE `username` = '{$sqlUsername}'");
-$user = mysql_fetch_array($query);
+$query = "SELECT * FROM `users` WHERE `username` = '{$sqlUsername}'";
+$user = fetchArray($query, 2, $conn);
 $myclan = $user['clan'];
 
-$clan1 = mysql_query("SELECT * FROM `clans` WHERE `id` = '{$user['clan']}'");
-$clan = mysql_fetch_array($clan1);
+$clan1 = "SELECT * FROM `clans` WHERE `id` = '{$user['clan']}'";
+$clan =fetchArray($clan1, 2, $conn);
 $cowner = $clan['owner'];
 $u = $user['username'];
 
@@ -120,9 +120,9 @@ $max_results = 3000;
 $from = (($page * $max_results) - $max_results);
 
 /* Query the db for total results. You need to edit the sql to fit your needs */
-$result = mysql_query("SELECT * FROM `users` WHERE `clan` = '".$clan['name']."'");
+$result = "SELECT * FROM `users` WHERE `clan` = '".$clan['name']."'";
 //echo $result;
-$total_results = mysql_num_rows($result);
+$total_results = numRows($result, $conn);
 $total_pages = ceil($total_results / $max_results);
 
 $pagination = '';
@@ -153,7 +153,7 @@ $pagination .= '<a href="/clans/clanhome.php?page='.$next.'">Next</a>';
 }
 
 $uid = (int) $_SESSION['userid'];
-$query = mysql_query("SELECT * FROM `users` WHERE `clan` = '".$clan['id']."' LIMIT $from, $max_results");
+$query = "SELECT * FROM `users` WHERE `clan` = '".$clan['id']."' LIMIT $from, $max_results";
 $color="1";
 echo '<table class="pretty-table"  class="t" border=0 width="55%" cellpadding="0" cellspacing="0" align="center" border="1">
 <tr>
@@ -162,8 +162,8 @@ echo '<table class="pretty-table"  class="t" border=0 width="55%" cellpadding="0
 <th>Exp</th>
  
 </tr>';
-
-while($res1=mysql_fetch_array($query)){
+$result = $conn->query($query);
+while($res1 = $result->fetch_array(MYSQLI_ASSOC)){
 $res1 = cleanHtml($res1);
 
 echo "<tr>

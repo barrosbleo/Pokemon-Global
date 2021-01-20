@@ -33,11 +33,11 @@ if (isset($_POST['addPoke'])) {
             echo '<div class="error">'.implode('</div><div class="error">', $errors).'</div>';
         } else {
         
-            $name    = cleanSql($name);
-            $price   = cleanSql($price);
-            $catName = cleanSql($catName);
+            $name    = cleanSql($name, $conn);
+            $price   = cleanSql($price, $conn);
+            $catName = cleanSql($catName, $conn);
 
-            $query = mysql_query("
+            $query = $conn->query("
                 INSERT INTO `shop_pokemon` (
                 	`name`, `price`, `category`
                 ) VALUES (
@@ -172,7 +172,7 @@ if (isset($_POST['save'])) {
         
         if (trim($name) == '') {
             $deletedPokemon = true;
-            mysql_query("DELETE FROM `shop_pokemon` WHERE `id`='{$pid}' LIMIT 1");
+            $conn->query("DELETE FROM `shop_pokemon` WHERE `id`='{$pid}' LIMIT 1");
             continue;
         } else if (!file_exists('../images/pokemon/'.$name.'.png')) {
             $errors[] = 'Could not find a picture for that pokemon.';
@@ -191,11 +191,11 @@ if (isset($_POST['save'])) {
             
             $errorPokeIds[] = $pid;
         } else {
-            $name    = cleanSql($name);
-            $price   = cleanSql($price);
-            $catName = cleanSql($catName);
+            $name    = cleanSql($name, $conn);
+            $price   = cleanSql($price, $conn);
+            $catName = cleanSql($catName, $conn);
             
-            mysql_query("UPDATE `shop_pokemon` SET `name`='{$name}', `price`='{$price}', `category`='{$catName}' WHERE `id`='{$pid}'") or die(mysql_error());
+            $conn->query("UPDATE `shop_pokemon` SET `name`='{$name}', `price`='{$price}', `category`='{$catName}' WHERE `id`='{$pid}'") or die(mysqli_error());
         }
     }
 }
@@ -225,7 +225,7 @@ if (isset($_POST['save']) && $deletedPokemon == true) {
 
 
 
-$query = mysql_query("SELECT * FROM `shop_pokemon` ORDER BY `category`, `price` ASC");
+$query = "SELECT * FROM `shop_pokemon` ORDER BY `category`, `price` ASC";
 
 echo '
     <br /><br />
@@ -235,7 +235,8 @@ echo '
 
 $category = '';
 $i=0;
-while ($pokeInfo = mysql_fetch_assoc($query)) {
+$result = $conn->query($query);
+while ($pokeInfo = $result->fetch_assoc()) {
     if ($category != $pokeInfo['category']) {
         $category = $pokeInfo['category'];
 

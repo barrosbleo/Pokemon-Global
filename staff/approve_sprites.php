@@ -12,10 +12,10 @@ echoHeader('Sprites Awaiting Approval');
 if (isset($_GET['id'])) {
 	$id = (int) $_GET['id'];
 	
-	$query = mysql_query("SELECT * FROM `new_images` WHERE `id`='{$id}' LIMIT 1");
+	$query = "SELECT * FROM `new_images` WHERE `id`='{$id}' LIMIT 1";
 	
-	if (mysql_num_rows($query) == 1) {
-		$imgRow = mysql_fetch_assoc($query);
+	if (numRows($query, $conn) == 1) {
+		$imgRow = fetchAssoc($query, $conn);
 		
 		if (isset($_GET['accept'])) {
 			$fname = '../images/pokemon/'.$imgRow['image_name'].'.png';
@@ -38,7 +38,7 @@ if (isset($_GET['id'])) {
 		} else if (isset($_GET['decline'])) {
 			echo '<div class="notice">Image has been declined.</div>';
 		}
-		mysql_query("DELETE FROM `new_images` WHERE `id`='{$id}' LIMIT 1");
+		$conn->query("DELETE FROM `new_images` WHERE `id`='{$id}' LIMIT 1");
 	}
 }
 
@@ -54,9 +54,9 @@ echo '
         </tr>
 ';
 
-$query = mysql_query("SELECT * FROM `new_images` ORDER BY `id` DESC");
-
-while ($imgRow = mysql_fetch_assoc($query)) {
+$query = "SELECT * FROM `new_images` ORDER BY `id` DESC";
+$result = $conn->query($query);
+while ($imgRow = $result->fetch_assoc()) {
     $imgRow = cleanHtml($imgRow);
     
     $oldImageHtml = '-';
@@ -64,8 +64,8 @@ while ($imgRow = mysql_fetch_assoc($query)) {
     	$oldImageHtml = '<img src="../images/pokemon/'.$imgRow['image_name'].'.png" />';
     }
     
-    $query2 = mysql_query("SELECT `username` FROM `users` WHERE `id`='{$imgRow['uid']}'");
-    $username = mysql_fetch_assoc($query2);
+    $query2 = "SELECT `username` FROM `users` WHERE `id`='{$imgRow['uid']}'";
+    $username = fetchAssoc($query2, $conn);
     $username = $username['username'];
     
     echo '

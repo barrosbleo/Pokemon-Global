@@ -10,12 +10,12 @@ printHeader('Leave Clan');
 
 $uid = (int) $_SESSION['userid'];
 
-$query = mysql_query("SELECT * FROM `users` WHERE `id`='{$uid}'");
-$userRow = mysql_fetch_assoc($query);
+$query = "SELECT * FROM `users` WHERE `id`='{$uid}'";
+$userRow = fetchAssoc($query, $conn);
 
 $clanId = (int) $userRow['clan'];
-$query = mysql_query("SELECT * FROM `clans` WHERE `id`='{$clanId}'");
-$clanRow = mysql_fetch_assoc($query);
+$query = "SELECT * FROM `clans` WHERE `id`='{$clanId}'";
+$clanRow = fetchAssoc($query, $conn);
 
 if ($userRow['clan'] == '' || $userRow['clan'] == '0') {
 	echo 'You are not in a clan.';
@@ -25,11 +25,11 @@ if ($userRow['clan'] == '' || $userRow['clan'] == '0') {
 
 		if($clanRow['owner'] == $userRow['username']) {  
 			echo 'You have closed your clan!';
-			mysql_query("UPDATE `users` SET `clan`='0', `clanxp`='0' WHERE `clan`='{$clanId}'");
-			mysql_query("DELETE FROM `clans` WHERE `id`= '{$clanId}' LIMIT 1");
+			$conn->query("UPDATE `users` SET `clan`='0', `clanxp`='0' WHERE `clan`='{$clanId}'");
+			$conn->query("DELETE FROM `clans` WHERE `id`= '{$clanId}' LIMIT 1");
     		} else {
         		echo 'You have left the clan.';
-        		mysql_query("UPDATE `users` SET `clan`='0', `clanxp`='0' WHERE `id`='{$uid}'");	
+        		$conn->query("UPDATE `users` SET `clan`='0', `clanxp`='0' WHERE `id`='{$uid}'");	
 		}
 	} else {
 		if ($clanRow['owner'] == $userRow['username']) {

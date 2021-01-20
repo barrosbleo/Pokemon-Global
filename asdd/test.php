@@ -4,9 +4,10 @@ include('../modules/lib.php');
 
 
 
-$query = mysql_query("select * from `moves` WHERE `power` > 0");
+$query = "select * from `moves` WHERE `power` > 0";
 $moves = array();
-while ($row = mysql_fetch_assoc($query)) {
+$result = $conn->query($query);
+while ($row = $result->fetch_assoc()) {
 $moves[$row['type']][] = $row['name'];
 }
 $moves['Dragon'][] = 'Dragon Rage';
@@ -14,9 +15,9 @@ $moves['Dark'] = $moves['Ghost'];
 $moves['Steel'] = $moves['Rock'];
 // print_r($moves);
 
-$query = mysql_query("select * from `pokemon` WHERE `move1`='Scratch' AND `move2`='Scratch' AND `move3`='Scratch' AND `move4`='Scratch'");
-
-while ($row = mysql_fetch_assoc($query)) {
+$query = "select * from `pokemon` WHERE `move1`='Scratch' AND `move2`='Scratch' AND `move3`='Scratch' AND `move4`='Scratch'";
+$result = $conn->query($query);
+while ($row = $result->fetch_assoc()) {
 	if (!empty($row['type1'])) {
 		$move1 = $moves[$row['type1']][ array_rand($moves[$row['type1']]) ];
 		$move2 = $moves[$row['type1']][ array_rand($moves[$row['type1']]) ];
@@ -29,7 +30,7 @@ while ($row = mysql_fetch_assoc($query)) {
 		$move4 = $moves[$row['type2']][ array_rand($moves[$row['type2']]) ];
 	}
 	if ($move1!='' && $move2!='' && $move3!='' && $move4!='') {
-mysql_query("update `pokemon` set `move1`='{$move1}', `move2`='{$move2}', `move3`='{$move3}', `move4`='{$move4}' WHERE `id`='{$row['id']}';");
+$conn->query("update `pokemon` set `move1`='{$move1}', `move2`='{$move2}', `move3`='{$move3}', `move4`='{$move4}' WHERE `id`='{$row['id']}';");
 	}
 }
 
@@ -46,17 +47,17 @@ foreach($objects as $name => $object){
 die();
 include '../config.php';
 
-$q = mysql_query("select * from `sale_pokemon`");
-
-while ($pokemon2 = mysql_fetch_assoc($q)) {
+$q = "select * from `sale_pokemon`";
+$result = $conn->query($q);
+while ($pokemon2 = $result->fetch_assoc()) {
 		$pid = $pokemon2['id'];
 		
-		$query = mysql_query("SELECT * FROM `sale_pokemon` WHERE `id`='{$pid}'");
+		$query = "SELECT * FROM `sale_pokemon` WHERE `id`='{$pid}'";
 			
-		$pokemon = mysql_fetch_assoc($query);
+		$pokemon = fetchAssoc($query, $conn);
 		
-		mysql_query("DELETE FROM `sale_pokemon` WHERE `id`='{$pid}' LIMIT 1");
-		mysql_query("INSERT INTO `user_pokemon` (
+		$conn->query("DELETE FROM `sale_pokemon` WHERE `id`='{$pid}' LIMIT 1");
+		$conn->query("INSERT INTO `user_pokemon` (
 			`name`, `level`, `exp`, `move1`, `move2`, `move3`, `move4`, `uid`
 			) VALUES (
 			'{$pokemon['name']}', '{$pokemon['level']}', '{$pokemon['exp']}', '{$pokemon['move1']}', '{$pokemon['move2']}', '{$pokemon['move3']}', '{$pokemon['move4']}', '{$pokemon['uid']}'
@@ -64,17 +65,17 @@ while ($pokemon2 = mysql_fetch_assoc($q)) {
 		");
 }
 
-$q = mysql_query("select * from `trade_pokemon`");
-
-while ($pokemon2 = mysql_fetch_assoc($q)) {
+$q = "select * from `trade_pokemon`";
+$result = $conn->query($q);
+while ($pokemon2 = $result->fetch_assoc()) {
 		$pid = $pokemon2['id'];
 		
-		$query = mysql_query("SELECT * FROM `trade_pokemon` WHERE `id`='{$pid}'");
+		$query = "SELECT * FROM `trade_pokemon` WHERE `id`='{$pid}'";
 			
-		$pokemon = mysql_fetch_assoc($query);
+		$pokemon = fetchAssoc($query, $conn);
 		
-		mysql_query("DELETE FROM `trade_pokemon` WHERE `id`='{$pid}' LIMIT 1");
-		mysql_query("INSERT INTO `user_pokemon` (
+		$conn->query("DELETE FROM `trade_pokemon` WHERE `id`='{$pid}' LIMIT 1");
+		$conn->query("INSERT INTO `user_pokemon` (
 			`name`, `level`, `exp`, `move1`, `move2`, `move3`, `move4`, `uid`
 			) VALUES (
 			'{$pokemon['name']}', '{$pokemon['level']}', '{$pokemon['exp']}', '{$pokemon['move1']}', '{$pokemon['move2']}', '{$pokemon['move3']}', '{$pokemon['move4']}', '{$pokemon['uid']}'
@@ -82,17 +83,17 @@ while ($pokemon2 = mysql_fetch_assoc($q)) {
 		");
 }
 
-$q = mysql_query("select * from `offer_pokemon`");
-
-while ($pokemon2 = mysql_fetch_assoc($q)) {
+$q = "select * from `offer_pokemon`";
+$result = $conn->query($q);
+while ($pokemon2 = $result->fetch_assoc()) {
 		$pid = $pokemon2['id'];
 		
-		$query = mysql_query("SELECT * FROM `offer_pokemon` WHERE `id`='{$pid}'");
+		$query = "SELECT * FROM `offer_pokemon` WHERE `id`='{$pid}'";
 			
-		$pokemon = mysql_fetch_assoc($query);
+		$pokemon = fetchAssoc($query, $conn);
 		
-		mysql_query("DELETE FROM `offer_pokemon` WHERE `id`='{$pid}' LIMIT 1");
-		mysql_query("INSERT INTO `user_pokemon` (
+		$conn->query("DELETE FROM `offer_pokemon` WHERE `id`='{$pid}' LIMIT 1");
+		$conn->query("INSERT INTO `user_pokemon` (
 			`name`, `level`, `exp`, `move1`, `move2`, `move3`, `move4`, `uid`
 			) VALUES (
 			'{$pokemon['name']}', '{$pokemon['level']}', '{$pokemon['exp']}', '{$pokemon['move1']}', '{$pokemon['move2']}', '{$pokemon['move3']}', '{$pokemon['move4']}', '{$pokemon['uid']}'

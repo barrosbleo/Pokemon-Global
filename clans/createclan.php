@@ -9,8 +9,10 @@ include '../_header.php';
 printHeader('Create a clan');
 
 $uid = (int) $_SESSION['userid'];
-$user = mysql_fetch_array(mysql_query("SELECT * FROM users WHERE id = '$uid'"));
-$user2 = mysql_fetch_array(mysql_query("SELECT money FROM users WHERE id = '$uid'"));
+$userQuery = "SELECT * FROM users WHERE id = '$uid'";
+$user = fetchArray($userQuery, 2, $conn);
+$user2Query = "SELECT money FROM users WHERE id = '$uid'";
+$user2 = fetchArray($user2Query, 2, $conn);
 $money = $user2['money'];
 $username = $user['username'];
 
@@ -35,21 +37,22 @@ $error .= "Special characters in your clan name isn't allowed.<br>";
 }
 
 	//check if name is taken yet
-	$check = mysql_query("SELECT * FROM `clans` WHERE `name`='".$_POST['name']."'");
-	$exist = mysql_num_rows($check);
+	$check = "SELECT * FROM `clans` WHERE `name`='".$_POST['name']."'";
+	$exist = numRows($check, $conn);
 	$error .= ($exist > 0) ? "Sorry. The clan name you chose is already taken.<br>" : "";
 
 $time = time();
 
 	if($error == ""){ // if there are no errors, make the clan
-		$result= mysql_query("INSERT INTO `clans` (name, owner, owner_id, time)"."VALUES ('".$_POST['name']."', '$username', '$uid', '".$time."')");
-
+		$result = "INSERT INTO `clans` (name, owner, owner_id, time) VALUES ('".$_POST['name']."', '$username', '$uid', '".$time."')";
+		$conn->query($result);
 		$newcoins = $user['money'] - 1000000; //deduct the cost of the coins
-        $result = mysql_query("SELECT * FROM `clans` WHERE `owner` = '$username'");
-		$worked = mysql_fetch_array($result);
+        $result = "SELECT * FROM `clans` WHERE `owner` = '$username'";
+		$worked = fetchArray($result, 2, $conn);
 		$clanid = $worked['id'];
 
-		$result = mysql_query("UPDATE `users` SET `clan` = '$clanid', `money` = '".$newcoins."' WHERE `id`='$uid'");
+		$result = "UPDATE `users` SET `clan` = '$clanid', `money` = '".$newcoins."' WHERE `id`='$uid'";
+		$conn->query($result);
 		echo '<div class="success">You have successfully created your clan!</div>';
     } else {
 if($error != ""){

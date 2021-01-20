@@ -11,7 +11,7 @@ echoHeader('Find Users With The Same IP.');
 
 $ip     = $_GET['ip'];
 $ipHtml = cleanHtml($ip);
-$ipSql  = cleanSql($ip);
+$ipSql  = cleanSql($ip, $conn);
 
 echo '
     <form method="get" class="center-text bottom-padded">
@@ -21,9 +21,9 @@ echo '
 ';
 
 if (isset($_GET['ip'])) {
-	$query = mysql_query("SELECT * FROM `users` WHERE `ip`='{$ipSql}'");
+	$query = "SELECT * FROM `users` WHERE `ip`='{$ipSql}'";
 	
-	if (mysql_num_rows($query) == 0) {
+	if (numRows($query, $conn) == 0) {
 	    echo '
 	    	<div class="error">
 	    		Could not find any users with the ip address of <strong>'.$ipHtml.'</strong>!
@@ -36,7 +36,8 @@ if (isset($_GET['ip'])) {
 					<th colspan="3">Users with the same IP</th>
 				</tr>
 		';
-		while ($userInfo = mysql_fetch_assoc($query)) {
+		$result = $conn->query($query);
+		while ($userInfo = $result->fetch_assoc()) {
 			$userInfo = cleanHtml($userInfo);
 			echo '
 				<tr>
@@ -65,11 +66,11 @@ if (isset($_GET['ip'])) {
 	$ipParts = explode('.', $ip);
 	unset($ipParts[ count($ipParts)-1 ]);
 	$newIp = implode('.', $ipParts);
-	$newIpSql = cleanSql($newIp);
+	$newIpSql = cleanSql($newIp, $conn);
 	$newIpHtml = cleanHtml($newIp.'.*');
 	
-	$query = mysql_query("SELECT * FROM `users` WHERE `ip` LIKE '{$newIpSql}%' AND `ip`!='{$ipSql}' ORDER BY `ip` ASC LIMIT 50");
-	$numRows = mysql_num_rows($query);
+	$query = "SELECT * FROM `users` WHERE `ip` LIKE '{$newIpSql}%' AND `ip`!='{$ipSql}' ORDER BY `ip` ASC LIMIT 50";
+	$numRows = numRows($query, $conn);
 	
 	if ($numRows == 0) {
 	    echo '
@@ -88,7 +89,8 @@ if (isset($_GET['ip'])) {
 					<td colspan="3" class="small center-text">Could be on the same network.</td>
 				</tr>
 		';
-		while ($userInfo = mysql_fetch_assoc($query)) {
+		$result = $conn->query($query);
+		while ($userInfo = $result->fetch_assoc()) {
 			$userInfo = cleanHtml($userInfo);
 			echo '
 				<tr>

@@ -10,16 +10,16 @@ printHeader('View Clan');
 include '../bbcode.php';
 
 
-$query = mysql_query("SELECT * FROM `users` WHERE `username` = '".$_SESSION['username']."'");
-$user = mysql_fetch_array($query);
+$query = "SELECT * FROM `users` WHERE `username` = '".$_SESSION['username']."'";
+$user = fetchArray($query, 2, $conn);
 $myclan = $user['clan'];
 
 $_GET['id'] = abs((int) $_GET['id']);
 
-$_GET['id'] = mysql_real_escape_string($_GET['id']);
+$_GET['id'] = $conn->real_escape_string($_GET['id']);
 
-$clan1 = mysql_query("SELECT * FROM `clans` WHERE `id`='".$_GET['id']."'");
-$clan_class = mysql_fetch_object($clan1);
+$clan1 = "SELECT * FROM `clans` WHERE `id`='".$_GET['id']."'";
+$clan_class = fetchObj($clan1, $conn);
 
 if($clan_class->id == ""){
 	echo "<div class='error'>The clan you were looking for was not found in our database.</div>";
@@ -27,17 +27,17 @@ if($clan_class->id == ""){
 	die();
 }
 
-$leader1 = mysql_query("SELECT * FROM `users` WHERE `username`='".$clan_class->owner."'");
-$leader = mysql_fetch_object($leader1);
-$app1 = mysql_query("SELECT * FROM `applications` WHERE `userid`='$uid'");
-$app = mysql_fetch_object($app1);
+$leader1 = "SELECT * FROM `users` WHERE `username`='".$clan_class->owner."'";
+$leader = fetchObj($leader1, $conn);
+$app1 = "SELECT * FROM `applications` WHERE `userid`='$uid'";
+$app = fetchObj($app1, $conn);
 
 
 
 if($_POST['apply'] != "" && $user->clan == 0 && $app->userid < 1) {
 
 $_POST['reason'] = strip_tags($_POST['reason']);
-$_POST['reason'] = mysql_real_escape_string($_POST['reason']);
+$_POST['reason'] = $conn->real_escape_string($_POST['reason']);
 
   $clanid = $clan_class->id;
 
@@ -49,7 +49,7 @@ $_POST['reason'] = mysql_real_escape_string($_POST['reason']);
 
 $time = time();
 
-    $result= mysql_query("INSERT INTO `applications` (`clanid`, `userid`, `name`, `reason`)".
+    $result= $conn->query("INSERT INTO `applications` (`clanid`, `userid`, `name`, `reason`)".
 
       "VALUES ('$clanid', '$uid', '$u', '$reason')");
 
@@ -60,9 +60,9 @@ Send_Event($leader->id, "".$user->id." has sent an request to join your clan.");
 }
 
 if($_GET['del'] == "req"){
-mysql_query("DELETE FROM `applications` WHERE `userid`='$user->id'");
+$conn->query("DELETE FROM `applications` WHERE `userid`='$user->id'");
 $text = "".$user->id." has sent an application for your clan.";
-mysql_query("DELETE FROM `events` WHERE `text`='$text'");
+$conn->query("DELETE FROM `events` WHERE `text`='$text'");
 echo "<div class='success'>Your existing request has been removed.</div>";
 }
 if($_GET['opt'] == "req" && $app->userid = $user->id) {
@@ -129,11 +129,11 @@ Welcome to <? echo $clan_class->name; ?>.
 <th>Clan EXP</th>
 </tr>
 <?
-$result = mysql_query("SELECT * FROM `users` WHERE `clan` = '".$_GET['id']."' ORDER BY `clanxp` DESC");
-
-while($line = mysql_fetch_array($result)) {
-$clan1 = mysql_query("SELECT * FROM `clans` WHERE `owner` = '".$clan_class->owner."'");
-$clan = mysql_fetch_array($clan1);
+$query = "SELECT * FROM `users` WHERE `clan` = '".$_GET['id']."' ORDER BY `clanxp` DESC";
+$result = $conn->query($query);
+while($line = $result->fetch_array(MYSQLI_ASSOC)) {
+$clan1 = "SELECT * FROM `clans` WHERE `owner` = '".$clan_class->owner."'";
+$clan = fetchArray($clan1, 2, $conn);
 $cowner = $clan['owner'];
 
 ?>

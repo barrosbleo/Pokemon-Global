@@ -2,8 +2,8 @@
 include('../modules/lib.php');
 require_once 'admin_functions.php';
 
-$user1 = mysql_query("SELECT * FROM `users` WHERE `id`='".$_SESSION['userid']."' ");
-$user = mysql_fetch_object($user1);
+$user1 = "SELECT * FROM `users` WHERE `id`='".$_SESSION['userid']."' ";
+$user = fetchObj($user1, $conn);
 
 if($user->admin != 1){die("You are not authorized here!");}
 

@@ -46,11 +46,11 @@ foreach ($f as $k => $a) {
 	$links[] = $key == $k ? $a['text'] : '<a href="?s='.$k.'">'.$a['text'].'</a>' ;
 }
 
-$query = mysql_query("SELECT `name`, `gender`, count(`id`) as amount FROM `user_pokemon` {$extraSql} GROUP BY `name`, `gender`");
+$query = "SELECT `name`, `gender`, count(`id`) as amount FROM `user_pokemon` {$extraSql} GROUP BY `name`, `gender`";
 $pokeArray = array();
 $genderArray = array('1'=>'male', '2'=>'female', '0'=>'genderless');
-
-while ($r = mysql_fetch_assoc($query)) {
+$result = $conn->query($query);
+while ($r = $result->fetch_assoc()) {
 	$pokeArray[ $r['name'] ][ $genderArray[ $r['gender'] ] ] = $r['amount'];
 }
 

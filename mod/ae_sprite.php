@@ -22,15 +22,15 @@ if (isset($_POST['submit'], $_POST['img_name'], $_POST['comment'])) {
 		if ($im == false) {
 			echo '<div class="error">There was an error creating the image!</div>';
 		} else {
-			$base64Image = cleanSql(base64_encode($imageData));
-			$imgName     = cleanSql(trim(str_replace(array(chr(0),'<','>','.','/','\\'), '' , $_POST['img_name'])));
-			$comment     = cleanSql($_POST['comment']);
+			$base64Image = cleanSql(base64_encode($imageData), $conn);
+			$imgName     = cleanSql(trim(str_replace(array(chr(0),'<','>','.','/','\\'), '' , $_POST['img_name'])), $conn);
+			$comment     = cleanSql($_POST['comment'], $conn);
 			$uid         = (int) $_SESSION['userid'];
 			
 			if (empty($imgName)) { 
 				echo '<div class="error">Image name was empty!</div>';
 			} else {
-				mysql_query("
+				$conn->query("
 					INSERT INTO `new_images` (
 						`uid`, `image_data`, `image_name`, `comment`
 					) VALUES (

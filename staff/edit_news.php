@@ -22,9 +22,9 @@ if (isset($_POST['save'])) {
         $errors[] = 'Content can not be empty.';
     }
     
-    $sqlPoster = cleanSql($_POST['poster']);
-    $query = mysql_query("SELECT * FROM `users` WHERE `username`='{$sqlPoster}' AND `admin`='1'");
-    if (mysql_num_rows($query) == 0) {
+    $sqlPoster = cleanSql($_POST['poster'], $conn);
+    $query = "SELECT * FROM `users` WHERE `username`='{$sqlPoster}' AND `admin`='1'";
+    if (numRows($query, $conn) == 0) {
         $errors[] = 'Invalid poster.';
     }
     
@@ -33,15 +33,15 @@ if (isset($_POST['save'])) {
     } else {
         echo '<div class="notice">The news has been edited!</div>';
 
-        $sqlTitle = cleanSql($title);
-        $sqlContent = cleanSql($content);
+        $sqlTitle = cleanSql($title, $conn);
+        $sqlContent = cleanSql($content, $conn);
 		$time = time();
-        mysql_query("UPDATE `news` SET `title`='{$sqlTitle}', `news`='{$sqlContent}', `bywho`='{$sqlPoster}', `date`='{$time}' WHERE `id`='1'");
+        $conn->query("UPDATE `news` SET `title`='{$sqlTitle}', `news`='{$sqlContent}', `bywho`='{$sqlPoster}', `date`='{$time}' WHERE `id`='1'");
     }
 }
 
-$query = mysql_query("SELECT * FROM `news` ORDER BY `id` DESC LIMIT 1");
-$row = mysql_fetch_assoc($query);
+$query = "SELECT * FROM `news` ORDER BY `id` DESC LIMIT 1";
+$row = fetchAssoc($query, $conn);
 $row = cleanHtml($row);
 
 echo '

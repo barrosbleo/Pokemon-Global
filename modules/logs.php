@@ -9,10 +9,10 @@ function logs($id, $text){
 }
 
 //write players activity log(not working)
-function logActivity($message, $uid, $image = '') {
+function logActivity($message, $uid, $image = '', $conn) {
 	$uid     = (int) $uid;
-	$message = cleanSql($message);
-	$image   = cleanSql($image);
+	$message = cleanSql($message, $conn);
+	$image   = cleanSql($image, $conn);
 	$time    = time();
 
 	//mysql_query("INSERT INTO `activity` (`message`, `uid`, `time`, `image`) VALUES ('{$message}', '{$uid}', '{$time}', '{$image}')");

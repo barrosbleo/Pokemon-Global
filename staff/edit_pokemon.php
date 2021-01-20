@@ -28,9 +28,9 @@ if ($pid == 0) {
     die();
 }
 
-$query = mysql_query("SELECT * FROM `user_pokemon` WHERE `id`='{$pid}' LIMIT 1");
+$query = "SELECT * FROM `user_pokemon` WHERE `id`='{$pid}' LIMIT 1";
 
-if (mysql_num_rows($query) == 0) {
+if (numRows($query, $conn) == 0) {
     echo 'This pokemon does not exist!';
     include '_footer.php';
     die();
@@ -94,13 +94,13 @@ if (isset($_GET['id'])) {
         } else {
             echo '<div class="notice">The pokemon has been edited.</div>';
             
-            $name = cleanSql($name);
-            $move1Name = cleanSql($move1Name);
-            $move2Name = cleanSql($move2Name);
-            $move3Name = cleanSql($move3Name);
-            $move4Name = cleanSql($move4Name);
+            $name = cleanSql($name, $conn);
+            $move1Name = cleanSql($move1Name, $conn);
+            $move2Name = cleanSql($move2Name, $conn);
+            $move3Name = cleanSql($move3Name, $conn);
+            $move4Name = cleanSql($move4Name, $conn);
 
-            mysql_query("
+            $conn->query("
                 UPDATE `user_pokemon` SET
                     `name`   = '{$name}',
                     `level`  = '{$level}',
@@ -119,8 +119,8 @@ if (isset($_GET['id'])) {
         }
     }
 
-    $query = mysql_query("SELECT `user_pokemon`.*,`users`.`username` FROM `user_pokemon`, `users` WHERE `user_pokemon`.`id`='{$pid}' AND `user_pokemon`.`uid`=`users`.`id`");
-    $pokeInfo = mysql_fetch_assoc($query);
+    $query = "SELECT `user_pokemon`.*,`users`.`username` FROM `user_pokemon`, `users` WHERE `user_pokemon`.`id`='{$pid}' AND `user_pokemon`.`uid`=`users`.`id`";
+    $pokeInfo = fetchAssoc($query, $conn);
     // print_r($pokeInfo);
 
     echo '
