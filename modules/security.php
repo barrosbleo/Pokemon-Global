@@ -21,8 +21,9 @@ stripos($_SERVER['QUERY_STRING'], 'SCRIPT') !== false
 }
 
 //Stop Magic Quotes
-if (get_magic_quotes_gpc()) {
-	$_POST = stripslashes_deep($_POST);
-	$_GET  = stripslashes_deep($_GET);
-}
+//deprecated function remove it soon
+//if (get_magic_quotes_gpc()) {
+//	$_POST = stripslashes_deep($_POST);
+//	$_GET  = stripslashes_deep($_GET);
+//}
 ?>
