@@ -1,7 +1,7 @@
 <?php
 //php error handling functions
 //this file is just for php errors
-error_reporting(E_ALL);
+error_reporting(0);
 
 $path = $_SERVER['DOCUMENT_ROOT'];
 
