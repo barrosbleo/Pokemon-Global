@@ -30,7 +30,6 @@ include '_header.php';
 						</p>
 						<p>If you have any inquires please contact the owner on contato@pokeglobal.com</p>
 					</div>
-					
 					<?php include '_footer.php'; ?>
 				</td>
 			</tr>
