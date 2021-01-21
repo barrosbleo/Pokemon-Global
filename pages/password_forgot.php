@@ -7,9 +7,9 @@ if (isset($_POST['submit'])) {
 	$email = (string) $_POST['email'];
 	
 	$sqlUsername = cleanSql($username, $conn);
-	$htmlUsername = cleanHtml($username, $conn);
+	$htmlUsername = cleanHtml($username);
 	
-	$sqlEmail = cleanSql($email);
+	$sqlEmail = cleanSql($email, $conn);
 	$htmlEmail = cleanHtml($email);
 	
 	
@@ -25,17 +25,17 @@ if (isset($_POST['submit'])) {
 		
 		//$key_sha1 = sha1($key);
 		
-		$query = mysql_query("
+		$query = "
 			SELECT * 
 			FROM `users`
 			WHERE `username` = '{$sqlUsername}'
 			AND `email` = '{$sqlEmail}'
-		") or die(mysql_error());
-
-		$row = mysql_num_rows($query);
+		";
+		$result = $conn->query($query);
+		$row = $result->num_rows;
 		
 		if ($row != 0) {
-			$update = mysql_query("
+			$conn->query("
 				UPDATE `users`
 				SET `reset_key` = '{$key}'
 				WHERE `email` = '{$sqlEmail}'
@@ -50,7 +50,7 @@ if (isset($_POST['submit'])) {
 				'.$lang['pwd_forgot_02'].' '.$username.', 
 				'.$lang['pwd_forgot_03'].'
 				
-				http://pkmnhelios.net/forgot_password/reset.php?key='.$key.'&username='.urlencode($username).'
+				http://pkmglobal.online/password_reset.php?key='.$key.'&username='.urlencode($username).'
 			
 				'.$lang['pwd_forgot_04'].'
 				    '.$key.'

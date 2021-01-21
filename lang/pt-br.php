@@ -810,7 +810,7 @@ Tempo até a próxima hora de sorte: ',
 
 //password_forgot
 	'pwd_forgot_00' => 'Redefinir Senha',
-	'pwd_forgot_01' => 'De: contact@pokeglobal.com',
+	'pwd_forgot_01' => 'De: support@pkmglobal.online',
 	'pwd_forgot_02' => 'Olá',
 	'pwd_forgot_03' => 'você solicitou recentemente uma nova senha no Pokémon Global.
 Siga o link abaixo para redefinir sua senha:',

@@ -28,7 +28,7 @@ if (isset($_POST['submit']) && !empty($_POST['key'])) {
 		$row = numRows($query, $conn);
 		
 		if ($row != 0) {
-			$update = $conn->query("
+			$conn->query("
 				UPDATE `users`
 				SET `password` = '{$newPassword}'
 				WHERE `username` = '{$sqlUsername}'
