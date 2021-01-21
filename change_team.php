@@ -80,6 +80,5 @@ if ($pokemon === false) {
 		';
 	}
 }
-
 include '_footer.php';
 ?>
