@@ -77,7 +77,4 @@ echo $lang['derp_08']." ".number_format($exp).""." ".$lang['derp_09']." ".number
  </td><td colspan="2"><input type="submit" name="cal" id="cal" value="<?php echo $lang['derp_13'];?>">
  </td>
  </table></fieldset>
- 
- 
- 
 </form>
