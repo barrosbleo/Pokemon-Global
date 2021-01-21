@@ -145,4 +145,4 @@ $attackMod = array(
 		'Steel'    => 0.5
 	)
 );
-?>
+?> 
