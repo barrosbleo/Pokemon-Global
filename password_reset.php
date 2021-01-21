@@ -36,6 +36,7 @@ if (isset($_POST['submit']) && !empty($_POST['key'])) {
 			");			
 
 			echo '<p class="successF">'.$lang['pwd_reset_00'].'</p>';
+			echo '<script>setInterval(function(){ window.location.href = "https://pkmglobal.online"; }, 3000);</script>';
 		}
 		else {
 			echo '<p class="errorF">'.$lang['pwd_reset_01'].'
