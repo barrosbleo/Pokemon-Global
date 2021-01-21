@@ -765,5 +765,4 @@ function canCatchLegends($uid, $conn) {
 }
 
 // var_dump(canCatchLegends(1));
-
 ?>
