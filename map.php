@@ -12,7 +12,7 @@ if (isset($_GET['map'], $_GET['x'], $_GET['y'])) {
 	$time = time();
 	$x = (int) $_GET['x'];
 	$y = (int) $_GET['y'];
-	mysql_query("UPDATE `users` SET `map_num`='{$map}', `map_x`='{$x}', `map_y`='{$y}', `map_lastseen`='{$time}' WHERE `id`='{$uid}'");
+	$conn->query("UPDATE `users` SET `map_num`='{$map}', `map_x`='{$x}', `map_y`='{$y}', `map_lastseen`='{$time}' WHERE `id`='{$uid}'");
 	$string = base64_encode($map);
 	redirect('map.php?map='.$string.'#map');
 }
@@ -744,11 +744,12 @@ switch ($map) {
 }
 
 //load NPCs on map
-$npcQuery = mysql_query("SELECT * FROM `npc` WHERE `map_num`='{$map}'");
+$npcQuery = "SELECT * FROM `npc` WHERE `map_num`='{$map}'";
+$result = $conn->query($npcQuery);
 $npcArray = array();
 
 $i = 0;
-while($npc = mysql_fetch_assoc($npcQuery)){
+while($npc = $result->fetch_assoc()){
 	$npcArray[$i]['id'] = (int)$npc['id'];
 	$npcArray[$i]['npcname'] = cleanHtml($npc['npcname']);
 	$npcArray[$i]['x'] = (int)$npc['map_x'];
@@ -760,12 +761,13 @@ while($npc = mysql_fetch_assoc($npcQuery)){
 //load users on map
 $time = time();
 $tenMinsAgo = $time - (60*10);
-$usersQuery = mysql_query("SELECT * FROM `users` WHERE `map_num`='{$map}' AND `map_lastseen`>='{$tenMinsAgo}'");
-$numUsersOnMap = mysql_num_rows($usersQuery);
+$usersQuery = "SELECT * FROM `users` WHERE `map_num`='{$map}' AND `map_lastseen`>='{$tenMinsAgo}'";
+$result = $conn->query($usersQuery);
+$numUsersOnMap = numRows($usersQuery, $conn);
 $usersArray = array();
 
 $i = 0; $onMap = false;
-while ($user = mysql_fetch_assoc($usersQuery)) {
+while ($user = $result->fetch_assoc()) {
 if ($user['id'] == $uid) {
 $startX = $user['map_x'];
 $startY = $user['map_y'];
@@ -780,17 +782,17 @@ $usersArray[$i]['sprite']  = (int) $user['map_sprite'];
 $i++;
 }
 
-mysql_query("UPDATE `users` SET `map_num`='{$map}', `map_x`='{$startX}', `map_y`='{$startY}', `map_lastseen`='{$time}' WHERE `id`='{$uid}'");
+$conn->query("UPDATE `users` SET `map_num`='{$map}', `map_x`='{$startX}', `map_y`='{$startY}', `map_lastseen`='{$time}' WHERE `id`='{$uid}'");
 if (!$onMap) {
 $numUsersOnMap++;
 }
 
-$mySpriteQuery = mysql_query("SELECT `map_sprite` FROM `users` WHERE `id`='{$uid}' LIMIT 1");
-$mySprite = mysql_fetch_assoc($mySpriteQuery);
+$mySpriteQuery = "SELECT `map_sprite` FROM `users` WHERE `id`='{$uid}' LIMIT 1";
+$mySprite = fetchAssoc($mySpriteQuery, $conn);
 $mySprite = $mySprite['map_sprite'];
 
 
-$canCatchLegends          = canCatchLegends($uid);
+$canCatchLegends          = canCatchLegends($uid, $conn);
 $_SESSION['catchLegneds'] = $canCatchLegends;
 
 $legendsMsg = $canCatchLegends ? $lang['map_can_catch_leg'] : $lang['map_cant_catch_leg'] ;
@@ -1041,15 +1043,15 @@ window.addEventListener('keydown', checkKeysDown, false);
 					<?php
  
 					
-						$query = mysql_query("SELECT * FROM `users` WHERE `id`='{$uid}'");
-						$checkSlots = mysql_fetch_array($query);
+						$query = "SELECT * FROM `users` WHERE `id`='{$uid}'";
+						$checkSlots = fetchArray($query, 2, $conn);
 					
 						for ($i=1; $i<=6; $i++) {		
 							$pid = $checkSlots['poke'.$i];
 						
 						if ($pid == 0) { } else {	
-							$pokeBox1 = mysql_query("SELECT * FROM `user_pokemon` WHERE `id`='{$pid}'");
-							$pokeBox = mysql_fetch_object($pokeBox1);
+							$pokeBox1 = "SELECT * FROM `user_pokemon` WHERE `id`='{$pid}'";
+							$pokeBox = fetchObj($pokeBox1, $conn);
 
 							$types = array('Shiny ', 'Halloween ', 'Possion ', 'Helios ', 'Rainbow ', 'Snow ', 'Shadow ', 'Ancient ');
 							$pokemonName = str_replace($types, '', $pokeBox->name);

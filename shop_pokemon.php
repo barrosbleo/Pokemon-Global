@@ -6,11 +6,11 @@ if (!isLoggedIn()) {
 }
 
 $uid = (int) $_SESSION['userid'];
-$userMoney = getUserMoney($uid);
+$userMoney = getUserMoney($uid, $conn);
 
-$query = mysql_query("SELECT * FROM `shop_pokemon` ORDER BY `price` ASC");
+$query = "SELECT * FROM `shop_pokemon` ORDER BY `price` ASC";
 
-if (mysql_num_rows($query) == 0) {
+if (numRows($query, $conn) == 0) {
     include '_header.php';
     echo '
         <div class="error">'.$lang['shop_poke_00'].'</div>
@@ -22,7 +22,8 @@ $salePokemon = array();
 $categorys = array();
 $defaultCat = '';
 
-while ($row = mysql_fetch_assoc($query)) {
+$result = $conn->query($query);
+while ($row = $result->fetch_assoc()) {
     if (empty($defaultCat)) { $defaultCat = strtolower($row['category']); }
     if (!in_array($row['category'], $categorys)) { $categorys[] = $row['category']; }
     $salePokemon[ strtolower($row['category']) ][$row['name']] = $row['price'];
@@ -47,8 +48,8 @@ if (isset($_POST['buyPoke'])) {
 			echo '<div class="error">'.$lang['shop_poke_01'].'</div>';
 		} else {
 			$userMoney -= $price;
-			updateUserMoney($uid, $userMoney);
-			giveUserPokemon($uid, $pokeName, 5, levelToExp(5), 'Scratch', 'Scratch', 'Scratch', 'Scratch');
+			updateUserMoney($uid, $userMoney, $conn);
+			giveUserPokemon($uid, $pokeName, 5, levelToExp(5), 'Scratch', 'Scratch', 'Scratch', 'Scratch', $conn);
             
 			echo '
 				<div class="notice">

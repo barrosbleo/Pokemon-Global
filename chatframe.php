@@ -1,12 +1,12 @@
 <?php
 include('modules/lib.php');
 
-$query = mysql_query("SELECT * FROM users WHERE id='".$uid."'");
-$user = mysql_fetch_assoc($query);
-$query = mysql_query("SELECT * FROM chat WHERE map='".$user['map_num']."' ORDER BY msg_id DESC LIMIT 0,20");
+$query = "SELECT * FROM users WHERE id='".$uid."'";
+$user = fetchAssoc($query, $conn);
+$query = "SELECT * FROM chat WHERE map='".$user['map_num']."' ORDER BY msg_id DESC LIMIT 0,20";
 
-
-while($msg = mysql_fetch_array($query)){
+$result = $conn->query($query);
+while($msg = $result->fetch_array(MYSQLI_ASSOC)){
 	echo "<div class='msgby'>".$msg['username'].":</div> <div class='messages'>".$msg['message']."</div> <div class='date'>".$msg['sent_on']."</div></br>";
 }
 ?>

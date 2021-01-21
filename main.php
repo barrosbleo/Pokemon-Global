@@ -22,9 +22,17 @@ function loadPage(pageName){
 		curPage = newPage;
 	}
 }
-window.onload = loadPage('news');
-
-
+<?php
+//if is registering with referral
+if(isset($_GET['refReg'])){
+	echo'window.onload = loadPage("register");';
+	echo'var refId='.$_GET['refReg'].';';
+}
+else{
+	echo'window.onload = loadPage("news");';
+	echo'var refId = 0;';
+}
+?>
 </script>
 
 
@@ -79,10 +87,11 @@ function doRegister(){
 	xhttp.onreadystatechange = function(){
 		if(this.readyState == 4 && this.status == 200){
 			if(this.responseText == "success"){
-				var login = regUser;
-				var password = regPass;
+				login = regUser;
+				password = regPass;
 				doLogin();
 				location.reload();
+				//location.href = "http://localhost/main.php";
 				//alert(this.responseText);
 			}else{
 				regError.style.display = "block";
@@ -94,7 +103,7 @@ function doRegister(){
 	};
 	xhttp.open("POST", "modules/registerfunc.php", true);
 	xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-	xhttp.send("username="+regUser.value+"&password="+regPass.value+"&repass="+regRePass.value+"&regmail="+regMail.value+"&regstarter="+regStarter+"&submit=register");
+	xhttp.send("username="+regUser.value+"&password="+regPass.value+"&repass="+regRePass.value+"&regmail="+regMail.value+"&regstarter="+regStarter+"&refid="+refId+"&submit=register");
 
 }
 </script>

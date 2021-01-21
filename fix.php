@@ -64,8 +64,8 @@ switch ($_GET['d']) {
 	break;
 }
 
-$query = mysql_query("SELECT `id` FROM `pokemon` ORDER BY `id` ASC LIMIT 1");
-$lastId = mysql_fetch_assoc($query);
+$query = "SELECT `id` FROM `pokemon` ORDER BY `id` ASC LIMIT 1";
+$lastId = fetchAssoc($query, $conn);
 $lastId = $lastId['id'];
 
 $cells = array();
@@ -75,13 +75,13 @@ for ($i=0;$i<$numPokes;$i++ ){
 	$randomLevel = mt_rand($minLevel, $maxLevel);
 	$type        = mt_rand(1, 5) == 3 ? 'Shiny ' : '' ;
 	
-	$query   = mysql_query("SELECT * FROM `pokemon` WHERE `id`>={$randId} AND `name`!='' LIMIT 1");
-	$pokeRow = mysql_fetch_assoc($query);
+	$query   = "SELECT * FROM `pokemon` WHERE `id`>={$randId} AND `name`!='' LIMIT 1";
+	$pokeRow = fetchAssoc($query, $conn);
 	
 	$pokeRow['name']  = $type.$pokeRow['name'];
 	$pokeRow['level'] = $randomLevel;
-	$pokeRow['maxhp'] = maxHp($pokeRow['name'], $randomLevel);
-	$pokeRow['hp']    = maxHp($pokeRow['name'], $randomLevel);
+	$pokeRow['maxhp'] = maxHp($pokeRow['name'], $randomLevel, $conn);
+	$pokeRow['hp']    = maxHp($pokeRow['name'], $randomLevel, $conn);
 	
 	$_SESSION['battle']['opponent'][$i] = $pokeRow;
 	

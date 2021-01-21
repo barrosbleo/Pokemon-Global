@@ -1,10 +1,12 @@
 <?php
 	// count online users past 60 min
 	$oTime = time() - (60*60);
-	$online = mysql_num_rows(mysql_query("SELECT * FROM `users` WHERE `lastseen` >= '{$oTime}' ORDER BY `lastseen` DESC"));
+	$query = "SELECT * FROM `users` WHERE `lastseen` >= '{$oTime}' ORDER BY `lastseen` DESC";
+	$online = numRows($query, $conn);
 	
 	// count total users
-	$usersTotal = mysql_num_rows(mysql_query("SELECT `id` FROM `users`"));
+	$query = "SELECT `id` FROM `users`";
+	$usersTotal = numRows($query, $conn);
 	
 	// change game style on events (Temporary)
 	$eventStyle = '';

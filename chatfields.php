@@ -10,11 +10,11 @@ if(isset($_POST['sendmsg'])){
 	if($error == 1){
 		//echo"error";
 	}else{
-		$msg = mysql_real_escape_string(htmlspecialchars($_POST['message']));
-		$query = mysql_query("SELECT * FROM users WHERE id='".$uid."'");
-		$user = mysql_fetch_assoc($query);
+		$msg = $conn->real_escape_string(htmlspecialchars($_POST['message']));
+		$query = "SELECT * FROM users WHERE id='".$uid."'";
+		$user = fetchAssoc($query, $conn);
 		$sql = "INSERT INTO chat (username, message, map) VALUES ('".$user['username']."', '".$msg."', '".$user['map_num']."')";
-		mysql_query($sql);
+		$conn->query($sql);
 	}
 }
 

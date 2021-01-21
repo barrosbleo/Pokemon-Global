@@ -3,11 +3,12 @@ die();
 include('modules/lib.php');
     //include 'config.php';
      
-    $query = mysql_query("select * from `offer_pokemon`");
+    $query = "select * from `offer_pokemon`";
      
-    while ($row = mysql_fetch_assoc($query)) {
+	$result = $conn->query($query);
+    while ($row = $result->fetch_assoc()) {
         $row['gender'] = rand(0, 2);
-        $query2 = mysql_query("
+        $query2 = $conn->query("
            INSERT INTO `user_pokemon` (
                `uid`, `name`, `level`, `exp`, `move1`, `move2`, `move3`, `move4`, `gender`
            ) VALUES (
@@ -16,7 +17,7 @@ include('modules/lib.php');
        ");
      
         if ($query2) {
-            mysql_query("delete from `offer_pokemon` where `id`='{$row['id']}'");
+            $conn->query("delete from `offer_pokemon` where `id`='{$row['id']}'");
         }
     }
      

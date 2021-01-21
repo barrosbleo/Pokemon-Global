@@ -8,14 +8,14 @@ redirect('login.php');
 
 $pid   = (int) $_GET['id'];
 $uid   = (int) $_SESSION['userid'];
-$query = mysql_query("SELECT * FROM `user_pokemon` WHERE `id`='{$pid}' AND `uid`='{$uid}' LIMIT 1");
+$query = "SELECT * FROM `user_pokemon` WHERE `id`='{$pid}' AND `uid`='{$uid}' LIMIT 1";
 
-if (mysql_num_rows($query) == 0) {
+if (numRows($query, $conn) == 0) {
 die($lang['change_atk_00']);
 }
 
-$pokemon   = mysql_fetch_assoc($query);
-$userMoney = getUserMoney($uid);
+$pokemon   = fetchAssoc($query, $conn);
+$userMoney = getUserMoney($uid, $conn);
 
 // function used to calculate the price of moves
 function powerToPrice($power) {
@@ -30,20 +30,20 @@ if (isset($_POST['sid'], $_POST['mid'])) {
 $sid = (int) $_POST['sid'];
 $mid = (int) $_POST['mid'];
 
-$query = mysql_query("SELECT * FROM `moves` WHERE `id`='{$mid}' LIMIT 1");
+$query = "SELECT * FROM `moves` WHERE `id`='{$mid}' LIMIT 1";
 
-if (!in_array($sid, range(1,4)) || mysql_num_rows($query) == 0) {
+if (!in_array($sid, range(1,4)) || numRows($query, $conn) == 0) {
 echo '<div class="error">'.$lang['change_atk_01'].'</div>';
 } else {
-$moveRow = mysql_fetch_assoc($query);
+$moveRow = fetchAssoc($query, $conn);
 $price = powerToPrice($moveRow['power']);
 
 if ($userMoney < $price) {
 echo '<div class="error">'.$lang['change_atk_02'].'</div>';
 } else {
-$sqlMoveName = cleanSql($moveRow['name']);
-mysql_query("UPDATE `user_pokemon` SET `move{$sid}`='{$sqlMoveName}' WHERE `id`='{$pid}' LIMIT 1");
-mysql_query("UPDATE `users` SET `money`=`money`-{$price} WHERE `id`='{$uid}' LIMIT 1");
+$sqlMoveName = cleanSql($moveRow['name'], $conn);
+$conn->query("UPDATE `user_pokemon` SET `move{$sid}`='{$sqlMoveName}' WHERE `id`='{$pid}' LIMIT 1");
+$conn->query("UPDATE `users` SET `money`=`money`-{$price} WHERE `id`='{$uid}' LIMIT 1");
 
 echo '
 <div class="notice">
@@ -58,11 +58,12 @@ $userMoney -= $price;
 }
 
 
-$query = mysql_query("SELECT * FROM `moves` ORDER BY `type` ASC, `power` DESC");
+$query = "SELECT * FROM `moves` ORDER BY `type` ASC, `power` DESC";
 $allMoves = array();
 
 // order the moves by type
-while ($move = mysql_fetch_assoc($query)) {
+$result = $conn->query($query);
+while ($move = $result->fetch_assoc()) {
 $allMoves[$move['type']][] = $move;
 }
 

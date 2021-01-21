@@ -3,7 +3,7 @@ die();
 include('modules/lib.php');
 
 for ($i=0; $i<100; $i++) {
-	mysql_query("
+	$conn->query("
 		INSERT INTO `user_pokemon` (
 			`uid`, `name`, `level`, `exp`,
 			`move1`, `move2`, `move3`, `move4`, `gender`

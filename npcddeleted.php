@@ -6,13 +6,13 @@ if (!isLoggedIn()) {
 	redirect('index.php');
 }
 
-	$usersQuery = mysql_query("SELECT `poke1` FROM `users` WHERE id='{$uid}'");
-	$usersRow = mysql_fetch_object($usersQuery);
+	$usersQuery = "SELECT `poke1` FROM `users` WHERE id='{$uid}'";
+	$usersRow = fetchObj($usersQuery, $conn);
 							
 	$starterID = $usersRow->poke1;
 								
-	$pokeQuery	= mysql_query("SELECT * FROM `user_pokemon` WHERE `id`='{$starterID}'");
-	$pokeRow = mysql_fetch_object($pokeQuery);
+	$pokeQuery	= "SELECT * FROM `user_pokemon` WHERE `id`='{$starterID}'";
+	$pokeRow = fetchObj($pokeQuery, $conn);
 	
 	$pokelevel = $pokeRow->level;
 
@@ -47,13 +47,13 @@ $cells = array();
 
 for ($i=0;$i<$numPokes;$i++ ){
 
-	$query   = mysql_query("SELECT * FROM `pokemon` WHERE `id`>={$pokeid} AND `name`!='' LIMIT 1");
-	$pokeRow = mysql_fetch_assoc($query);
+	$query   = "SELECT * FROM `pokemon` WHERE `id`>={$pokeid} AND `name`!='' LIMIT 1";
+	$pokeRow = fetchAssoc($query, $conn);
 	
 	$pokeRow['name']  = $type.$pokeRow['name'];
 	$pokeRow['level'] = $level;
-	$pokeRow['maxhp'] = maxHp($pokeRow['name'], $level);
-	$pokeRow['hp']    = maxHp($pokeRow['name'], $level);
+	$pokeRow['maxhp'] = maxHp($pokeRow['name'], $level, $conn);
+	$pokeRow['hp']    = maxHp($pokeRow['name'], $level, $conn);
 	
 	$_SESSION['battle']['opponent'][$i] = $pokeRow;
 	

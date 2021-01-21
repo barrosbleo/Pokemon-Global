@@ -11,7 +11,7 @@ printHeader($lang['sell_poke_title']);
 
 $uid = (int) $_SESSION['userid'];
 
-$userMoney = getUserMoney($uid);
+$userMoney = getUserMoney($uid, $conn);
 
 echo '
 	<div style="text-align: center; margin: 10px 0;">
@@ -26,14 +26,14 @@ echo '
 	</div>
 ';
 
-switch (isset($_GET['p'])) {
+switch ($_GET['p']){
 	case 'sell':
-		$query = mysql_query("SELECT * FROM `users` WHERE `id`='{$uid}' LIMIT 1");
-		$myTeam = mysql_fetch_assoc($query);
+		$query = "SELECT * FROM `users` WHERE `id`='{$uid}' LIMIT 1";
+		$myTeam = fetchAssoc($query, $conn);
 		
-		$query = mysql_query("SELECT * FROM `user_pokemon` WHERE `uid`='{$uid}' AND `id` NOT IN ('{$myTeam['poke1']}', '{$myTeam['poke2']}', '{$myTeam['poke3']}', '{$myTeam['poke4']}', '{$myTeam['poke5']}', '{$myTeam['poke6']}')");
+		$query = "SELECT * FROM `user_pokemon` WHERE `uid`='{$uid}' AND `id` NOT IN ('{$myTeam['poke1']}', '{$myTeam['poke2']}', '{$myTeam['poke3']}', '{$myTeam['poke4']}', '{$myTeam['poke5']}', '{$myTeam['poke6']}')";
 		
-		if (mysql_num_rows($query) == 0) {
+		if (numRows($query, $conn) == 0) {
 			echo '<div class="info">'.$lang['sell_poke_05'].'</div>';
 			break;
 		}
@@ -49,7 +49,8 @@ switch (isset($_GET['p'])) {
 					<th>'.$lang['sell_poke_10'].'</th>
 				</tr>
 		';
-		while ($pokemon = mysql_fetch_assoc($query)) {
+		$result = $conn->query($query);
+		while ($pokemon = $result->fetch_assoc()) {
 			echo '
 				<tr>
 					<td><a href="pinfo.php?id='.$pokemon['id'].'"><img src="images/pokemon/'.$pokemon['name'].'.png" /></a></td>
@@ -73,17 +74,17 @@ switch (isset($_GET['p'])) {
 	
 	case 'sell2':
 		$pid = (int) $_GET['id'];
-		$query = mysql_query("SELECT `poke1`,`poke2`,`poke3`,`poke4`,`poke5`,`poke6` FROM `users` WHERE `id`='{$uid}' LIMIT 1");
-		$myTeam = mysql_fetch_assoc($query);
+		$query = "SELECT `poke1`,`poke2`,`poke3`,`poke4`,`poke5`,`poke6` FROM `users` WHERE `id`='{$uid}' LIMIT 1";
+		$myTeam = fetchAssoc($query, $conn);
 		
-		$query = mysql_query("SELECT * FROM `user_pokemon` WHERE `uid`='{$uid}' AND `id`='{$pid}'");
+		$query = "SELECT * FROM `user_pokemon` WHERE `uid`='{$uid}' AND `id`='{$pid}'";
 		
-		if (mysql_num_rows($query) == 0 || in_array($pid, $myTeam)) {
+		if (numRows($query, $conn) == 0 || in_array($pid, $myTeam)) {
 			echo '<div class="error">'.$lang['sell_poke_12'].'</div>';
 			break;
 		}
 		
-		$pokemon = mysql_fetch_assoc($query);
+		$pokemon = fetchAssoc($query, $conn);
 		
 		echo '
 			<table class="pretty-table"><tr><td>'.$lang['sell_poke_13'].' '.$pokemon['name'].'</td></tr><tr>
@@ -98,15 +99,15 @@ switch (isset($_GET['p'])) {
 			$price = $price < 1 ? 1000 : $price ;
 			echo '<div class="notice">'.$lang['sell_poke_16'].' $'.number_format($price).'.</div>';
 			
-			$username = cleanSql($_SESSION['username']);
-			mysql_query("DELETE FROM `user_pokemon` WHERE `id`='{$pid}' LIMIT 1");
-			mysql_query("INSERT INTO `sale_pokemon` (
+			$username = cleanSql($_SESSION['username'], $conn);
+			$conn->query("DELETE FROM `user_pokemon` WHERE `id`='{$pid}' LIMIT 1");
+			$conn->query("INSERT INTO `sale_pokemon` (
 				`name`, `level`, `exp`, `move1`, `move2`, `move3`, `move4`, `uid`, `username`, `price`
 				) VALUES (
 				'{$pokemon['name']}', '{$pokemon['level']}', '{$pokemon['exp']}', '{$pokemon['move1']}', '{$pokemon['move2']}', '{$pokemon['move3']}', '{$pokemon['move4']}', '{$uid}', '{$username}', '{$price}'
 				)
 			");
-			mysql_query("UPDATE `users` SET `total_sale_pokes`=`total_sale_pokes`+1 WHERE `id`='{$uid}' LIMIT 1");
+			$conn->query("UPDATE `users` SET `total_sale_pokes`=`total_sale_pokes`+1 WHERE `id`='{$uid}' LIMIT 1");
 		} else {
 			echo '
 				<form action="?p=sell2&id='.$pid.'" method="post">
@@ -120,9 +121,9 @@ switch (isset($_GET['p'])) {
 	break;
 	
 	case 'mine':
-		$query = mysql_query("SELECT * FROM `sale_pokemon` WHERE `uid`='{$uid}'");
+		$query = "SELECT * FROM `sale_pokemon` WHERE `uid`='{$uid}'";
 		
-		if (mysql_num_rows($query) == 0) {
+		if (numRows($query, $conn) == 0) {
 			echo '<div class="info">'.$lang['sell_poke_18'].'</div>';
 			break;
 		}
@@ -139,7 +140,8 @@ switch (isset($_GET['p'])) {
 					<th>'.$lang['sell_poke_24'].'</th>
 				</tr>
 		';
-		while ($pokemon = mysql_fetch_assoc($query)) {
+		$result = $conn->query($query);
+		while ($pokemon = $result->fetch_assoc()) {
 			echo '
 				<tr>
 					<td><img src="images/pokemon/'.$pokemon['name'].'.png" /></td>
@@ -165,14 +167,14 @@ switch (isset($_GET['p'])) {
 	case 'remove':
 		$pid = (int) $_GET['id'];
 		
-		$query = mysql_query("SELECT * FROM `sale_pokemon` WHERE `uid`='{$uid}' AND `id`='{$pid}'");
+		$query = "SELECT * FROM `sale_pokemon` WHERE `uid`='{$uid}' AND `id`='{$pid}'";
 		
-		if (mysql_num_rows($query) == 0) {
+		if (numRows($query, $conn) == 0) {
 			echo '<div class="error">'.$lang['sell_poke_26'].'</div>';
 			break;
 		}
 		
-		$pokemon = mysql_fetch_assoc($query);
+		$pokemon = fetchAssoc($query, $conn);
 		
 		echo '
 			<div style="text-align: center;">
@@ -184,9 +186,9 @@ switch (isset($_GET['p'])) {
 			</div>
 		';
 		
-		mysql_query("DELETE FROM `sale_pokemon` WHERE `id`='{$pid}' LIMIT 1");
-		mysql_query("UPDATE `users` SET `total_sale_pokes`=`total_sale_pokes`-1 WHERE `id`='{$uid}' LIMIT 1");
-        giveUserPokemon($uid, $pokemon['name'], $pokemon['level'], $pokemon['exp'], $pokemon['move1'], $pokemon['move2'], $pokemon['move3'], $pokemon['move4']);
+		$conn->query("DELETE FROM `sale_pokemon` WHERE `id`='{$pid}' LIMIT 1");
+		$conn->query("UPDATE `users` SET `total_sale_pokes`=`total_sale_pokes`-1 WHERE `id`='{$uid}' LIMIT 1");
+        giveUserPokemon($uid, $pokemon['name'], $pokemon['level'], $pokemon['exp'], $pokemon['move1'], $pokemon['move2'], $pokemon['move3'], $pokemon['move4'], $conn);
 
 	break;
 	
@@ -212,13 +214,13 @@ switch (isset($_GET['p'])) {
 		$orderSql  = $sorts[$sortKey];
 
 		if (!empty($search)) {
-			$searchSqlSafe  = cleanSql($search);
+			$searchSqlSafe  = cleanSql($search, $conn);
 			$searchHtmlSafe = cleanHtml($search);
 			$searchSql      = " AND `name` LIKE '%{$searchSqlSafe}%' ";
 		}
 
-		$countQuery = mysql_query("SELECT * FROM `sale_pokemon` WHERE `uid` != '{$uid}' {$searchSql}");
-		$numRows    = mysql_num_rows($countQuery);
+		$countQuery = "SELECT * FROM `sale_pokemon` WHERE `uid` != '{$uid}' {$searchSql}";
+		$numRows    = numRows($countQuery, $conn);
 		$pagination = new Pagination($numRows);
 
 		if (!empty($search)) {
@@ -226,7 +228,7 @@ switch (isset($_GET['p'])) {
 		}
 		$pagination->addQueryStringVar('p', 'all');
 
-		$query = mysql_query("SELECT * FROM `sale_pokemon` WHERE `uid` != '{$uid}' {$searchSql} {$orderSql} LIMIT {$pagination->itemsPerPage} OFFSET {$pagination->startItem}");
+		$query = "SELECT * FROM `sale_pokemon` WHERE `uid` != '{$uid}' {$searchSql} {$orderSql} LIMIT {$pagination->itemsPerPage} OFFSET {$pagination->startItem}";
 
 
 
@@ -249,10 +251,10 @@ switch (isset($_GET['p'])) {
 			</form>
 		';
 
-		if (mysql_num_rows($query) == 0) {
+		if (numRows($query, $conn) == 0) {
 			echo '<div class="info">'.$lang['sell_poke_29'].'</div>';
 		} else {
-			if (mysql_num_rows($query) == 0) {
+			if (numRows($query, $conn) == 0) {
 				echo '<div class="info">'.$lang['sell_poke_30'].'</div>';
 				break;
 			}
@@ -269,8 +271,8 @@ switch (isset($_GET['p'])) {
 						<th>'.$lang['sell_poke_37'].'</th>
 					</tr>
 			';
-			
-			while ($pokemon = mysql_fetch_assoc($query)) {
+			$result = $conn->query($query);
+			while ($pokemon = $result->fetch_assoc()) {
 				echo '
 					<tr>
 						<td>'.number_format($pokemon['id']).'</td>
@@ -301,14 +303,14 @@ switch (isset($_GET['p'])) {
 	case 'buy':
 		$pid = (int) $_GET['id'];
 		
-		$query = mysql_query("SELECT * FROM `sale_pokemon` WHERE `uid`!='{$uid}' AND `id`='{$pid}'");
+		$query = "SELECT * FROM `sale_pokemon` WHERE `uid`!='{$uid}' AND `id`='{$pid}'";
 		
-		if (mysql_num_rows($query) == 0) {
+		if (numRows($query, $conn) == 0) {
 			echo '<div class="error">'.$lang['sell_poke_39'].'</div>';
 			break;
 		}
 		
-		$pokemon = mysql_fetch_assoc($query);
+		$pokemon = fetchAssoc($query, $conn);
 		
 		echo '
 			<table class="pretty-table">
@@ -320,27 +322,27 @@ switch (isset($_GET['p'])) {
 		';
 		 
 		if (isset($_POST['sure'])) {
-			$query = mysql_query("SELECT `money` FROM `users` WHERE `id`='{$uid}' LIMIT 1");
-			$userMoney = mysql_fetch_assoc($query);
+			$query = "SELECT `money` FROM `users` WHERE `id`='{$uid}' LIMIT 1";
+			$userMoney = fetchAssoc($query, $conn);
 			$userMoney = $userMoney['money'];
-			$query2 = mysql_query("SELECT `username` FROM `users` WHERE `id`='{$uid}' LIMIT 1");
-			$userMoney2 = mysql_fetch_assoc($query2);
+			$query2 = "SELECT `username` FROM `users` WHERE `id`='{$uid}' LIMIT 1";
+			$userMoney2 = fetchAssoc($query2, $conn);
 			$userMoney2 = $userMoney2['username'];
 
 			if ($userMoney < $pokemon['price']) {
 				echo '<div class="error">'.$lang['sell_poke_41'].'</div>';
 			} else {
-				mysql_query("DELETE FROM `sale_pokemon` WHERE `id`='{$pid}' LIMIT 1");
-				mysql_query("UPDATE `users` SET `money`=`money`-{$pokemon['price']} WHERE `id`='{$uid}'");
-				mysql_query("UPDATE `users` SET `money`=`money`+{$pokemon['price']} , `newly_sold_pokes`=`newly_sold_pokes`+1 , `total_sale_pokes`=`total_sale_pokes`-1 WHERE `id`='{$pokemon['uid']}'");
-                                send_event($pokemon['uid'], "$userMoney2 ".$lang['sell_poke_42']);
+				$conn->query("DELETE FROM `sale_pokemon` WHERE `id`='{$pid}' LIMIT 1");
+				$conn->query("UPDATE `users` SET `money`=`money`-{$pokemon['price']} WHERE `id`='{$uid}'");
+				$conn->query("UPDATE `users` SET `money`=`money`+{$pokemon['price']} , `newly_sold_pokes`=`newly_sold_pokes`+1 , `total_sale_pokes`=`total_sale_pokes`-1 WHERE `id`='{$pokemon['uid']}'");
+                                send_event($pokemon['uid'], "$userMoney2 ".$lang['sell_poke_42'], $conn);
 				/*mysql_query("INSERT INTO `user_pokemon` (
 					`name`, `level`, `exp`, `move1`, `move2`, `move3`, `move4`, `uid`
 					) VALUES (
 					'{$pokemon['name']}', '{$pokemon['lekemon['move2']}', '{$pokemon['move3']}', '{$pokemon['move4']}', '{$uid}'
 					)
 				");*/
-giveUserPokemon($uid, $pokemon['name'], $pokemon['level'], $pokemon['exp'], $pokemon['move1'], $pokemon['move2'], $pokemon['move3'], $pokemon['move4']);
+giveUserPokemon($uid, $pokemon['name'], $pokemon['level'], $pokemon['exp'], $pokemon['move1'], $pokemon['move2'], $pokemon['move3'], $pokemon['move4'], $conn);
 				
 				/*$query = mysql_query("SELECT `id` FROM `user_pokemon` WHERE `uid`='{$uid}'");
 				$numPokes = mysql_num_rows($query);
@@ -350,8 +352,8 @@ giveUserPokemon($uid, $pokemon['name'], $pokemon['level'], $pokemon['exp'], $pok
 					mysql_query("UPDATE `users` SET `poke{$numPokes}`='$pokeId' WHERE `id`='{$uid}'");
 				}*/
 				
-				$username = mysql_real_escape_string($_SESSION['username']);
-				mysql_query("INSERT INTO `sale_history` (
+				$username = $conn->real_escape_string($_SESSION['username']);
+				$conn->query("INSERT INTO `sale_history` (
 					`name`, `level`, `exp`, `move1`, `move2`, `move3`, `move4`, `uid`, `username`, `soldto`, `sid`, `price`
 					) VALUES (
 					'{$pokemon['name']}', '{$pokemon['level']}', '{$pokemon['exp']}', '{$pokemon['move1']}', '{$pokemon['move2']}', '{$pokemon['move3']}', '{$pokemon['move4']}', '{$pokemon['uid']}', '{$pokemon['username']}', '{$username}', '{$uid}', '{$pokemon['price']}'
@@ -374,13 +376,13 @@ giveUserPokemon($uid, $pokemon['name'], $pokemon['level'], $pokemon['exp'], $pok
 	break;
 	
 	case 'history':
-		$query = mysql_query("SELECT * FROM `sale_history` WHERE `uid`='{$uid}' AND `udeleted`='0' OR `sid`='{$uid}' AND `sdeleted`='0'");
+		$query = "SELECT * FROM `sale_history` WHERE `uid`='{$uid}' AND `udeleted`='0' OR `sid`='{$uid}' AND `sdeleted`='0'";
 		
-		mysql_query("UPDATE `sale_history` SET `seen`='1' WHERE `uid`='{$uid}' AND `udeleted`='0' OR `sid`='{$uid}' AND `sdeleted`='0'");
+		$conn->query("UPDATE `sale_history` SET `seen`='1' WHERE `uid`='{$uid}' AND `udeleted`='0' OR `sid`='{$uid}' AND `sdeleted`='0'");
 		
-		mysql_query("UPDATE `users` SET `newly_sold_pokes`='0' WHERE `id`='{$uid}'");
+		$conn->query("UPDATE `users` SET `newly_sold_pokes`='0' WHERE `id`='{$uid}'");
 		
-		if (mysql_num_rows($query) == 0) {
+		if (numRows($query, $conn) == 0) {
 			echo '<div class="info">'.$lang['sell_poke_46'].'</div>';
 			break;
 		}
@@ -397,7 +399,8 @@ giveUserPokemon($uid, $pokemon['name'], $pokemon['level'], $pokemon['exp'], $pok
 					<th>'.$lang['sell_poke_52'].'</th>
 				</tr>
 		';
-		while ($pokemon = mysql_fetch_assoc($query)) {
+		$result = $conn->query($query);
+		while ($pokemon = $result->fetch_assoc()) {
 			echo '
 				<tr>
 					<td><a href="pinfo.php?id='.$pokemon['id'].'"><img src="images/pokemon/'.$pokemon['name'].'.png" /></a></td>
@@ -436,10 +439,10 @@ giveUserPokemon($uid, $pokemon['name'], $pokemon['level'], $pokemon['exp'], $pok
 	break;
 	
 	case 'clear_history':
-		mysql_query("UPDATE `users` SET `newly_sold_pokes`='0' WHERE `id`='{$uid}'");
-		mysql_query("UPDATE `sale_history` SET `udeleted`='1' WHERE `uid`='{$uid}'") or die(mysql_error());
-		mysql_query("UPDATE `sale_history` SET `sdeleted`='1' WHERE `sid`='{$uid}'") or die(mysql_error());
-		mysql_query("DELETE FROM `sale_history` WHERE `sdeleted`='1' AND `udeleted`='1'") or die(mysql_error());
+		$conn->query("UPDATE `users` SET `newly_sold_pokes`='0' WHERE `id`='{$uid}'");
+		$conn->query("UPDATE `sale_history` SET `udeleted`='1' WHERE `uid`='{$uid}'") or die(mysqli_error());
+		$conn->query("UPDATE `sale_history` SET `sdeleted`='1' WHERE `sid`='{$uid}'") or die(mysqli_error());
+		$conn->query("DELETE FROM `sale_history` WHERE `sdeleted`='1' AND `udeleted`='1'") or die(mysqli_error());
 		
 		echo '<div class="notice">'.$lang['sell_poke_56'].'</div>';
 	break;

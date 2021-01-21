@@ -10,11 +10,11 @@ printHeader($lang['shop_title']);
 
 $uid = (int) $_SESSION['userid'];
 
-$query = mysql_query("SELECT * FROM `user_items` WHERE `uid`='{$uid}' LIMIT 1");
-$itemAmounts = mysql_fetch_assoc($query);
+$query = "SELECT * FROM `user_items` WHERE `uid`='{$uid}' LIMIT 1";
+$itemAmounts = fetchAssoc($query, $conn);
 
-$query = mysql_query("SELECT `money` FROM `users` WHERE `id`='{$uid}' LIMIT 1");
-$userMoney = mysql_fetch_assoc($query);
+$query = "SELECT `money` FROM `users` WHERE `id`='{$uid}' LIMIT 1";
+$userMoney = fetchAssoc($query, $conn);
 $userMoney = $userMoney['money'];
 
 $items = array(
@@ -139,16 +139,16 @@ if (isset($_POST['buy'])) {
 		echo'<div class="success">'.$lang['shop_02'].'</div>';
 		
 		$updateSql = implode(', ', $updateSqlArray);
-		mysql_query("UPDATE `user_items` SET {$updateSql} WHERE `uid`='{$uid}'");
+		$conn->query("UPDATE `user_items` SET {$updateSql} WHERE `uid`='{$uid}'");
 		
-		mysql_query("UPDATE `users` SET `money`=`money`-$totalCost WHERE `id`='{$uid}'");
+		$conn->query("UPDATE `users` SET `money`=`money`-$totalCost WHERE `id`='{$uid}'");
 		$userMoney -= $totalCost;
 		$itemAmounts = $newItemAmounts;
 	}
 }
 
-$query = mysql_query("SELECT * FROM `user_items` WHERE `uid`='{$uid}'");
-$row = mysql_fetch_assoc($query);
+$query = "SELECT * FROM `user_items` WHERE `uid`='{$uid}'";
+$row = fetchAssoc($query, $conn);
 
 echo '
 	<div style="text-align: center; margin: 10px auto; ">

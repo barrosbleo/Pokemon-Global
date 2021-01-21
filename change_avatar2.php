@@ -11,12 +11,12 @@ include "_header.php";
 printHeader($lang['change_ava2_title']);
 
 if(isset($_POST['pic'])) {
-	$avatar = cleanSql('http://localhost/'.$_POST['pic']);
-	mysql_query("UPDATE `users` SET `avatar`='{$avatar}' WHERE `id`='{$uid}'");
+	$avatar = cleanSql('http://localhost/'.$_POST['pic'], $conn);
+	$conn->query("UPDATE `users` SET `avatar`='{$avatar}' WHERE `id`='{$uid}'");
 	echo '<div class="notice">'.$lang['change_ava2_00'].'</div>';
 }
-$query = mysql_query("SELECT `avatar` FROM `users`WHERE `id`='{$uid}'");
-$avatar = mysql_fetch_assoc($query);
+$query = "SELECT `avatar` FROM `users`WHERE `id`='{$uid}'";
+$avatar = fetchAssoc($query, $conn);
 $avatar = $avatar['avatar'];
 
 echo '

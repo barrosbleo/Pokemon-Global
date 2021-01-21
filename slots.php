@@ -62,7 +62,7 @@ if (isset($_POST['pull'], $_POST['bet']) && in_array($_POST['bet'], $betAmounts)
 		<br />
 	';
 	
-	mysql_query("UPDATE `users` SET `money`='{$userMoney}' WHERE `id`='{$uid}'");
+	$conn->query("UPDATE `users` SET `money`='{$userMoney}' WHERE `id`='{$uid}'");
 }
 
 echo '<div style="text-align: center; margin: 20px 0px;">';

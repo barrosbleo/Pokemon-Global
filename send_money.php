@@ -6,7 +6,7 @@ if (!isLoggedIn()) {
 }
 
 $uid       = (int) $_SESSION['userid'];
-$userMoney = getUserMoney($uid);
+$userMoney = getUserMoney($uid, $conn);
 $message   = isset($_SESSION['message']) ? $_SESSION['message'] : '' ;
 $username  = '';
 $amount    = '';
@@ -14,12 +14,12 @@ $amount    = '';
 if (isset($_POST['amount']) && isset($_POST['username'])) {
 	$amount        = (int) $_POST['amount'];
 	$uni_username  = trim($_POST['username']);
-	$sqlUsername   = cleanSql($uni_username);
-	$sqlMyUsername = cleanSql($_SESSION['username']);
+	$sqlUsername   = cleanSql($uni_username, $conn);
+	$sqlMyUsername = cleanSql($_SESSION['username'], $conn);
 	
-	$query = mysql_query("SELECT `id` FROM `users` WHERE `username`='{$sqlUsername}' LIMIT 1");
+	$query = "SELECT `id` FROM `users` WHERE `username`='{$sqlUsername}' LIMIT 1";
 
-	if (mysql_num_rows($query) == 0) {
+	if (numRows($query, $conn) == 0) {
 		$message = '<div class="error">'.$lang['send_money_00'].'</div>';
 	} else if ($amount > $userMoney) {
 		$message = '<div class="error">'.$lang['send_money_01'].'</div>';
@@ -30,16 +30,16 @@ if (isset($_POST['amount']) && isset($_POST['username'])) {
 	} else if (isset($_SESSION['send_money_token']) && $_SESSION['send_money_token'] != $_POST['token']) {
 		$message = '<div class="error">'.$lang['send_money_04'].'</div>';
 	} else {
-		$recUid     = mysql_fetch_assoc($query);
+		$recUid     = fetchAssoc($query, $conn);
 		$recUid     = $recUid['id'];
-		$recMoney   = getUserMoney($recUid) + $amount;
+		$recMoney   = getUserMoney($recUid, $conn) + $amount;
 		$userMoney -= $amount;
 		$time       = time();
 
-		updateUserMoney($recUid, $recMoney);
-		updateUserMoney($uid, $userMoney);
+		updateUserMoney($recUid, $recMoney, $conn);
+		updateUserMoney($uid, $userMoney, $conn);
 		
-		mysql_query("
+		$conn->query("
 			INSERT INTO `send_money_history` (
 				`sender_uid`, `recipient_uid`, `sender`, `recipient`, `amount`, `timestamp`
 			) VALUES (
@@ -64,10 +64,10 @@ printHeader($lang['send_money_title']);
 
 if (isset($_GET['id'])) {
 	$id = (int) $_GET['id'];
-	$query = mysql_query("SELECT `username` FROM `users` WHERE `id`='{$id}'");
+	$query = "SELECT `username` FROM `users` WHERE `id`='{$id}'";
 	
-	if (mysql_num_rows($query) == 1) {
-		$row = mysql_fetch_assoc($query);
+	if (numRows($query, $conn) == 1) {
+		$row = fetchAssoc($query, $conn);
 		$uni_username = $row['username'];
 	}
 }

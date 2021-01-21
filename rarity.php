@@ -15,11 +15,10 @@ if($page == ""){
 }
 
 // Now lets get all messages from your database
-$sql = "SELECT * FROM user_pokemon";
-$query = mysql_query($sql);
+$query = "SELECT * FROM user_pokemon";
 
 // Lets count all messages
-$num = mysql_num_rows($query);
+$num = numRows($query, $conn);
 
 // Lets set how many messages we want to display
 $per_page = "10";
@@ -85,11 +84,12 @@ $start = ($page-1)*$per_page;
 // Now lets set the limit for our query
 $limit = "LIMIT $start, $per_page";
 
-$query = mysql_query("SELECT `name`, `gender`, count(`id`) as amount FROM `user_pokemon` GROUP BY `name`, `gender` $limit");
+$query = "SELECT `name`, `gender`, count(`id`) as amount FROM `user_pokemon` GROUP BY `name`, `gender` $limit";
 $pokeArray = array();
 $genderArray = array('1'=>'male', '2'=>'female');
 
-while ($r = mysql_fetch_assoc($query)) {
+$result = $conn->query($query);
+while ($r = $result->fetch_assoc()) {
 $pokeArray[ $r['name'] ][ $genderArray[ $r['gender'] ] ] = $r['amount'];
 }
 echo '

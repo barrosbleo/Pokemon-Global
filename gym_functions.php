@@ -737,7 +737,7 @@ function getLeadersPokemonAndBadge($name) {
 
 
 // for map.php
-function canCatchLegends($uid) {
+function canCatchLegends($uid, $conn) {
 	global $gymSuperArray;
 	
 	$badgesNeeded = array();
@@ -751,8 +751,9 @@ function canCatchLegends($uid) {
 	
 	$uid = (int) $uid;
 	$userBadges = array();
-	$query = mysql_query("SELECT `badge` FROM `user_badges` WHERE `uid`='{$uid}'");
-	while ($row = mysql_fetch_assoc($query)) { $userBadges[] = $row['badge']; }
+	$query = "SELECT `badge` FROM `user_badges` WHERE `uid`='{$uid}'";
+	$result = $conn->query($query);
+	while ($row = $result->fetch_assoc()) { $userBadges[] = $row['badge']; }
 
 	foreach ($badgesNeeded as $badge) {
 		if (!in_array($badge, $userBadges)) {

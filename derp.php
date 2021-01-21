@@ -24,7 +24,7 @@ if(isset($_POST['Calculate']))
 {
 $level = abs((int) $_POST['lvl']);
 $level = htmlentities($_POST['lvl']);
-$level = mysql_real_escape_string($_POST['lvl']);
+$level = $conn->real_escape_string($_POST['lvl']);
 
 if(!isset($level))
 {
@@ -48,7 +48,7 @@ if(isset($_POST['cal']))
 {
 $exp = abs((int) $_POST['exp']);
 $exp = htmlentities($_POST['exp']);
-$exp = mysql_real_escape_string($_POST['exp']);
+$exp = $conn->real_escape_string($_POST['exp']);
 
 if(!isset($exp))
 {

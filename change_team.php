@@ -25,7 +25,7 @@ if ($pokemon === false) {
 			}
 		}
 		
-		mysql_query("UPDATE `users` SET `poke{$pos}`='{$pid}' WHERE `id`='{$uid}'");
+		$conn->query("UPDATE `users` SET `poke{$pos}`='{$pid}' WHERE `id`='{$uid}'");
 		
 		echo '<img src="images/pokemon/'.$pokemon['name'].'.png" /><br /><br />
 			<div class="notice">

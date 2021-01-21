@@ -16,20 +16,21 @@ echo '
 </center>
 ';
 
-mysql_query("UPDATE `send_money_history` SET `seen_by_recipient`='1' WHERE `recipient_uid`='{$uid}'");
+$conn->query("UPDATE `send_money_history` SET `seen_by_recipient`='1' WHERE `recipient_uid`='{$uid}'");
 
 if (isset($_GET['clear'])) {
-mysql_query("UPDATE `send_money_history` SET `deleted_by_recipient`='1' WHERE `recipient_uid`='{$uid}'");
-mysql_query("UPDATE `send_money_history` SET `deleted_by_sender`='1' WHERE `sender_uid`='{$uid}'");
-mysql_query("DELETE FROM `send_money_history` WHERE `deleted_by_sender`='1' AND `deleted_by_recipient`='1'");
+$conn->query("UPDATE `send_money_history` SET `deleted_by_recipient`='1' WHERE `recipient_uid`='{$uid}'");
+$conn->query("UPDATE `send_money_history` SET `deleted_by_sender`='1' WHERE `sender_uid`='{$uid}'");
+$conn->query("DELETE FROM `send_money_history` WHERE `deleted_by_sender`='1' AND `deleted_by_recipient`='1'");
 }
 
-$query = mysql_query("SELECT * FROM `send_money_history` WHERE (`sender_uid`='{$uid}' AND `deleted_by_sender`='0') OR (`recipient_uid`='{$uid}' AND `deleted_by_recipient`='0') ORDER BY `timestamp` DESC");
+$query = "SELECT * FROM `send_money_history` WHERE (`sender_uid`='{$uid}' AND `deleted_by_sender`='0') OR (`recipient_uid`='{$uid}' AND `deleted_by_recipient`='0') ORDER BY `timestamp` DESC";
  
-if (mysql_num_rows($query) == 0) {
+if (numRows($query, $conn) == 0) {
 echo '<div class="info">'.$lang['send_money_h_02'].'</div>';
 } else {
-while ($row = mysql_fetch_assoc($query)) {
+	$result = $conn->query($query);
+while ($row = $result->fetch_assoc()) {
 if ($row['sender_uid'] == $uid) {
 echo '<table><tr><td>'.$lang['send_money_h_03'].' $' . number_format($row['amount']) . ' '.$lang['send_money_h_04'].' ' . cleanHtml($row['recipient']) . '.<br /></td></tr></table>';
 } else {

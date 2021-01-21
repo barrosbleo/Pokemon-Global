@@ -11,13 +11,13 @@ include '_header.php';
 printHeader($lang['5050_title']);
 
 $uid = (int) $_SESSION['userid'];
-$user1 = mysql_query("SELECT * FROM `users` WHERE `id`='".$_SESSION['userid']."'");
-$user = mysql_fetch_object($user1);
+$user1 = "SELECT * FROM `users` WHERE `id`='".$_SESSION['userid']."'";
+$user = fetchObj($user1, $conn);
 
 $_POST['multiple'] = abs((int) $_POST['multiple']);
-$_POST['bet_id'] = mysql_real_escape_string($_POST['bet_id']);
+$_POST['bet_id'] = $conn->real_escape_string($_POST['bet_id']);
 $_POST['amount'] = abs((int) $_POST['amount']);
-$_POST['amount'] = mysql_real_escape_string($_POST['amount']);
+$_POST['amount'] = $conn->real_escape_string($_POST['amount']);
 $minimum = $_POST['amount'];
 
 if($_POST['multiple'] != "" && $_POST['multiple'] < 1){echo Message($lang['5050_00']);$error = 1;}
@@ -26,8 +26,8 @@ if($_POST['multiple'] != "" && $_POST['multiple'] > 5){echo Message($lang['5050_
 if ($_POST['takebet'] != ""){
 $_POST['bet_id'] = abs((int) $_POST['bet_id']);
 
-$result = mysql_query("SELECT * FROM `5050` WHERE `id`='".$_POST['bet_id']."'");
-$worked = mysql_fetch_array($result);
+$result = "SELECT * FROM `5050` WHERE `id`='".$_POST['bet_id']."'";
+$worked = fetchArray($result, 2, $conn);
 $amount = $worked['money'];
 
 if ($worked['id'] < 1){echo  $lang['5050_01'];$error = 1;}
@@ -37,21 +37,21 @@ if ($worked['uid'] == $user->id) { echo $lang['5050_02'];$error = 1;}
 if ($amount > $user->money) { echo $lang['5050_03'];$error = 1;}
 
 	if($error != 1){
-		mysql_query("DELETE FROM `5050` WHERE `id`='".$worked['id']."'");
+		$conn->query("DELETE FROM `5050` WHERE `id`='".$worked['id']."'");
 		$winner = rand(1,2);
 		$win = $worked['money'];
 
 		if($winner == 1){
 			$user->money = $user->money - $amount;
 			echo $lang['5050_04'];
-			mysql_query("UPDATE `users` SET `money` = `money` - $amount WHERE `id`='$user->id'");
+			$conn->query("UPDATE `users` SET `money` = `money` - $amount WHERE `id`='$user->id'");
 			
 			$amount = $amount * 2;
-			mysql_query("UPDATE `users` SET `money` = `money` + $amount WHERE `id`='".$worked['user']."'");
+			$conn->query("UPDATE `users` SET `money` = `money` + $amount WHERE `id`='".$worked['user']."'");
 		} else {
 			$user->money = $user->money + $amount;
 			echo $lang['5050_05'];
-			mysql_query("UPDATE `users` SET `money` = `money` + $amount WHERE `id`='$user->id'");
+			$conn->query("UPDATE `users` SET `money` = `money` + $amount WHERE `id`='$user->id'");
 		}
 	}
 
@@ -61,8 +61,8 @@ if ($amount > $user->money) { echo $lang['5050_03'];$error = 1;}
 
 if ($_POST['makebet']){
 
-$dalimit1 = mysql_query("SELECT id FROM `5050` WHERE `uid` = '$user->id'");
-$dalimit = mysql_num_rows($dalimit1);
+$dalimit1 = "SELECT id FROM `5050` WHERE `uid` = '$user->id'";
+$dalimit = numRows($dalimit1, $conn);
 
 if($dalimit > 9){echo $lang['5050_06'] ;$error = 1;}
 
@@ -84,10 +84,10 @@ $mbid = $_POST['multiple'];
 
 while($i<$mbid){ 
 $i++;
-$result= mysql_query("INSERT INTO `5050` (uid, money)"."VALUES ('$user->id', '".$_POST['amount']."')");
+$result = $conn_query("INSERT INTO `5050` (uid, money)"."VALUES ('$user->id', '".$_POST['amount']."')");
 }
 
-mysql_query("UPDATE `users` SET `money` = `money` - $checka WHERE `id`='$user->id'");
+$conn->query("UPDATE `users` SET `money` = `money` - $checka WHERE `id`='$user->id'");
 //".$_POST['multiple']." bets of
 if($checka > 1){
 echo  $lang['5050_10']." $".number_format($_POST['amount'])."";	
@@ -101,10 +101,10 @@ echo  $lang['5050_10']." $".number_format($_POST['amount'])."";
 
 if($_POST['remove'] != "" && $ivedisabledremovefornow == 1){
 $_POST['bet_id'] = abs((int) $_POST['bet_id']);
-$_POST['bet_id'] = mysql_real_escape_string($_POST['bet_id']);
+$_POST['bet_id'] = $conn->real_escape_string($_POST['bet_id']);
 
-$result = mysql_query("SELECT * FROM `5050` WHERE `id`='".$_POST['bet_id']."' AND `uid` = '$user->id'");
-$worked = mysql_fetch_object($result);
+$result = "SELECT * FROM `5050` WHERE `id`='".$_POST['bet_id']."' AND `uid` = '$user->id'";
+$worked = fetchObj($result, $conn);
 
 if($worked->user != $user->id){
 echo  $lang['5050_11'];
@@ -113,8 +113,8 @@ $error = 1;
 
 if($error != 1){
 $newgold = $user->money + $worked->money;
-$result = mysql_query("UPDATE `users` SET `money` = '".$newgold."' WHERE `id`='$user->id'");
-$result = mysql_query("DELETE FROM `5050` WHERE `id`='".$worked->id."'");
+$result = $conn->query("UPDATE `users` SET `money` = '".$newgold."' WHERE `id`='$user->id'");
+$result = $conn->query("DELETE FROM `5050` WHERE `id`='".$worked->id."'");
 echo $lang['5050_12'];
 }
 }
@@ -174,10 +174,11 @@ echo $lang['5050_12'];
 		<th><?php echo $lang['5050_23'];?></th>
 	</tr>
 <?php
-	$result = mysql_query("SELECT * FROM `5050` WHERE `money` != 0  ORDER BY `money` DESC");
-	while($line = mysql_fetch_array($result, MYSQL_ASSOC)) {
-		$other1 = mysql_query("SELECT id, username from `users` WHERE `id`='".$line['uid']."' LIMIT 0,1");
-		$other = mysql_fetch_object($other1);
+	$result = "SELECT * FROM `5050` WHERE `money` != 0  ORDER BY `money` DESC";
+	$return = $conn->query($result);
+	while($line = $return->fetch_array(MYSQLI_ASSOC)) {
+		$other1 = "SELECT id, username from `users` WHERE `id`='".$line['uid']."' LIMIT 0,1";
+		$other = fetchObj($other1, $conn);
 
 		$value = "takebet";
 		$value2 = $lang['5050_25'];

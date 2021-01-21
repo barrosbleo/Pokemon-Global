@@ -18,17 +18,17 @@ if (isset($_POST['submit']) && !empty($_POST['key'])) {
 		$rePassword = $_POST['re_password'];
 		$newPassword = sha1($password);
 		
-		$query = mysql_query("
+		$query = "
 			SELECT *
 			FROM `users`
 			WHERE `username` = '{$sqlUsername}'
 			AND `reset_key` = '{$sqlKey}'
-		");
+		";
 
-		$row = mysql_num_rows($query);
+		$row = numRows($query, $conn);
 		
 		if ($row != 0) {
-			$update = mysql_query("
+			$update = $conn->query("
 				UPDATE `users`
 				SET `password` = '{$newPassword}'
 				WHERE `username` = '{$sqlUsername}'

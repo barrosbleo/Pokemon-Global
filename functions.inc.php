@@ -3,8 +3,9 @@
     // Returns user stats
     function getUserStats($userID){        
     	$userStats = array();        
-    	$expQuery = mysql_query("SELECT SUM(`exp`) AS `total_exp` FROM `user_pokemon` WHERE `uid`='{$userID}'");        $getUsers = mysql_query("SELECT * FROM users WHERE id='{$userID}'");		$userStats['total_exp'] = $expQuery ? end(mysql_fetch_assoc($expQuery)) : 0;		
-        while($userInfo = mysql_fetch_assoc($getUsers)){            
+    	$expQuery = "SELECT SUM(`exp`) AS `total_exp` FROM `user_pokemon` WHERE `uid`='{$userID}'";        $getUsers = "SELECT * FROM users WHERE id='{$userID}'";		$userStats['total_exp'] = $expQuery ? end(fetchAssoc($expQuery, $conn)) : 0;		
+        $result = $conn->query($getUsers);
+		while($userInfo = $result->fetch_assoc()){            
 	        $userStats['username'] = $userInfo['username'];            
 	        $userStats['money'] = $userInfo['money'] + $userInfo['bank'];            
 	        $userStats['battles_won'] = $userInfo['won'];            
@@ -15,12 +16,12 @@
 
 	// Join Clan
     function joinClan($userID, $clanID){
-        $query = mysql_query("SELECT * FROM clan_members WHERE members_id='{$userID}'");
-        $numRows = mysql_num_rows($query);
+        $query = "SELECT * FROM clan_members WHERE members_id='{$userID}'";
+        $numRows = numRows($query, $conn);
         
         if($numRows == 0){
-            $query = mysql_query("SELECT * FROM clans WHERE id='{$clanID}'");
-            $claninfo = mysql_fetch_assoc($query);
+            $query = "SELECT * FROM clans WHERE id='{$clanID}'";
+            $claninfo = fetchAssoc($query, $conn);
             $userStats = getUserStats($userID);
             $totalExp  = $userStats['total_exp'];
             $totalMoney  = $userStats['money'];
@@ -28,16 +29,16 @@
             $clanName = $claninfo['clan_name'];
             
             
-            $query = mysql_query("INSERT INTO clan_members SET clan_id='{$clanID}', members_id='{$userID}', clan_name='{$clanName}', members_name='{$userName}', members_money='{$totalMoney}', members_exp='{$totalExp}', clan_access='0'");
+            $query = $conn->query("INSERT INTO clan_members SET clan_id='{$clanID}', members_id='{$userID}', clan_name='{$clanName}', members_name='{$userName}', members_money='{$totalMoney}', members_exp='{$totalExp}', clan_access='0'");
             
             if($query){
-                $query = mysql_query("SELECT * FROM clans WHERE id='{$clanID}'");
-                $queryData = mysql_fetch_assoc($query);
+                $query = "SELECT * FROM clans WHERE id='{$clanID}'";
+                $queryData = fetchAssoc($query, $conn);
                 $totalMoney += $queryData['total_money'];
                 $totalExp += $queryData['total_exp'];
                 $totalMembers = $queryData['total_members'] + 1;
                 
-                $query = mysql_query("UPDATE clans SET total_money='{$totalMoney}', total_exp='{$totalExp}', total_members='{$totalMembers}' WHERE id='{$clanID}'");
+                $query = $conn->query("UPDATE clans SET total_money='{$totalMoney}', total_exp='{$totalExp}', total_members='{$totalMembers}' WHERE id='{$clanID}'");
                 
                 if($query){
                     echo "<center><b>".$lang['func_inc_00']." ".$clanName."! <a href='./clanpage.php?cid=".$clanID."'>".$lang['func_inc_01']."</a></b></center>";
@@ -53,11 +54,11 @@
     // Returns total exp and total money for clan
     function clanTotals($clanID){		
 
-    	$moneyQuery = mysql_query("SELECT SUM(`members_money`) AS `total_money` FROM `clan_members` WHERE `clan_id`='{$clanID}'");        
-    	$expQuery = mysql_query("SELECT SUM(`members_exp`) AS `total_exp` FROM `clan_members` WHERE `clan_id`='{$clanID}'");        
-    	$totalarray = mysql_fetch_assoc($moneyQuery);        
+    	$moneyQuery = "SELECT SUM(`members_money`) AS `total_money` FROM `clan_members` WHERE `clan_id`='{$clanID}'";        
+    	$expQuery = "SELECT SUM(`members_exp`) AS `total_exp` FROM `clan_members` WHERE `clan_id`='{$clanID}'";        
+    	$totalarray = fetchAssoc($moneyQuery, $conn);        
     	$totalMoney = $totalarray['total_money'];        
-    	$totalarray = mysql_fetch_assoc($expQuery);        
+    	$totalarray = fetchAssoc($expQuery, $conn);        
     	$totalexp = $totalarray['total_exp'];
         return array($totalexp, $totalMoney);    
     }
@@ -65,14 +66,14 @@
 
 
     function validateCreation($formData){        
-    	$clanName = mysql_real_escape_string($formData['clan_name']);        
-    	$clanPass = mysql_real_escape_string($formData['clan_password']);        
-    	$confirmPass = mysql_real_escape_string($formData['confirm_clan_password']);
+    	$clanName = $conn->real_escape_string($formData['clan_name']);        
+    	$clanPass = $conn->real_escape_string($formData['clan_password']);        
+    	$confirmPass = $conn->real_escape_string($formData['confirm_clan_password']);
     	
     	$requiredMoney = 100000;        
     	$userID = (int) $formData['user_id'];
-    	$query = mysql_query("SELECT * FROM clan_admin WHERE admin_uid='{$userID}'");
-    	$rows = mysql_num_rows($query);
+    	$query = "SELECT * FROM clan_admin WHERE admin_uid='{$userID}'";
+    	$rows = numRows($query, $conn);
     	if(!$rows){
     	
 	        if(!empty($clanName)&&!empty($clanPass)&&!empty($confirmPass)){
@@ -88,19 +89,19 @@
 		            $success = array();
 		            if($totalMoney < $requiredMoney){
 		            
-			            $query = mysql_query("INSERT INTO clans SET clan_name='{$clanName}', leader_id='{$userID}', clan_leader='{$userName}', total_money='{$totalMoney}', total_exp='{$totalExp}',  total_members='1'");                
+			            $query = $conn->query("INSERT INTO clans SET clan_name='{$clanName}', leader_id='{$userID}', clan_leader='{$userName}', total_money='{$totalMoney}', total_exp='{$totalExp}',  total_members='1'");                
 			            if($query){					
 			            	$success[] = true;                    
 			            	
-			            	$query = mysql_query("SELECT * FROM clans WHERE clan_name='{$clanName}'");                    
-			            	$clans = mysql_fetch_assoc($query);                    
+			            	$query = "SELECT * FROM clans WHERE clan_name='{$clanName}'";                    
+			            	$clans = fetchAssoc($query, $conn);                    
 			            	$clanID = $clans['id'];
 			                $clanNameAdmin = strtolower($clanName);
-			            	$query = mysql_query("INSERT INTO clan_admin SET clan_id='{$clanID}', clan_name='{$clanNameAdmin}', clan_password='{$hashedPass}', admin_uid='{$userID}'");
+			            	$query = $conn->query("INSERT INTO clan_admin SET clan_id='{$clanID}', clan_name='{$clanNameAdmin}', clan_password='{$hashedPass}', admin_uid='{$userID}'");
 			            
 			            	if($query){						
 			           		$success[] = true;                        
-			           	 	$query = mysql_query("INSERT INTO clan_members SET clan_id='{$clanID}', members_id='{$userID}', clan_name='{$clanName}', members_name='{$userName}', members_money='{$totalMoney}', members_exp='{$totalExp}', clan_access='2'");						
+			           	 	$query = $conn->query("INSERT INTO clan_members SET clan_id='{$clanID}', members_id='{$userID}', clan_name='{$clanName}', members_name='{$userName}', members_money='{$totalMoney}', members_exp='{$totalExp}', clan_access='2'");						
 			                  
 				        	if($query){	
 				        		echo $lang['func_inc_03'];						
@@ -130,14 +131,15 @@
         if($tableName == "clans"){
 
 
-            $query = ($enablePagination) ? mysql_query("SELECT * FROM `clans` LIMIT $start, $clansPerPage") : mysql_query("SELECT * FROM `clans`");
+            $query = ($enablePagination) ? "SELECT * FROM `clans` LIMIT $start, $clansPerPage" : "SELECT * FROM `clans`";
 
             
             if($query){
                 echo '<link rel="stylesheet" href="./css/clans.css" type="text/css">';
                 echo '<br /><br /><br /><center><table width="98%" cellpadding="0" cellspacing="0" class="t">';
                 echo '<tr><th>'.$lang['func_inc_09'].'</th><th>'.$lang['func_inc_10'].'</th><th>'.$lang['func_inc_11'].'</th><th>'.$lang['func_inc_12'].'</th><th>'.$lang['func_inc_13'].'</th><th>'.$lang['func_inc_14'].'</th></tr>';
-                while($clan = mysql_fetch_assoc($query)){
+                $result = $conn->query($query);
+				while($clan = $result->fetch_assoc()){
                     echo '<tr>';
 
                     foreach($clan as $key => $clanInfo){
@@ -187,13 +189,14 @@
             }
             echo '</center><br />';
         } elseif($tableName == "clan_members"){
-            $query = ($enablePagination) ? mysql_query("SELECT * FROM `clans_members` LIMIT $start, $clansPerPage") : mysql_query("SELECT * FROM `clan_members` WHERE clan_id='{$clanID}'");
+            $query = ($enablePagination) ? "SELECT * FROM `clans_members` LIMIT $start, $clansPerPage" : "SELECT * FROM `clan_members` WHERE clan_id='{$clanID}'";
 
-            if(mysql_num_rows($query)){
+            if(numRows($query, $conn)){
                 echo '<link rel="stylesheet" href="./css/clans.css" type="text/css">';
                 echo '<br /><br /><br /><center><table width="98%" cellpadding="0" cellspacing="0" class="t">';
                 echo '<tr><th>'.$lang['func_inc_17'].'</th><th>'.$lang['func_inc_18'].'</th><th>'.$lang['func_inc_19'].'</th><th>'.$lang['func_inc_20'].'</th></tr>';
-                while($clan = mysql_fetch_assoc($query)){
+                $result = $conn->query($query);
+				while($clan = $result->fetch_assoc()){
                     echo '<tr>';
 
                     foreach($clan as $key => $clanInfo){
@@ -258,14 +261,14 @@
             echo '</center><br />';
         }
     }
-
-    function tablePagination($query){
-        $clansPerPage = 20;
-        $pagesQuery = mysql_query($query);
-        $totalPages = ceil(mysql_result($pagesQuery, 0) / $clansPerPage);
-        $page = (isset($_GET['page'])) ? (int)$_GET['page'] : 1;
-        $start = ($page - 1) * $clansPerPage;
-        return array($start, $page, $totalPages, $clansPerPage);
+//remake this function
+    //function tablePagination($query){
+		//$clansPerPage = 20;
+		//$pagesQuery = $conn->query($query);
+		//$totalPages = ceil(mysql_result($pagesQuery, 0) / $clansPerPage);
+		//$page = (isset($_GET['page'])) ? (int)$_GET['page'] : 1;
+		//$start = ($page - 1) * $clansPerPage;
+		//return array($start, $page, $totalPages, $clansPerPage);
     }
 
     function getPages($page, $totalPages){
@@ -280,8 +283,8 @@
         echo ($page != $totalPages) ? '<a href="?page='.($page+1).'"> ></a></h2>' : '';
     }
 	function isAdmin($userID, $clanID = false){					
-		$getAdminID = mysql_query("SELECT * FROM clan_admin WHERE clan_id='$clanID'");		
-		$adminArray = mysql_fetch_assoc($getAdminID);		
+		$getAdminID = "SELECT * FROM clan_admin WHERE clan_id='$clanID'";		
+		$adminArray = fetchAssoc($getAdminID, $conn);		
 		$adminID = $adminArray['admin_uid'];
 		$success = ($userID == $adminID) ? true : false;
 		return array($adminID, $success);
@@ -300,19 +303,19 @@
     }
     
     function runQuery($queryStr){
-        $queryStr = mysql_query($queryStr);
-        $numRows = mysql_num_rows($queryStr);
+        $queryStr = $queryStr;
+        $numRows = numRows($queryStr, $conn);
         return array($queryStr, $numRows);
     }
     
     function removeClanMember($myID, $removeID, $clanID){
-        $query = mysql_query("SELECT * FROM clan_members WHERE clan_id='{$clanID}'");
-        $a = mysql_fetch_assoc($query);
+        $query = "SELECT * FROM clan_members WHERE clan_id='{$clanID}'";
+        $a = fetchAssoc($query, $conn);
 
         $id = $a['id'];
         
         
-        mysql_query("DELETE FROM clan_members WHERE id='{$id}'") or die(mysql_error());
+        $conn->query("DELETE FROM clan_members WHERE id='{$id}'") or die("Error functions.inc L315");
 
     	   	
     	

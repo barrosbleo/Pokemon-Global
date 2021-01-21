@@ -24,12 +24,12 @@ $money = rand(300, 350);
 
 echo $lang['roll_dice_01'];
 
-$update = mysql_query("UPDATE users SET money = money + '$money' WHERE username = '$user'");
+$update = $conn->query("UPDATE users SET money = money + '$money' WHERE username = '$user'");
 }
 
 else
 {
-$updatepay = mysql_query("UPDATE users SET money = money - 50 WHERE username = '$user'");
+$updatepay = $conn->query("UPDATE users SET money = money - 50 WHERE username = '$user'");
 
 echo $lang['roll_dice_02'];
 }
@@ -41,13 +41,14 @@ echo $lang['roll_dice_02'];
 <input type="submit" name="slot" value="Roll The Dice">
 <br /><?php 
 
-$view = mysql_fetch_assoc(mysql_query("SELECT * FROM users WHERE id = $id"));
+$query = "SELECT * FROM users WHERE id = $id";
+$view = fetchAssoc($query, $conn);
 
 $moneycheck = $view["money"];
 
 if($moneycheck <= 0)
 {
-$fixmgpoints = mysql_query("UPDATE users SET money = 0 WHERE id = $id");
+$fixmgpoints = $conn->query("UPDATE users SET money = 0 WHERE id = $id");
 echo $lang['roll_dice_03'];
 }
 else

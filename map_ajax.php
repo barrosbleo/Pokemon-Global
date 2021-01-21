@@ -84,7 +84,7 @@ $y = $y < 0 || $y > 25 ? 3 : $y;
 
 $time = time();
 
-mysql_query("UPDATE `users` SET `map_num`='{$map}', `map_x`='{$x}', `map_y`='{$y}', `map_lastseen`='{$time}' WHERE `id`='{$uid}'");
+$conn->query("UPDATE `users` SET `map_num`='{$map}', `map_x`='{$x}', `map_y`='{$y}', `map_lastseen`='{$time}' WHERE `id`='{$uid}'");
 
 if (mt_rand(1,7) == 1) {//common pokemon appear rate 14%(1/7)
 	$type = mt_rand(1, 150) == 100 ? 'Shiny ' : '' ;//shiny appear rate 1/150
@@ -98,26 +98,26 @@ if (mt_rand(1,7) == 1) {//common pokemon appear rate 14%(1/7)
 		$randomLevel = mt_rand(70, 90);//legend level variation
 	} else {
 		$randomPokemon = $wildPokemon[ mt_rand(0, count($wildPokemon)-1) ];
-		$randomLevel = mt_rand(4, 11);//common poke lvl variation
+		$randomLevel = mt_rand(4, 11);//common poke lvl variation. Put this variable into map switch
 	}
 	
-	$query = mysql_query("SELECT * FROM `pokemon` WHERE `name`='{$randomPokemon}' LIMIT 1");
+	$query = "SELECT * FROM `pokemon` WHERE `name`='{$randomPokemon}' LIMIT 1";
 	
-	if (mysql_num_rows($query) == 1) {
-		$pokeRow = mysql_fetch_assoc($query);
+	if (numRows($query, $conn) == 1) {
+		$pokeRow = fetchAssoc($query, $conn);
 		
 		$_SESSION['battle']['opponent'][0]          = $pokeRow;
 		$_SESSION['battle']['opponent'][0]['name']  = $type.$pokeRow['name'];
 		$_SESSION['battle']['opponent'][0]['level'] = $randomLevel;
-		$_SESSION['battle']['opponent'][0]['maxhp'] = maxHp($type.$pokeRow['name'], $randomLevel);
-		$_SESSION['battle']['opponent'][0]['hp']    = maxHp($type.$pokeRow['name'], $randomLevel);
+		$_SESSION['battle']['opponent'][0]['maxhp'] = maxHp($type.$pokeRow['name'], $randomLevel, $conn);
+		$_SESSION['battle']['opponent'][0]['hp']    = maxHp($type.$pokeRow['name'], $randomLevel, $conn);
 		$_SESSION['battle']['wild'] = true;
 		$_SESSION['battle']['rebattlelink'] = '<a href="map.php?map='.base64_encode($map).'">'.$lang['map_ajax_00'].'</a>';
 		$_SESSION['battle']['onum'] = 0;
 	
-		$query = mysql_query("SELECT * FROM `user_pokemon` WHERE `name`='{$type}{$randomPokemon}' AND `uid`='{$uid}' LIMIT 1");	
+		$query = "SELECT * FROM `user_pokemon` WHERE `name`='{$type}{$randomPokemon}' AND `uid`='{$uid}' LIMIT 1";	
 		
-		$json = array('name'=>$type.$randomPokemon, 'level'=>$randomLevel, 'caught'=>mysql_num_rows($query));
+		$json = array('name'=>$type.$randomPokemon, 'level'=>$randomLevel, 'caught'=>numRows($query, $conn));
 		echo json_encode($json);
 	} else {
 		$fh = @fopen('map_errors.txt', 'a') or die();
@@ -128,7 +128,7 @@ if (mt_rand(1,7) == 1) {//common pokemon appear rate 14%(1/7)
 	}
 } elseif (rand(1, 90) == 1) {//money drop rate 1% 1/90
 	$randMoney = rand(1, 100);//money drop value variation
-	mysql_query("UPDATE `users` SET `money`=`money`+{$randMoney} WHERE `id`='{$uid}'");
+	$conn->query("UPDATE `users` SET `money`=`money`+{$randMoney} WHERE `id`='{$uid}'");
 	
 	$json = array('money'=>$randMoney);
 	echo json_encode($json);

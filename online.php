@@ -19,17 +19,17 @@ if (isset($_GET['get'])) {
 }
 /// < -- end of test
 
-$query = mysql_query("SELECT * FROM `users` WHERE `lastseen`>='{$otime}' ORDER BY `lastseen` DESC");
-$rows = mysql_num_rows($query);
+$query = "SELECT * FROM `users` WHERE `lastseen`>='{$otime}' ORDER BY `lastseen` DESC";
+$rows = numRows($query, $conn);
 
-if (getConfigValue('most_online') < $rows ) {
+if (getConfigValue('most_online', $conn) < $rows ) {
 	setConfigValue('most_online', $rows);
 }
 
 echo "<center>
 		<font color=white>
 			".$lang['online_00']." ".$rows."<br />
-			".$lang['online_01']." ".getConfigValue('most_online')."<br /><br />
+			".$lang['online_01']." ".getConfigValue('most_online', $conn)."<br /><br />
 		</font>
 	</center>"; 
 echo '		
@@ -44,7 +44,8 @@ echo '
 
                            
 ';
-while ($row = mysql_fetch_assoc($query)) {
+$result = $conn->query($query);
+while ($row = $result->fetch_assoc()) {
 	$lastseenMins = floor(($time-$row['lastseen'])/60);
 	$lastseenSecs = ($time-$row['lastseen'])%60;
 	$lastseenStr = $lastseenMins > 0 ? $lastseenMins.''.$lang['online_06'].' ' : '' ;

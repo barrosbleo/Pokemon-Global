@@ -4,7 +4,8 @@ Include '_header.php';
 printHeader('Referral Centre');
 
 $uid = $_SESSION['userid'];
-$user = mysql_fetch_array(mysql_query("SELECT * FROM `users` WHERE `id` = {$uid}"));
+$query = "SELECT * FROM `users` WHERE `id` = {$uid}";
+$user = fetchArray($query, 2, $conn);
  ?>
 
 
@@ -23,7 +24,7 @@ $user = mysql_fetch_array(mysql_query("SELECT * FROM `users` WHERE `id` = {$uid}
 	
 	<tr>
 		<td>
-			http://pkmglobal.online/register.php?ref=<?php echo $uid;?>
+			https://pkmglobal.online/main.php?refReg=<?php echo $uid;?>
 		</td>
 	</tr>
 </table>
@@ -35,9 +36,9 @@ $user = mysql_fetch_array(mysql_query("SELECT * FROM `users` WHERE `id` = {$uid}
 <?php
 $refPoints = $user['Referals'];
 
-$query = mysql_query("SELECT * FROM `shop_ref` ORDER BY `price` ASC");
+$query = "SELECT * FROM `shop_ref` ORDER BY `price` ASC";
 
-if (mysql_num_rows($query) == 0) {
+if (numRows($query, $conn) == 0) {
     echo "<div class='error'>".$lang['refl_empty_shop']."</div>";
 	die();
 }
@@ -46,7 +47,8 @@ $salePokemon = array();
 $categorys = array();
 $defaultCat = '';
 
-while ($row = mysql_fetch_assoc($query)) {
+$result = $conn->query($query);
+while ($row = $result->fetch_assoc()) {
     if (empty($defaultCat)) { $defaultCat = strtolower(isset($row['category'])); }
     if (!in_array(isset($row['category']), $categorys)) { $categorys[] = isset($row['category']); }
     $salePokemon[ strtolower(isset($row['category'])) ][$row['name']] = $row['price'];
@@ -68,7 +70,7 @@ if (isset($_POST['submit'])) {
 			echo "<div class='error'>".$lang['refl_no_refl']."</div>";
 		} else {
 			$refPoints -= $price;
-			mysql_query("UPDATE `users` SET `Referals` = '{$refPoints}' WHERE `id` = '{$uid}'");
+			$conn->query("UPDATE `users` SET `Referals` = '{$refPoints}' WHERE `id` = '{$uid}'");
 			giveUserPokemon($uid, $pokeName, 5, levelToExp(5), 'Tackle', 'Scratch', 'Ember', 'Leer');
             
 			echo '

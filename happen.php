@@ -1,9 +1,10 @@
 <div class="whathapen">
 <?php
-$query = mysql_query("SELECT DISTINCT(`message`), `image` FROM `activity` ORDER BY `id` DESC LIMIT 10");
+$query = "SELECT DISTINCT(`message`), `image` FROM `activity` ORDER BY `id` DESC LIMIT 10";
 
 $activityArr = array();
-while ($activity = mysql_fetch_assoc($query)) {
+$result = $conn->query($query);
+while ($activity = $result->fetch_assoc()) {
 	$activityArr[] = cleanHtml($activity);
 }
 

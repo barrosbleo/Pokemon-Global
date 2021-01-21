@@ -5,7 +5,7 @@ logs($uid, " viewed mypokedex.php !");
 echo '<table><tr><th><font size="4"><img src="http://pkmnplanet.net/rpg/images/mugshots/ck/Bugsy.png" style="float:right"/>'.$lang['mypokedex_00'].'';
 
 $uid = (int) $_SESSION['userid'];
-$query = mysql_query("
+$query = "
 	SELECT
 		`pokemon`.`name`,
 		IF ((SELECT `id` FROM `user_pokemon` WHERE `name`=`pokemon`.`name` AND `uid`='{$uid}' LIMIT 1), 1, 0) as `caught_normal`,
@@ -14,14 +14,15 @@ $query = mysql_query("
 	FROM
 		`pokemon`
 	ORDER BY `pokemon`.`name` ASC
-");
+";
 
 
 echo '
 	<table border="0" style="text-align: center; margin: 30px auto; width: 400px;">
 ';
 $lastLetter = '';
-while ($pokemon = mysql_fetch_assoc($query)) {
+$result = $conn->query($query);
+while ($pokemon = $result->fetch_assoc()) {
 
 	if ($pokemon['name'][0] != $lastLetter) {
 		echo '
