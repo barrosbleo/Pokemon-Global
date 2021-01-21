@@ -62,12 +62,12 @@ if (isset($_POST['submit'])) {
 			echo '<p class="successF">'.$lang['pwd_forgot_06'].' '.$htmlEmail.'</p>';
 		} else {
 			echo'<p class="errorF">'.$lang['pwd_forgot_07'].'
-			<br><a href="password_forgot.php">'.$lang['pwd_forgot_08'].'</p>';
+			<br><a href="main.php">'.$lang['pwd_forgot_08'].'</p>';
 		}
 	}
 		else {
 			echo '<p class="errorF">'.$lang['pwd_forgot_09'].'
-			<br><a href="password_forgot.php">'.$lang['pwd_forgot_08'].'</p>';
+			<br><a href="main.php">'.$lang['pwd_forgot_08'].'</p>';
 		}
 
 }  else {
