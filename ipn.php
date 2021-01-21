@@ -49,7 +49,6 @@ Buyer Email: '.$email.'
 $headers = 'From:tsakshams@hotmail.co.uk' . "\r\n";
 
 mail($to, $subject, $message, $headers);
-
 }
 }
 fclose ($fp);
