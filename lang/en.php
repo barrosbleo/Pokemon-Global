@@ -809,7 +809,7 @@ the future there will be ranks for who caught the most pokemons.',
 	
 	//password_forgot
 	'pwd_forgot_00' => 'Reset Password',
-	'pwd_forgot_01' => 'From: contact@pokeglobal.com',
+	'pwd_forgot_01' => 'From: support@pkmglobal.online',
 	'pwd_forgot_02' => 'Hello',
 	'pwd_forgot_03' => 'you recently requested a new password at Pokemon Global
 				follow the link below to reset your password: ',
