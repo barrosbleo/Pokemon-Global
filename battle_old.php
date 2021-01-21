@@ -726,8 +726,5 @@ if ($_SESSION['battle']['screen'] == 'battle') {
 	
 	unset($_SESSION['battle']);
 }
-
-
-
 include '_footer.php';
 ?>
