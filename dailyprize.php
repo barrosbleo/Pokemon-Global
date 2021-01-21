@@ -82,7 +82,6 @@ if(isset($_POST['submit'])) {
 
 </center>
 
-
 <?php
-	include '_footer.php';
+include '_footer.php';
 ?>
