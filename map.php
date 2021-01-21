@@ -744,7 +744,7 @@ switch ($map) {
 }
 
 //load NPCs on map
-$npcQuery = "SELECT * FROM `npc` WHERE `map_num`='".$map."'";
+$npcQuery = "SELECT * FROM npc WHERE `map_num`='".$map."'";
 $result = $conn->query($npcQuery);
 $npcArray = array();
 
