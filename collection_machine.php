@@ -149,7 +149,6 @@ foreach ($rewards as $key => $reward) {
 	}
 	echo '<br /><br />';
 }
-
 echo '		
 	</div>
 ';

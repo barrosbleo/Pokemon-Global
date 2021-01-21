@@ -71,7 +71,6 @@ foreach ($leagueArray as $leagueName => $leader) {
 	
 	echo '</table>';
 }
-
 include '_footer.php';
 ?>
 <?php ob_end_flush(); ?>

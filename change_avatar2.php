@@ -40,6 +40,5 @@ echo '
 	</form>
 ';
 
-
 include "_footer.php";
 ?>

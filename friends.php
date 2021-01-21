@@ -93,6 +93,5 @@ while($fRow = $result->fetch_assoc()) {
 echo '
 	</table>
 ';
-
 include '_footer.php';
 ?>

@@ -82,5 +82,4 @@ class Pagination {
 		return $this->currentPage == $this->numPages;
 	}
 }
-
 ?>

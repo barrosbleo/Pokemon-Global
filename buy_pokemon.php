@@ -116,5 +116,3 @@ echo '
 echo '</div>';
 include '_footer.php';
 ?>
-
-

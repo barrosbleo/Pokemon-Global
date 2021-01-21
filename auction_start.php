@@ -118,6 +118,5 @@ echo '
 	'.$lang['auct_a_16'].'<br />
 	
 ';
-
 include '_footer.php';
 ?>

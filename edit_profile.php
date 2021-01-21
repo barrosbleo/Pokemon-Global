@@ -149,6 +149,5 @@ echo '
 		</table>
     </form>
 ';
-
 include '_footer.php';
 ?>

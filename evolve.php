@@ -167,6 +167,5 @@ if (isset($_GET['eid'])) {
 		}
 	}
 }
-
 include '_footer.php';
 ?>

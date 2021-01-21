@@ -166,6 +166,5 @@ hideSomeMoves();
 </script>
 ';
 
-
 include '_footer.php';
 ?>

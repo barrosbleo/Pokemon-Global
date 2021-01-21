@@ -54,7 +54,6 @@ while ($activity = $result->fetch_assoc()) {
         }
         setTimeout("fadeIn()", duration);
       }
-
       /* start the effect */
       fadeIn();
     </script>

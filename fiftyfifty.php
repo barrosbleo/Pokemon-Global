@@ -227,5 +227,4 @@ echo $lang['5050_12'];
 	margin: 10px;
 	text-align: left;
 }
-
 </style>

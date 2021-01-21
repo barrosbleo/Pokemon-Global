@@ -65,11 +65,3 @@ if(isset($_POST['update'], $_POST['avatar'])) {
 <?php
         include("_footer.php");
 ?>
-
-
- 
-
-
-
-
-

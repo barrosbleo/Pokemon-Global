@@ -123,5 +123,4 @@ echo '
 ';
 
 include '_footer.php';
-
 ?>
