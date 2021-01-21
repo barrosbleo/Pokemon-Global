@@ -28,8 +28,8 @@ if (isset($_POST['cpassword'], $_POST['npassword'], $_POST['napassword'], $_POST
 	$signature    = $_POST['signature'];
 	$errors = array();
 	
-	$query = mysql_query("SELECT `password` FROM `users` WHERE `id`='{$uid}'");
-	$passwordRow = mysql_fetch_assoc($query);
+	$query = "SELECT `password` FROM `users` WHERE `id`='{$uid}'";
+	$passwordRow = fetchAssoc($query, $conn);
 	
 	if ($passwordRow['password'] != sha1($password)) {
 		$errors[] = $lang['edit_profile_02'];
@@ -57,12 +57,12 @@ if (isset($_POST['cpassword'], $_POST['npassword'], $_POST['napassword'], $_POST
 			$newPasswordSql = !empty($passwordNew) ? " `password`='".sha1($passwordNew)."', " : '' ;
 		}
 		
-		$sqlEmail  = cleanSql($email);
-		$sqlSig    = cleanSql($signature);
+		$sqlEmail  = cleanSql($email, $conn);
+		$sqlSig    = cleanSql($signature, $conn);
 		$sprite    = (int) $sprite;
 		
 		
-		$query = mysql_query("UPDATE `users` SET {$newPasswordSql} `email`='{$sqlEmail}', `map_sprite`='{$sprite}', `signature`='{$sqlSig}' WHERE `id`='{$uid}'");
+		$query = $conn->query("UPDATE `users` SET {$newPasswordSql} `email`='{$sqlEmail}', `map_sprite`='{$sprite}', `signature`='{$sqlSig}' WHERE `id`='{$uid}'");
 		
 		if ($query) {
 			$message = '<div class="notice">'.$lang['edit_profile_06'].'</div>';
@@ -82,8 +82,8 @@ if (isset($_POST['cpassword'], $_POST['npassword'], $_POST['napassword'], $_POST
 
 
 
-$query = mysql_query("SELECT * FROM `users` WHERE `id`='{$uid}'");
-$userRow = cleanHtml( mysql_fetch_assoc($query) );
+$query = "SELECT * FROM `users` WHERE `id`='{$uid}'";
+$userRow = cleanHtml(fetchAssoc($query, $conn));
 
 $cells = array();
 for ($i=1; $i<=14; $i++) {

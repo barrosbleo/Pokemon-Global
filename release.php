@@ -13,14 +13,14 @@ $pid = (int) $_GET['id'];
 $releaseReward = getConfigValue('release_reward');
 
 // check that the pokemon exists and they own it
-$query = mysql_query("SELECT * FROM `user_pokemon` WHERE `id`='{$pid}' AND `uid`='{$uid}'");
+$query = "SELECT * FROM `user_pokemon` WHERE `id`='{$pid}' AND `uid`='{$uid}'";
 
-if (mysql_num_rows($query) == 0) {
+if (numRows($query, $conn) == 0) {
 	echo '<div class="error">'.$lang['release_00'].'</div>';
 	include '_footer.php';
 	die();
 }
-$pokeInfo = mysql_fetch_assoc($query);
+$pokeInfo = fetchAssoc($query, $conn);
 //---------------------------------
 
 // check that it is not in their team
@@ -47,8 +47,8 @@ if (isset($_GET['sure'])) {
 			</div>
 		';
 		
-		mysql_query("DELETE FROM `user_pokemon` WHERE `uid`='{$uid}' AND `id`='{$pid}'");
-		mysql_query("UPDATE `users` SET `released`=`released`+1 WHERE `id`='{$uid}'");
+		$conn->query("DELETE FROM `user_pokemon` WHERE `uid`='{$uid}' AND `id`='{$pid}'");
+		$conn->query("UPDATE `users` SET `released`=`released`+1 WHERE `id`='{$uid}'");
 		updateUserMoney($uid, getUserMoney($uid) + $releaseReward);
 		
 		unset($_SESSION['releaseToken'][$pid]);

@@ -3,7 +3,7 @@
 include('modules/lib.php');
 require_once 'attack_mod.php';
 
-function clacDamage($poke1, $poke2, $moveUsed) {
+function clacDamage($poke1, $poke2, $moveUsed, $conn) {
 	// poke1 is attacking poke2
 	global $attackMod;
 	
@@ -11,16 +11,16 @@ function clacDamage($poke1, $poke2, $moveUsed) {
 	$poke1name = trim( str_replace($types, '', $poke1['name']) );
 	$poke2name = trim( str_replace($types, '', $poke2['name']) );
 	
-	$moveUsed = cleanSql($moveUsed);
-	$query = mysql_query("SELECT * FROM `moves` WHERE `name`='{$moveUsed}' LIMIT 1");
-	if (!$query || mysql_num_rows($query) == false) { array('damage' => 100, 'message' => ''); }
-	$moveRow = mysql_fetch_assoc($query);
+	$moveUsed = cleanSql($moveUsed, $conn);
+	$query = "SELECT * FROM `moves` WHERE `name`='{$moveUsed}' LIMIT 1";
+	if (!$query || numRows($query, $conn) == false) { array('damage' => 100, 'message' => ''); }
+	$moveRow = fetchAssoc($query, $conn);
 	
 	$stab = ($moveRow['type'] == $poke1['type1'] || $moveRow['type'] == $poke1['$type2']) ? 1.5 : 1 ;
 	
-	$query = mysql_query("SELECT * FROM `pokedex` WHERE `name`='{$poke1name}' LIMIT 1");
-	if (!$query || mysql_num_rows($query) == false) { array('damage' => 101, 'message' => '');; }
-	$poke1row = mysql_fetch_assoc($query);
+	$query = "SELECT * FROM `pokedex` WHERE `name`='{$poke1name}' LIMIT 1";
+	if (!$query || numRows($query, $conn) == false) { array('damage' => 101, 'message' => '');; }
+	$poke1row = fetchAssoc($query, $conn);
 	if ($moveRow['type'] == 'Status') { return array('damage' => 0, 'message' => '');; }
 	$attackStat = ($moveRow['type'] == 'Special') ? $poke1row['spattack'] : $poke1row['attack'] ;
 	$attackStat = ceil(((($attackStat*2)+5) / 100) * $poke1['level']);
@@ -28,9 +28,9 @@ function clacDamage($poke1, $poke2, $moveUsed) {
 	
 	
 	// poke 2 defence
-	$query = mysql_query("SELECT * FROM `pokedex` WHERE `name`='{$poke2name}' LIMIT 1");
-	if (!$query || mysql_num_rows($query) == false) { return array('damage' => 102, 'message' => ''); }
-	$poke2row = mysql_fetch_assoc($query);
+	$query = "SELECT * FROM `pokedex` WHERE `name`='{$poke2name}' LIMIT 1";
+	if (!$query || numRows($query, $conn) == false) { return array('damage' => 102, 'message' => ''); }
+	$poke2row = fetchAssoc($query, $conn);
 	$defenseStat = ceil(((($poke2row['defence']*2)+5) / 100) * $poke2['level']);
 	
 	$weakness = 1;
@@ -73,8 +73,8 @@ $uid = (int) $_SESSION['userid'];
 /*********************************************/
 // captcha code
 
-$query = mysql_query("SELECT `battles` FROM `users` WHERE `id`='{$uid}'");
-$row = mysql_fetch_assoc($query);
+$query = "SELECT `battles` FROM `users` WHERE `id`='{$uid}'";
+$row = fetchAssoc($query, $conn);
 $battles = $row['battles'];
 
 /*
@@ -203,18 +203,18 @@ if (isset($_SESSION['battle']['screen']) && ($_SESSION['battle']['screen'] == 'w
 if ($_SESSION['battle']['screen'] == 'pickpokemon') {
 	if (!isset($_SESSION['battle']['team'])) {
 
-		$teamIds = getUserTeamIds($uid);
+		$teamIds = getUserTeamIds($uid, $conn);
 	
 		for ($i=1; $i<=6; $i++) {
 			$pid = (int) $teamIds['poke'.$i];
 			
 			if ($pid > 0) {
-				$query   = mysql_query("SELECT * FROM `user_pokemon` WHERE `id`='{$pid}'");
-				$pokeRow = mysql_fetch_assoc($query);
+				$query   = "SELECT * FROM `user_pokemon` WHERE `id`='{$pid}'";
+				$pokeRow = fetchAssoc($query, $conn);
 				
 				$_SESSION['battle']['team'][$i-1]          = $pokeRow;
-				$_SESSION['battle']['team'][$i-1]['maxhp'] = maxHp($pokeRow['name'], $pokeRow['level']);
-				$_SESSION['battle']['team'][$i-1]['hp']    = maxHp($pokeRow['name'], $pokeRow['level']);
+				$_SESSION['battle']['team'][$i-1]['maxhp'] = maxHp($pokeRow['name'], $pokeRow['level'], $conn);
+				$_SESSION['battle']['team'][$i-1]['hp']    = maxHp($pokeRow['name'], $pokeRow['level'], $conn);
 			}
 		}
 	}
@@ -315,10 +315,10 @@ if ($_SESSION['battle']['screen'] == 'battle') {
 	if (isset($_POST['mnum']) && in_array($_POST['mnum'], range(1, 4))) {
 		$moveUsed = $myTeam[$pnum]['move'.$_POST['mnum']];
 		
-		$query = mysql_query("SELECT * FROM `moves` WHERE `name`='{$moveUsed}'");
-		$moveRow = mysql_fetch_assoc($query);
+		$query = "SELECT * FROM `moves` WHERE `name`='{$moveUsed}'";
+		$moveRow = fetchAssoc($query, $conn);
 		
-		$foobar = clacDamage($myTeam[$pnum], $opponentTeam[$onum], $moveUsed);
+		$foobar = clacDamage($myTeam[$pnum], $opponentTeam[$onum], $moveUsed, $conn);
 		
 		$damageDone = $foobar['damage'];
 		$weakMessage = $foobar['message'];
@@ -343,8 +343,8 @@ if ($_SESSION['battle']['screen'] == 'battle') {
 	} elseif (isset($_POST['item']) && in_array($_POST['item'], array_keys($items))) {
 		$itemKey = $_POST['item'];
 		
-		$itemQuery = mysql_query("SELECT * FROM `user_items` WHERE `uid`='{$uid}'");
-		$userItems = mysql_fetch_assoc($itemQuery);
+		$itemQuery = "SELECT * FROM `user_items` WHERE `uid`='{$uid}'";
+		$userItems = fetchAssoc($itemQuery, $conn);
 		$useItem = true;
 		
 		if (strpos($itemKey, '_ball') !== false && $_SESSION['battle']['wild'] !== true) {
@@ -381,7 +381,7 @@ if ($_SESSION['battle']['screen'] == 'battle') {
 
 		if ($userItems[$itemKey] >= 1) {
 			if ($useItem === true) {
-				mysql_query("UPDATE `user_items` SET `$itemKey`=`$itemKey`-1 WHERE `uid`='{$uid}'");
+				$conn->query("UPDATE `user_items` SET `$itemKey`=`$itemKey`-1 WHERE `uid`='{$uid}'");
 			}
 		} else {
 			$itemMsg = $lang['battle_17'].' '.$items[$itemKey].'.';
@@ -390,11 +390,11 @@ if ($_SESSION['battle']['screen'] == 'battle') {
 	
 	if (isset($_POST['mnum']) || isset($_POST['item'])) {
 		$omoveUsed = $opponentTeam[$onum]['move'.rand(1,4)];
-		$query = mysql_query("SELECT * FROM `moves` WHERE `name`='{$omoveUsed}'");
-		$moveRow = mysql_fetch_assoc($query);
+		$query = "SELECT * FROM `moves` WHERE `name`='{$omoveUsed}'";
+		$moveRow = fetchAssoc($query, $conn);
 		
 		
-		$foobar = clacDamage($opponentTeam[$onum], $myTeam[$pnum], $omoveUsed);
+		$foobar = clacDamage($opponentTeam[$onum], $myTeam[$pnum], $omoveUsed, $conn);
 		
 		$odamageDone = $foobar['damage'];
 		$oweakMessage = $foobar['message'];
@@ -562,8 +562,8 @@ if ($_SESSION['battle']['screen'] == 'battle') {
 	';
 	
 	if ($opponentTeam[$onum]['hp'] > 0 && $myTeam[$pnum]['hp'] > 0 && $_SESSION['battle']['screen'] != 'caughtpokemon') {
-		$itemQuery = mysql_query("SELECT * FROM `user_items` WHERE `uid`='{$uid}'");
-		$userItems = mysql_fetch_assoc($itemQuery);
+		$itemQuery = "SELECT * FROM `user_items` WHERE `uid`='{$uid}'";
+		$userItems = fetchAssoc($itemQuery, $conn);
 		
 		echo '
 			<form action="" method="post">
@@ -606,22 +606,23 @@ if ($_SESSION['battle']['screen'] == 'battle') {
 		</div>
 	';
 
-        $info = mysql_fetch_array(mysql_query("SELECT * FROM users WHERE id = '$uid'"));
+        $query = "SELECT * FROM users WHERE id = '$uid'";
+        $info = fetchArray($query, 2, $conn);
         $clan = $info['clan'];
         $expu = rand(1,10000);
         if ($clan >= 1) {
-        mysql_query("UPDATE `users` SET `clanxp`=`clanxp`+$expu WHERE `id`='{$uid}'");
-        mysql_query("UPDATE `clans` SET `exp`=`exp`+$expu WHERE `id`='{$clan}'");
+        $conn->query("UPDATE `users` SET `clanxp`=`clanxp`+$expu WHERE `id`='{$uid}'");
+        $conn->query("UPDATE `clans` SET `exp`=`exp`+$expu WHERE `id`='{$clan}'");
         }
-	mysql_query("UPDATE `users` SET `won`=`won`+1, `battles`=`battles`+1 WHERE `id`='{$uid}'");
+	$conn->query("UPDATE `users` SET `won`=`won`+1, `battles`=`battles`+1 WHERE `id`='{$uid}'");
 	
 	$olevel = 0;
 	foreach ($_SESSION['battle']['opponent'] as $opoke) {
 		$olevel += $opoke['level'];
 	}
 		//Select user for premium
-	$premiumQuery = mysql_query("SELECT `premium` FROM `users` where `ID`='{$uid}'");
-	$premium = mysql_fetch_object($premiumQuery);
+	$premiumQuery = "SELECT `premium` FROM `users` where `ID`='{$uid}'";
+	$premium = fetchObj($premiumQuery, $conn);
 
 		//Premium get 10% more Money
 	if ($premium->premium == 2) {
@@ -643,7 +644,7 @@ if ($_SESSION['battle']['screen'] == 'battle') {
 		$randMoney = mt_rand(250,1000);
 	}
 	
-	mysql_query("UPDATE `users` SET `money`=`money`+{$randMoney} WHERE `id`='{$uid}'");
+	$conn->query("UPDATE `users` SET `money`=`money`+{$randMoney} WHERE `id`='{$uid}'");
 	
 	$myTotalLevel = 0;
 	foreach ($_SESSION['battle']['usedpokemon'] as $pnum) {
@@ -676,8 +677,8 @@ if ($_SESSION['battle']['screen'] == 'battle') {
 			
 		';
 		
-		mysql_query("UPDATE `user_pokemon` SET `exp`={$newExp} WHERE `id`='{$team[$pnum]['id']}'") or die('f');
-		mysql_query("UPDATE `users` SET `trainer_exp`={$newExp} WHERE `id`='{$uid}'") or die('f');
+		$conn->query("UPDATE `user_pokemon` SET `exp`={$newExp} WHERE `id`='{$team[$pnum]['id']}'") or die('f');
+		$conn->query("UPDATE `users` SET `trainer_exp`={$newExp} WHERE `id`='{$uid}'") or die('f');
 		
 		$newLevel = expToLevel($newExp);
 	
@@ -688,7 +689,7 @@ if ($_SESSION['battle']['screen'] == 'battle') {
 		if ($newLevel != $team[$pnum]['level']) {
 			$levelsGained = $newLevel - $team[$pnum]['level'];
 			echo $team[$pnum]['name'] . ' '.$lang['battle_28'].' ' . $levelsGained . ' '.$lang['battle_29'].'.<br />';
-			mysql_query("UPDATE `user_pokemon` SET `level`={$newLevel} WHERE `id`='{$team[$pnum]['id']}'");
+			$conn->query("UPDATE `user_pokemon` SET `level`={$newLevel} WHERE `id`='{$team[$pnum]['id']}'");
 		}
 		
 		echo '</div>';
@@ -704,12 +705,12 @@ if ($_SESSION['battle']['screen'] == 'battle') {
 			$totalTime = time() - $lastTime;
 			setConfigValue('champion_timestamp', time());
 			
-			mysql_query("UPDATE `users` SET `champ_times`=`champ_times`+1 WHERE `id`='{$uid}' LIMIT 1");
+			$conn->query("UPDATE `users` SET `champ_times`=`champ_times`+1 WHERE `id`='{$uid}' LIMIT 1");
 			
-			$qry = mysql_query("SELECT * FROM `users` WHERE `id`='{$wUid}' LIMIT 1");
-			$wRow = mysql_fetch_assoc($qry);
+			$qry = "SELECT * FROM `users` WHERE `id`='{$wUid}' LIMIT 1";
+			$wRow = fetchAssoc($qry, $conn);
 			$extraSql = ($totalTime > $wRow['champ_longest_run']) ? " ,`champ_longest_run`='{$totalTime}' " : '' ;
-			mysql_query("UPDATE `users` SET `champ_total_time`=`champ_total_time`+{$totalTime} {$extraSql} WHERE `id`='{$wUid}' LIMIT 1");
+			$conn->query("UPDATE `users` SET `champ_total_time`=`champ_total_time`+{$totalTime} {$extraSql} WHERE `id`='{$wUid}' LIMIT 1");
 			
 			echo '<div>'.$lang['battle_30'].'</div>';
 		}
@@ -728,13 +729,13 @@ if ($_SESSION['battle']['screen'] == 'battle') {
 			</div>
 		';
 		
-		$query = mysql_query("SELECT `id` FROM `user_badges` WHERE `uid`='{$uid}' AND `badge`='{$badge}' LIMIT 1");
+		$query = "SELECT `id` FROM `user_badges` WHERE `uid`='{$uid}' AND `badge`='{$badge}' LIMIT 1";
 		
-		if (mysql_num_rows($query) == 0) {
-			mysql_query("INSERT INTO `user_badges` (`uid`, `badge`) VALUES ('{$uid}', '{$badge}')");
+		if (numRows($query, $conn) == 0) {
+			$conn->query("INSERT INTO `user_badges` (`uid`, `badge`) VALUES ('{$uid}', '{$badge}')");
 		}
 		
-		logActivity($_SESSION['username'].' beat '.$gymleader, $uid, 'images/gyms/'.$gymleader.'.png');
+		logActivity($_SESSION['username'].' beat '.$gymleader, $uid, 'images/gyms/'.$gymleader.'.png', $conn);
 	}
 	
 	echo '
@@ -756,7 +757,7 @@ if ($_SESSION['battle']['screen'] == 'battle') {
 	unset($_SESSION['battle']);
 	
 } else if ($_SESSION['battle']['screen'] == 'losescreen') {
-	mysql_query("UPDATE `users` SET `lost`=`lost`+1 WHERE `id`='{$uid}'");
+	$conn->query("UPDATE `users` SET `lost`=`lost`+1 WHERE `id`='{$uid}'");
 
 	echo '
 		<div style="text-align:center;">
@@ -778,7 +779,7 @@ if ($_SESSION['battle']['screen'] == 'battle') {
 
 	$pokemon = $_SESSION['battle']['opponent'][ $_SESSION['battle']['onum'] ];
 	
-	logActivity($_SESSION['username'].' '.$lang['battle_38'].' '.$pokemon['name'], $uid, 'images/pokemon/'.$pokemon['name'].'.png');
+	logActivity($_SESSION['username'].' '.$lang['battle_38'].' '.$pokemon['name'], $uid, 'images/pokemon/'.$pokemon['name'].'.png', $conn);
 	
 	$level  = (int) $pokemon['level'];
 	$name   = $pokemon['name'];
@@ -790,7 +791,7 @@ if ($_SESSION['battle']['screen'] == 'battle') {
 	$exp = levelToExp($level);
 	// mysql_query("INSERT INTO `user_pokemon` (`uid`, `name`, `level`, `exp`, `move1`, `move2`, `move3`, `move4`)
 	// VALUES ('{$uid}', '{$name}', '{$level}', '{$exp}', '{$move1}', '{$move2}', '{$move3}', '{$move4}')");
-	giveUserPokemon($uid, $name, $level, $exp, $move1, $move2, $move3, $move4);
+	giveUserPokemon($uid, $name, $level, $exp, $move1, $move2, $move3, $move4, $conn);
 	
         // $query = mysql_query("SELECT `id` FROM `user_pokemon` WHERE `uid`='{$uid}'");
         // $numPokes = mysql_num_rows($query);

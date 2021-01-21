@@ -27,9 +27,9 @@ switch ($_GET['p']) {
 		$key      = $_GET['p'] == 'outbox' ? 'recipient'  : 'sender'        ;
 		$extraSql = $_GET['p'] == 'outbox' ? " `deleted_by_sender`='0' " : " `deleted_by_recipient`='0' " ;
 		
-		$query = mysql_query("SELECT * FROM `messages` WHERE `{$column}`='{$uid}' AND {$extraSql} ORDER BY `id` DESC");
+		$query = "SELECT * FROM `messages` WHERE `{$column}`='{$uid}' AND {$extraSql} ORDER BY `id` DESC";
 		
-		if (mysql_num_rows($query) == 0) {
+		if (numRows($query, $conn) == 0) {
 			echo '<div class="error">'.$lang['messages_04'].' '.cleanHtml($_GET['p']).'.</div>';
 		} else {
 			echo '
@@ -44,7 +44,8 @@ switch ($_GET['p']) {
 						<th style="width: 30%;">Time Sent</th>
 					</tr>
 			';
-			while ($row = mysql_fetch_assoc($query)) {
+			$result = $conn->query($query);
+			while ($row = $result->fetch_assoc()) {
 				$row = cleanHtml($row);
 				$class = $row['read'] == 0 ? 'unread-message' : '' ;
 				echo '
@@ -81,12 +82,12 @@ switch ($_GET['p']) {
 	
 	case 'read':
 		$id = (int) $_GET['id'];
-		$query = mysql_query("SELECT * FROM `messages` WHERE `id`='{$id}' LIMIT 1");
+		$query = "SELECT * FROM `messages` WHERE `id`='{$id}' LIMIT 1";
 	
-		if (mysql_num_rows($query) != 1) {
+		if (numRows($query, $conn) != 1) {
 			echo '<div class="error">'.$lang['messages_06'].'</div>';
 		} else {
-			$message = mysql_fetch_assoc($query);
+			$message = fetchAssoc($query, $conn);
 			
 			
 			if ($message['recipient_uid'] != $uid && $message['sender_uid'] != $uid) {
@@ -98,8 +99,8 @@ switch ($_GET['p']) {
 				echo '<div class="error">'.$lang['messages_08'].'</div>';
 			} else {
 				if ($message['read'] == 0) {
-					mysql_query("UPDATE `messages` SET `read`='1' WHERE `id`='{$id}' LIMIT 1");
-					mysql_query("UPDATE `users` SET `unread_messages`=`unread_messages`-1 WHERE `id`='{$uid}' LIMIT 1");
+					$conn->query("UPDATE `messages` SET `read`='1' WHERE `id`='{$id}' LIMIT 1");
+					$conn->query("UPDATE `users` SET `unread_messages`=`unread_messages`-1 WHERE `id`='{$uid}' LIMIT 1");
 				}
 				$message = cleanHtml($message);
 				
@@ -138,7 +139,7 @@ switch ($_GET['p']) {
 							<td>&nbsp;</td>
 							<td class="text-left">
 								'.date('F j, Y, g:i a', $message['timestamp']).'<br />
-								'.$replyLink.'<a href="messages.php?p=delete&id='.$message['id'].'">'.$lang['side_right_title'].'</a>
+								'.$replyLink.'<a href="messages.php?p=delete&id='.$message['id'].'">'.$lang['messages_15'].'</a>
 							</td>
 						</tr>
 					</table>
@@ -155,18 +156,18 @@ switch ($_GET['p']) {
 		$outbox   = isset($_POST['saveOutbox']) ? 0 : 1 ;
 		
 		if (count($_POST) > 0) {
-			$sqlUsername = cleanSql($username);
-			$sqlSubject  = cleanSql($subject);
-			$sqlMessage  = cleanSql($message);
+			$sqlUsername = cleanSql($username, $conn);
+			$sqlSubject  = cleanSql($subject, $conn);
+			$sqlMessage  = cleanSql($message, $conn);
 			$errors = array();
 			
-			$query = mysql_query("SELECT `id` FROM `users` WHERE `username`='{$sqlUsername}' LIMIT 1");
+			$query = "SELECT `id` FROM `users` WHERE `username`='{$sqlUsername}' LIMIT 1";
 			if (empty($username)) {
 				$errors[] = $lang['messages_16'];
-			} elseif (mysql_num_rows($query) == 0) {
+			} elseif (numRows($query, $conn) == 0) {
 				$errors[] = $lang['messages_17'];
 			} else {
-				$userid = mysql_fetch_assoc($query);
+				$userid = fetchAssoc($query, $conn);
 				$userid = (int) $userid['id'];
 			}
 			
@@ -188,10 +189,10 @@ switch ($_GET['p']) {
 			if (count($errors) > 0) {
 				echo '<div class="error">'.implode('</div><div class="error">', $errors).'</div>';
 			} else {
-				$sqlSender = cleanSql($_SESSION['username']);
+				$sqlSender = cleanSql($_SESSION['username'], $conn);
 				$time = time();
 				
-				$query = mysql_query("
+				$query = $conn->query("
 					INSERT INTO `messages` (
 						`sender_uid`, `recipient_uid`, `sender`, `recipient`,
 						`timestamp`, `subject`, `message`, `read`,
@@ -202,7 +203,7 @@ switch ($_GET['p']) {
 						'{$outbox}', '0'
 					)
 				");
-				mysql_query("UPDATE `users` SET `unread_messages`=`unread_messages`+1, `total_messages`=`total_messages`+1 WHERE `id`='{$userid}' LIMIT 1");
+				$conn->query("UPDATE `users` SET `unread_messages`=`unread_messages`+1, `total_messages`=`total_messages`+1 WHERE `id`='{$userid}' LIMIT 1");
 				
 				if ($query) {
 					echo '<div class="notice">'.$lang['messages_21'].'</div>';
@@ -217,10 +218,10 @@ switch ($_GET['p']) {
 		
 		if (isset($_GET['reply'])) {
 			$id = (int) $_GET['reply'];
-			$query = mysql_query("SELECT * FROM `messages` WHERE `id`='{$id}' AND `recipient_uid`='{$uid}' LIMIT 1");
+			$query = "SELECT * FROM `messages` WHERE `id`='{$id}' AND `recipient_uid`='{$uid}' LIMIT 1";
 			
-			if (mysql_num_rows($query) == 1) {
-				$message  = mysql_fetch_assoc($query);
+			if (numRows($query, $conn) == 1) {
+				$message  = fetchAssoc($query, $conn);
 				$username = $message['sender'];
 				$subject  = strpos($message['subject'], 'Re: ') === 0 ? $message['subject'] : 'Re: '.$message['subject'] ;
 				$message  = '[quote]'.$message['message'].'[/quote]';
@@ -229,10 +230,10 @@ switch ($_GET['p']) {
 		
 		if (isset($_GET['uid'])) {
 			$id = (int) $_GET['uid'];
-			$query = mysql_query("SELECT `username` FROM `users` WHERE `id`='{$id}' LIMIT 1");
+			$query = "SELECT `username` FROM `users` WHERE `id`='{$id}' LIMIT 1";
 			
-			if (mysql_num_rows($query) == 1) {
-				$userRow  = mysql_fetch_assoc($query);
+			if (numRows($query, $conn) == 1) {
+				$userRow  = fetchAssoc($query, $conn);
 				$username = $userRow['username'];
 			}
 		}
@@ -289,24 +290,25 @@ switch ($_GET['p']) {
 			}
 			
 			$messageIdsSql = implode(', ', $messageIds);
-			$query = mysql_query("SELECT * FROM `messages` WHERE `id` IN ({$messageIdsSql}) AND (`recipient_uid`='{$uid}' OR `sender_uid`='{$uid}')");
+			$query = "SELECT * FROM `messages` WHERE `id` IN ({$messageIdsSql}) AND (`recipient_uid`='{$uid}' OR `sender_uid`='{$uid}')";
 			
-			if (mysql_num_rows($query) != count($messageIds)) {
+			if (numRows($query, $conn) != count($messageIds)) {
 				echo '<div class="error">'.$lang['messages_25'].'</div>';
 			} else {
-				while ($message = mysql_fetch_assoc($query)) {
+				$result = $conn->query($query);
+				while ($message = $result->fetch_assoc()) {
 					if ($message['recipient_uid'] == $uid) {
-						mysql_query("UPDATE `messages` SET `deleted_by_recipient`='1' WHERE `id`='{$message['id']}' LIMIT 1");
+						$conn->query("UPDATE `messages` SET `deleted_by_recipient`='1' WHERE `id`='{$message['id']}' LIMIT 1");
 						
 						$extraSql = ($message['read'] == 0) ? ', `unread_messages`=`unread_messages`-1 ' : '' ;
-						mysql_query("UPDATE `users` SET `total_messages`=`total_messages`-1 {$extraSql} WHERE `id`='{$uid}' LIMIT 1");
+						$conn->query("UPDATE `users` SET `total_messages`=`total_messages`-1 {$extraSql} WHERE `id`='{$uid}' LIMIT 1");
 					}
 					
 					if ($message['sender_uid'] == $uid) {
-						mysql_query("UPDATE `messages` SET `deleted_by_sender`='1' WHERE `id`='{$message['id']}' LIMIT 1");
+						$conn->query("UPDATE `messages` SET `deleted_by_sender`='1' WHERE `id`='{$message['id']}' LIMIT 1");
 					}
 				}
-				mysql_query("DELETE FROM `messages` WHERE `deleted_by_sender`='1' AND `deleted_by_recipient`='1'");
+				$conn->query("DELETE FROM `messages` WHERE `deleted_by_sender`='1' AND `deleted_by_recipient`='1'");
 				
 				if (count($messageIds) == 1) {
 					echo '<div class="notice">'.$lang['messages_26'].'</div>';

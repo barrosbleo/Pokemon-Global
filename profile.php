@@ -12,15 +12,15 @@ printHeader($lang['profile_00']);
 $uid = (int) (isset($_GET['id']) ? $_GET['id'] : $_SESSION['userid'] );
 $defaultAvatar = 'http://localhost/images/pokemon/Magikarp.png';
 
-$query = mysql_query("SELECT * FROM `users` WHERE `id`='{$uid}'");
+$query = "SELECT * FROM `users` WHERE `id`='{$uid}'";
 
-$query45 = mysql_query("SELECT `username` FROM `users` WHERE `id`='{$uid}' LIMIT 1");
-$cktest = mysql_fetch_assoc($query45);
+$query45 = "SELECT `username` FROM `users` WHERE `id`='{$uid}' LIMIT 1";
+$cktest = fetchAssoc($query45, $conn);
 $ck = $cktest['username'];
 
 
-$skaap1= mysql_query("SELECT * FROM `friends` WHERE (`uid`='". (int) $_SESSION['userid']."' AND `friendid`='". (int) $_GET['id']."')");
-$skaap= mysql_num_rows($skaap1);
+$skaap1= "SELECT * FROM `friends` WHERE (`uid`='". (int) $_SESSION['userid']."' AND `friendid`='". (int) $_GET['id']."')";
+$skaap= numRows($skaap1, $conn);
 
 //START FRIEND REQUEST
 if(isset($_GET['friend']) && $_GET['friend'] == "req"){
@@ -30,16 +30,16 @@ if($skaap > 0){echo $lang['profile_01']; $error=1;}
 
 if($error != 1){
 $sql = "INSERT INTO `friends` (`uid`,`friendid`) VALUES ('". (int) $_SESSION['userid']."', '" . (int) $_GET['id'] . "')";
-mysql_query($sql);
+$conn->query($sql);
 echo $lang['profile_02'];
 }
 
 }
 //END FRIEND REQUEST
-if(mysql_num_rows($query) != 1) {
+if(numRows($query, $conn) != 1) {
 	echo $lang['profile_03'];
 } else {
-	$userRow = mysql_fetch_array($query);
+	$userRow = fetchArray($query, 2, $conn);
 	
 	$avatar = !filter_var($userRow['avatar'], FILTER_VALIDATE_URL) ? $defaultAvatar : cleanHtml($userRow['avatar']) ;
 
@@ -56,8 +56,8 @@ if(mysql_num_rows($query) != 1) {
 				</div>							
 			';
 		} else {
-			$query = mysql_query("SELECT * FROM `user_pokemon` WHERE `id`='{$pid}'");
-			$pokemon = mysql_fetch_assoc($query);
+			$query = "SELECT * FROM `user_pokemon` WHERE `id`='{$pid}'";
+			$pokemon = fetchAssoc($query, $conn);
 			
 			if($pokemon['gender'] == "1"){$gender=$lang['profile_05'];}
 			if($pokemon['gender'] == "2"){$gender=$lang['profile_06'];}
@@ -73,8 +73,8 @@ if(mysql_num_rows($query) != 1) {
 			$types = array('Shiny ', 'Halloween ', 'Shiny Halloween ', 'Helios ', 'Possion ', 'Snow ', 'Enraged ', 'Golden ', 'Ancient ');
                         $pokemonName = str_replace($types, '', $pokemon['name']);
                         
-                        $query = mysql_query("SELECT `type1`,`type2` FROM `pokedex` WHERE `name`='{$pokemonName}'");
-                        $typeRow = mysql_fetch_assoc($query);
+                        $query = "SELECT `type1`,`type2` FROM `pokedex` WHERE `name`='{$pokemonName}'";
+                        $typeRow = fetchAssoc($query, $conn);
                         
                         $typeStr = '';
                         $typeStr .= !empty($typeRow['type1']) ? '<img src="images/dex/'.$typeRow['type1'].'.png"> ' : '' ;
@@ -104,8 +104,9 @@ if(mysql_num_rows($query) != 1) {
 	
 	
 	$userBadges = array();
-	$query = mysql_query("SELECT * FROM `user_badges` WHERE `uid`='{$uid}'");
-	while ($row = mysql_fetch_assoc($query)) { $userBadges[] = $row['badge']; }
+	$query = "SELECT * FROM `user_badges` WHERE `uid`='{$uid}'";
+	$result = $conn->query($query);
+	while ($row = $result->fetch_assoc()) { $userBadges[] = $row['badge']; }
 		
 	$badgeCells = array();
 	$allLeaguesArray = getAllLeaguesLeadersAndBadges();
@@ -133,19 +134,19 @@ if(mysql_num_rows($query) != 1) {
 	
 	
 
-	$totalQuery = mysql_query("SELECT SUM(`exp`) AS `total_exp` FROM `user_pokemon` WHERE `uid`='{$uid}'");
-	$end = mysql_fetch_assoc($totalQuery);
+	$totalQuery = "SELECT SUM(`exp`) AS `total_exp` FROM `user_pokemon` WHERE `uid`='{$uid}'";
+	$end = fetchAssoc($totalQuery, $conn);
 	$totalExp = $totalQuery ? end($end) : 0 ;
 	
-	$uniquesQuery = mysql_query("SELECT COUNT( DISTINCT(`name`) ) AS `uniques` FROM `user_pokemon` WHERE `uid`='{$uid}'");
-	$end = mysql_fetch_assoc($uniquesQuery);
+	$uniquesQuery = "SELECT COUNT( DISTINCT(`name`) ) AS `uniques` FROM `user_pokemon` WHERE `uid`='{$uid}'";
+	$end = fetchAssoc($uniquesQuery, $conn);
 	$numUniques   = $uniquesQuery ? end($end) : 0 ;
 	
 	if ($userRow['clan'] == 0) {
 		$clanName = $lang['profile_10'];
 	} else {
-		$clanQuery = mysql_query("SELECT `name` FROM `clans` WHERE `id`='{$userRow['clan']}'");
-		$clanName = mysql_fetch_assoc($clanQuery);
+		$clanQuery = "SELECT `name` FROM `clans` WHERE `id`='{$userRow['clan']}'";
+		$clanName = fetchAssoc($clanQuery, $conn);
 		$clanName = cleanHtml($clanName['name']);
 	}
 	

@@ -3,9 +3,9 @@ include('modules/lib.php');
 //include('config.php');
 
 $uid = (int) $_GET['id'];
-$query = mysql_query("SELECT * FROM `users` WHERE `id`='{$uid}'");
-if (mysql_num_rows($query) == 0) { die(); }
-$user_row = mysql_fetch_assoc($query);
+$query = "SELECT * FROM `users` WHERE `id`='{$uid}'";
+if (numRows($query, $conn) == 0) { die(); }
+$user_row = fetchAssoc($query, $conn);
 
 $card = imagecreatefrompng('card_blank.png');
 
@@ -30,9 +30,9 @@ $positions = array(
 
 for ($i=1; $i<=6; $i++) {
 	$pid = $user_row['poke'.$i];
-	$query = mysql_query("SELECT * FROM `user_pokemon` WHERE `id`='{$pid}'");
-	if (mysql_num_rows($query) == 0) { continue; }
-	$poke_row = mysql_fetch_assoc($query);
+	$query = "SELECT * FROM `user_pokemon` WHERE `id`='{$pid}'";
+	if (numRows($query, $conn) == 0) { continue; }
+	$poke_row = fetchAssoc($query, $conn);
 	
 	$filename = 'images/pokemon/'.$poke_row['name'].'.png';
 	if (!file_exists($filename)) { continue; }

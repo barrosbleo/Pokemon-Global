@@ -157,8 +157,8 @@ if ($_SESSION['battle']['screen'] == 'pickpokemon') {
 				$pokeRow = mysql_fetch_assoc($query);
 				
 				$_SESSION['battle']['team'][$i-1]          = $pokeRow;
-				$_SESSION['battle']['team'][$i-1]['maxhp'] = maxHp($pokeRow['name'], $pokeRow['level']);
-				$_SESSION['battle']['team'][$i-1]['hp']    = maxHp($pokeRow['name'], $pokeRow['level']);
+				$_SESSION['battle']['team'][$i-1]['maxhp'] = maxHp($pokeRow['name'], $pokeRow['level'], $conn);
+				$_SESSION['battle']['team'][$i-1]['hp']    = maxHp($pokeRow['name'], $pokeRow['level'], $conn);
 			}
 		}
 	}

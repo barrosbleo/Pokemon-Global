@@ -17,12 +17,12 @@ if (isset($_GET['leader'])) {
 			$level = $pokeArray['level'];
 			$type = isset($pokeArray['type']) ? $pokeArray['type'].' ' : '' ;
 			
-			$query = mysql_query("SELECT * FROM `pokemon` WHERE `name`='{$name}' LIMIT 1");		
-			$_SESSION['battle']['opponent'][$i] = mysql_fetch_assoc($query);
+			$query = "SELECT * FROM `pokemon` WHERE `name`='{$name}' LIMIT 1";		
+			$_SESSION['battle']['opponent'][$i] = fetchAssoc($query, $conn);
 			$_SESSION['battle']['opponent'][$i]['name'] = $type.$name;
 			$_SESSION['battle']['opponent'][$i]['level'] = $level;
-			$_SESSION['battle']['opponent'][$i]['maxhp'] = maxHp($name, $level);
-			$_SESSION['battle']['opponent'][$i]['hp']    = maxHp($name, $level);
+			$_SESSION['battle']['opponent'][$i]['maxhp'] = maxHp($name, $level, $conn);
+			$_SESSION['battle']['opponent'][$i]['hp']    = maxHp($name, $level, $conn);
 			$i++;
 		}
 		$_SESSION['battle']['onum']  = 0;
@@ -38,8 +38,9 @@ include '_header.php';
 printHeader($lang['rebattle_title']);
 
 $badges = array();
-$query = mysql_query("SELECT * FROM `user_badges` WHERE `uid`='{$uid}'");
-while ($row = mysql_fetch_assoc($query)) { $badges[] = $row['badge']; }
+$query = "SELECT * FROM `user_badges` WHERE `uid`='{$uid}'";
+$result = $conn->query($query);
+while ($row = $result->fetch_assoc()) { $badges[] = $row['badge']; }
 
 $leagueArray = getAllLeaguesLeadersAndBadges();
 

@@ -15,17 +15,19 @@ function howlongtila($ts) {
 };
 
 $uid = $_SESSION['userid'];
-$user = mysql_fetch_object(mysql_query("SELECT * FROM `users` WHERE `id` = '$uid'"));
+$query = "SELECT * FROM `users` WHERE `id` = '$uid'";
+$user = fetchObj($query, $conn);
 
 $token = ($user->signup_date * 3);
 
 $hitdown = getConfigValue('lucky_hour');
 
-$hitrows1 = mysql_query("SELECT * FROM `lucky_hour`");
-$hitrows = mysql_num_rows($hitrows1);
+$hitrows1 = "SELECT * FROM `lucky_hour`";
+$hitrows = numRows(hitrows1);
 
 $pid = rand(1, 713);
-$pokemon = mysql_fetch_object(mysql_query("SELECT * FROM `pokemon` WHERE `id` = '$pid'"));
+$pokemon = "SELECT * FROM `pokemon` WHERE `id` = '$pid'";
+$pokemon = fetchObj($pokemon, $conn);
 $level = 5;
 $exp = levelToExp($level);
 
@@ -60,9 +62,9 @@ if($_GET['lucky'] == 1) {
 	}
 	
 	if($error != 1){
-		$result = mysql_query("INSERT INTO `lucky_hour` (winner, pokemon)"."VALUES ('$uid', '$pokemon->name')");
+		$result = $conn->query("INSERT INTO `lucky_hour` (winner, pokemon)"."VALUES ('$uid', '$pokemon->name')");
 		$user->money = $user->money + $newgold;
-		$givehit = mysql_query("UPDATE `users` SET `money` = '$user->money' WHERE `id`='$uid'");
+		$givehit = $conn->query("UPDATE `users` SET `money` = '$user->money' WHERE `id`='$uid'");
 		echo Message("
 			".$lang['xxxxx']."<br> 
 			".$lang['luckhour_05']." $".number_format($newgold)."!<br> 
@@ -73,15 +75,15 @@ if($_GET['lucky'] == 1) {
 		");
 	}
 	
-	$givehit = mysql_query("UPDATE `users` SET `lucky_hour` = '1' WHERE `id`='$uid'");
+	$givehit = $conn->query("UPDATE `users` SET `lucky_hour` = '1' WHERE `id`='$uid'");
 }
 
 if($timeleft < 1 && $secondz < 1){
 	$newtime = 3600 + time();
 	$resethit = setConfigValue('lucky_hour', $newtime);
 	$timeleft = howlongtila($newtime);
-	$givehit = mysql_query("UPDATE `users` SET `lucky_hour` = '0'");
-	$resethitzz = mysql_query("DELETE FROM `lucky_hour`");
+	$givehit = $conn->query("UPDATE `users` SET `lucky_hour` = '0'");
+	$resethitzz = $conn->query("DELETE FROM `lucky_hour`");
 	$secondz = 0;
 }
 
@@ -96,8 +98,10 @@ if($timeleft < 1 && $secondz < 1){
 	<br><br>
 	<?php echo $lang['luckhour_11'];?> <br>
 	<?php
-		$rofl = mysql_fetch_object(mysql_query("SELECT * FROM `lucky_hour` ORDER BY ABS(id) ASC LIMIT 1"));
-		$pic = mysql_fetch_object(mysql_query("SELECT * FROM `users` WHERE `id`='" . $rofl->winner . "'"));
+		$roflQuery = "SELECT * FROM `lucky_hour` ORDER BY ABS(id) ASC LIMIT 1";
+		$rofl = fetchObj($roflQuery, $conn);
+		$picQuery = "SELECT * FROM `users` WHERE `id`='" . $rofl->winner . "'";
+		$pic = fetchObj($picQuery, $conn);
 		
 		if($rofl->id) {
 			echo "<a href='/profile.php?id=".$pic->id."'>".$pic->username."</a><br>";

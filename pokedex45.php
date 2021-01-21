@@ -2,10 +2,10 @@
 include('modules/lib.php');
 
 $_GET['id'] = abs((int) $_GET['id']);
-$_GET['id'] = mysql_real_escape_string($_GET['id']);
+$_GET['id'] = $conn->real_escape_string($_GET['id']);
 
-$pinfo1 = mysql_query("SELECT * FROM `pokedex` WHERE `id`='".$_GET['id']."'");
-$p_class = mysql_fetch_object($pinfo1);
+$pinfo1 = "SELECT * FROM `pokedex` WHERE `id`='".$_GET['id']."'";
+$p_class = fetchObj($pinfo1, $conn);
 
 
 if($p_class->id == ""){
@@ -88,13 +88,14 @@ echo'
 // added 5/26/2013
 
 
-$name = cleanSql($p_class->name);
+$name = cleanSql($p_class->name, $conn);
 
-$query = mysql_query("SELECT `name`, `gender`, count(`id`) as amount FROM `user_pokemon` WHERE `name` LIKE '%{$name}%' GROUP BY `name`, `gender`");
+$query = "SELECT `name`, `gender`, count(`id`) as amount FROM `user_pokemon` WHERE `name` LIKE '%{$name}%' GROUP BY `name`, `gender`";
 $pokeArray = array();
 $genderArray = array('0'=>'genderless', '1'=>'male', '2'=>'female');
 
-while ($r = mysql_fetch_assoc($query)) {
+$result = $conn->query($query);
+while ($r = $result->fetch_assoc()) {
 	$pokeArray[ $r['name'] ][ $genderArray[ $r['gender'] ] ] = $r['amount'];
 }
 

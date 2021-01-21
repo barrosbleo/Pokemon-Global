@@ -38,8 +38,9 @@ xmlhttp.send();
 <option selected value=" " style="font-family:Consolas,Monaco,Lucida Console,Liberation Mono,DejaVu Sans Mono,Bitstream Vera Sans Mono,Courier New, monospace;"><?php echo isset($text); ?></option>
 
 <?php
-$query = mysql_query("SELECT id, name, num FROM pokedex order by `num` asc");
-while($info = mysql_fetch_assoc($query))
+$query = "SELECT id, name, num FROM pokedex order by `num` asc";
+$result = $conn->query($query);
+while($info = $result->fetch_assoc())
 {
 $text = ' '.str_pad($info['name'], 30, ' ', STR_PAD_RIGHT) . str_pad('#'.$info['num'], 7, ' ', STR_PAD_LEFT) .' ';
 $text = str_replace(' ', '&nbsp;', $text);

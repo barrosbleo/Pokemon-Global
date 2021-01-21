@@ -95,7 +95,7 @@ class Comment
 		// If the data is valid, sanitize all the data and copy it to $arr:
 		
 		foreach($data as $k=>$v){
-			$arr[$k] = mysql_real_escape_string($v);
+			$arr[$k] = $conn->real_escape_string($v);
 		}
 		
 		// Ensure that the email is lower case:

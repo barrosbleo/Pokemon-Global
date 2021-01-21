@@ -12,12 +12,12 @@ printHeader($lang['lottery_title']);
 
 if (isset($_POST['enter'])) {
 
-	$query = mysql_query("SELECT `lottery` FROM `users` WHERE `id`='{$uid}'");
-	$row   = mysql_fetch_assoc($query);
+	$query = "SELECT `lottery` FROM `users` WHERE `id`='{$uid}'";
+	$row   = fetchAssoc($query, $conn);
 	$hasEntered = $row['lottery'];
 	
 	if ($hasEntered == 0) {
-		mysql_query("UPDATE `users` SET `lottery`='1' WHERE `id`='{$uid}'");
+		$conn->query("UPDATE `users` SET `lottery`='1' WHERE `id`='{$uid}'");
 		
 		echo '<div class="notice">'.$lang['lottery_00'].'</div>';
 	} else {
@@ -37,12 +37,12 @@ $winnerPrizePokemon  = getConfigValue('lottery_winner_pokemon');
 $winnerPokemonPrefix = getConfigValue('lottery_winner_pokemon_prefix');
 $winnerFullPrizeName = trim($winnerPokemonPrefix.$winnerPrizePokemon);
 
-$query = mysql_query("SELECT `username` FROM `users` WHERE `id`='{$winnerUid}'");
-$row   = mysql_fetch_assoc($query);
+$query = "SELECT `username` FROM `users` WHERE `id`='{$winnerUid}'";
+$row   = fetchAssoc($query, $conn);
 $winnerUsername = $row['username'];
 
-$query = mysql_query("SELECT COUNT(`id`) AS `lottery_users` FROM `users` WHERE `lottery`='1'");
-$row   = mysql_fetch_assoc($query);
+$query = "SELECT COUNT(`id`) AS `lottery_users` FROM `users` WHERE `lottery`='1'";
+$row   = fetchAssoc($query, $conn);
 $lotteryUsers = $row['lottery_users'];
 
 

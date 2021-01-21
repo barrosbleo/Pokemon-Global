@@ -9,13 +9,13 @@ include "_header.php";
  if($email == NULL) {
  $final_report.=$lang['lostpass_00'];
  }else{
- $query_data = mysql_query("SELECT * FROM `users` WHERE `email`='".$email."'");
- if(mysql_num_rows($query_data) == 0){
+ $query_data = "SELECT * FROM `users` WHERE `email`='".$email."'";
+ if(numRows($query_data, $conn) == 0){
  $final_report.=$lang['lostpass_01'];
  }else{
- $query_data = mysql_query("SELECT * FROM `users` WHERE `email`='".$email."'");
+ $query_data = "SELECT * FROM `users` WHERE `email`='".$email."'";
  $final_report.=$lang['lostpass_02'];
- $get_data = mysql_fetch_array($query_data);
+ $get_data = fetchArray($query_data, 2, $conn);
  $subject = $lang['lostpass_03']; 
  $message = $lang['lostpass_04']." ".$get_data['username'].", 
  

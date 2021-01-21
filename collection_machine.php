@@ -88,11 +88,11 @@ if (isset($_POST['trade'])) {
 		
 		$teamIds = getUserTeamIds($uid);
 		$notInTeamSql = ' AND `id`!=\'' . implode('\' AND `id`!=\'', $teamIds) . '\'';
-		$query = mysql_query("SELECT * FROM `user_pokemon` WHERE `name`='{$reward['required_pokemon']}' AND `uid`='{$uid}' {$notInTeamSql}");
-		$numPokes = mysql_num_rows($query);
+		$query = "SELECT * FROM `user_pokemon` WHERE `name`='{$reward['required_pokemon']}' AND `uid`='{$uid}' {$notInTeamSql}";
+		$numPokes = numRows($query, $conn);
 		
 		if ($numPokes >= $reward['required_amount']) {
-			$query = mysql_query("
+			$query = $conn->query("
 				DELETE FROM `user_pokemon`
 					WHERE
 						`name`='{$reward['required_pokemon']}' AND
@@ -123,10 +123,10 @@ if (isset($_POST['trade'])) {
 
 foreach ($rewards as $key => $reward) {
 	
-	$teamIds = getUserTeamIds($uid);
+	$teamIds = getUserTeamIds($uid, $conn);
 	$notInTeamSql = ' AND `id`!=\'' . implode('\' AND `id`!=\'', $teamIds) . '\'';
-	$query = mysql_query("SELECT * FROM `user_pokemon` WHERE `name`='{$reward['required_pokemon']}' AND `uid`='{$uid}' {$notInTeamSql}");
-	$numPokes = mysql_num_rows($query);
+	$query = "SELECT * FROM `user_pokemon` WHERE `name`='{$reward['required_pokemon']}' AND `uid`='{$uid}' {$notInTeamSql}";
+	$numPokes = numRows($query, $conn);
 
 	echo '
 		'.$lang['coll_mach_02'].' '.$reward['required_amount'].' '.$reward['required_pokemon'].'

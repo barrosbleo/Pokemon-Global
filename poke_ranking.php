@@ -22,7 +22,7 @@ foreach ($types as $type => $color) {
 
 if ($type == 'Normal') {
 $typesRegExp = implode('|', array_keys($types));
-$query = mysql_query("
+$query = "
 	SELECT
 		`users`.`id`,
 		`users`.`username`,
@@ -42,9 +42,9 @@ $query = mysql_query("
 		`users`.`banned` = '0'
 	ORDER BY `poke_level` DESC
 	LIMIT 10
-");
+";
 } else {
-$query = mysql_query("
+$query = "
 	SELECT
 		`users`.`id`,
 		`users`.`username`,
@@ -62,7 +62,7 @@ $query = mysql_query("
 		AND `users`.`admin` = '0' AND `users`.`banned` = '0'
 	ORDER BY `poke_level` DESC
 	LIMIT 10
-");
+";
 }
 if ($query) {
 	$cell = '
@@ -79,7 +79,8 @@ if ($query) {
 			</tr> </span>
 	';
 	$i=1;
-	while ($row = mysql_fetch_assoc($query)) {
+	$result = $conn->query($query);
+	while ($row = $result->fetch_assoc()) {
 		$imgHtml = '';
 		$parts = explode(' ', $row['name']);
 		

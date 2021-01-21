@@ -27,14 +27,14 @@ if ($banned->banned == 1) {
 	die();
 }*/
 
-$userTeam = getUserTeamIds($uid);
+$userTeam = getUserTeamIds($uid, $conn);
 
 if ($userTeam == false) {
 	die();
 }
 
-$query = mysql_query("SELECT `username` FROM `users` WHERE `id`='{$uid}'");
-$row = mysql_fetch_assoc($query);
+$query = "SELECT `username` FROM `users` WHERE `id`='{$uid}'";
+$row = fetchAssoc($query, $conn);
 $username = $row['username'];
 
 $x = 0;
@@ -43,11 +43,11 @@ for ($i=1; $i<=6; $i++) {
 
 	if ($pid==0) { continue; }
 	
-	$pokeRow = getUserPokemon($pid);
+	$pokeRow = getUserPokemon($pid, $conn);
 
 	$_SESSION['battle']['opponent'][$x]          = $pokeRow;
-	$_SESSION['battle']['opponent'][$x]['maxhp'] = maxHp($pokeRow['name'], $pokeRow['level']);
-	$_SESSION['battle']['opponent'][$x]['hp']    = maxHp($pokeRow['name'], $pokeRow['level']);
+	$_SESSION['battle']['opponent'][$x]['maxhp'] = maxHp($pokeRow['name'], $pokeRow['level'], $conn);
+	$_SESSION['battle']['opponent'][$x]['hp']    = maxHp($pokeRow['name'], $pokeRow['level'], $conn);
 	$x++;
 }
 $_SESSION['battle']['captcha'] = time();

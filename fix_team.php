@@ -17,23 +17,24 @@ include('modules/lib.php');
             foreach ($oldTeamIds as $pid) {
                     if ($pid == 0) { continue; }
      
-                    $query = mysql_query("SELECT * FROM `user_pokemon` WHERE `id`='{$pid}' AND `uid`='{$uid}'");
+                    $query = "SELECT * FROM `user_pokemon` WHERE `id`='{$pid}' AND `uid`='{$uid}'";
            
-                    if (mysql_num_rows($query) == 1) {
+                    if (numRows($query, $conn) == 1) {
                             $newTeamIds[] = $pid;
                     }
             }
     }
      
-    $query = mysql_query("SELECT * FROM `user_pokemon` WHERE `uid`='{$uid}' ORDER BY `exp` DESC");
+    $query = "SELECT * FROM `user_pokemon` WHERE `uid`='{$uid}' ORDER BY `exp` DESC";
      
-    if (mysql_num_rows($query) == 0) {
+    if (numRows($query, $conn) == 0) {
             // they have no pokemon
             $pid = giveUserPokemonByName($uid, 'Weedle', 5, '');
             $newTeamIds[] = $pid;
-    } else if (mysql_num_rows($query) > count($newTeamIds)) {
+    } else if (numRows($query, $conn) > count($newTeamIds)) {
             // pad out their team with pokemon from their box
-            while (count($newTeamIds) < 6 && $pokeInfo = mysql_fetch_assoc($query)) {
+			$result = $conn->query($query);
+            while (count($newTeamIds) < 6 && $pokeInfo = $result->fetch_assoc()) {
                     if (!in_array($pokeInfo['id'], $newTeamIds)) {
                             $newTeamIds[] = $pokeInfo['id'];
                     }
@@ -47,7 +48,7 @@ include('modules/lib.php');
     }
     $pokeIdSql = implode(', ', $pokeIdSqlArray);
      
-    $query = mysql_query("UPDATE `users` SET {$pokeIdSql} WHERE `id`='{$uid}'");
+    $query = $conn->query("UPDATE `users` SET {$pokeIdSql} WHERE `id`='{$uid}'");
      
     if ($query) {
             echo '<div class="notice">'.$lang['fix_team_00'].'</div>';

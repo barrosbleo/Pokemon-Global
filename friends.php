@@ -12,9 +12,9 @@ include '_header.php';
 printHeader($lang['friends_title']);
 
 
-$query = mysql_query("SELECT * FROM `friends` WHERE `uid`='{$uid}'");
+$query = "SELECT * FROM `friends` WHERE `uid`='{$uid}'";
 
-if (mysql_num_rows($query) == 0) {
+if (numRows($query, $conn) == 0) {
 	echo '<div class="error">'.$lang['friends_00'].'</div>';
 	include '_footer.php';
 	die();
@@ -31,8 +31,9 @@ echo '
 ';
 
 $i=0;
-while($fRow = mysql_fetch_assoc($query)) {
-	$query2 = mysql_query("
+$result = $conn->query($query);
+while($fRow = $result->fetch_assoc()) {
+	$query2 = "
 		SELECT
 			`users`.*,
 			SUM(`user_pokemon`.`exp`) AS `total_exp`
@@ -42,8 +43,8 @@ while($fRow = mysql_fetch_assoc($query)) {
 		WHERE
 			`users`.`id` = '{$fRow['friendid']}' AND
 			`users`.`id` = `user_pokemon`.`uid`
-	");
-	$userInfo = mysql_fetch_array($query2);
+	";
+	$userInfo = fetchArray($query2, 2, $conn);
 	$userInfo = cleanHtml($userInfo);
 	
 	echo '
@@ -67,8 +68,8 @@ while($fRow = mysql_fetch_assoc($query)) {
 				'.$lang['friends_07'].'<br /><br />
 			';
 		} else {
-			$query3 = mysql_query("SELECT * FROM `user_pokemon` WHERE `id`='{$pid}'");
-			$pokeInfo = mysql_fetch_assoc($query3);
+			$query3 = "SELECT * FROM `user_pokemon` WHERE `id`='{$pid}'";
+			$pokeInfo = fetchAssoc($query3, $conn);
 			
 			$cells[] = '
 				<img src="images/pokemon/'.$pokeInfo['name'].'.png" alt="'.$pokeInfo['name'].'" /><br />

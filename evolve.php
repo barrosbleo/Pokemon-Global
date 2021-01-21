@@ -7,11 +7,11 @@ if (!isLoggedIn()) {
 
 $pid = (int) $_GET['id'];
 $uid = (int) $_SESSION['userid'];
-$query = mysql_query("SELECT * FROM `user_pokemon` WHERE `id`='$pid' LIMIT 1");
-$pokemon = mysql_fetch_assoc($query);
+$query = "SELECT * FROM `user_pokemon` WHERE `id`='$pid' LIMIT 1";
+$pokemon = fetchAssoc($query, $conn);
 $type = '';
 
-if (mysql_num_rows($query) == 0 || $pokemon['uid'] != $uid) {
+if (numRows($query, $conn) == 0 || $pokemon['uid'] != $uid) {
 	die('error');
 }
 
@@ -60,15 +60,15 @@ printHeader($lang['evolve_title']);
 
 if (isset($_GET['eid'])) {
 	$eid = (int) $_GET['eid'];
-	$query = mysql_query("SELECT * FROM `evolution` WHERE `before`='{$pokemon['name']}' AND `id`='{$eid}' LIMIT 1");
+	$query = "SELECT * FROM `evolution` WHERE `before`='{$pokemon['name']}' AND `id`='{$eid}' LIMIT 1";
 	
-	if (mysql_num_rows($query) == 0) {
+	if (numRows($query, $conn) == 0) {
 		echo '<div class="error">'.$lang['evolve_00'].'</div>';
 	} else {
-		$epokemon = mysql_fetch_assoc($query);
+		$epokemon = fetchAssoc($query, $conn);
 		
-		$query = mysql_query("SELECT * FROM `user_items` WHERE `uid`='{$uid}' LIMIT 1");
-		$userItems = mysql_fetch_assoc($query);
+		$query = "SELECT * FROM `user_items` WHERE `uid`='{$uid}' LIMIT 1";
+		$userItems = fetchAssoc($query, $conn);
 		
 		$items = array(
 			'Dawn Stone'    => 'dawn_stone',
@@ -109,19 +109,19 @@ if (isset($_GET['eid'])) {
 				</table>
 			';
 			
-			$q = mysql_query("SELECT * FROM `pokemon` WHERE `name`='{$epokemon['after']}'");
-			$moves = mysql_fetch_assoc($q);
+			$q = "SELECT * FROM `pokemon` WHERE `name`='{$epokemon['after']}'";
+			$moves = fetchAssoc($q, $conn);
 			$moveSql = '';
 			
 			if (isset($_POST['moves'])) {
 				$moveSql = ", `move1`='{$moves['move1']}', `move2`='{$moves['move2']}', `move3`='{$moves['move3']}', `move4`='{$moves['move4']}' ";
 			}
 			
-			mysql_query("UPDATE `user_pokemon` SET `name`='{$type}{$epokemon['after']}' {$moveSql} WHERE `id`='{$pid}' LIMIT 1");
+			$conn->query("UPDATE `user_pokemon` SET `name`='{$type}{$epokemon['after']}' {$moveSql} WHERE `id`='{$pid}' LIMIT 1");
 			
 			if (!empty($epokemon['item'])) {
 				$cname = $items[ $epokemon['item'] ];
-				mysql_query("UPDATE `user_items` SET `{$cname}`=`{$cname}`-1 WHERE `uid`='{$uid}' LIMIT 1");
+				$conn->query("UPDATE `user_items` SET `{$cname}`=`{$cname}`-1 WHERE `uid`='{$uid}' LIMIT 1");
 			}
 		}
 	}
@@ -134,14 +134,15 @@ if (isset($_GET['eid'])) {
 	';
 
 
-	$query = mysql_query("SELECT * FROM `evolution` WHERE `before`='{$pokemon['name']}'");
+	$query = "SELECT * FROM `evolution` WHERE `before`='{$pokemon['name']}'";
 
-	if (mysql_num_rows($query) == 0) {
+	if (numRows($query, $conn) == 0) {
 		echo '<div class="error">'.$type.$pokemon['name'].' '.$lang['evolve_06'].'</div>';
 	} else {
-		while ($epokemon = mysql_fetch_assoc($query)) {
-			$q = mysql_query("SELECT * FROM `pokemon` WHERE `name`='{$epokemon['after']}'");
-			$moves = mysql_fetch_assoc($q);
+		$result = $conn->query($query);
+		while ($epokemon = $result->fetch_assoc()) {
+			$q = "SELECT * FROM `pokemon` WHERE `name`='{$epokemon['after']}'";
+			$moves = fetchAssoc($q, $conn);
 			echo '
 				<hr style="width: 500px; margin: 0 auto;" />
 				<form action="evolve.php?id='.$pid.'&eid='.$epokemon['id'].'" method="post" style="text-align: center;">

@@ -9,16 +9,16 @@ $uid = (int) $_SESSION['userid'];
 include '_header.php';
 printHeader($lang['promo_title']);
 
-$query      = mysql_query("SELECT `got_promo`, `money`, `token` FROM `users` WHERE `id`='{$uid}'");
-$uRow       = mysql_fetch_assoc($query);
+$query      = "SELECT `got_promo`, `money`, `token` FROM `users` WHERE `id`='{$uid}'";
+$uRow       = fetchAssoc($query, $conn);
 $gotPromo   = $uRow['got_promo'];
 $userMoney  = $uRow['money'];
 $userTokens = $uRow['token'];
 
-$pokeName       = getConfigValue('promo_pokemon_name');
-$pokeLevel      = getConfigValue('promo_pokemon_level');
-$pokeCostMoney  = getConfigValue('promo_cost_money');
-$pokeCostTokens = getConfigValue('promo_cost_tokens');
+$pokeName       = getConfigValue('promo_pokemon_name', $conn);
+$pokeLevel      = getConfigValue('promo_pokemon_level', $conn);
+$pokeCostMoney  = getConfigValue('promo_cost_money', $conn);
+$pokeCostTokens = getConfigValue('promo_cost_tokens', $conn);
 $message = '';
 
 if (isset($_POST['claim']) && $gotPromo == 0) {
@@ -37,15 +37,15 @@ if (isset($_POST['claim']) && $gotPromo == 0) {
     	';
         
         $userMoney = $userMoney - $pokeCostMoney;
-        updateUserMoney($uid, $userMoney);
+        updateUserMoney($uid, $userMoney, $conn);
         
         $userTokens = $userTokens - $pokeCostTokens;
-        updateUserToken($uid, $userTokens);
+        updateUserToken($uid, $userTokens, $conn);
         
     	$exp = levelToExp($pokeLevel);
-    	giveUserPokemon($uid, $pokeName, $pokeLevel, $exp, 'Scratch', 'Scratch', 'Scratch', 'Scratch');
+    	giveUserPokemon($uid, $pokeName, $pokeLevel, $exp, 'Scratch', 'Scratch', 'Scratch', 'Scratch', $conn);
     	
-    	mysql_query("UPDATE `users` SET `got_promo`='1' WHERE `id`='{$uid}'");
+    	$conn->query("UPDATE `users` SET `got_promo`='1' WHERE `id`='{$uid}'");
     }
 }
 

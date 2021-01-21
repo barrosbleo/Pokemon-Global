@@ -15,18 +15,19 @@ echo '
 </center>
 ';
 
-mysql_query("UPDATE `events` SET `viewed`='1' WHERE `to`='{$uid}'");
+$conn->query("UPDATE `events` SET `viewed`='1' WHERE `to`='{$uid}'");
 
 if (isset($_GET['clear'])) {
-mysql_query("DELETE FROM `events` WHERE `to`='$uid'");
+$conn->query("DELETE FROM `events` WHERE `to`='$uid'");
 }
 
-$query = mysql_query("SELECT * FROM `events` WHERE (`to`='{$uid}') ORDER BY `timesent` DESC");
+$query = "SELECT * FROM `events` WHERE (`to`='{$uid}') ORDER BY `timesent` DESC";
  
-if (mysql_num_rows($query) == 0) {
+if (numRows($query, $conn) == 0) {
 echo '<div class="info">'.$lang['notif_01'].'</div>';
 } else {
-while ($row = mysql_fetch_assoc($query)) {
+	$result = $conn->query($query);
+while ($row = $result->fetch_assoc()) {
 echo '<table><tr><td>'.$row['text'].' '.$lang['notif_02'].' '.date(F.' '.d.', '.Y.' '.g.':'.i.':'.sa,$row['timesent']).'.<br /></td></tr></table>';
 }
 }

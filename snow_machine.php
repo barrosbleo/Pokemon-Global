@@ -10,14 +10,14 @@ include '_header.php';
 printHeader($lang['snow_mach_title']);
 
 $uid = (int) $_SESSION['userid'];
-$userMoney = getUserMoney($uid);
+$userMoney = getUserMoney($uid, $conn);
 $message = '';
 
-$attemptPrice   = getConfigValue('snow_machine_price');
-$trappedPokemon = getConfigValue('snow_machine_pokemon');
-$chanceOfWin    = getConfigValue('snow_machine_chance');
-$trappedLevel   = getConfigValue('snow_machine_pokemon_level');
-$spentMoney   	= getConfigValue('snow_machine_lost_money');
+$attemptPrice   = getConfigValue('snow_machine_price', $conn);
+$trappedPokemon = getConfigValue('snow_machine_pokemon', $conn);
+$chanceOfWin    = getConfigValue('snow_machine_chance', $conn);
+$trappedLevel   = getConfigValue('snow_machine_pokemon_level', $conn);
+$spentMoney   	= getConfigValue('snow_machine_lost_money', $conn);
 
 echo '<div style="text-align: center;">
 '.$lang['snow_mach_00'].' '.number_format($spentMoney).'<br />';
@@ -29,7 +29,7 @@ if (isset($_POST['fix'])) {
     } else {
         // take money
         $userMoney -= $attemptPrice;
-        updateUserMoney($uid, $userMoney);
+        updateUserMoney($uid, $userMoney, $conn);
         
         if (rand(1, 100) <= $chanceOfWin) {
             // they won
@@ -41,13 +41,13 @@ if (isset($_POST['fix'])) {
             
             // give them the pokemon
             $exp = levelToExp($trappedLevel);
-            giveUserPokemon($uid, $trappedPokemon, $trappedLevel, $exp, 'Scratch', 'Scratch', 'Scratch', 'Scratch');
+            giveUserPokemon($uid, $trappedPokemon, $trappedLevel, $exp, 'Scratch', 'Scratch', 'Scratch', 'Scratch', $conn);
             
         } else {
             // they lost
             
             $message = $lang['snow_mach_03'];
-			mysql_query("UPDATE `config` SET `value` = `value`+'{$attemptPrice}' WHERE `name` = 'snow_machine_lost_money'");
+			$conn->query("UPDATE `config` SET `value` = `value`+'{$attemptPrice}' WHERE `name` = 'snow_machine_lost_money'");
         }
     }
     

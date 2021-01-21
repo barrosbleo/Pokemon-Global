@@ -1,6 +1,5 @@
 <?php
 include('modules/lib.php');
-require_once 'bbcode.php';
 
 if (!isLoggedIn()) {
 	redirect('index.php');
@@ -10,16 +9,17 @@ include '_header.php';
 printHeader($lang['membersarea_title']);
 
 
-$info = mysql_fetch_array(mysql_query("SELECT * FROM users WHERE id = '$uid'"));
+$query = "SELECT * FROM users WHERE id = '$uid'";
+$info = fetchArray($query, 2, $conn);
 $ck = $info['username'];
-logs($uid, "$ck has accessed membersarea!");
+logs($uid, "$ck has accessed membersarea!");//not working i guess
 
 
 
-$champUid = getConfigValue('champion_uid');
+$champUid = getConfigValue('champion_uid', $conn);
 
-$query = mysql_query("SELECT * FROM `users` WHERE `id`='{$champUid}'");
-$champRow = mysql_fetch_assoc($query);
+$query = "SELECT * FROM `users` WHERE `id`='{$champUid}'";
+$champRow = fetchAssoc($query, $conn);
 
 // stop xss
 $champRow = cleanHtml($champRow);
@@ -34,36 +34,9 @@ if (!filter_var($avatar, FILTER_VALIDATE_URL)) {
 	}
 }
 
-$promoName = getConfigValue('promo_pokemon_name');
+$promoName = getConfigValue('promo_pokemon_name', $conn);
 ?>
-<script>//!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
 
-
-<div style="text-align: center;">
-<!--<div id="fb-root"></div>
-<script>(function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) return;
-  js = d.createElement(s); js.id = id;
-  js.src = "//connect.facebook.net/en_GB/all.js#xfbml=1";
-  fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script>
--->
-
-<html>
-<head>
-<!-- 1. Place this in your head tag or anywhere in your body tag where script tags can process -->
-<script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script>
-</head>
-<body>
-<!-- 2. Add this to page body where you wish it to render -->
-<g:plusone size="standard" count="true" href="http://localhost/index.php"></g:plusone>
-</body>
-</html>
-
-
-<!--<div class="fb-like" data-href="https://www.facebook.com/duskrpg" data-send="false" data-layout="button_count" data-width="450" data-show-faces="true" data-font="arial"></div>-->
-</div>
 <?php
 echo '
     <table style="margin: 10px auto;" class="pretty-table ">
@@ -93,8 +66,9 @@ echo '
 		</tr>
 	</table>
 ';
-$queryNews = mysql_query("SELECT * FROM news ORDER BY `id` DESC LIMIT 5");
-while($fetch = mysql_fetch_array($queryNews)){
+$queryNews = "SELECT * FROM news ORDER BY `id` DESC LIMIT 5";
+$result = $conn->query($queryNews);
+while($fetch = $result->fetch_array(MYSQLI_ASSOC)){
 
 	
 echo '

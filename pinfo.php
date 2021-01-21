@@ -12,21 +12,21 @@ printHeader($lang['pinfo_title']);
 $pokeId = (int) $_GET['id'];
 $userId = (int) $_SESSION['userid'];
 
-$query = mysql_query("SELECT * FROM `user_pokemon` WHERE `id`='{$pokeId}'");
+$query = "SELECT * FROM `user_pokemon` WHERE `id`='{$pokeId}'";
 
 // check that the pokemon actually exists
-if(mysql_num_rows($query) == 0){
+if(numRows($query, $conn) == 0){
     echo '<div class="error">'.$lang['pinfo_00'].'</div>';
     include '_footer.php';
     die();
 }
 
-$pokeRow   = mysql_fetch_assoc($query);
-$query     = mysql_query("SELECT * FROM `users` WHERE `id`='{$pokeRow['uid']}' LIMIT 1");
-$ownerRow  = mysql_fetch_assoc($query);
+$pokeRow   = fetchAssoc($query, $conn);
+$query     = "SELECT * FROM `users` WHERE `id`='{$pokeRow['uid']}' LIMIT 1";
+$ownerRow  = fetchAssoc($query, $conn);
 
-$query     = mysql_query("SELECT * FROM `user_items` WHERE `uid`='{$uid}' LIMIT 1");
-$itemsRow  = mysql_fetch_assoc($query);
+$query     = "SELECT * FROM `user_items` WHERE `uid`='{$uid}' LIMIT 1";
+$itemsRow  = fetchAssoc($query, $conn);
 
 
 if(isset($_POST['update'])) {
@@ -47,8 +47,8 @@ if(isset($_POST['update'])) {
         
         $itemsRow['rare_candy'] -= 1;
         
-        mysql_query("UPDATE `user_pokemon` SET `level`='{$newLevel}', `exp`='{$newExp}' WHERE `id`='{$pokeId}'");
-        mysql_query("UPDATE `user_items` SET `rare_candy`=`rare_candy`-1 WHERE `uid`='{$userId}'");
+        $conn->query("UPDATE `user_pokemon` SET `level`='{$newLevel}', `exp`='{$newExp}' WHERE `id`='{$pokeId}'");
+        $conn->query("UPDATE `user_items` SET `rare_candy`=`rare_candy`-1 WHERE `uid`='{$userId}'");
         
     	echo '<div class="notice">'.$lang['pinfo_03'].'</div>';
     }
