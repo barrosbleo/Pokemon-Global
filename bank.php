@@ -124,7 +124,7 @@ logs($uid, $lang['bank_08']." $".$_POST['wamount']." !");
 </form><br><br>
 </td></tr></table>
 
-<br />
+<br/>
 
 <table class="pretty-table"><tr><th><?php echo $lang['bank_11'];?></th></tr>
 <tr><td>
