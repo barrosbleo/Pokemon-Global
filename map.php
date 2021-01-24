@@ -1013,7 +1013,7 @@ window.addEventListener('keydown', checkKeysDown, false);
 		<tr>
 			<td>
 				<div id="map" style="background-image: url('/images/maps/new/<?php echo $map;?>.png'); width: 400px; height: 400px; position: relative; margin-right: 20px;">
-					<img src="/images/sprites/<?php echo $mySprite;?>.png" id="mySprite" title="<?php echo cleanHtml($_SESSION['username']);?>" style="position: absolute;width:26px; height:20px; top: <?php echo (($startY*16)-4);?>px; left: <?php echo ($startX*16);?>px; z-index: 1000;" />
+					<img src="/images/sprites/<?php echo $mySprite;?>.png" id="mySprite" title="<?php echo cleanHtml($_SESSION['username']);?>" style="position: absolute; width:16px; height:20px; top: <?php echo (($startY*16)-4);?>px; left: <?php echo ($startX*16);?>px; z-index: 1000;" />
 				</div>
 			</td>
 			
