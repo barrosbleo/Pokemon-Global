@@ -19,7 +19,7 @@ if (isset($_POST['message'])) {
 
 echo '
 	<div class="center-text">
-		Mod List: '.getModProfileList().'<br /><br />
+		Mod List: '.getModProfileList($conn).'<br /><br />
 
         <form method="post">
             <textarea name="message" cols="50" rows="10">'.file_get_contents($filename).'</textarea><br /><br />

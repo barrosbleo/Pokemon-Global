@@ -5,7 +5,7 @@ function echoHeader($header) {
 }
 
 
-function getModProfileList() {
+function getModProfileList($conn) {
 	$query = "SELECT `id`, `username` FROM `users` WHERE `mod`='1'";
 
 	$modLinks = array();
