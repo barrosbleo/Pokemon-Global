@@ -195,6 +195,8 @@
 	$levelbar = (($cexp - $clevelexp) / ($nextlevelexp - $clevelexp)) * 100; // Example 50%
 echo '
 	<ul class="usr-inf right">
+		<li class="usr-inf-title"><a href="#">GST</a></li>
+		<div id="clock">Loading Clock...</div>
 		<li class="usr-inf-title"><a href="#">Starter</a></li>
 		<li class="starter">
 					<center><img src="/images/pokemon/'. $pokename .'.png"></center><br />
@@ -213,7 +215,21 @@ echo '
 }	
 	include 'user_notifications2.php'; 
 ?>
-
+<script>
+var gstClock = document.getElementById('clock');
+function clock(){
+	var xhttp = new XMLHttpRequest();
+	xhttp.onreadystatechange = function(){
+		if(this.readyState == 4 && this.status == 200){
+			gstClock.innerHTML = this.responseText;
+			//alert('sucesso');
+		}
+	};
+	xhttp.open("GET", "modules/clock.php", true);
+	xhttp.send();
+}
+setInterval(clock, 1000);
+</script>
 <div id="content">
 
 
