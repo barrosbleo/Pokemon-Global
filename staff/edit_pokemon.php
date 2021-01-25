@@ -61,25 +61,25 @@ if (isset($_GET['id'])) {
         }
         
         $move1Id = $_POST['move1'];
-        $move1Name = moveIdToName($move1Id);
+        $move1Name = moveIdToName($move1Id, $conn);
         if ($move1Name === false) {
             $errors[] = 'Move 1 was invalid.';
         }
         
         $move2Id = $_POST['move2'];
-        $move2Name = moveIdToName($move2Id);
+        $move2Name = moveIdToName($move2Id, $conn);
         if ($move2Name === false) {
             $errors[] = 'Move 2 was invalid.';
         }
         
         $move3Id = $_POST['move3'];
-        $move3Name = moveIdToName($move3Id);
+        $move3Name = moveIdToName($move3Id, $conn);
         if ($move3Name === false) {
             $errors[] = 'Move 1 was invalid.';
         }
         
         $move4Id = $_POST['move4'];
-        $move4Name = moveIdToName($move4Id);
+        $move4Name = moveIdToName($move4Id, $conn);
         if ($move4Name === false) {
             $errors[] = 'Move 4 was invalid.';
         }
@@ -169,19 +169,19 @@ if (isset($_GET['id'])) {
                 </tr>
                 <tr>
                     <td>Move 1:</td>
-                    <td>'.moveSelectBox('move1', $pokeInfo['move1']).'</td>
+                    <td>'.moveSelectBox('move1', $pokeInfo['move1'], $conn).'</td>
                 </tr>
                 <tr>
                     <td>Move 2:</td>
-                    <td>'.moveSelectBox('move2', $pokeInfo['move2']).'</td>
+                    <td>'.moveSelectBox('move2', $pokeInfo['move2'], $conn).'</td>
                 </tr>
                 <tr>
                     <td>Move 3:</td>
-                    <td>'.moveSelectBox('move3', $pokeInfo['move3']).'</td>
+                    <td>'.moveSelectBox('move3', $pokeInfo['move3'], $conn).'</td>
                 </tr>
                 <tr>
                     <td>Move 4:</td>
-                    <td>'.moveSelectBox('move4', $pokeInfo['move4']).'</td>
+                    <td>'.moveSelectBox('move4', $pokeInfo['move4'], $conn).'</td>
                 </tr>
                 <tr>
                     <td>Gender:</td>

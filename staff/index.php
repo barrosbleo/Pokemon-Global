@@ -21,7 +21,7 @@ if (isset($_POST['message'])) {
 
 echo '
 	<div class="center-text">
-		Admin List: '.getAdminProfileList().'<br /><br />
+		Admin List: '.getAdminProfileList($conn).'<br /><br />
 
         <form method="post">
             <textarea name="message" cols="50" rows="10">'.file_get_contents($filename).'</textarea><br /><br />

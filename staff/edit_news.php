@@ -60,7 +60,7 @@ echo '
         </tr>
         <tr>
             <td>Poster:</td>
-            <td>'.adminUsernameSelectBox('poster', $row['bywho']).'</td>
+            <td>'.adminUsernameSelectBox('poster', $row['bywho'], $conn).'</td>
         </tr>
         <tr>
             <td>&nbsp;</td>
