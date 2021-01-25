@@ -828,13 +828,13 @@ function moveSprite(key) {
 var sprite = document.getElementById('mySprite');
 var newX = x + movements[key]['left'];
 var newY = y + movements[key]['up'];
+sprite.src="/images/sprites/<?php echo $mySprite;?>"+key+".png";
 
 if (typeof map[newY] !== "undefined" && typeof map[newY][newX] !== "undefined" && (map[newY][newX] == 1 || map[newY][newX] > 10000 || map[newY][newX] < 0)) {
 	x = newX;
 	y = newY;
 	sprite.style.left = x*16 + 'px';
 	sprite.style.top = (y*16)-4 + 'px';
-	sprite.src="/images/sprites/<?php echo $mySprite;?>"+key+".png";
 
 	$("#result").html('<img src="images/loading.gif" />');
 	$.get('map_ajax.php?map=<?php echo $map; ?>&x='+x+'&y='+y+'&rnd=<?php echo rand(1000, 1000000); ?>', function(result) {
