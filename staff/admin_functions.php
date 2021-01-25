@@ -24,7 +24,7 @@ function typeSelectBox($name = '', $selectType = '') {
     return $sbox;
 }
 
-function adminUsernameSelectBox($name = '', $selectUsername = '') {
+function adminUsernameSelectBox($name = '', $selectUsername = '', $conn) {
     $query = "SELECT * FROM `users` WHERE `admin`='1'";
     
     $sbox = '<select name="'.$name.'">';
@@ -61,7 +61,7 @@ function numSelectBox($name = '', $selectNum = '', $start = 1, $end = 100, $attr
     return $sbox;
 }
 
-function shopCatSelectBox($name = '', $selectCat = '', $attrs = '') {
+function shopCatSelectBox($name = '', $selectCat = '', $attrs = '', $conn) {
     $query = "SELECT DISTINCT(`category`) AS `cat`, `id` FROM `shop_pokemon` GROUP BY `cat`";
     
     $sbox = '<select name="'.$name.'" '.$attrs.'>';
@@ -85,7 +85,7 @@ function echoHeader($header) {
 }
 
 
-function getAdminProfileList() {
+function getAdminProfileList($conn) {
 	$query = "SELECT `id`, `username` FROM `users` WHERE `admin`='1'";
 
 	$adminLinks = array();
@@ -98,7 +98,7 @@ $result = $conn->query($query);
 	return implode(' &bull; ', $adminLinks);
 }
 
-function moveSelectBox($name = '', $selectMove = '') {
+function moveSelectBox($name = '', $selectMove = '', $conn) {
     $query = "SELECT * FROM `moves` ORDER BY `name` ASC";
     
     $sbox = '<select name="'.$name.'">';
@@ -117,7 +117,7 @@ function moveSelectBox($name = '', $selectMove = '') {
     return $sbox;
 }
 
-function clanSelectBox($name = '', $selectClan = '') {
+function clanSelectBox($name = '', $selectClan = '', $conn) {
     $query = "SELECT * FROM `clans` ORDER BY `name` ASC";
     
     $sbox = '
@@ -164,7 +164,7 @@ function genderSelectBox($name = '', $selectGender = '') {
     return $sbox;
 }
 
-function moveIdToName($id) {
+function moveIdToName($id, $conn) {
     $id = (int) $id;
     
     $query = "SELECT * FROM `moves` WHERE `id`='{$id}'";

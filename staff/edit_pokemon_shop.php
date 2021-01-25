@@ -76,7 +76,7 @@ echo '
 			<tr>
 				<td>Category:</td>
 				<td>
-					'.shopCatSelectBox('oldCatName', '', 'style="min-width: 100px" onchange="document.getElementById(\'uon\').checked = \'checked\';"').'
+					'.shopCatSelectBox('oldCatName', '', 'style="min-width: 100px" onchange="document.getElementById(\'uon\').checked = \'checked\';"', $conn).'
 					<input type="radio" name="newCat" value="0" id="uon" checked="checked" style="float: right;" /><br />
 					
 					<input type="text" name="newCatName" onkeyup="document.getElementById(\'unn\').checked = \'checked\';" />
@@ -266,7 +266,7 @@ while ($pokeInfo = $result->fetch_assoc()) {
             </td>
 			<td>
 				<input type="radio" name="newCat['.$i.']" value="0" id="uon'.$i.'" checked="checked" />
-                '.shopCatSelectBox('oldCatName['.$i.']', $pokeInfo['category'], 'style="min-width: 100px;" onchange="document.getElementById(\'uon'.$i.'\').checked = \'checked\';"').'<br />
+                '.shopCatSelectBox('oldCatName['.$i.']', $pokeInfo['category'], 'style="min-width: 100px;" onchange="document.getElementById(\'uon'.$i.'\').checked = \'checked\';"', $conn).'<br />
 				
 				<input type="radio" name="newCat['.$i.']" value="1" id="unn'.$i.'" />
                 <input type="text" name="newCatName['.$i.']" onkeyup="document.getElementById(\'unn'.$i.'\').checked = \'checked\';" />

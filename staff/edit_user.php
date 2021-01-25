@@ -22,7 +22,7 @@ if (isset($_GET['id'])) {
 $userid       = (int) $_POST['userid'];
 $username     = $_POST['username'];
 $usernameSql  = cleanSql($username, $conn);
-$usernameHtml = cleanHtml($username, $conn);
+$usernameHtml = cleanHtml($username);
 $foundUser = false;
 
 if (isset($_POST['find'])) {
@@ -43,7 +43,7 @@ if (isset($_POST['find'])) {
 		
 		$userid       = (int) $userInfo['id'];
 		$username     = $userInfo['username'];
-		$usernameSql  = cleanSql($username);
+		$usernameSql  = cleanSql($username, $conn);
 		$usernameHtml = cleanHtml($username);
 		
 		$foundUser = true;
@@ -251,7 +251,7 @@ if ((isset($_POST['find']) || isset($_GET['id'])) && $foundUser) {
                 </tr>
                 <tr>
                     <td>Clan:</td>
-                    <td>'.clanSelectBox('clan', $userInfo['clan']).'</td>
+                    <td>'.clanSelectBox('clan', $userInfo['clan'], $conn).'</td>
                 </tr>
                 <tr>
                     <td>Clan Exp:</td>

@@ -39,21 +39,21 @@ if (isset($_POST['save'])) {
         
         $name = cleanSql($name, $conn);
         
-        setConfigValue('promo_cost_money', $money);
-        setConfigValue('promo_cost_tokens', $tokens);
-        setConfigValue('promo_pokemon_name', $name);
-        setConfigValue('promo_pokemon_level', $level);
-        setConfigValue('promo_last_update', time());
+        setConfigValue('promo_cost_money', $money, $conn);
+        setConfigValue('promo_cost_tokens', $tokens, $conn);
+        setConfigValue('promo_pokemon_name', $name, $conn);
+        setConfigValue('promo_pokemon_level', $level, $conn);
+        setConfigValue('promo_last_update', time(), $conn);
         
         $conn->query("UPDATE `users` SET `got_promo`='0'");
     }
 }
 
-$pCostMoney    = getConfigValue('promo_cost_money');
-$pCostTokens   = getConfigValue('promo_cost_tokens');
-$pPokemon      = getConfigValue('promo_pokemon_name');
-$pPokemonLevel = getConfigValue('promo_pokemon_level');
-$pLastUpdate   = getConfigValue('promo_last_update');
+$pCostMoney    = getConfigValue('promo_cost_money', $conn);
+$pCostTokens   = getConfigValue('promo_cost_tokens', $conn);
+$pPokemon      = getConfigValue('promo_pokemon_name', $conn);
+$pPokemonLevel = getConfigValue('promo_pokemon_level', $conn);
+$pLastUpdate   = getConfigValue('promo_last_update', $conn);
 
 echo '
     <form method="post">

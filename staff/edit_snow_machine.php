@@ -43,10 +43,10 @@ if (isset($_POST['save'])) {
         echo '<div class="notice">The pokemon has been edited.</div>';
         
         $name = cleanSql($name, $conn);
-        setConfigValue('snow_machine_price', $price);
-        setConfigValue('snow_machine_pokemon', $name);
-        setConfigValue('snow_machine_chance', $chance);
-        setConfigValue('snow_machine_pokemon_level', $level);
+        setConfigValue('snow_machine_price', $price, $conn);
+        setConfigValue('snow_machine_pokemon', $name, $conn);
+        setConfigValue('snow_machine_chance', $chance, $conn);
+        setConfigValue('snow_machine_pokemon_level', $level, $conn);
         
         $handle = fopen('edit_snow_machine_log.txt', 'a+');
         fwrite($handle, "{$_SESSION['username']} edited the snow machine. Name: {$name}, Price: {$price}, Chance: {$chance}, Level: {$level}" . PHP_EOL);
@@ -54,10 +54,10 @@ if (isset($_POST['save'])) {
     }
 }
 
-$smPrice   = getConfigValue('snow_machine_price');
-$smPokemon = getConfigValue('snow_machine_pokemon');
-$smChance  = getConfigValue('snow_machine_chance');
-$smPokemonLevel = getConfigValue('snow_machine_pokemon_level');
+$smPrice   = getConfigValue('snow_machine_price', $conn);
+$smPokemon = getConfigValue('snow_machine_pokemon', $conn);
+$smChance  = getConfigValue('snow_machine_chance', $conn);
+$smPokemonLevel = getConfigValue('snow_machine_pokemon_level', $conn);
 
 echo '
     <form method="post">
