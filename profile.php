@@ -194,14 +194,38 @@ if(numRows($query, $conn) != 1) {
 				</div>
 				
 				<div class="links">
-					<a href="messages.php?p=new&uid=<?php echo urlencode($userRow['id']);?>"><?php echo $lang['profile_13'];?></a>
-					<a href="battle_user.php?id=<?php echo urlencode($userRow['id']);?>"><?php echo $lang['profile_14'];?></a>
-					<a href="profile.php?id=<?php echo $uid;?>&friend=req"><?php echo $lang['profile_15'];?></a>
-                    <a href="view_box.php?id=<?php echo urlencode($userRow['id']);?>"><?php echo $lang['profile_16'];?></a>
-					<a href="trade_sell.php?uid=<?php echo urlencode($userRow['id']);?>"><?php echo $lang['profile_17'];?></a>
-					<a href="trade_sell.php?uid=<?php echo urlencode($userRow['id']);?>&sale"><?php echo $lang['profile_18'];?></a>
+				<center>
+				<table>
+				<tr>
+				<td>
 					<a href="card.php?id=<?php echo urlencode($userRow['id']);?>"><?php echo $lang['profile_19'];?></a>
+				</td>
+				<td>
+					<a href="profile.php?id=<?php echo $uid;?>&friend=req"><?php echo $lang['profile_15'];?></a>
+				</td>
+				<td>
+					<a href="messages.php?p=new&uid=<?php echo urlencode($userRow['id']);?>"><?php echo $lang['profile_13'];?></a>
+				</td>
+				<td>
 					<a href="send_money.php?id=<?php echo urlencode($userRow['id']);?>"><?php echo $lang['profile_20'];?></a>
+				</td>
+				</tr>
+				<tr>
+				<td>
+                    <a href="view_box.php?id=<?php echo urlencode($userRow['id']);?>"><?php echo $lang['profile_16'];?></a>
+				</td>
+				<td>
+					<a href="trade_sell.php?uid=<?php echo urlencode($userRow['id']);?>&sale"><?php echo $lang['profile_18'];?></a>
+				</td>
+				<td>
+					<a href="trade_sell.php?uid=<?php echo urlencode($userRow['id']);?>"><?php echo $lang['profile_17'];?></a>
+				</td>
+				<td>
+					<a href="battle_user.php?id=<?php echo urlencode($userRow['id']);?>"><?php echo $lang['profile_14'];?></a>
+				</td>
+				</tr>
+				</table>
+				</center>
 				</div>
 				
 				<div class="statics">

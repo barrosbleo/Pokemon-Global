@@ -159,7 +159,7 @@ if (isset($_GET['eid'])) {
 							</td>
 						</tr>
 						<tr>
-							<td colspan="3"><input type="submit" value="'.$lang['evolve_09'].' '.$type.$epokemon['after'].'" /></td>
+							<td colspan="3"><input class="smallbutton" type="submit" value="'.$lang['evolve_09'].' '.$type.$epokemon['after'].'" /></td>
 						</tr>
 					</table>
 				</form>

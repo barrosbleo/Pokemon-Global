@@ -82,7 +82,7 @@ if (!empty($message) && isset($_POST['claim'])) {
 	if ($gotPromo == 0) {
 		echo '
 			<form action="" method="post">
-				<input type="submit" id="button" name="claim" value="'.$lang['promo_10'].'" />
+				<input type="submit" class="smallbutton" id="button" name="claim" value="'.$lang['promo_10'].'" />
 			</form>
 		';
 	} else {

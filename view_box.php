@@ -73,7 +73,7 @@ if (isset($_GET['id'])) {
 }
 echo '
 		'.$lang['view_box_00'].' <input type="text" name="search" value="'.isset($searchHtmlSafe).'" />
-		<input type="submit" value="'.$lang['view_box_01'].'" />
+		<input type="submit" class="smallbutton" value="'.$lang['view_box_01'].'" />
 	</form>
 ';
 
@@ -101,10 +101,7 @@ if (numRows($query, $conn) == 0) {
 		<table class="pretty-table">
 			<tr>
 				<th width=25%><a href="view_box.php?sort='.$nameOrder.'">'.$lang['view_box_03'].'</a></th>
-				<th  width=25%>'.$lang['view_box_04'].'</th>
 				<th  width=25%><a href="view_box.php?sort='.$expOrder.'">'.$lang['view_box_05'].'</a></th>
-				<th  width=25%>'.$lang['view_box_06'].'</th>
-				
 	';
 	
 	echo isset($_GET['id']) ? '' : '<th>'.$lang['view_box_07'].'</th>' ;
@@ -137,24 +134,16 @@ if (numRows($query, $conn) == 0) {
 		$genderLine = '<img src="images/gender/'.$pokemon['gender'].'.png" alt="'.$genders[$pokemon['gender']].'" title="'.$genders[$pokemon['gender']].'">';
 		
 		echo '
-			<tr>
-				<td>
-					<a href="pinfo.php?id='.$pokemon['id'].'"><img src="images/pokemon/' . $pokemon['name'] . '.png" alt="' . $pokemon['name'] . '" /></a><br />
-					' . $pokemon['name'] . '&nbsp;'.$genderLine.'
-				</td>
-				<td>' . number_format($pokemon['level']) . '</td>
-				<td>' . number_format($pokemon['exp']) . '</td>
-				<td>	
-					' . $pokemon['move1'] . '<br />
-					' . $pokemon['move2'] . '<br />
-					' . $pokemon['move3'] . '<br />
-					' . $pokemon['move4'] . '<br />
-				</td>
+		<tr>
+			<td rowspan="5">
+				<a href="pinfo.php?id='.$pokemon['id'].'"><img src="images/pokemon/' . $pokemon['name'] . '.png" alt="' . $pokemon['name'] . '" /></a><br />
+				'.$pokemon['name'].'&nbsp;'.$genderLine.'
+			</td>
+			<td>'.number_format($pokemon['exp']).'Xp</td>
 		';
-		
 		if (!isset($_GET['id'])) {
 			echo '
-				<td>
+				<td rowspan="5">
 					<a href="evolve.php?id='.$pokemon['id'].'">'.$lang['view_box_18'].'</a><br />
 					<a href="change_attacks.php?id='.$pokemon['id'].'">'.$lang['view_box_19'].'</a><br /><br />
 					'.$teamHtml.'
@@ -165,10 +154,26 @@ if (numRows($query, $conn) == 0) {
 				</td>
 			';
 		}
-		
-		echo '
-			</tr>
-		';
+		echo'
+		</tr>
+		<tr>
+		<th  width=25%>'.$lang['view_box_04'].'</th>
+		</tr>
+		<tr>
+		<td>'.number_format($pokemon['level']).'</td>
+		</tr>
+		<tr>
+		<th  width=25%>'.$lang['view_box_06'].'</th>
+		</tr>
+		<tr>
+		<td>	
+			'.$pokemon['move1'].'<br />
+			'.$pokemon['move2'].'<br />
+			'.$pokemon['move3'].'<br />
+			'.$pokemon['move4'].'<br />
+		</td>
+		</tr>
+			';
 	}
 	echo '</table>';
 

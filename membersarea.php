@@ -39,19 +39,19 @@ $promoName = getConfigValue('promo_pokemon_name', $conn);
 
 <?php
 echo '
-    <table style="margin: 10px auto;" class="pretty-table ">
+    <table class="pretty-table">
 		<tr>
-            <th style="width: 100px;">'.$lang['membersarea_currentpromo'].'</th>
+            <th>'.$lang['membersarea_currentpromo'].'</th>
 			<th>'.$lang['membersarea_champion'].'</th>
 		</tr>
 		<tr>
-            <td style="width: 200px;">
+            <td>
                 <a href="promo.php">
                     <img src="images/pokemon/'.$promoName.'.png" alt="'.$promoName.'" /><br />
                     '.$promoName.'
                 </a>
             </td>
-			<td style="text-align: center;">
+			<td>
 				'.$lang['membersarea_beat_champion'].'!<br /><br />
 				
 				<a href="profile.php?id='.$champRow['id'].'">

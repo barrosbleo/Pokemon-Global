@@ -88,7 +88,7 @@ if (isset($_POST['submit'])) {
 $cells = array();
 foreach ($salePokemon as $name => $price) {
 	$cells[] = '
-		<img src="images/pokemon/'.$name.'.png" /><br />
+		<img style="width:100px;" src="images/pokemon/'.$name.'.png" /><br />
 		<input type="radio" name="submit" value="'.$name.'" />
 		'.$name.'<br />
 		'.number_format($price).' Pontos<br />
@@ -97,9 +97,9 @@ foreach ($salePokemon as $name => $price) {
 ?>
 	<form action="" method="post">
 		<table class="pretty-table">
-			<?php echo cellsToRows($cells, 5);?>
+			<?php echo cellsToRows($cells, 3);?>
 			<tr>
-				<td colspan="5"><input type="submit" value="<?php echo $lang['refl_button'];?>"></td>
+				<td colspan="5"><input class="smallbutton" type="submit" value="<?php echo $lang['refl_button'];?>"></td>
 			</tr>
 		</table>
 	</form>

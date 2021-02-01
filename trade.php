@@ -130,7 +130,7 @@ $result = $conn->query($query);
 		}
 		echo '
 				<tr>
-					<td colspan="6"><input type="submit" value="'.$lang['trade_13'].'" /></td>
+					<td colspan="6"><input class="smallbutton" type="submit" value="'.$lang['trade_13'].'" /></td>
 				</tr>
 			</table>
 			</form>
@@ -203,11 +203,9 @@ $result = $conn->query($query);
 		}
 		
 		echo '
-			<table class="pretty-table">
+			<table class="pretty-table" style="width:99%;">
 				<tr>
-					<th>&nbsp;</th>
 					<th>'.$lang['trade_09'].'</th>
-					<th>'.$lang['trade_10'].'</th>
 					<th>'.$lang['trade_11'].'</th>
 					<th>'.$lang['trade_12'].'</th>
 					<th>'.$lang['trade_19'].'</th>
@@ -219,20 +217,25 @@ $result = $conn->query($query);
 			$numOffers = numRows($query2, $conn);
 			echo '
 				<tr>
-					<td><img src="images/pokemon/'.$pokemon['name'].'.png" /></td>
-					<td>'.$pokemon['name'].'</td>
-					<td>'.number_format($pokemon['level']).'</td>
-					<td>'.number_format($pokemon['exp']).'</td>
-					<td>
+					<td rowspan="3"><img style="width:60px;" src="images/pokemon/'.$pokemon['name'].'.png" /></br>
+					'.$pokemon['name'].'</td>
+					<td>'.number_format($pokemon['exp']).'Xp</td>
+					<td rowspan="3">
 						'.$pokemon['move1'].'<br />
 						'.$pokemon['move2'].'<br />
 						'.$pokemon['move3'].'<br />
 						'.$pokemon['move4'].'
 					</td>
-					<td>
+					<td rowspan="3">
 						<a href="?a=vo&id='.$pokemon['id'].'">View&nbsp;Offers&nbsp;('.$numOffers.')</a><br /><br />
 						<a href="?a=remove&id='.$pokemon['id'].'">'.$lang['trade_20'].'</a><br />
 					</td>
+				</tr>
+				<tr>
+				<th>'.$lang['trade_10'].'</th>
+				</tr>
+				<tr>
+				<td>'.number_format($pokemon['level']).'</td>
 				</tr>
 			';
 		}

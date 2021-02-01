@@ -53,7 +53,7 @@ if ($newSales > 0) {
 	$newSales = '<font style="color: #e74c3c;">'.$newSales.'</font>';
 }
 ?>
-
+<ul class="usr-inf halfframe right">
 <li class="usr-inf-title"><a href="#"><?php echo $lang['side_right_title'];?></a></li>
 <li>
 	<div class="info-box">
@@ -64,39 +64,40 @@ if ($newSales > 0) {
 		<a href="/trade.php?a=vao"><?php echo $lang['side_right_trade_03'];?><?php echo $totalOffers;?></a>
 	</div>
 </li>
-
 </ul>
 
 <?php
 if($_SESSION['userid']) {	
 ?>
-
-	<ul class="usr-inf left">
-		<li class="usr-inf-title"><a href="/profile.php?id=<?php echo $_SESSION['userid']; ?>&amp;lref=2"><?php echo $lang['side_left_title_01'];?></a></li>	
-		<li>			
-			<div class="user-info">
-				<p>ID: <?php echo $userRow['id'];?></p>
-				<p><?php echo $username;?></p>
-				<p>$<?php echo number_format($money);?></p>
-				<p><?php echo number_format($tokens);?> Tokens</p>
-				<p><?php echo $lang['side_left_lvl'];?><?php echo expToLevel($userRow['trainer_exp']);?></p>
-			</div>
-		</li>
-		
-		<li class="usr-inf-title"><a href="#"><?php echo $lang['side_left_title_02'];?></a></li>
-		<li>
-			<div class="info-box">
-				<a href="/quest.php?page=active"><?php echo $lang['side_left_links_00'];?></a>
-				<a href="/auction.php?lref=1"><?php echo $lang['side_left_links_01'];?></a>
-				<a href="/view_box.php?lref=3"><?php echo $lang['side_left_links_02'];?></a>
-				<a href="/trade.php?lref=4"><?php echo $lang['side_left_links_03'];?></a>
-				<a href="/sell_pokemon.php?lref=5"><?php echo $lang['side_left_links_04'];?></a>
-				<a href="/fix.php?lref=6"><?php echo $lang['side_left_links_05'];?></a>
-				<a href="/chatroom.php?lref=7"><?php echo $lang['side_left_links_06'];?></a>
-				<a href="http://forums.pkmnhelios.net/"><?php echo $lang['side_left_links_07'];?></a>
-				<a href="/online.php?lref=9"><?php echo $lang['side_left_links_08'];?></a>
-				<a href="/users.php?lref=10"><?php echo $lang['side_left_links_09'];?></a>
-			</div>		
-		</li>
-	</ul>
-<?php } ?>
+<ul class="usr-inf halfframe left">
+	<li class="usr-inf-title"><a href="/profile.php?id=<?php echo $_SESSION['userid']; ?>&amp;lref=2"><?php echo $lang['side_left_title_01'];?></a></li>	
+	<li>			
+		<div class="user-info">
+			<p>ID: <?php echo $userRow['id'];?></p>
+			<p><?php echo $username;?></p>
+			<p>$<?php echo number_format($money);?></p>
+			<p><?php echo number_format($tokens);?> Tokens</p>
+			<p><?php echo $lang['side_left_lvl'];?><?php echo expToLevel($userRow['trainer_exp']);?></p>
+		</div>
+	</li>
+</ul>
+<ul class="usr-inf frame left">
+	<li class="usr-inf-title"><a href="#"><?php echo $lang['side_left_title_02'];?></a></li>
+	<li>
+		<div class="info-box">
+			<a href="/quest.php?page=active"><?php echo $lang['side_left_links_00'];?></a>
+			<a href="/auction.php?lref=1"><?php echo $lang['side_left_links_01'];?></a>
+			<a href="/view_box.php?lref=3"><?php echo $lang['side_left_links_02'];?></a>
+			<a href="/trade.php?lref=4"><?php echo $lang['side_left_links_03'];?></a>
+			<a href="/sell_pokemon.php?lref=5"><?php echo $lang['side_left_links_04'];?></a>
+			<a href="/fix.php?lref=6"><?php echo $lang['side_left_links_05'];?></a>
+			<a href="/chatroom.php?lref=7"><?php echo $lang['side_left_links_06'];?></a>
+			<a href="http://forums.pkmnhelios.net/"><?php echo $lang['side_left_links_07'];?></a>
+			<a href="/online.php?lref=9"><?php echo $lang['side_left_links_08'];?></a>
+			<a href="/users.php?lref=10"><?php echo $lang['side_left_links_09'];?></a>
+		</div>		
+	</li>
+</ul>
+<?php
+}
+?>

@@ -43,7 +43,7 @@ if (isset($_POST['buyPoke'])) {
             
 			echo '
 				<div class="notice" style="color: #000000;">
-					<img src="images/pokemon/'.$pokeName.'.png" /><br />
+					<img style="width:100px;" src="images/pokemon/'.$pokeName.'.png" /><br />
 					'.$lang['token_shop_02'].' '.$pokeName.'.
 				</div>
 			';
@@ -56,7 +56,7 @@ if (isset($_POST['buyPoke'])) {
 $cells = array();
 foreach ($salePokemon as $name => $price) {
 	$cells[] = '
-		<img src="images/pokemon/'.$name.'.png" /><br />
+		<img style="width:100px;" src="images/pokemon/'.$name.'.png" /><br />
 		<input type="radio" name="buyPoke" value="'.$name.'" />
 		'.$name.'<br />
 		'.number_format($price).' '.$lang['token_shop_04'].'<br />
@@ -114,9 +114,9 @@ echo '
 	</div>
 	<form action="" method="post">
 		<table class="pretty-table">
-			'.cellsToRows($cells, 5).'
+			'.cellsToRows($cells, 3).'
 			<tr>
-				<td colspan="5"><input type="submit" value="'.$lang['token_shop_11'].'"></td>
+				<td colspan="5"><input type="submit" class="smallbutton" value="'.$lang['token_shop_11'].'"></td>
 			</tr>
 		</table>
 	</form>

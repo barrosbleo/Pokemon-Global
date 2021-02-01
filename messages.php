@@ -60,7 +60,7 @@ switch ($_GET['p']) {
 			echo '
 				<tr>
 					<td colspan="4" class="text-left">
-						<input type="submit" value="'.$lang['messages_05'].'" />
+						<input type="submit" class="button" value="'.$lang['messages_05'].'" />
 					</td>
 				</tr>
 			';
@@ -241,21 +241,21 @@ switch ($_GET['p']) {
 		$token = md5(rand());
 		$_SESSION['token'] = $token;
 		echo '
-			<form action="messages.php?p=new" method="post" style="width: 600px; margin: 20px auto;">
+			<form action="messages.php?p=new" method="post" style="width: 100%; margin: 20px auto;">
 				<input type="hidden" name="token" value="'.$token.'" />
 				<table class="pretty-table">
 					<tr>
 						<td class="text-right">'.$lang['messages_11'].':</td>
-						<td class="text-left"><input type="text" name="username" size="30" value="'.cleanHtml($username).'" /></td>
+						<td class="text-left"><input type="text" name="username" class="wmsg" value="'.cleanHtml($username).'" /></td>
 					</tr>
 					<tr>
 						<td class="text-right">'.$lang['messages_13'].':</td>
-						<td class="text-left"><input type="text" name="subject" size="50" value="'.cleanHtml($subject).'" /></td>
+						<td class="text-left"><input type="text" name="subject" class="wmsg" value="'.cleanHtml($subject).'" /></td>
 					</tr>
 					<tr>
 						<td valign="top" class="text-right">'.$lang['messages_14'].':</td>
 						<td class="text-left">
-							<textarea name="message" cols="50" rows="5">'.cleanHtml($message).'</textarea>
+							<textarea name="message" cols="50" rows="5" class="wmsg">'.cleanHtml($message).'</textarea>
 						</td>
 					</tr>
 					<tr>
@@ -264,7 +264,7 @@ switch ($_GET['p']) {
 					</tr>
 					<tr>
 						<td>&nbsp;</td>
-						<td><input type="submit" value="'.$lang['messages_23'].'" /></td>
+						<td><input type="submit" class="button" value="'.$lang['messages_23'].'" /></td>
 					</tr>
 				</table>
 			</form>

@@ -33,7 +33,7 @@ echo "<center>
 		</font>
 	</center>"; 
 echo '		
-                        <table class="pretty-table">
+                        <table class="pretty-table members">
                           
                                 <tr>                                 
                                     <th>'.$lang['online_02'].'</th>

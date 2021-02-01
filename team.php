@@ -71,12 +71,12 @@ printHeader($lang['team_title']);
     
  echo '
     
-    <table class="pretty-table">
+    <table class="pretty-table team">
 		<tr>
-			<th>&nbsp;</th>
+			<th>Pokemon</th>
+			<th>'.$lang['team_02'].'</th>
 			<th>'.$lang['team_00'].'</th>
 			<th>'.$lang['team_01'].'</th>
-			<th>'.$lang['team_02'].'</th>
 			<th>'.$lang['team_03'].'</th>
 		</tr>
 ';
@@ -119,14 +119,15 @@ for ($i=1; $i<=6; $i++) {
                 <img src="images/pokemon/' . $pokemon['name'] . '.png" alt="' . $pokemon['name'] . '" /><br />
                 ' . $pokemon['name'] . '
             </td>
-            <td>' . $pokemon['level'] . '</td>
-            <td>' . number_format($pokemon['exp']) . '</td>
             <td>
                 ' . $pokemon['move1'] . '<br />
                 ' . $pokemon['move2'] . '<br />
                 ' . $pokemon['move3'] . '<br />
                 ' . $pokemon['move4'] . '<br />
             </td>
+            <td>' . $pokemon['level'] . '</td>
+            <td>' . number_format($pokemon['exp']) . '</td>
+
             <td>
 	';
     

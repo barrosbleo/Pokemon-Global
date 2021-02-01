@@ -58,7 +58,7 @@ if (!isset($_GET['all'])) {
 		<form method="get" action="" style="text-align: center; margin: 20px 0px;">
 			<input type="hidden" name="a" value="'.cleanHtml($_GET['a']).'" />
 			<input type="hidden" name="page" value="'.cleanHtml(isset($_GET['page'])).'" />
-			'.$lang['trade_puft_01'].' <input type="text" name="search" value="'.isset($searchHtmlSafe).'" /> <input type="submit" value="'.$lang['trade_puft_02'].'" />
+			'.$lang['trade_puft_01'].' <input type="text" name="search" value="'.isset($searchHtmlSafe).'" /> <input  class="smallbutton" type="submit" value="'.$lang['trade_puft_02'].'" />
 		</form>
 	';
 }
@@ -105,7 +105,7 @@ $result = $conn->query($query);
 		echo '
 			<tr>
 				<td><input type="checkbox" name="pokemon[]" value="'.$pokemon['id'].'" /></td>
-				<td><img src="images/pokemon/'.$pokemon['name'].'.png" /></td>
+				<td><img style="width:100px;" src="images/pokemon/'.$pokemon['name'].'.png" /></td>
 				<td>'.$pokemon['name'].'</td>
 				<td>'.number_format($pokemon['level']).'</td>
 				<td>'.number_format($pokemon['exp']).'</td>
@@ -120,7 +120,7 @@ $result = $conn->query($query);
 	}
 	echo '
 			<tr>
-				<td colspan="6"><input type="submit" value="'.$lang['trade_puft_08'].'" /></td>
+				<td colspan="6"><input  class="smallbutton" type="submit" value="'.$lang['trade_puft_08'].'" /></td>
 			</tr>
 		</table>
 		</form>

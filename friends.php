@@ -26,7 +26,7 @@ echo '
 			<th>'.$lang['friends_01'].'</th>
 			<th>'.$lang['friends_02'].'</th>
 			<th>'.$lang['friends_03'].'</th>
-			<th colspan="2">&nbsp</th>
+			<th>&nbsp</th>
 		</tr>
 ';
 
@@ -49,10 +49,12 @@ while($fRow = $result->fetch_assoc()) {
 	
 	echo '
 		<tr>
-			<td><a href="profile.php?id='.$userInfo['id'].'">'.$userInfo['username'].'</a></td>
-			<td>$'.number_format($userInfo['money']).'</td>
-			<td>'.number_format($userInfo['total_exp']).'</td>
+			<td rowspan="2"><a href="profile.php?id='.$userInfo['id'].'">'.$userInfo['username'].'</a></td>
+			<td rowspan="2">$'.number_format($userInfo['money']).'</td>
+			<td rowspan="2">'.number_format($userInfo['total_exp']).'</td>
 			<td><a href="#" onclick="if (document.getElementById(\'team'.$i.'\').style.display == \'none\') { this.textContent = \'Hide&nbsp;Team\'; document.getElementById(\'team'.$i.'\').style.display = \'table-row\'; } else { this.textContent = \'Show&nbsp;Team\'; document.getElementById(\'team'.$i.'\').style.display = \'none\'; } return false;">'.$lang['friends_04'].'</a></td>
+			</tr>
+			<tr>
 			<td><a href="messages.php?p=new&uid='.$userInfo['id'].'">'.$lang['friends_05'].'</a></td>
 		</tr>
 	';
@@ -64,7 +66,7 @@ while($fRow = $result->fetch_assoc()) {
 		
 		if ($pid == 0) {
 			$cells[] = '
-				<img src="images/pokemon/EMPTY.png" alt="'.$lang['friends_06'].'" /><br />
+				<img style="width:100%;" src="images/pokemon/EMPTY.png" alt="'.$lang['friends_06'].'" /><br />
 				'.$lang['friends_07'].'<br /><br />
 			';
 		} else {
@@ -72,7 +74,7 @@ while($fRow = $result->fetch_assoc()) {
 			$pokeInfo = fetchAssoc($query3, $conn);
 			
 			$cells[] = '
-				<img src="images/pokemon/'.$pokeInfo['name'].'.png" alt="'.$pokeInfo['name'].'" /><br />
+				<img style="width:100%;" src="images/pokemon/'.$pokeInfo['name'].'.png" alt="'.$pokeInfo['name'].'" /><br />
 				'.$pokeInfo['name'].'<br />
 				'.$lang['friends_08'].' '.number_format($pokeInfo['level']).'<br />
 				'.$lang['friends_09'].' '.number_format($pokeInfo['exp']).'<br />
@@ -81,7 +83,7 @@ while($fRow = $result->fetch_assoc()) {
 	}
 	echo '
 		<tr style="display: none;" id="team'.$i.'">
-			<td colspan="5">
+			<td colspan="4">
 				<h1>'.$userInfo['username'].''.$lang['friends_10'].'</h1>
 				<table>'.cellsToRows($cells, 3).'</table>
 			</td>
@@ -89,7 +91,6 @@ while($fRow = $result->fetch_assoc()) {
 	';
 	$i++;
 }
-
 echo '
 	</table>
 ';
