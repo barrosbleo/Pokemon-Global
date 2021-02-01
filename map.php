@@ -806,8 +806,34 @@ if (!isset($_SESSION['admin']) || $_SESSION['admin'] != 1) {
 }
 ?>
 
-<center><div id="map" style="background-image: url('/images/maps/new/<?php echo $map;?>.png');">
-	<img src="/images/sprites/<?php echo $mySprite;?>.png" id="mySprite" title="<?php echo cleanHtml($_SESSION['username']);?>"/>
+<table class="moveTable">
+<tr>
+<td colspan="3">
+<img src="/images/arrows/up.png" onclick="moveSprite('up');"/>
+</td>
+</tr>
+<tr>
+<td>
+<img src="/images/arrows/left.png" onclick="moveSprite('left');"/>
+</td>
+<td>
+<img src="/images/sprites/<?php echo $mySprite;?>.png"/>
+</td>
+<td>
+<img src="/images/arrows/right.png" onclick="moveSprite('right');"/>
+</td>
+</tr>
+<tr>
+<td colspan="3">
+<img src="/images/arrows/down.png" onclick="moveSprite('down');"/>
+</td>
+</tr>
+</table>
+<center>
+<div id="map" style="background-image: url('/images/maps/new/<?php echo $map;?>.png');">
+<div id="left" onclick="moveSprite('left')">
+</div>
+<img src="/images/sprites/<?php echo $mySprite;?>.png" id="mySprite" title="<?php echo cleanHtml($_SESSION['username']);?>"/>
 </div></center>
 <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
 <script>
