@@ -213,7 +213,7 @@ loja de referência.',
 	'donate_shop_intro' => 'Clique aqui para ir ao shoping de token',
 	'donate_footer' => 'Doações',
 	
-	'map_key_explanation' => 'Use as teclas de setas no seu teclado ou use os botões acima para andar pelo mapa!',
+	'map_key_explanation' => 'Use as teclas de setas no seu teclado ou toque nas bordas do mapa para explorar!',
 	'map_users' => 'Usuários neste mapa:',
 	'map_leg_explanation' => 'Para capturar pokemons lendários primeiro você precisa obter todas as insígnias e ser Elite 4!',
 	'map_can_catch_leg' => 'Você pode capturar pokemons lendários!',
@@ -485,11 +485,11 @@ loja de referência.',
 	'change_team_10' => 'para',
 
 
-//chatfields
-	'chatfields_title' => 'Ops! Você não digitou nada.',
+	//chat
+	'chat_send_btn' => 'Enviar',
 
 
-//collection_machine
+	//collection_machine
 	'coll_mach_title' => 'Máquina de Coleção',
 	'coll_mach_00' => 'Você trocou',
 	'coll_mach_01' => 'por um',
@@ -499,7 +499,7 @@ loja de referência.',
 	'coll_mach_05' => 'Trocar por',
 
 
-//prêmio diário
+	//prêmio diário
 	'dayprize_title' => 'Prêmio Diário',
 	'dayprize_00' => 'Você ganhou seu prêmio diário hoje.<br>
 Você tem $ next_dailyprize até o próximo prêmio diário<br>

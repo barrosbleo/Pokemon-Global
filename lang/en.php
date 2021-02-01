@@ -213,7 +213,7 @@ $lang = array(
 	'donate_shop_intro' => 'Click here to go to token shoping',
 	'donate_footer' => 'Donations',
 	
-	'map_key_explanation' => 'Use the arrow keys on your keyboard or use the buttons above to move around the map!',
+	'map_key_explanation' => 'Use the arrow keys on your keyboard or touch map borders to explore!',
 	'map_users' => 'Users on this map:',
 	'map_leg_explanation' => 'To capture legendary pokemons first you need to get all badges and be Elite 4!',
 	'map_can_catch_leg' => 'You can capture legendary pokemons!',
@@ -485,8 +485,8 @@ $lang = array(
 	'change_team_10' => 'for',
 	
 	
-	//chatfields
-	'chatfields_title' => 'Ops! You haven\'t typed any text.',
+	//chat
+	'chat_send_btn' => 'Send',
 	
 	
 	//collection_machine
