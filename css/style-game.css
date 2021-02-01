@@ -406,11 +406,10 @@ textarea{
 	width:210px;
 	color:#000;
 	z-index:1001;
-	opacity:0.4;
+	opacity:0.6;
 }
 .moveTable td{
 	height:70px;
-	border:solid 1px;
 	text-align:center;
 }
 #mySprite{
