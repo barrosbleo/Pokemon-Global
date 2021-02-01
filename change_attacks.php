@@ -129,7 +129,7 @@ echo '
 echo '</table>';
 }
 echo '
-<br /><br /><input type="submit" value="'.$lang['change_atk_09'].'" /><br /><br /></form>
+<br /><br /><input type="submit" class="smallbutton" value="'.$lang['change_atk_09'].'" /><br /><br /></form>
 
 <script>
 function showMoves(parentId) {

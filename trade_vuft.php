@@ -49,7 +49,7 @@ echo '
 	<form method="get" action="" style="text-align: center; margin: 20px 0px;">
 		<input type="hidden" name="a" value="'.cleanHtml($_GET['a']).'" />
 		<input type="hidden" name="page" value="'.cleanHtml(isset($_GET['page'])).'" />
-		'.$lang['trade_vuft_01'].' <input type="text" name="search" value="'.isset($searchHtmlSafe).'" /> <input type="submit" value="'.$lang['trade_vuft_02'].'" />
+		'.$lang['trade_vuft_01'].' <input type="text" name="search" value="'.isset($searchHtmlSafe).'" /> <input type="submit" class="smallbutton" value="'.$lang['trade_vuft_02'].'" />
 	</form>
 ';
 
@@ -76,11 +76,10 @@ if (numRows($query, $conn) == 0) {
 	$idOrder   = $_GET['sort'] == 5 ? 6 : 5 ;
 
 	echo '
-		<table class="pretty-table">
+			<table class="pretty-table" style="width:99%">
 			<tr>
 				<th><a href="?'.$qs.'&amp;sort='.$idOrder.'">'.$lang['trade_vuft_04'].'</a></th>
 				<th><a href="?'.$qs.'&amp;sort='.$nameOrder.'">'.$lang['trade_vuft_05'].'</a></th>
-				<th>'.$lang['trade_vuft_06'].'</th>
 				<th><a href="?'.$qs.'&amp;sort='.$expOrder.'">'.$lang['trade_vuft_07'].'</a></th>
 				<th>'.$lang['trade_vuft_08'].'</th>
 				<th>'.$lang['trade_vuft_09'].'</th>
@@ -93,22 +92,28 @@ $result = $conn->query($query);
 		$urow = fetchAssoc($query2, $conn);
 		
 		echo '
+
 			<tr>
-				<td>'.number_format($pokemon['id']).'</td>
-				<td><img src="images/pokemon/'.$pokemon['name'].'.png" /><br />
+				<td rowspan="3">'.number_format($pokemon['id']).'</td>
+				<td rowspan="3"><img style="width:60px;" src="images/pokemon/'.$pokemon['name'].'.png" /><br />
 				'.$pokemon['name'].'</td>
-				<td>'.number_format($pokemon['level']).'</td>
-				<td>'.number_format($pokemon['exp']).'</td>
-				<td>
+				<td>'.number_format($pokemon['exp']).'Xp</td>
+				<td rowspan="3">
 					'.$pokemon['move1'].'<br />
 					'.$pokemon['move2'].'<br />
 					'.$pokemon['move3'].'<br />
 					'.$pokemon['move4'].'
 				</td>
-				<td><a href="profile.php?id='.$pokemon['uid'].'">'.cleanHtml($urow['username']).'</a></td>
-				<td>
+				<td rowspan="3"><a href="profile.php?id='.$pokemon['uid'].'">'.cleanHtml($urow['username']).'</a></td>
+				<td rowspan="3">
 					<a href="?a=mao&id='.$pokemon['id'].'">'.$lang['trade_vuft_11'].'</a>
 				</td>
+			</tr>
+			<tr>
+			<th>'.$lang['trade_vuft_06'].'</th>
+			</tr>
+			<tr>
+			<td>'.number_format($pokemon['level']).'</td>
 			</tr>
 		';
 	}

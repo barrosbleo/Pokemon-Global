@@ -68,7 +68,7 @@ if ($query) {
 	$cell = '
 	        <span style="color: orange;">
 		<center><h2 class="header2">'.$lang['poke_rank_00'].' '.$type.' '.$lang['poke_rank_01'].'</h2></center><br />
-		<table class="pretty-table">
+		<table class="pretty-table" style="width:99%;">
 			<tr>
 				<th style="width: 50px; min-width: 50px; max-width: 50px;">#</th>
 				<th>'.$lang['poke_rank_02'].'</th>
@@ -88,7 +88,7 @@ if ($query) {
 			$filename = 'images/icons/' . implode(' ', array_slice($parts, $j)) . '.gif';
 
 			if (file_exists($filename)) {
-				$imgHtml = '<img src="'.$filename.'" />';
+				$imgHtml = '<img style="width:20px;" src="'.$filename.'" />';
 				break;
 			}
 		}

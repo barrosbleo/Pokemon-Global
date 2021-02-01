@@ -90,7 +90,7 @@ echo '
 
 			<tr><th>'.$lang['send_money_10'].' </th><td><input type="text" name="username" value="' . cleanHtml($uni_username) . '" /><br /></td></tr>
 			<tr><th>'.$lang['send_money_11'].'</th><td> <input type="text" name="amount" value="' . cleanHtml($amount) . '" /><br /></td></tr>
-<tr><td>&nbsp;</td><td><input type="hidden" name="token" value="' . $token . '" /><input type="submit" value="'.$lang['send_money_12'].'" id="button"/></td></tr></table>
+<tr><td>&nbsp;</td><td><input type="hidden" name="token" value="' . $token . '" /><input type="submit" class="smallbutton" value="'.$lang['send_money_12'].'" id="button"/></td></tr></table>
 		</form>
 
 </center>

@@ -271,10 +271,12 @@ if ($_SESSION['battle']['screen'] == 'pickpokemon') {
 		<form action="" method="post" style=" margin-bottom: 80px;">
 			<table class="pretty-table">
 				<tr>
-					<td style="vertical-align: top; padding: 10px; width: 50%;">
+					<td style="vertical-align: top; padding: 10px; width: 100%;">
 						<h2 style="padding: 3px 0;">'.$lang['battle_08'].'</h2>
 						'.teamTable($myTeam, true).'
 					</td>
+					</tr>
+					<tr>
 					<td style="vertical-align: top; padding: 10px; width: 50%;">
 						<h2 style="padding: 3px 0;">'.$lang['battle_09'].'</h2>
 						'.teamTable($opponentTeam, false).'
@@ -450,14 +452,14 @@ if ($_SESSION['battle']['screen'] == 'battle') {
 	
 	echo '
 	<form action="" method="post" id="'.rand(1000, 2000).'">
-	<table class="pretty-table" style="width: 500px">
+	<table class="pretty-table battling">
 		<tr>
 			<td style="vertical-align: bottom;">
 				<img src="images/pokemon/'.$myTeam[$pnum]['name'].'.png" alt="'.$myTeam[$pnum]['name'].'" /><br />
 				'.$myTeam[$pnum]['name'].'<br />
 				HP: '.$myTeam[$pnum]['hp'].'/'.$myTeam[$pnum]['maxhp'].'<br />
 				
-				<div style="width: 200px; border: 1px solid #000000; margin: 10px auto;">
+				<div style="width: 100%; border: 1px solid #000000; margin: 10px auto;">
 					<div class="'.$myHpBarColor.'-gradient-bg" style="height: 15px; width: '.$myHpBarWidth.'%;"></div>
 				</div>
                                              
@@ -468,7 +470,7 @@ if ($_SESSION['battle']['screen'] == 'battle') {
 				'.$opponentTeam[$onum]['name'].'<br />
 				HP: '.$opponentTeam[$onum]['hp'].'/'.$opponentTeam[$onum]['maxhp'].'<br />
                            
-                           <div style="width: 200px; border: 1px solid #000000; margin: 10px auto;">
+                           <div style="width: 100%; border: 1px solid #000000; margin: 10px auto;">
 					<div class="'.$opHpBarColor.'-gradient-bg" style="height: 15px; width: '.$opHpBarWidth.'%;"></div>
 				</div>
 			</td>
@@ -524,13 +526,13 @@ if ($_SESSION['battle']['screen'] == 'battle') {
 		echo '
 			
 			<tr>
-				<td style="padding-left: 80px; width: 200px" align="left">
+				<td style="align="left">
 					<input type="radio" name="mnum" value="1" checked="checked" />&nbsp;'.$myTeam[$pnum]['move1'].'<br />
 					<input type="radio" name="mnum" value="2" />&nbsp;'.$myTeam[$pnum]['move2'].'<br />
 					<input type="radio" name="mnum" value="3" />&nbsp;'.$myTeam[$pnum]['move3'].'<br />
 					<input type="radio" name="mnum" value="4" />&nbsp;'.$myTeam[$pnum]['move4'].'<br />
 				</td>
-				<td style="padding-left: 80px; width: 200px" align="left">
+				<td style="align="left">
 					'.$opponentTeam[$onum]['move1'].'<br />
 					'.$opponentTeam[$onum]['move2'].'<br />
 					'.$opponentTeam[$onum]['move3'].'<br />

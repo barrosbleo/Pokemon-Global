@@ -54,5 +54,7 @@ else :
 
 <?php
 endif;
-if($conn){mysqli_close($conn);}
+if($conn){
+	mysqli_close($conn);
+}
 ?>

@@ -75,7 +75,7 @@ if (isset($_POST['fix'])) {
         
     
         <form action="" method="post">
-            <input style="padding: 3px 20px;" type="submit" name="fix" value="'.$lang['snow_mach_12'].'" id="button" />
+            <input style="padding: 3px 20px;" type="submit" class="smallbutton" name="fix" value="'.$lang['snow_mach_12'].'" id="button" />
         </form>
         <br /><br />
     ';

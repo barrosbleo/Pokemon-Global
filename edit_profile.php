@@ -102,30 +102,41 @@ echo '
 		<table class="pretty-table">
 			<tr>
 				<th class="text-right">'.$lang['edit_profile_08'].' <span class="small">('.$lang['edit_profile_09'].')</span>: </th>
+			</tr>
+			<tr>
 				<td><input type="password" name="cpassword" value="" size="30" /></td>
 			</tr>
 			
 			<tr>
 				<th class="text-right">'.$lang['edit_profile_10'].' <span class="small">('.$lang['edit_profile_11'].')</span>: </th>
+			</tr>
+			<tr>
 				<td><input type="password" name="npassword" value="" size="30" /></td>
 			</tr>
 			
 			<tr>
 				<th class="text-right">'.$lang['edit_profile_12'].': </th>
+			</tr>
+			<tr>
 				<td><input type="password" name="napassword" value="" size="30" /></td>
 			</tr>
 			
 			<tr>
 				<th class="text-right">Email ('.$lang['edit_profile_09'].'): </th>
+			</tr>
+			<tr>
 				<td><input type="text" name="email" value="'.$userRow['email'].'" size="30" /></td>
 			</tr>
 			
 			<tr>
 				<th class="text-right" valign="top">'.$lang['edit_profile_13'].'</th>
-				<td>
+			</tr>
+			<tr>
+				<td><center>
 					<table class="inline-block">
 						'.cellsToRows($cells, 5).'
 					</table>
+					</center>
 				</td>
 			</tr>
 			
@@ -142,7 +153,7 @@ echo '
 			
 			<tr>
 				<th colspan="2" class="text-center">
-					<center><input id="button" type="submit" value="     '.$lang['edit_profile_15'].'     " /></center>
+					<center><input id="button" type="submit" class="button" value="     '.$lang['edit_profile_15'].'     " /></center>
 				</th>
 			</tr>
 		

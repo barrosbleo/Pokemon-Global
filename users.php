@@ -54,7 +54,7 @@ $query = "SELECT * FROM `users` {$searchSql} {$orderSql} LIMIT {$pagination->ite
 
 echo '
 		<form method="get" action="" style="text-align: center; margin: 20px 0px;">
-			'.$lang['users_00'].' <input type="text" name="search" value="'.isset($searchHtmlSafe).'" /> <input type="submit" value="'.$lang['users_01'].'" />
+			'.$lang['users_00'].' <input type="text" name="search" value="'.isset($searchHtmlSafe).'" /> <input type="submit" class="smallbutton" value="'.$lang['users_01'].'" />
 		</form>
 ';
 
@@ -63,7 +63,7 @@ if (numRows($query, $conn) == 0) {
 } else {
 	echo '		
 	<div class="franks">
-		<table class="pretty-table">
+		<table class="pretty-table members">
 			<tr>
 				<th><a href="?'.$qs.'&amp;sort='.$idOrder.'">'.$lang['users_03'].'</a></th>
 				<th><a href="?'.$qs.'&amp;sort='.$usernameOrder.'">'.$lang['users_04'].'</a></th>

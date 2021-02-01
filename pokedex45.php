@@ -25,7 +25,7 @@ if($p_class->evolution == ""){$p_class->evolution="0";}
 <?php
 echo'
 <center>
-   <table class="pretty-table">
+   <table class="pretty-table pokedex">
      <tr>
        <td>
          
@@ -70,14 +70,14 @@ echo'
 		    <td>
 		         
 		      	   <div><b>'.$p_class->name.'</b></div>
-		           <img src="images/pokemon/'.$p_class->name.'.png">
+		           <img style="width:110px;" src="images/pokemon/'.$p_class->name.'.png">
 		            
 		    </td>
 		    <td>Evolves into<br><br><b>'.$lang['pokedex45_07'].'</b><br>'.$lang['pokedex45_08'].'<b>'.$p_class->level.'</b><br>'.$lang['pokedex45_09'].'</td>
 		    <td>  
 		      
 		      	   <div><b>'.$p_class->evolution.'</b></div>
-		           <img src="images/pokemon/'.$p_class->evolution.'.png">
+		           <img style="width:110px;" src="images/pokemon/'.$p_class->evolution.'.png">
 		    </td>
 		  </tr>
 		</table>
@@ -101,7 +101,7 @@ while ($r = $result->fetch_assoc()) {
 
 echo '
 	<br />
-	<table class="pretty-table">
+	<table class="pretty-table pokedex">
 		<tr>
 			<th>'.$lang['pokedex45_10'].'</th>
 			<th>'.$lang['pokedex45_11'].'</th>

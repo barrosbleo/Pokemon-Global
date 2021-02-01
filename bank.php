@@ -120,7 +120,7 @@ logs($uid, $lang['bank_08']." $".$_POST['wamount']." !");
 <form method='post'>
 <input type='text' name='wamount' value='$<?php echo number_format($user->bank);?>' size='15' maxlength='20'> &nbsp;
 <br>
-<input type='submit' name='withdraw' value='<?php echo $lang['bank_10'];?>' id='button'>
+<input type='submit' name='withdraw' class="smallbutton" value='<?php echo $lang['bank_10'];?>' id='button'>
 </form><br><br>
 </td></tr></table>
 
@@ -132,7 +132,7 @@ logs($uid, $lang['bank_08']." $".$_POST['wamount']." !");
 <form method='post'>
 <input type='text' name='damount' value='$<?php echo number_format($user->money);?>' size='15' maxlength='20'> &nbsp;
 <br>
-<input type='submit' name='deposit' value='<?php echo $lang['bank_12'];?>' id='button'>
+<input type='submit' name='deposit' class="smallbutton" value='<?php echo $lang['bank_12'];?>' id='button'>
 </form><br><br>
 </td></tr></table>
 </center>
