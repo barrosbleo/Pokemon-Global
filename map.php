@@ -806,26 +806,66 @@ if (!isset($_SESSION['admin']) || $_SESSION['admin'] != 1) {
 }
 ?>
 
-<div id="maps">
+<table class="moveTable">
+<tr>
+<td colspan="3">
+<img src="/images/arrows/up.png" onclick="moveSprite('up');"/>
+</td>
+</tr>
+<tr>
+<td>
+<img src="/images/arrows/left.png" onclick="moveSprite('left');"/>
+</td>
+<td>
+<img src="/images/sprites/<?php echo $mySprite;?>.png"/>
+</td>
+<td>
+<img src="/images/arrows/right.png" onclick="moveSprite('right');"/>
+</td>
+</tr>
+<tr>
+<td colspan="3">
+<img src="/images/arrows/down.png" onclick="moveSprite('down');"/>
+</td>
+</tr>
+</table>
+<center>
+<div id="map" style="background-image: url('/images/maps/new/<?php echo $map;?>.png');">
+<div id="left" onclick="moveSprite('left')">
+</div>
+<img src="/images/sprites/<?php echo $mySprite;?>.png" id="mySprite" title="<?php echo cleanHtml($_SESSION['username']);?>"/>
+</div></center>
 <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
 <script>
+var mapElement = document.getElementById('map').getBoundingClientRect();
+var sprite = document.getElementById('mySprite');
+sprite.style.width = (mapElement.width / 100) * 4;
+sprite.style.height = (mapElement.width / 100) * 5;
+var diffSpriteWH = ((mapElement.width / 100) * 5) - ((mapElement.width / 100) * 4);
+var spriteImgMove = mapElement.width / 25;
+
+//load player sprite responsively
+sprite.style.top = (<?php echo $startY;?> * spriteImgMove) - diffSpriteWH + "px";
+sprite.style.left = <?php echo $startX;?> * spriteImgMove + "px";
+//alert((mapElement.width / 100) * 4);
+//alert(mapElement.width);
 var movements = {
-upleft    : {up: -1, left: -1},
+upleft    : {up: -1, left: -1},//remove
 up        : {up: -1, left:  0},
-upright   : {up: -1, left:  1},
+upright   : {up: -1, left:  1},//remove
 left      : {up:  0, left: -1},
 right     : {up:  0, left:  1},
-downleft  : {up:  1, left: -1},
+downleft  : {up:  1, left: -1},//remove
 down      : {up:  1, left:  0},
-downright : {up:  1, left:  1},
+downright : {up:  1, left:  1},//remove
 };
 
 var x = <?php echo $startX; ?>, y = <?php echo $startY; ?>;
 
 <?php echo $tileArray; ?>
 
-function moveSprite(key) {
-var sprite = document.getElementById('mySprite');
+function moveSprite(key){
+
 var newX = x + movements[key]['left'];
 var newY = y + movements[key]['up'];
 sprite.src="/images/sprites/<?php echo $mySprite;?>"+key+".png";
@@ -833,8 +873,8 @@ sprite.src="/images/sprites/<?php echo $mySprite;?>"+key+".png";
 if (typeof map[newY] !== "undefined" && typeof map[newY][newX] !== "undefined" && (map[newY][newX] == 1 || map[newY][newX] > 10000 || map[newY][newX] < 0)) {
 	x = newX;
 	y = newY;
-	sprite.style.left = x*16 + 'px';
-	sprite.style.top = (y*16)-4 + 'px';
+	sprite.style.left = x*spriteImgMove + 'px';
+	sprite.style.top = (y*spriteImgMove)-diffSpriteWH + 'px';
 
 	$("#result").html('<img src="images/loading.gif" />');
 	$.get('map_ajax.php?map=<?php echo $map; ?>&x='+x+'&y='+y+'&rnd=<?php echo rand(1000, 1000000); ?>', function(result) {
@@ -890,8 +930,8 @@ function addUsersToMap() {
 		image.src = 'images/sprites/'+ user.sprite +'.png';
 		image.title = user.username;
 		image.style.position = 'absolute';
-		image.style.top = ((user.y*16)-4) + 'px';
-		image.style.left = (user.x*16) + 'px';
+		image.style.top = ((user.y*spriteImgMove)-diffSpriteWH) + 'px';
+		image.style.left = (user.x*spriteImgMove) + 'px';
 		image.onclick = function(user) {
       			return function() {
       				//alert(user.username);
@@ -934,8 +974,8 @@ function addNPCToMap() {
 		image.src = 'images/sprites/'+ npc.sprite +'.png';
 		image.title = npc.npcname;
 		image.style.position = 'absolute';
-		image.style.top = ((npc.y*16)-4) + 'px';
-		image.style.left = (npc.x*16) + 'px';
+		image.style.top = ((npc.y*spriteImgMove)-diffSpriteWH) + 'px';
+		image.style.left = (npc.x*spriteImgMove) + 'px';
 		image.onclick = function(npc) {
 			if((npc.x - 1) <= x && (npc.y - 1) <= y && ((npc.x + 1) >= x && (npc.y + 1) >= y)){
       			return function() {
@@ -981,6 +1021,9 @@ function startTimer() {
 
 
 function checkKeysUp(evt) {
+	if(evt.keyCode == 13){
+		sendMsg();
+	}
 	if (evt.keyCode == 38) {
 		moveSprite('up');
 	} else if (evt.keyCode == 37) {
@@ -994,7 +1037,7 @@ function checkKeysUp(evt) {
 }
 
 function checkKeysDown(evt){
-	if (evt.keyCode >= 37 || evt.keyCode <= 40 ) {
+	if (evt.keyCode == 37 || evt.keyCode == 38 || evt.keyCode == 39 || evt.keyCode == 40 || evt.keyCode == 13) {
 		if(evt.preventDefault){
 			evt.preventDefault();
 		}
@@ -1007,85 +1050,46 @@ function checkKeysDown(evt){
 window.addEventListener('load', function () { addUsersToMap(); startTimer(); }, false);
 window.addEventListener('keyup', checkKeysUp, false);
 window.addEventListener('keydown', checkKeysDown, false);
-
 </script>
-	<table class="table">
-		<tr>
-			<td>
-				<div id="map" style="background-image: url('/images/maps/new/<?php echo $map;?>.png'); width: 400px; height: 400px; position: relative; margin-right: 20px;">
-					<img src="/images/sprites/<?php echo $mySprite;?>.png" id="mySprite" title="<?php echo cleanHtml($_SESSION['username']);?>" style="position: absolute; width:16px; height:20px; top: <?php echo (($startY*16)-4);?>px; left: <?php echo ($startX*16);?>px; z-index: 1000;" />
-				</div>
-			</td>
-			
-			<td class="nav">
-				<table style="margin: 0px auto 40px auto;">
-					<tr>
-						<td><img src="/images/arrows/upleft.png" onclick="moveSprite('upleft');" /></td>
-						<td><img src="/images/arrows/up.png" onclick="moveSprite('up');" /></td>
-						<td><img src="/images/arrows/upright.png" onclick="moveSprite('upright');" /></td>
-					</tr>
+<table class="maptable">
+	<tr>
+		<td>
+			<small><?php echo $lang['map_key_explanation'];?></small>
+			<div class="team">
+				<?php
+					$query = "SELECT * FROM `users` WHERE `id`='{$uid}'";
+					$checkSlots = fetchArray($query, 2, $conn);
 					
-					<tr>
-						<td><img src="/images/arrows/left.png" onclick="moveSprite('left');" /></td>
-						<td style="text-align: center; vertical-align: middle;"><img src="/images/sprites/<?php echo $mySprite;?>.png" /></td>
-						<td><img src="/images/arrows/right.png" onclick="moveSprite('right');" /></td>
-					</tr>
-					
-					<tr>
-						<td><img src="/images/arrows/downleft.png" onclick="moveSprite('downleft');" /></td>
-						<td><img src="/images/arrows/down.png" onclick="moveSprite('down');" /></td>
-						<td><img src="/images/arrows/downright.png" onclick="moveSprite('downright');" /></td>
-					</tr>
-				</table>
-
-				<small><?php echo $lang['map_key_explanation'];?></small>
-
-				<div class="team">
-					<?php
- 
-					
-						$query = "SELECT * FROM `users` WHERE `id`='{$uid}'";
-						$checkSlots = fetchArray($query, 2, $conn);
-					
-						for ($i=1; $i<=6; $i++) {		
-							$pid = $checkSlots['poke'.$i];
-						
-						if ($pid == 0) { } else {	
+					for($i=1; $i<=6; $i++){		
+						$pid = $checkSlots['poke'.$i];
+						if($pid == 0){}else{	
 							$pokeBox1 = "SELECT * FROM `user_pokemon` WHERE `id`='{$pid}'";
 							$pokeBox = fetchObj($pokeBox1, $conn);
 
 							$types = array('Shiny ', 'Halloween ', 'Possion ', 'Helios ', 'Rainbow ', 'Snow ', 'Shadow ', 'Ancient ');
 							$pokemonName = str_replace($types, '', $pokeBox->name);
                           
-						
 							echo '<img src="/images/icons/'.$pokemonName.'.gif" title="'.$pokeBox->type.' '.$pokeBox->name.'    Level: '.$pokeBox->level.'"/>';
-						}}
-					?>
-				</div>
-
-				<div id="result"></div>
-
-			</td>
-		</tr>
-		<tr id="pInfo" style="display: none;">
-			<td>
-				<div id="info"></div>
-			</td>
-		</tr>
-
-		<tr>
-			<td>
-				<p class="bottom-txt">
-					<?php echo $lang['map_users'];?> <font color="red"><?php echo $numUsersOnMap;?></font><br />
-					<br> <?php echo $lang['map_leg_explanation'];?> <br>
-					<span style="font-size: smaller;"><?php echo $legendsMsg;?></span>
-				</p>
-			</td>
-		</tr>
-	</table>
-</div>
-<iframe src="chat.php" width="600px" height="300px" frameborder="0" scrolling="no" class="mapchat"></iframe>
+						}
+					}
+				?>
+			</div>
+			<div id="result"></div>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<p class="bottom-txt">
+				<?php echo $lang['map_users'];?> <font color="red"><?php echo $numUsersOnMap;?></font></br>
+				<br> <?php echo $lang['map_leg_explanation'];?> <br>
+				<span style="font-size: smaller;"><?php echo $legendsMsg;?></span>
+			</p>
+		</td>
+	</tr>
+</table>
 
 <?php
-include '_footer.php';
+include('chat.php');
+
+include('_footer.php');
 ?>
