@@ -396,10 +396,22 @@ textarea{
 	background-size:100% 100%;
 	background-repeat:no-repeat !important;
 }
-#map:after{
+#map::after{
 	content:"";
 	display:block;
 	padding-bottom:100%;
+}
+.moveTable{
+	position:absolute;
+	width:210px;
+	color:#000;
+	z-index:1001;
+	opacity:0.4;
+}
+.moveTable td{
+	height:70px;
+	border:solid 1px;
+	text-align:center;
 }
 #mySprite{
 	position:absolute;
@@ -581,7 +593,9 @@ width:120px !important;
 	background-size:100% 100%;
 	background-repeat:no-repeat !important;
 }
-
+.moveTable{
+	display:none;
+}
 
 
 }
