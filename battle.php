@@ -700,12 +700,12 @@ if ($_SESSION['battle']['screen'] == 'battle') {
 	if (isset($_SESSION['battle']['uid'])) {
 		$wUid = $_SESSION['battle']['uid'];
 		
-		if ($wUid == getConfigValue('champion_uid') && $wUid != $uid) {
-			setConfigValue('champion_uid', $uid);
+		if ($wUid == getConfigValue('champion_uid', $conn) && $wUid != $uid) {
+			setConfigValue('champion_uid', $uid, $conn);
 			
-			$lastTime = getConfigValue('champion_timestamp');
+			$lastTime = getConfigValue('champion_timestamp', $conn);
 			$totalTime = time() - $lastTime;
-			setConfigValue('champion_timestamp', time());
+			setConfigValue('champion_timestamp', time(), $conn);
 			
 			$conn->query("UPDATE `users` SET `champ_times`=`champ_times`+1 WHERE `id`='{$uid}' LIMIT 1");
 			

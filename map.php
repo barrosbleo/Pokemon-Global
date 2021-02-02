@@ -7,13 +7,13 @@ if (!isLoggedIn()) {
 }
 
 $map = (int) base64_decode($_GET['map']);
+$string = base64_encode($map);
 $uid = (int) $_SESSION['userid'];
 if (isset($_GET['map'], $_GET['x'], $_GET['y'])) {
 	$time = time();
 	$x = (int) $_GET['x'];
 	$y = (int) $_GET['y'];
 	$conn->query("UPDATE `users` SET `map_num`='{$map}', `map_x`='{$x}', `map_y`='{$y}', `map_lastseen`='{$time}' WHERE `id`='{$uid}'");
-	$string = base64_encode($map);
 	redirect('map.php?map='.$string.'#map');
 }
 
@@ -745,7 +745,7 @@ switch ($map) {
 
 //load NPCs on map
 $npcQuery = "SELECT * FROM npc WHERE map_num='{$map}'";
-$result = $conn->query($npcQuery) or die($conn->error);
+$result = $conn->query($npcQuery);
 $npcArray = array();
 
 $i = 0;
@@ -760,8 +760,8 @@ while($npc = $result->fetch_assoc()){
 
 //load users on map
 $time = time();
-$tenMinsAgo = $time - (60*10);
-$usersQuery = "SELECT * FROM `users` WHERE `map_num`='{$map}' AND `map_lastseen`>='{$tenMinsAgo}'";
+$minsAgo = $time - (60*1);//60 second * 1 minute
+$usersQuery = "SELECT * FROM users WHERE map_num='{$map}' AND map_lastseen>='{$minsAgo}'";
 $result = $conn->query($usersQuery);
 $numUsersOnMap = numRows($usersQuery, $conn);
 $usersArray = array();
@@ -778,7 +778,7 @@ $usersArray[$i]['username'] = cleanHtml($user['username']);
 $usersArray[$i]['id'] = (int) $user['id'];
 $usersArray[$i]['x']  = (int) $user['map_x'];
 $usersArray[$i]['y']  = (int) $user['map_y'];
-$usersArray[$i]['sprite']  = (int) $user['map_sprite'];
+$usersArray[$i]['sprite']  = $user['map_sprite'];
 $i++;
 }
 
@@ -831,10 +831,9 @@ if (!isset($_SESSION['admin']) || $_SESSION['admin'] != 1) {
 </table>
 <center>
 <div id="map" style="background-image: url('/images/maps/new/<?php echo $map;?>.png');">
-<div id="left" onclick="moveSprite('left')">
-</div>
 <img src="/images/sprites/<?php echo $mySprite;?>.png" id="mySprite" title="<?php echo cleanHtml($_SESSION['username']);?>"/>
-</div></center>
+</div>
+</center>
 <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
 <script>
 var mapElement = document.getElementById('map').getBoundingClientRect();
@@ -868,8 +867,11 @@ function moveSprite(key){
 
 var newX = x + movements[key]['left'];
 var newY = y + movements[key]['up'];
-sprite.src="/images/sprites/<?php echo $mySprite;?>"+key+".png";
+var curSprite = "<?php echo $mySprite;?>";
+var newSprite = curSprite.split("", 1)+key;
+sprite.src="/images/sprites/"+newSprite+".png";
 
+//alert(newSprite);
 if (typeof map[newY] !== "undefined" && typeof map[newY][newX] !== "undefined" && (map[newY][newX] == 1 || map[newY][newX] > 10000 || map[newY][newX] < 0)) {
 	x = newX;
 	y = newY;
@@ -877,7 +879,7 @@ if (typeof map[newY] !== "undefined" && typeof map[newY][newX] !== "undefined" &
 	sprite.style.top = (y*spriteImgMove)-diffSpriteWH + 'px';
 
 	$("#result").html('<img src="images/loading.gif" />');
-	$.get('map_ajax.php?map=<?php echo $map; ?>&x='+x+'&y='+y+'&rnd=<?php echo rand(1000, 1000000); ?>', function(result) {
+	$.get('map_ajax.php?map=<?php echo $map; ?>&x='+x+'&y='+y+'&rnd=<?php echo rand(1000, 1000000);?>&sprite='+newSprite, function(result) {
 		var res = jQuery.parseJSON(result);
 		if ( typeof res.name !== "undefined" ) {
 			var caught = res.caught == 1 ? ' <img src="images/pb.gif" alt="X" />' : '' ;
@@ -921,7 +923,7 @@ if (typeof map[newY] !== "undefined" && typeof map[newY][newX] !== "undefined" &
 }
 
 var users = <?php echo json_encode($usersArray); ?>;
-function addUsersToMap() {
+function addUsersToMap(){
 	//alert(users);
 	for (var i=0; i<users.length; i++) {
 		var user = users[i];
@@ -935,19 +937,18 @@ function addUsersToMap() {
 		image.onclick = function(user) {
       			return function() {
       				//alert(user.username);
-      				var html = '';
-      				html += '<div class="info-box">';
+					var html = '';
+      				html += '<div id="info-box">';
       				html += '<img src="/images/sprites/'+user.sprite+'.png" title="'+user.username+'"/><br />';
-      				html += '<a href="/profile.php?id='+user.id+'"><?php echo $lang["map_06"];?></a> ';
-      				html += '<a href="/view_box.php?id='+user.id+'"><?php echo $lang["map_06"];?></a> ';
-      				html += '<a href="/battle_user.php?id='+user.id+'"><?php echo $lang["map_08"];?></a> ';
-      				
+      				html += '<table><tr><td><a href="/profile.php?id='+user.id+'"><?php echo $lang["map_06"];?></a></td></tr>';
+      				html += '<tr><td><a href="/view_box.php?id='+user.id+'"><?php echo $lang["map_07"];?></a></td></tr>';
+      				html += '<tr><td><a href="/battle_user.php?id='+user.id+'"><?php echo $lang["map_08"];?></a></td></tr></table>';
       				html += '<a class="close" onclick="document.getElementById(\'pInfo\').style.display=\'none\';">';
-      				//html +=     '<?php echo $lang["map_09"];?>';
-      				html +=     'X';
+      				//html +=     '<?php echo $lang["map_09"];?>';//close btn
+      				html +=     'X';//close btn
       				html += '</a>';
       				html += '</div>';
-      				
+					
       				document.getElementById('pInfo').style.display = 'table-row';
       				document.getElementById('info').innerHTML = html;
       			};
@@ -1004,7 +1005,6 @@ function addNPCToMap() {
 
 var timer;
 function startTimer() {
-	addNPCToMap();//load npc's before all
 	timer = setInterval( function () {
 		$.get('ajax/map_users.php?map=<?php echo $string;?>', function (userData) {
 		//	alert(userData);
@@ -1013,12 +1013,7 @@ function startTimer() {
 			addUsersToMap();
 			addNPCToMap();//
 		});
-		//$.get('ajax/map_npcs.php?map=<?php echo $string;?>', function (npcData) {
-		//	alert(npcData);
-			//NPCs = JSON.parse(npcData);
-			//addNPCToMap();
-		//});
-	}, 1000);//tempo ms para recarregar std 1000 (1 segundo)
+	}, 100);//tempo ms para recarregar std 1000 (1 segundo)
 }
 
 
@@ -1049,7 +1044,7 @@ function checkKeysDown(evt){
 	}
 }
 
-window.addEventListener('load', function () { addUsersToMap(); startTimer(); }, false);
+window.addEventListener('load', function () { addUsersToMap(); addNPCToMap(); startTimer(); }, false);
 window.addEventListener('keyup', checkKeysUp, false);
 window.addEventListener('keydown', checkKeysDown, false);
 </script>

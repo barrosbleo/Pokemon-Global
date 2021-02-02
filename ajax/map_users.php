@@ -5,9 +5,9 @@ $uid = (int) $_SESSION['userid'];
 $map = (int) $_GET['map'];
 
 $time = time();
-$tenMinsAgo = $time - (60*10);
+$minsAgo = $time - (60*1);//60 second * 1 minute
 
-$usersQuery = "SELECT * FROM `users` WHERE `map_num`='{$map}' AND `map_lastseen`>='{$tenMinsAgo}'";
+$usersQuery = "SELECT * FROM `users` WHERE `map_num`='{$map}' AND `map_lastseen`>='{$minsAgo}'";
 $usersArray = array();
 $result = $conn->query($usersQuery);
 $i = 0;
