@@ -220,7 +220,7 @@ function clock(){
 			//alert('sucesso');
 		}
 	};
-	xhttp.open("GET", "modules/clock.php", true);
+	xhttp.open("GET", "<?php echo $general['path'];?>/modules/clock.php", true);
 	xhttp.send();
 }
 setInterval(clock, 1000);
