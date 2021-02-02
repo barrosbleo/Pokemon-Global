@@ -1,7 +1,7 @@
 <?php
 
 //general configs
-$general['path'] = "http://localhost";
+$general['path'] = "https://pkmglobal.online";
 $maintenance = 0;					//sets the game to the maintenance mode(block players access)
 
 //MySQLi section
