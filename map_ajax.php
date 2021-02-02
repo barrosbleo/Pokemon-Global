@@ -82,9 +82,11 @@ $x = $x < 0 || $x > 25 ? 3 : $x;
 $y = (int) $_GET['y'];
 $y = $y < 0 || $y > 25 ? 3 : $y;
 
+$newSprite = $_GET['sprite'];
+
 $time = time();
 
-$conn->query("UPDATE `users` SET `map_num`='{$map}', `map_x`='{$x}', `map_y`='{$y}', `map_lastseen`='{$time}' WHERE `id`='{$uid}'");
+$conn->query("UPDATE `users` SET `map_num`='{$map}', `map_x`='{$x}', `map_y`='{$y}', `map_lastseen`='{$time}', `map_sprite`='{$newSprite}' WHERE `id`='{$uid}'");
 
 if (mt_rand(1,7) == 1) {//common pokemon appear rate 14%(1/7)
 	$type = mt_rand(1, 150) == 100 ? 'Shiny ' : '' ;//shiny appear rate 1/150

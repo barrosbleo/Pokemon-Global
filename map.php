@@ -7,13 +7,13 @@ if (!isLoggedIn()) {
 }
 
 $map = (int) base64_decode($_GET['map']);
+$string = base64_encode($map);
 $uid = (int) $_SESSION['userid'];
 if (isset($_GET['map'], $_GET['x'], $_GET['y'])) {
 	$time = time();
 	$x = (int) $_GET['x'];
 	$y = (int) $_GET['y'];
 	$conn->query("UPDATE `users` SET `map_num`='{$map}', `map_x`='{$x}', `map_y`='{$y}', `map_lastseen`='{$time}' WHERE `id`='{$uid}'");
-	$string = base64_encode($map);
 	redirect('map.php?map='.$string.'#map');
 }
 
@@ -778,7 +778,7 @@ $usersArray[$i]['username'] = cleanHtml($user['username']);
 $usersArray[$i]['id'] = (int) $user['id'];
 $usersArray[$i]['x']  = (int) $user['map_x'];
 $usersArray[$i]['y']  = (int) $user['map_y'];
-$usersArray[$i]['sprite']  = (int) $user['map_sprite'];
+$usersArray[$i]['sprite']  = $user['map_sprite'];
 $i++;
 }
 
@@ -867,8 +867,11 @@ function moveSprite(key){
 
 var newX = x + movements[key]['left'];
 var newY = y + movements[key]['up'];
-sprite.src="/images/sprites/<?php echo $mySprite;?>"+key+".png";
+var curSprite = "<?php echo $mySprite;?>";
+var newSprite = curSprite.split("", 1)+key;
+sprite.src="/images/sprites/"+newSprite+".png";
 
+//alert(newSprite);
 if (typeof map[newY] !== "undefined" && typeof map[newY][newX] !== "undefined" && (map[newY][newX] == 1 || map[newY][newX] > 10000 || map[newY][newX] < 0)) {
 	x = newX;
 	y = newY;
@@ -876,7 +879,7 @@ if (typeof map[newY] !== "undefined" && typeof map[newY][newX] !== "undefined" &
 	sprite.style.top = (y*spriteImgMove)-diffSpriteWH + 'px';
 
 	$("#result").html('<img src="images/loading.gif" />');
-	$.get('map_ajax.php?map=<?php echo $map; ?>&x='+x+'&y='+y+'&rnd=<?php echo rand(1000, 1000000); ?>', function(result) {
+	$.get('map_ajax.php?map=<?php echo $map; ?>&x='+x+'&y='+y+'&rnd=<?php echo rand(1000, 1000000);?>&sprite='+newSprite, function(result) {
 		var res = jQuery.parseJSON(result);
 		if ( typeof res.name !== "undefined" ) {
 			var caught = res.caught == 1 ? ' <img src="images/pb.gif" alt="X" />' : '' ;
@@ -1006,11 +1009,11 @@ function startTimer() {
 		$.get('ajax/map_users.php?map=<?php echo $string;?>', function (userData) {
 		//	alert(userData);
 			users = JSON.parse(userData);
-			//removeUsersFromMap();
+			removeUsersFromMap();
 			addUsersToMap();
 			addNPCToMap();//
 		});
-	}, 1000);//tempo ms para recarregar std 1000 (1 segundo)
+	}, 100);//tempo ms para recarregar std 1000 (1 segundo)
 }
 
 

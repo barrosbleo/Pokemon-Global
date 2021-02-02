@@ -3,7 +3,7 @@ include('modules/lib.php');
 require 'banned.php'; 
 
 if (!isLoggedIn()) {
-redirect('login.php');
+redirect('main.php');
 }
 
 $uid = (int) $_GET['id'];
@@ -54,5 +54,6 @@ $_SESSION['battle']['captcha'] = time();
 $_SESSION['battle']['onum'] = 0;
 $_SESSION['battle']['rebattlelink'] = '<a href="battle_user.php?id='.$uid.'">'.$lang['battle_u_02'].' '.cleanHtml($username).'</a>';
 $_SESSION['battle']['uid'] = $uid;
+$_SESSION['battle']['wild'] = false;
 redirect('battle.php');
 ?>
