@@ -503,6 +503,18 @@ textarea{
 .battling{
 	width: 100%
 }
+.green-gradient-bg {
+	background: linear-gradient(#4BB748, #587D34);
+	box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+.yellow-gradient-bg {
+	background: linear-gradient(#B7B648, #7D7834);
+	box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+.red-gradient-bg {
+	background: linear-gradient(#B74848, #7D3434);
+	box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
 /*quest*/
 .quest{
 	text-align:center;
