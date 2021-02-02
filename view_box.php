@@ -31,7 +31,7 @@ $sorts = array
 
 $search    = isset($_GET['search']) ? $_GET['search'] : '' ;
 
-$sort      = isset($_GET['sort']);
+$sort      = $_GET['sort'];
 $sortKey   = isset($sort) && in_array($sort, array_keys($sorts)) ? $sort : 1 ;
 $orderSql  = $sorts[$sortKey];
 
@@ -94,8 +94,8 @@ if (numRows($query, $conn) == 0) {
 		$qs .= '&amp;id=' . (int) $_GET['id'];
 	}
 	
-	$nameOrder = isset($_GET['sort']) == 1 ? 2 : 1 ;
-	$expOrder  = isset($_GET['sort']) == 4 ? 3 : 4 ;
+	$nameOrder = $_GET['sort'] == 1 ? 2 : 1 ;
+	$expOrder  = $_GET['sort'] == 4 ? 3 : 4 ;
 	
 	echo '		
 		<table class="pretty-table">
