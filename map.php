@@ -943,7 +943,8 @@ function addUsersToMap() {
       				html += '<a href="/battle_user.php?id='+user.id+'"><?php echo $lang["map_08"];?></a> ';
       				
       				html += '<a class="close" onclick="document.getElementById(\'pInfo\').style.display=\'none\';">';
-      				html +=     '<?php echo $lang["map_09"];?>';
+      				//html +=     '<?php echo $lang["map_09"];?>';
+      				html +=     'X';
       				html += '</a>';
       				html += '</div>';
       				
@@ -986,7 +987,8 @@ function addNPCToMap() {
       				html += '<table><tr><td><a href="/quest.php?npcName='+npc.npcname+'&npcId='+npc.id+'"><?php echo $lang["quest_btn"];?></a></td></tr></table>';
       				//html += '<tr><td><a href="/battle_user.php?id='+npc.id+'"><?php echo $lang["map_08"];?></a></td></tr></table>';
       				html += '<a class="close" onclick="document.getElementById(\'pInfo\').style.display=\'none\';">';
-      				html +=     '<?php echo $lang["map_09"];?>';//close btn
+      				//html +=     '<?php echo $lang["map_09"];?>';//close btn
+      				html +=     'X';//close btn
       				html += '</a>';
       				html += '</div>';
       				
@@ -1051,6 +1053,9 @@ window.addEventListener('load', function () { addUsersToMap(); startTimer(); }, 
 window.addEventListener('keyup', checkKeysUp, false);
 window.addEventListener('keydown', checkKeysDown, false);
 </script>
+<div id="pInfo" style="display: none;">
+	<div id="info"></div>
+</div>
 <table class="maptable">
 	<tr>
 		<td>

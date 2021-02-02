@@ -406,10 +406,11 @@ textarea{
 	width:210px;
 	color:#000;
 	z-index:1001;
-	opacity:0.7;
+	opacity:0.4;
 }
 .moveTable td{
 	height:70px;
+	border:solid 1px;
 	text-align:center;
 }
 #mySprite{
@@ -459,12 +460,110 @@ textarea{
 	width:90%;
 	background:red;
 }
+#info-box{
+	position:absolute;
+	width:200px;
+	min-height:50px;
+	top:50px;
+	background: #161616;
+	border: 1px solid #000;
+	font-size: 12px;
+	box-shadow: inset 1px 1px #292929, 
+				inset -1px -1px #292929;
+	z-index:1002;
+}
+#info-box table{
+	width:100%;
+}
+#info-box td{
+	text-align:center;
+}
+#info-box td:hover{
+	background: #8E47E6;
+}
+#info-box .close{
+	font-size: 10px;
+	text-transform: uppercase;
+	color:#FFF !important;
+	position: absolute;
+	top:5px;
+	right:10px;
+}
+#info-box a{
+	color: #f39c12;
+	text-decoration: none;
+}
+#info-box a:hover{
+	text-decoration: none;
+}
+#info-box img {
+	margin-top: 5px;
+}
 /*battle*/
 .battling{
 	width: 100%
 }
-
-
+/*quest*/
+.quest{
+	text-align:center;
+}
+	
+.quest .quest_title{
+	width: 100%;
+	text-transform: uppercase;
+	color: #FFF;
+	font-weight: 800;
+	background: #16a085;
+	padding: 5px 0 5px 0;
+}
+	
+.quest .quest_text{
+	width: 100%;
+	color: #FFF;
+	padding: 10px 0 5px 0;
+}
+	
+.quest .table{
+	position:relative;
+	width:80%;
+	left:50%;
+	margin-left:-40%;
+	border:solid 1px;
+}
+	
+	.quest .td{
+		width:50%;
+		border:solid 1px;
+	}
+	
+.quest .title_td{
+	background:#16a085;
+	font-weight: 800;
+}
+	
+.quest .tableBtn{
+	position:relative;
+	width:60%;
+	left:50%;
+	margin-left:-30%;
+}
+	
+.tableBtn .td{
+	width:50%;
+	height:26px;
+	border:0;
+	border-radius:15px;
+	background:#000;
+	font-weight:800;
+}
+	
+.tableBtn .td:hover{
+	width:50%;
+	height:26px;
+	border-radius:15px;
+	background:#16a085;
+	font-weight:800;
+}
 
 
 
@@ -591,6 +690,9 @@ width:120px !important;
 	width:400px;
 	background-size:100% 100%;
 	background-repeat:no-repeat !important;
+}
+#info-box{
+	background:linear-gradient(#333333, #1c1c1c, #333333);
 }
 .moveTable{
 	display:none;
