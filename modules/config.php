@@ -1,14 +1,14 @@
 <?php
 
 //general configs
-$general['path'] = "http://localhost";
+$general['path'] = "https://pkmglobal.online";
 $maintenance = 0;					//sets the game to the maintenance mode(block players access)
 
 //MySQLi section
 $database['host'] = "localhost";			//mysql driver host address
-$database['user'] = "root";		//mysql user
-$database['pass'] = "12345678";			//mysql password
-$database['database'] = "pokebr";		//database name
+$database['user'] = "u108578361_pkmglobal";		//mysql user
+$database['pass'] = "843762Inter";			//mysql password
+$database['database'] = "u108578361_pkmglobal";		//database name
 
 
 //in game configs
