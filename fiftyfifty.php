@@ -84,7 +84,7 @@ $mbid = $_POST['multiple'];
 
 while($i<$mbid){ 
 $i++;
-$result = $conn_query("INSERT INTO `5050` (uid, money)"."VALUES ('$user->id', '".$_POST['amount']."')");
+$result = $conn->query("INSERT INTO `5050` (uid, money)"."VALUES ('$user->id', '".$_POST['amount']."')");
 }
 
 $conn->query("UPDATE `users` SET `money` = `money` - $checka WHERE `id`='$user->id'");

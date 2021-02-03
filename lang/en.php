@@ -502,8 +502,8 @@ $lang = array(
 	//dailyprize
 	'dayprize_title' => 'Daily Prize',
 	'dayprize_00' => 'You\'ve had your daily prize today.<br>
-					Till next daily prize you have left $next_dailyprize <br>
-					Come back tomorrow.',
+					Till next daily prize you have left ',
+	'dayprize_00A'=> '</br>Come back tomorrow.',
 	'dayprize_01' => 'Too many people with your IP address have already took the daily prize today.',
 	'dayprize_02' => 'Your daily prize is:',
 	'dayprize_03' => 'Token(s)',
@@ -511,7 +511,7 @@ $lang = array(
 	'dayprize_05' => 'Trainer Experience Points',
 	'dayprize_06' => 'Game Money',
 	'dayprize_07' => 'Hello trainers, here you can claim a prize for just being active!.<br>
-You can claim once every 24 hours! and you can win przies such as money, tokens and experience<br>',
+You can claim once every 24 hours! and you can win prizes such as money, tokens and experience<br>',
 	'dayprize_08' => 'Get a Daily Prize',
 	
 	

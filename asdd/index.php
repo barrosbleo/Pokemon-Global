@@ -6,32 +6,32 @@ printHeader('Rarity List');
 $f = array(
 	'1' => array(
 		'text' => 'Normal',
-		'sql' => " WHERE `name` NOT REGEXP 'Shiny|Possion|Snow|Rainbow|Helios|Halloween|Shadow' ",
+		'sql' => " WHERE `name` NOT REGEXP 'Shiny|Poison|Snow|Rainbow|Helios|Halloween|Shadow' ",
 	),
 	'2' => array(
 		'text' => 'Shiny',
 		'sql' => " WHERE `name` LIKE '%Shiny%' ",
 	),
 	'3' => array(
-		'text' => 'Possion',
-		'sql' => " WHERE `name` LIKE '%Possion%' ",
+		'text' => 'Poison',
+		'sql' => " WHERE `name` LIKE '%Poison%' ",
 	),
 	'4' => array(
 		'text' => 'Snow',
 		'sql' => " WHERE `name` LIKE '%Snow%' ",
 	),
-	'5' => array(
-		'text' => 'Rainbow',
-		'sql' => " WHERE `name` LIKE '%Rainbow%' ",
-	),
-	'6' => array(
-		'text' => 'Helios',
-		'sql' => " WHERE `name` LIKE '%Helios%' ",
-	),
-	'7' => array(
-		'text' => 'Halloween',
-		'sql' => " WHERE `name` LIKE '%Halloween%' ",
-	),
+	//'5' => array(
+	//	'text' => 'Rainbow',
+	//	'sql' => " WHERE `name` LIKE '%Rainbow%' ",
+	//),
+	//'6' => array(
+	//	'text' => 'Helios',
+	//	'sql' => " WHERE `name` LIKE '%Helios%' ",
+	//),
+	//'7' => array(
+	//	'text' => 'Halloween',
+	//	'sql' => " WHERE `name` LIKE '%Halloween%' ",
+	//),
 	'8' => array(
 		'text' => 'Shadow',
 		'sql' => " WHERE `name` LIKE '%Shadow%' ",
@@ -56,7 +56,7 @@ while ($r = $result->fetch_assoc()) {
 
 echo '
 	'.implode(' &bull; ', $links).'<br /><br />
-	<div class="contentcontent"><table class="pretty-table">
+	<div class="contentcontent"><table class="pretty-table pokedex">
 		<tr>
 			<th>Name</th>
 			<th>Male</th>

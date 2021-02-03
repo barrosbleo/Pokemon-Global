@@ -118,9 +118,13 @@
             <li class="dropdown">
 				<a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo $lang['header_menu_07'];?> <span class="caret"></span></a>
 				<ul class="dropdown-menu" role="menu">
+					<li><a href="/dailyprize.php"><?php echo $lang['header_submenu_12_02'];?></a></li>
+					<li><a href="/luckyhour.php"><?php echo $lang['header_submenu_12_03'];?></a></li>
+					<li><a href="/fiftyfifty.php"><?php echo $lang['header_submenu_12_01'];?></a></li>
 					<li><a href="/snow_machine.php"><?php echo $lang['header_submenu_07_01'];?></a></li>
 					<li><a href="/donate.php"><?php echo $lang['header_submenu_07_03'];?></a></li>
 					<li><a href="/collection_machine.php"><?php echo $lang['header_submenu_07_05'];?></a></li>
+					<li><a href="/asdd"><?php echo $lang['header_submenu_10_01'];?></a></li>
 				</ul>
 			</li>
            
