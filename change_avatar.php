@@ -51,7 +51,7 @@ if(isset($_POST['update'], $_POST['avatar'])) {
  </script> 
 
 <br>
- <input type="submit" name="update" id="button"/> </form>
+ <input type="submit" name="update" class="smallbutton" id="button"/> </form>
 
 <script type="text/javascript">
  function changeAvi(){
