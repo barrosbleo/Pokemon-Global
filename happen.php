@@ -1,3 +1,7 @@
+<?php
+include('modules/lib.php');
+//i guess its a egg hatching test
+?>
 <div class="whathapen">
 <?php
 $query = "SELECT DISTINCT(`message`), `image` FROM `activity` ORDER BY `id` DESC LIMIT 10";
