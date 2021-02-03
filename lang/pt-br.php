@@ -502,7 +502,8 @@ loja de referência.',
 	//prêmio diário
 	'dayprize_title' => 'Prêmio Diário',
 	'dayprize_00' => 'Você ganhou seu prêmio diário hoje.<br>
-Você tem $ next_dailyprize até o próximo prêmio diário<br>
+Você tem ',
+	'dayprize_00A' => ' até o próximo prêmio diário.<br>
 Volte amanhã.',
 	'dayprize_01' => 'Muitas pessoas com o seu endereço IP já ganharam o prêmio diário hoje.',
 	'dayprize_02' => 'Seu prêmio diário é:',
