@@ -575,7 +575,13 @@ textarea{
 	background:#16a085;
 	font-weight:800;
 }
-
+/*change_team*/
+.pretty-table.changeTeam{
+	width:100%;
+}
+.pretty-table.changeTeam td{
+	width:50%;
+}
 
 
 
