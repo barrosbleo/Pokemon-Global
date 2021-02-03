@@ -29,7 +29,7 @@ if(isset($_POST['submit'])) {
 
 	if ($user->dailyprize >= 1 || $multi > 2) {
 		if($multi < 3) {
-			$message = '<p class="error">'.$lang['dayprize_00'].'</p>';
+			$message = '<p class="error">'.$lang['dayprize_00'] . $next_dailyprize . $lang['dayprize_00A'].'</p>';
 		}
 
 		if($multi > 2) {
@@ -74,7 +74,7 @@ if(isset($_POST['submit'])) {
 <?php echo $message;?>
 <br>
 <br>
-<img src="images/pokemon/oak.png"><br><br>
+<img src="images/trainers/oak.png"><br><br>
 <?php echo $lang['dayprize_07'];?>
 <form method="post" action="dailyprize.php">
 	<input type="submit" name="submit" value="<?php echo $lang['dayprize_08'];?>" class="button">

@@ -20,10 +20,10 @@ $user = fetchObj($query, $conn);
 
 $token = ($user->signup_date * 3);
 
-$hitdown = getConfigValue('lucky_hour');
+$hitdown = getConfigValue('lucky_hour', $conn);
 
 $hitrows1 = "SELECT * FROM `lucky_hour`";
-$hitrows = numRows(hitrows1);
+$hitrows = numRows($hitrows1, $conn);
 
 $pid = rand(1, 713);
 $pokemon = "SELECT * FROM `pokemon` WHERE `id` = '$pid'";
@@ -32,7 +32,7 @@ $level = 5;
 $exp = levelToExp($level);
 
 if($hitrows == 0){
-	$newpokemon = giveUserPokemon($uid, $pokemon->name, $level, $exp, $pokemon->move1, $pokemon->move2, $pokemon->move3, $pokemon->move4);
+	$newpokemon = giveUserPokemon($uid, $pokemon->name, $level, $exp, $pokemon->move1, $pokemon->move2, $pokemon->move3, $pokemon->move4, $conn);
 	$newgold = 10000;
 }
 
@@ -80,7 +80,7 @@ if($_GET['lucky'] == 1) {
 
 if($timeleft < 1 && $secondz < 1){
 	$newtime = 3600 + time();
-	$resethit = setConfigValue('lucky_hour', $newtime);
+	$resethit = setConfigValue('lucky_hour', $newtime, $conn);
 	$timeleft = howlongtila($newtime);
 	$givehit = $conn->query("UPDATE `users` SET `lucky_hour` = '0'");
 	$resethitzz = $conn->query("DELETE FROM `lucky_hour`");
