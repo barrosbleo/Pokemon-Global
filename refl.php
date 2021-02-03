@@ -71,7 +71,7 @@ if (isset($_POST['submit'])) {
 		} else {
 			$refPoints -= $price;
 			$conn->query("UPDATE `users` SET `Referals` = '{$refPoints}' WHERE `id` = '{$uid}'");
-			giveUserPokemon($uid, $pokeName, 5, levelToExp(5), 'Tackle', 'Scratch', 'Ember', 'Leer');
+			giveUserPokemon($uid, $pokeName, 5, levelToExp(5), 'Tackle', 'Scratch', 'Ember', 'Leer', $conn);
             
 			echo '
 				<div class="notice">
