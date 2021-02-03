@@ -1,25 +1,12 @@
 <?php
 include('modules/lib.php');
-//require_once 'config.php';
 ?>
 
 <form action="" method="post">
 <?php 
 
-function expToLevel($exp) {
 
-for ($i=10000; $i>0; $i--) {
-if ($exp >= levelToExp($i)) {
-return $i;
-}
-}
 
-return 0;
-}
-
-function levelToExp($level) {
-return ($level*$level)*10;
-}
 if(isset($_POST['Calculate']))
 {
 $level = abs((int) $_POST['lvl']);
@@ -40,7 +27,7 @@ echo $lang['derp_02'];
 }
 else
 {
-echo $lang['derp_03']." ".number_format($level)." "." ".$lang['header_submenu_02_10']." ".number_format(levelToExp($level))." ".$lang['derp_05'];
+echo $lang['derp_03']." ".number_format($level)." "." ".$lang['derp_04']." ".number_format(levelToExp($level))." ".$lang['derp_05'];
 }
 }
 
