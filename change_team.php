@@ -6,8 +6,8 @@ printHeader($lang['change_team_title']);
 
 $uid = (int) $_SESSION['userid'];
 $pid = (int) $_GET['id'];
-$teamIds = getUserTeamIds($uid);
-$pokemon = getUserPokemon($pid);
+$teamIds = getUserTeamIds($uid, $conn);
+$pokemon = getUserPokemon($pid, $conn);
 
 if ($pokemon === false) {
 	echo '<div class="error">'.$lang['change_team_00'].'</div>';
@@ -45,7 +45,7 @@ if ($pokemon === false) {
 		$cells = array();
 		$pos = 1;
 		foreach ($teamIds as $pokeid) {
-			$poke = getUserPokemon($pokeid);
+			$poke = getUserPokemon($pokeid, $conn);
 			if ($poke === false) {
     		    $cells[] = '
         			<img src="images/pokemon/EMPTY.png" /><br />
@@ -53,7 +53,7 @@ if ($pokemon === false) {
     				
     				<form method="post">
     					<input type="hidden" name="pos" value="'.$pos.'" />
-    					<input type="submit" value="'.$lang['change_team_07'].' '.$pokemon['name'].' '.$lang['change_team_08'].'" />
+    					<input type="submit" class="smallbutton" value="'.$lang['change_team_07'].' '.$lang['change_team_08'].'" />
     				</form>
     			';
 			} else {
@@ -65,7 +65,7 @@ if ($pokemon === false) {
     				
     				<form method="post">
     					<input type="hidden" name="pos" value="'.$pos.'" />
-    					<input type="submit" value="'.$lang['change_team_09'].' '.$poke['name'].' '.$lang['change_team_10'].' '.$pokemon['name'].'" />
+    					<input type="submit" class="smallbutton" value="'.$lang['change_team_09'].'" />
     				</form>
     			';
 			}
@@ -74,8 +74,8 @@ if ($pokemon === false) {
 		}
 		
 		echo '
-			<table class="pretty-table">
-				'.cellsToRows($cells, 3).'
+			<table class="pretty-table changeTeam">
+				'.cellsToRows($cells, 2).'
 			</table>
 		';
 	}
