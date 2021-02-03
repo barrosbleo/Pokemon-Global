@@ -31,7 +31,7 @@ $sorts = array
 
 $search    = isset($_GET['search']) ? $_GET['search'] : '' ;
 
-$sort      = $_GET['sort'];
+$sort = isset($_GET['sort']) ? $_GET['sort'] : '';
 $sortKey   = isset($sort) && in_array($sort, array_keys($sorts)) ? $sort : 1 ;
 $orderSql  = $sorts[$sortKey];
 
