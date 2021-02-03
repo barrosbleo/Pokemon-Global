@@ -1,5 +1,6 @@
 <?php
 include('modules/lib.php');
+//battle training
 
 if (!isLoggedIn()) {
 	redirect('index.php');

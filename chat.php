@@ -1,4 +1,7 @@
 <?php
+$exp = explode('/', $_SERVER["SCRIPT_NAME"]);
+$filename = end($exp);
+if ($filename != 'map.php'){header("Location: membersarea.php");}
 /*
 if ($_GET['p'] == "local"){
 	
