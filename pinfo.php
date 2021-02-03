@@ -111,7 +111,7 @@ if ($pokeRow['uid'] == $userId){
                 <td>
                     '.$lang['pinfo_12'].''.$itemsRow['rare_candy'].' '.$lang['pinfo_13'].'
                     <form method=post>
-                        <input type="submit" name="update" value="'.$lang['pinfo_14'].'"/>
+                        <input type="submit" class="smallbutton" name="update" value="'.$lang['pinfo_14'].'"/>
                     </form>
                 </td>
             </tr>
