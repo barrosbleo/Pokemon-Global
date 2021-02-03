@@ -9,7 +9,7 @@ include '_header.php';
 
 printHeader($lang['slots_title']);
 $uid = (int) $_SESSION['userid'];
-$userMoney = getUserMoney($uid);
+$userMoney = getUserMoney($uid, $conn);
 $pokeArr = array('Bulbasaur', 'Gengar', 'Voltorb', 'Cleffa', 'Zubat', 'Golem', 'Squirtle', 'Pichu', 'Koffing', 'Charmander');
 $betAmounts = array(1, 5, 10, 25, 50, 75, 100, 1000, 10000, 100000, 1000000);
 
