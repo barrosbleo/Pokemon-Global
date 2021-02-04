@@ -465,7 +465,7 @@ $result = $conn->query($query);
 		
 		$offers = array();
 $result = $conn->query($query);
-		while ($p = fetchAssoc($query, $conn)) {
+		while ($p = $result->fetch_assoc()) {
 			$query2 = "SELECT * FROM `trade_pokemon` WHERE `id`='{$p['tid']}'";
 			$tradeRow = fetchAssoc($query2, $conn);
 
