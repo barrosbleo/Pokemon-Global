@@ -518,7 +518,6 @@ textarea{
 .quest{
 	text-align:center;
 }
-	
 .quest .quest_title{
 	width: 100%;
 	text-transform: uppercase;
@@ -526,39 +525,33 @@ textarea{
 	font-weight: 800;
 	background: #16a085;
 	padding: 5px 0 5px 0;
-}
-	
+}	
 .quest .quest_text{
 	width: 100%;
 	color: #FFF;
 	padding: 10px 0 5px 0;
-}
-	
+}	
 .quest .table{
 	position:relative;
 	width:80%;
 	left:50%;
 	margin-left:-40%;
 	border:solid 1px;
-}
-	
-	.quest .td{
-		width:50%;
-		border:solid 1px;
-	}
-	
+}	
+.quest .td{
+	width:50%;
+	border:solid 1px;
+}	
 .quest .title_td{
 	background:#16a085;
 	font-weight: 800;
-}
-	
+}	
 .quest .tableBtn{
 	position:relative;
 	width:60%;
 	left:50%;
 	margin-left:-30%;
-}
-	
+}	
 .tableBtn .td{
 	width:50%;
 	height:26px;
@@ -566,8 +559,7 @@ textarea{
 	border-radius:15px;
 	background:#000;
 	font-weight:800;
-}
-	
+}	
 .tableBtn .td:hover{
 	width:50%;
 	height:26px;
@@ -582,9 +574,33 @@ textarea{
 .pretty-table.changeTeam td{
 	width:50%;
 }
-
-
-
+/*pagination*/
+.pagination{
+	position:relative;
+	width:100%;
+}
+.pagination ul{
+	list-style-type:none;
+	margin:0;
+	padding:0;
+}
+.pagination li{
+	display:inline-block;
+}
+.pagination li a{
+	width:40px;
+	height:40px;
+	display:block;
+	text-align:center;
+	margin:15px 4px;
+	background:#2265A3;
+	border-radius:2px;
+	color:white;
+	line-height:40px;
+}
+.pagination li a:hover{
+	background:#B92147;
+}
 
 
 

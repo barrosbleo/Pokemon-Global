@@ -19,7 +19,7 @@ $sorts = array
 $search    = isset($_GET['search']) ? $_GET['search'] : '' ;
 $searchSql = '';
 
-$sort      = isset($_GET['sort']);
+$sort      = $_GET['sort'];
 $sortKey   = isset($sort) && in_array($sort, array_keys($sorts)) ? $sort : 1 ;
 $orderSql  = $sorts[$sortKey];
 
@@ -48,13 +48,13 @@ $query = "SELECT * FROM `users` {$searchSql} {$orderSql} LIMIT {$pagination->ite
 		$qs .= '&amp;search=' . urlencode($search);
 	}
 	
-	$usernameOrder  = isset($_GET['sort']) == 3 ? 5 : 3 ;
-	$lastSeenOrder  = isset($_GET['sort']) == 6 ? 5 : 6 ;
-	$idOrder        = isset($_GET['sort']) == 2 ? 1 : 2 ;
+	$usernameOrder  = $_GET['sort'] == 3 ? 5 : 3 ;
+	$lastSeenOrder  = $_GET['sort'] == 6 ? 5 : 6 ;
+	$idOrder        = $_GET['sort'] == 2 ? 1 : 2 ;
 
 echo '
 		<form method="get" action="" style="text-align: center; margin: 20px 0px;">
-			'.$lang['users_00'].' <input type="text" name="search" value="'.isset($searchHtmlSafe).'" /> <input type="submit" class="smallbutton" value="'.$lang['users_01'].'" />
+			'.$lang['users_00'].'</br> <input type="text" name="search" value="'.isset($searchHtmlSafe).'" /> </br></br><input type="submit" class="smallbutton" value="'.$lang['users_01'].'" />
 		</form>
 ';
 
