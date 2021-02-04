@@ -14,6 +14,20 @@ if(isset($_GET['func']) && $_GET['func'] == "send" && isset($_GET['msg']) && iss
 	//when bad word usage reach to 3 than block user for chating during 5 minutes
 	//write msg log
 	//clear older 50 msgs
+	
+	//check if is (global message){then execute it} else{bypass}
+	if(isset($_GET['type']) && $_GET['type'] == 1){
+		$map = 0;
+		$msg = cleanSql($_GET['msg'], $conn);
+		$uid = cleanSql($uid, $conn);
+		$query = "SELECT username FROM users WHERE id='{$uid}'";
+		$result = $conn->query($query);
+		$username = $result->fetch_assoc();
+		$query = "INSERT INTO chat (user_id, username, message, map) VALUES ('{$uid}', '{$username['username']}', '{$msg}', '{$map}')";
+		$conn->query($query);
+		echo "success";
+		exit();
+	}
 	if($error != 1){
 		$map = cleanSql($_GET['map'], $conn);
 		$msg = cleanSql($_GET['msg'], $conn);
@@ -28,10 +42,14 @@ if(isset($_GET['func']) && $_GET['func'] == "send" && isset($_GET['msg']) && iss
 }
 if(isset($_GET['func']) && isset($_GET['map']) && $_GET['func'] == "load"){
 	$map = cleanSql($_GET['map'], $conn);
-	$query = "SELECT * FROM chat WHERE  map='{$map}' ORDER BY chat_id DESC LIMIT 0,20";
+	$query = "SELECT * FROM chat WHERE  map='{$map}' OR map ='0' ORDER BY chat_id DESC LIMIT 0,20";
 	$result = $conn->query($query);
 	while($msg = $result->fetch_array(MYSQLI_ASSOC)){
-		echo $msg['sent_on']."</br>".$msg['username'].": ".$msg['message']."</br>";
+		if($msg['map'] != 0){
+			echo $msg['sent_on']."</br>".$msg['username'].": ".$msg['message']."</br>";
+		}else{
+			echo '<div class="globalMsg">'.$msg['sent_on'].'</br>'.$msg['username'].': '.$msg['message'].'</br></div>';
+		}
 	}
 }
 ?>
