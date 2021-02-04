@@ -10,7 +10,7 @@ printHeader($lang['release_title']);
 
 $uid = (int) $_SESSION['userid'];
 $pid = (int) $_GET['id'];
-$releaseReward = getConfigValue('release_reward');
+$releaseReward = getConfigValue('release_reward', $conn);
 
 // check that the pokemon exists and they own it
 $query = "SELECT * FROM `user_pokemon` WHERE `id`='{$pid}' AND `uid`='{$uid}'";
@@ -24,7 +24,7 @@ $pokeInfo = fetchAssoc($query, $conn);
 //---------------------------------
 
 // check that it is not in their team
-$teamIds = getUserTeamIds($uid);
+$teamIds = getUserTeamIds($uid, $conn);
 
 if (in_array($pid, $teamIds)) {
 	echo '<div class="error">'.$lang['release_01'].'</div>';
@@ -49,7 +49,7 @@ if (isset($_GET['sure'])) {
 		
 		$conn->query("DELETE FROM `user_pokemon` WHERE `uid`='{$uid}' AND `id`='{$pid}'");
 		$conn->query("UPDATE `users` SET `released`=`released`+1 WHERE `id`='{$uid}'");
-		updateUserMoney($uid, getUserMoney($uid) + $releaseReward);
+		updateUserMoney($uid, getUserMoney($uid, $conn) + $releaseReward, $conn);
 		
 		unset($_SESSION['releaseToken'][$pid]);
 	}
