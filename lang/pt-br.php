@@ -950,7 +950,7 @@ http://pokeglobal.com/chatroom.php ',
 
 //roll_dice
 	'roll_dice_00' => 'Jogue os Lados',
-	'roll_dice_01' => 'Você lançou um total de 7 e ganhou $ money $',
+	'roll_dice_01' => 'Você lançou um total de 7 e ganhou $',
 	'roll_dice_02' => 'Você não tirou um 7 e apenas teve que pagar 50$ para tentar a sorte.',
 	'roll_dice_03' => 'Boa sorte<br/>',
 	'roll_dice_04' => 'Você atualmente tem',
