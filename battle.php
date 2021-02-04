@@ -725,9 +725,8 @@ if ($_SESSION['battle']['screen'] == 'battle') {
 
 		$gymMsg = '
 			<div>
-				<img src="images/badges/'.$badge.'.gif" alt="'.$badge.' Badge" />
 				'.$lang['battle_31'].' '.$gymleader.' '.$lang['battle_32'].' '.$badge.' '.$lang['battle_33'].'
-				<img src="images/badges/'.$badge.'.gif" alt="'.$badge.' '.$lang['battle_33'].'" />
+				<img src="images/badges/'.$badge.'.png" alt="'.$badge.' '.$lang['battle_33'].'" />
 			</div>
 		';
 		
