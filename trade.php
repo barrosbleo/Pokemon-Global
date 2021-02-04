@@ -565,7 +565,7 @@ $result = $conn->query($query);
 
 
 
-
-echo '</div>';
 include '_footer.php';
+echo '</div>';
+
 ?>
