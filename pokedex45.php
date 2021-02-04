@@ -30,8 +30,11 @@ echo'
        <td>
          
                <img src="images/pokemon/'.$p_class->name.'.png">
-<br><img src="images/dex/'.$p_class->type1.'.png">&nbsp;<img src="images/dex/'.$p_class->type2.'.png">
-	       
+<br><img src="images/dex/'.$p_class->type1.'.png">&nbsp;';
+if(!empty($p_class->type2)){
+	echo'<img src="images/dex/'.$p_class->type2.'.png">';
+}
+echo'	       
        </td>
     <td><table class="pretty-table">
 	  
@@ -72,13 +75,17 @@ echo'
 		      	   <div><b>'.$p_class->name.'</b></div>
 		           <img style="width:110px;" src="images/pokemon/'.$p_class->name.'.png">
 		            
-		    </td>
+		    </td>';
+			if(!empty($p_class->evolution)){
+			echo'
 		    <td>Evolves into<br><br><b>'.$lang['pokedex45_07'].'</b><br>'.$lang['pokedex45_08'].'<b>'.$p_class->level.'</b><br>'.$lang['pokedex45_09'].'</td>
 		    <td>  
 		      
 		      	   <div><b>'.$p_class->evolution.'</b></div>
 		           <img style="width:110px;" src="images/pokemon/'.$p_class->evolution.'.png">
-		    </td>
+		    </td>';
+			}
+			echo';
 		  </tr>
 		</table>
 </center>';
