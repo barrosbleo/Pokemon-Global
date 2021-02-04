@@ -948,7 +948,7 @@ the future there will be ranks for who caught the most pokemons.',
 	
 	//roll_dice
 	'roll_dice_00' => 'Roll Dice',
-	'roll_dice_01' => 'You rolled a total of 7 and won $money $',
+	'roll_dice_01' => 'You rolled a total of 7 and won $',
 	'roll_dice_02' => 'You didnt roll a 7 and just had to pay 50 $ for trying out.',
 	'roll_dice_03' => 'Good Luck<br />',
 	'roll_dice_04' => 'You currently have ',
