@@ -10,7 +10,7 @@ printHeader($lang['online_title']);
 
 $uid = (int) $_SESSION['userid'];
 $time = time();
-$otime = $time - (60*60);
+$otime = $time - (60*60);//time to calc (1 hour)
 
 /// just an test -- >
 if (isset($_GET['get'])) {
