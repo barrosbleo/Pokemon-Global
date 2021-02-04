@@ -17,7 +17,7 @@ class Pagination {
 		$this->itemsPerPage = $itemsPerPage;
 		$this->numPages = ceil($numItems/$itemsPerPage);
 		
-		$this->currentPage = in_array(isset($_GET['page']), range(1, $this->numPages)) ? (int) isset($_GET['page']) : 1 ;
+		$this->currentPage = in_array($_GET['page'], range(1, $this->numPages)) ? (int) $_GET['page'] : 1 ;
 		
 		
 		$this->startItem = (($this->currentPage-1) * $itemsPerPage);
@@ -31,6 +31,7 @@ class Pagination {
 		
 		echo '
 			<div class="pagination">
+			<center>
 				<ul>
 		';
 		
@@ -40,7 +41,7 @@ class Pagination {
 		
 		echo '<li><a href="'.$this->queryString.'&amp;page=1">'.$lang['pag_class_00'].'</a></li>';
 		
-		for ($i=$this->currentPage-5; $i<=$this->currentPage+5; $i++) {
+		for ($i=$this->currentPage-1; $i<=$this->currentPage+1; $i++) {
 			if ($i<=0 || $i>$this->numPages) continue;
 			echo '<li'.$this->isPageSelectedClass($i).'><a href="'.$this->queryString.'&amp;page='.$i.'">'.$i.'</a></li>';
 		}
@@ -53,6 +54,7 @@ class Pagination {
 		
 		echo '
 				</ul>
+				</center>
 			</div>
 		';
 	}
