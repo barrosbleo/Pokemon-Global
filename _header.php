@@ -67,8 +67,11 @@
 	
 	<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 		<ul class="nav navbar-nav navbar-left">
-		            <li class="dropdown">
+			<li class="dropdown">
 				<a href="/map.php?map=<?php echo base64_encode($_SESSION['player']['map_num']);?>" class="dropdown-toggle"><?php echo $lang['header_menu_01'];?></span></a>
+			</li>
+			<li class="dropdown">
+				<a href="/gyms.php" class="dropdown-toggle"><?php echo $lang['header_submenu_04_01'];?></span></a>
 			</li>
 			
             <li class="dropdown">

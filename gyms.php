@@ -52,13 +52,13 @@ foreach ($leagueArray as $leagueName => $leader) {
 		
 		$badgeHtml = '';
 		if (in_array($leaderArray['badge'], $badges)) {
-			$badgeHtml = ' <img src="images/badges/'.$leaderArray['badge'].'.png" /> ';
+			$badgeHtml = ' <img style="width:25px;" src="images/badges/'.$leaderArray['badge'].'.png" /> ';
 		}
 		echo '
 			<td class="testHover" style="width: 25%;">
 				<a href="gyms.php?leader=' . $leaderArray['name'] . '">
 					<img src="images/gyms/' . $leaderArray['name'] . '.png" alt="' . $leaderArray['name'] . '" /><br />
-					' . $badgeHtml . $leaderArray['name'] . $badgeHtml. '
+					' . $leaderArray['name'] . $badgeHtml. '
 				</a>
 			</td>
 		';

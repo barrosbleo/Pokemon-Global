@@ -119,7 +119,7 @@ if(numRows($query, $conn) != 1) {
 			$leader = $nameAndBadge['name'];
 			
 			if (in_array($badge, $userBadges)) {
-				$bcell .= '<img src="images/badges/'.$badge.'.png" title="Won '.$leader.' and earned '.$badge.'"/>';
+				$bcell .= '<img style="width:25px;" src="images/badges/'.$badge.'.png" title="Won '.$leader.' and earned '.$badge.'"/>';
 			} else {
 				$bcell .= '&nbsp;';
 			}
