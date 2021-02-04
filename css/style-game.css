@@ -383,6 +383,23 @@ textarea{
 	margin-bottom:5px;
     transition:all 0.2s ease;
 }
+.smallbutton:hover{
+	background:#F24A4A;
+}
+.faddedbutton{
+	border-radius:2px;
+	border:none;
+	background:#4B0808;
+	padding:4px 30px !important;
+	color:#FFF !important;
+	text-align:center;
+	outline:none;
+	box-shadow:0 2px 0 #A72323, 0 1px 0 rgba(255, 255, 255, 0.20) inset;
+	position:center;
+	top:5px;
+	margin-bottom:5px;
+	transition:all 0.2s ease;
+}
 /*map*/
 .maptable{
 	position:relative;
@@ -458,6 +475,9 @@ textarea{
 	display:none;
 	width:90%;
 	background:red;
+}
+.globalMsg{
+	color:#2c62bf;
 }
 #info-box{
 	position:absolute;
