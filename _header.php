@@ -20,7 +20,7 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 		<meta name="robots" content="index, follow">
 		<meta name="description" content="<?php echo $lang['meta_description'];?>">
-		<meta name="keywords" content="Pokemon RPG, pokemon rpg, pokemon, rpg, free pokemon rpg, Pokemon MMORPG">
+		<meta name="keywords" content="Capturar pokemon, jogar pokemon, Pokemon Global, pokemon global, Pokemon RPG, pokemon rpg, pokemon, rpg, free pokemon rpg, Pokemon MMORPG">
 		<meta name="author" content="Pokemon RPG, pokemon rpg, pokemon, rpg, free pokemon rpg, Pokemon MMORPG">
 		
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
