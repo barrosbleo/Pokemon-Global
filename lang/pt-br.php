@@ -3,6 +3,9 @@
 // ==> English Language File <== //
 
 $lang = array(
+
+	'meta_description' => 'Venha se divertir explorando esse mundo vasto de pokémons! Capture, faça amigos, divirta-se!',
+
 	'lang_beta' => 'Idiomas BETA teste',
 	'lang_en' => 'English',
 	'lang_pt-br' => 'Português',
