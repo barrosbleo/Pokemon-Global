@@ -74,7 +74,7 @@ if(isset($_POST['submit'])) {
 <?php echo $message;?>
 <br>
 <br>
-<img src="images/trainers/oak.png"><br><br>
+<img src="images/trainers/Oak.png"><br><br>
 <?php echo $lang['dayprize_07'];?>
 <form method="post" action="dailyprize.php">
 	<input type="submit" name="submit" value="<?php echo $lang['dayprize_08'];?>" class="button">
