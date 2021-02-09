@@ -86,7 +86,7 @@ $query = "SELECT * FROM `users` WHERE `id`='{$uid}'";
 $userRow = cleanHtml(fetchAssoc($query, $conn));
 
 $cells = array();
-for ($i=1; $i<=14; $i++) {
+for ($i=1; $i<=3; $i++) {//change this to add or remove sprites
 	$attr = $userRow['map_sprite'] == $i ? ' checked="checked" ' : '' ;
 	$cells[] = '
 	<label>
