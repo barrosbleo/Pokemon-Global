@@ -3,7 +3,7 @@
 //general configs
 $general['path'] = "https://pkmglobal.online";	//default root game path
 $general['deflang'] = "pt-br";				//default game language
-$maintenance = 0;						//sets the game to the maintenance mode(block players access)
+$maintenance = 1;						//sets the game to the maintenance mode(block players access)
 
 //MySQLi section
 $database['host'] = "localhost";		//mysql driver host address
