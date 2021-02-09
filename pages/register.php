@@ -4,10 +4,10 @@
 $starterCells = array();
 foreach($pokemonNames as $name){
 	$starterCells[] = 
-		$name.'
-		<label>
-		<img src="images/pokemon/'.$name.'.png" alt="'.$name.'">
-		<input type="radio" name="pokemon"  id="regStarter" value="'.$name.'">
+		'<label>
+		<img src="images/pokemon/'.$name.'.png" alt="'.$name.'">'
+		.$name.
+		'</br><input type="radio" name="pokemon"  id="regStarter" value="'.$name.'">
 		</label></br></br>
 	';
 }
