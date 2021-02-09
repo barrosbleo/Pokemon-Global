@@ -1320,23 +1320,33 @@ http://pokeglobal.com/chatroom.php ',
 	'completed_quest_btn' => 'Missões concluídas',
 	'canceled_quest_btn' => 'Missões canceladas',
 	
-	//quest 1 (edmund)
-	'quest_1_title' => 'Nidoran Farejador',
-	'quest_1_text' => 'Deixe que me apresente:</br>
-	Sou Edmund, acabei de formar na academia e sou um novo policial na cidade.</br>
-	Eu não sou muito de sair atrás de bandidos sabe, eu gosto mesmo é de me aventurar em investigações.
-	E pra isso eu preciso de um pokemon que tenha um bom faro, como um arcanine, eles são ótimos,
-	mas não vejo algum se quer por aqui, nem mesmo um growlithe.</br>
-	Ei, talvez um nidoran me ajude, já poderia começar investigando quem roubou pães na casa do João!</br></br>
-	Que tal você capturar um pra mim?',
-	'quest_1_rewards' => '1000 $',
-	'quest_1_objectives' => 'Capturar um Nidoran',
-	'quest_1_text_stage2' => 'Ei, é um prazer vê-lo novamente!</br>
-	Me diga, você capturou meu pokemon?',	
+	//quest 0 (no txt)
 	
-	//quest 2 (xxx)
-	'quest_2_title' => 'Nidoran Farejador',
-	'quest_2_text' => 'Deixe que me apresente:</br>
+	//quest 1 (Mom)
+	'quest_1_title' => 'Tome cuidado meu bem',
+	'quest_1_text' => 'Estou tão orgulhosa de você.</br>
+	Certamente seu pai estaria muito feliz também.</br>
+	Sua jornada está começando então espero que já tenha recebido o seu primeiro pokemon. 
+	Este mundo é enorme, espero receber muitos cartões postais seus!</br>
+	Lembrou de pegar sua pokedex? Ela contém todas as informações úteis sobre pokemons.</br>
+	Vou sentir muito a sua falta!</br></br>',
+	
+	//quest 2 (Pallet Girl)
+	'quest_2_title' => 'Garota de Pallet',
+	'quest_2_text' => 'Você é um treinador pokemon?</br>
+	Quando crescer espero me tornar uma treinadora também.</br>
+	Espero que consiga todas as insígnias e volte para Pallet como um grande mestre!</br>
+	Tenha uma boa sorte na sua jornada!</br></br>',
+		
+	//quest 3 (Pallet Guy)
+	'quest_3_title' => 'Morador de Pallet',
+	'quest_3_text' => 'Quer uma dica colega?</br>
+	Não chegue perto dos Beedrills.</br>
+	Eles são muito perigosos, e sua ferroada doi horrores!</br></br>',
+	
+	//quest x (xxx)
+	'quest_x_title' => 'Nidoran Farejador',
+	'quest_x_text' => 'Deixe que me apresente:</br>
 	Sou Edmund, acabei de formar na academia e sou um novo policial na cidade.</br>
 	Eu não sou muito de sair atrás de bandidos sabe, eu gosto mesmo é de me aventurar em investigações.
 	E pra isso eu preciso de um pokemon que tenha um bom faro, como um arcanine, eles são ótimos,
