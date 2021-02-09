@@ -131,10 +131,9 @@ ini_set("display_errors", 1);
     }  
 	
     function changeMap() {
-	e.preventDefault();
-	var mapNum = document.getElementById("mapNum");
-	var table = document.getElementByTagName("table");
-	table.style.background = "../images/maps/new/"+mapNum+".png";
+	var mapNum = document.getElementById("mapNum").value;
+	var table = document.getElementsByTagName("table");
+	table[0].style.backgroundImage = "url('../images/maps/"+mapNum+".png')";
     }
      
     // adds a table with a cell for
