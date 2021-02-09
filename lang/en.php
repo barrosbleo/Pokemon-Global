@@ -1318,36 +1318,44 @@ the future there will be ranks for who caught the most pokemons.',
 	'active_quest_btn' => 'Active quests',
 	'completed_quest_btn' => 'Completed quests',
 	'canceled_quest_btn' => 'Canceled quests',
+	
+	//quest 0 (no txt
+	
+	//quest 1 (Mom)
+	'quest_1_title' => 'Take care of yourself',
+	'quest_1_text' => 'I am very proud of you.</br>
+	Certainly your dad would be so happy too.</br>
+	Your journey is starting so I hope you already got your first pokemon. 
+	It is a huge world, please remember me wherever you go!</br>
+	Do not forget to take your pokedex! It contains every kind of informations about pokemons.</br>
+	I\'m missing you already!</br></br>',
+	
+	//quest 2 (Pallet Girl)
+	'quest_2_title' => 'Pallet Girl',
+	'quest_2_text' => 'Are you a pokemon trainer?</br>
+	I wanna be a great trainer too, you know, when i get the age for that.</br>
+	Hope you earn all badges and come bake to Pallet as a great champion!</br>
+	Have a good luck in your journey!</br></br>',
 
-	
-	//quest 1 (edmund)
-	'quest_1_title' => 'Nidoran\'s Nose',
-	'quest_1_text' => 'Let me introduce myself:</br>
-	I am Edmund, I just graduated at academy and I am the newest officer in the city.</br>
-	I\'m not that kind who like went out pursuing thieves, I\'m keen investigating, that\'s what I enjoy.
-	For doing this I might need a good smeller pokemon, like an arcanine, they are great,
-	but I can not see anyone around here, neither a growlithe.</br>
-	Hey, maybe a nidoran would help me, could start investigating who stole breads from Jon\'s house!</br></br>
-	What about capturing a nidoran for me?',
-	'quest_1_rewards' => '1000 $',
-	'quest_1_objectives' => 'Capture a Nidoran',
-	'quest_1_text_stage2' => 'Hey, nice to see you again.</br>
-	Let me know, have you got my pokemon?',
-	
-	//quest 2 (xxx)
-	'quest_2_title' => 'Missão 02',
-	'quest_2_text' => 'Let me introduce myself:</br>
-	I am Edmund, I just graduated at academy and I am the newest officer in the city.</br>
-	I\'m not that kind who like went out pursuing thieves, I\'m keen investigating, that\'s what I enjoy.
-	For doing this I might need a good smeller pokemon, like an arcanine, they are great,
-	but I can not see anyone around here, neither a growlithe.</br>
-	Hey, maybe a nidoran would help me, could start investigating who stole breads from Jon\'s house!</br></br>
-	What about capturing a nidoran for me?',
+	//quest 3 (Pallet Guy)
+	'quest_3_title' => 'Pallet Neighbor',
+	'quest_3_text' => 'Wanna a tip?</br>
+	Do not get near of Beedrills.</br>
+	They are very dangerous, and they sting hurts a lot!</br></br>',
+
+	//quest x (xxx)
+	'quest_x_title' => 'Nidoran Farejador',
+	'quest_x_text' => 'Deixe que me apresente:</br>
+	Sou Edmund, acabei de formar na academia e sou um novo policial na cidade.</br>
+	Eu não sou muito de sair atrás de bandidos sabe, eu gosto mesmo é de me aventurar em investigações.
+	E pra isso eu preciso de um pokemon que tenha um bom faro, como um arcanine, eles são ótimos,
+	mas não vejo algum se quer por aqui, nem mesmo um growlithe.</br>
+	Ei, talvez um nidoran me ajude, já poderia começar investigando quem roubou pães na casa do João!</br></br>
+	Que tal você capturar um pra mim?',
 	'quest_2_rewards' => '1000 $',
-	'quest_2_objectives' => 'Capture a Nidoran',
-	'quest_2_text_stage2' => 'Hey, nice to see you again.</br>
-	Let me know, have you got my pokemon?',
-	//'' => '',
+	'quest_2_objectives' => 'Capturar um Nidoran',
+	'quest_2_text_stage2' => 'Ei, é um prazer vê-lo novamente!</br>
+	Me diga, você capturou meu pokemon?',
 	//'' => '',
 	//'' => '',
 	//'' => '',

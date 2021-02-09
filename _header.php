@@ -70,9 +70,6 @@
 			<li class="dropdown">
 				<a href="/map.php?map=<?php echo base64_encode($_SESSION['player']['map_num']);?>" class="dropdown-toggle"><?php echo $lang['header_menu_01'];?></span></a>
 			</li>
-			<li class="dropdown">
-				<a href="/gyms.php" class="dropdown-toggle"><?php echo $lang['header_submenu_04_01'];?></span></a>
-			</li>
 			
             <li class="dropdown">
 				<a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo $lang['header_menu_02'];?> <span class="caret"></span></a>
@@ -109,7 +106,7 @@
             <li class="dropdown">
 				<a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo $lang['header_menu_06'];?> <span class="caret"></span></a>
 				<ul class="dropdown-menu" role="menu">
-					<li><a href="/shop.php"><?php echo $lang['header_submenu_06_01'];?></a></li>
+					<!--<li><a href="/shop.php"><?php// echo $lang['header_submenu_06_01'];?></a></li>-->
 					<li><a href="/shop_pokemon.php"><?php echo $lang['header_submenu_06_02'];?></a></li>
 					<li><a href="/token_shop.php"><?php echo $lang['header_submenu_07_04'];?></a></li>
 					<li><a href="/sell_pokemon.php"><?php echo $lang['header_submenu_06_03'];?></a></li>

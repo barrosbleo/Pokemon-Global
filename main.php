@@ -20,8 +20,11 @@ function loadPage(pageName){
 		newPage.style.display = "block";
 		curPage.style.display = "none";
 		curPage = newPage;
+		//alert(newPage.id);
+		page = newPage.id;
 	}
 }
+
 <?php
 //if is registering with referral
 if(isset($_GET['refReg'])){
@@ -106,6 +109,26 @@ function doRegister(){
 	xhttp.send("username="+regUser.value+"&password="+regPass.value+"&repass="+regRePass.value+"&regmail="+regMail.value+"&regstarter="+regStarter+"&refid="+refId+"&submit=register");
 
 }
+
+
+
+//do login with enter key
+function checkKeysDown(evt){
+	if (evt.keyCode == 13) {
+		if(evt.preventDefault){
+			evt.preventDefault();
+		}
+		if (evt.stopPropagation) {
+			evt.stopPropagation();
+		}
+		if(page == "loginPage"){
+			doLogin();
+		}else if(page == "registerPage"){
+			doRegister();
+		}
+	}
+}
+window.addEventListener('keydown', checkKeysDown, false);
 </script>
 <?php
 include('_footer.php');
