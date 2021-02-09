@@ -1,5 +1,6 @@
 <?php
-include('modules/lib.php');
+include('modules/config.php');
+include('modules/language.php');
 
 
 ?>
