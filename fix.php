@@ -2,9 +2,13 @@
 include('modules/lib.php');
 //battle training
 
+
 if (!isLoggedIn()) {
 	redirect('index.php');
 }
+
+include '_header.php';
+printHeader($lang['fix_title']);
 
 switch ($_GET['d']) {
 	case 'g':
@@ -100,11 +104,6 @@ if (isset($_GET['rebattle'])) {
 	redirect('battle.php');
 }
 
-
-include '_header.php';
-printHeader($lang['fix_title']);
-
-
 echo '
 	<div style="text-align: center;">
 		'.$lang['fix_03'].' 
@@ -116,7 +115,7 @@ echo '
 		<tr>
 			<td colspan="6">
 				<form action="battle.php" method="post">
-					<input type="submit" value="'.$lang['fix_04'].'">
+					<input type="submit" class="smallbutton" value="'.$lang['fix_04'].'">
 				</form>
 			</td>
 		</tr>
