@@ -1,0 +1,462 @@
+ <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "DTD/xhtml1-strict.dtd">
+ <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+        
+ <head profile="http://gmpg.org/xfn/11?>
+ <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        
+ <title>PE2K.com - PE2K.com</title>
+        
+ <meta name="generator" content="WordPress 3.1" /> <!– leave this for stats –>
+<meta name="description" content="Pokemon news, info, sprites, pictures, anime, movies, TCG, forum: Pokemon Platinum, Diamond/Pearl, HeartGold/SoulSilver." />
+<meta name="keywords" content="pokemon elite 2000, pe2k, platinum, diamond, pearl, heartgold, soulsilver, sprites, pictures, anime, movies, trading card game, tcg, news, forum" />
+<meta name="verify-v1" content="WmBL1Q2cDL07P+2afmuCkJNoIdEBDFOH3XMDrDWw4ek=" />
+        
+ <link rel="stylesheet" href="http://www.pokemonelite2000.com/wp-content/themes/brown-rush-10/style.css" type="text/css" media="screen" />
+ <link rel="alternate" type="application/rss+xml" title="RSS 2.0? href="http://www.pokemonelite2000.com/feed" />
+ <link rel="alternate" type="text/xml" title="RSS .92? href="http://www.pokemonelite2000.com/feed/rss" />
+ <link rel="alternate" type="application/atom+xml" title="Atom 0.3? href="http://www.pokemonelite2000.com/feed/atom" />
+ <link rel="pingback" href="http://www.pokemonelite2000.com/xmlrpc.php" />
+        
+ 	<link rel='archives' title='October 2011' href='http://www.pokemonelite2000.com/date/2011/10' />
+	<link rel='archives' title='September 2011' href='http://www.pokemonelite2000.com/date/2011/09' />
+	<link rel='archives' title='August 2011' href='http://www.pokemonelite2000.com/date/2011/08' />
+	<link rel='archives' title='July 2011' href='http://www.pokemonelite2000.com/date/2011/07' />
+	<link rel='archives' title='June 2011' href='http://www.pokemonelite2000.com/date/2011/06' />
+	<link rel='archives' title='May 2011' href='http://www.pokemonelite2000.com/date/2011/05' />
+	<link rel='archives' title='April 2011' href='http://www.pokemonelite2000.com/date/2011/04' />
+	<link rel='archives' title='March 2011' href='http://www.pokemonelite2000.com/date/2011/03' />
+	<link rel='archives' title='February 2011' href='http://www.pokemonelite2000.com/date/2011/02' />
+	<link rel='archives' title='January 2011' href='http://www.pokemonelite2000.com/date/2011/01' />
+	<link rel='archives' title='December 2010' href='http://www.pokemonelite2000.com/date/2010/12' />
+	<link rel='archives' title='November 2010' href='http://www.pokemonelite2000.com/date/2010/11' />
+	<link rel='archives' title='October 2010' href='http://www.pokemonelite2000.com/date/2010/10' />
+	<link rel='archives' title='September 2010' href='http://www.pokemonelite2000.com/date/2010/09' />
+	<link rel='archives' title='February 2010' href='http://www.pokemonelite2000.com/date/2010/02' />
+	<link rel='archives' title='January 2010' href='http://www.pokemonelite2000.com/date/2010/01' />
+	<link rel='archives' title='December 2009' href='http://www.pokemonelite2000.com/date/2009/12' />
+	<link rel='archives' title='November 2009' href='http://www.pokemonelite2000.com/date/2009/11' />
+	<link rel='archives' title='October 2009' href='http://www.pokemonelite2000.com/date/2009/10' />
+	<link rel='archives' title='September 2009' href='http://www.pokemonelite2000.com/date/2009/09' />
+	<link rel='archives' title='August 2009' href='http://www.pokemonelite2000.com/date/2009/08' />
+	<link rel='archives' title='July 2009' href='http://www.pokemonelite2000.com/date/2009/07' />
+        
+ <link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://www.pokemonelite2000.com/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://www.pokemonelite2000.com/wp-includes/wlwmanifest.xml" /> 
+<link rel='index' title='PE2K.com' href='http://www.pokemonelite2000.com' />
+<meta name="generator" content="WordPress 3.1" />
+<meta name="framework" content="Alkivia Framework 0.8" />
+<style>
+/* Tweet & Like CSS */
+
+.tweetandlike, a.tweetandlike {
+	float:left;
+	display:block;
+}
+
+.tweetandlike-container {
+	width: 100%;
+	padding: 0 0 5%;
+}
+
+.tweetandlike-box {
+	background:none repeat scroll 0 0 #E8F0F9;
+	border:1px solid #ABD2E9;
+	margin:15px 0;
+	padding:10px;
+}
+
+.tweetandlike-box h4 {
+	color:#3A5796;
+	font-family:'Helvetica Neue',Arial,sans-serif;
+	font-size:16px !important;
+	font-weight:bold;
+	margin-bottom: 5px;
+}
+
+.tweetandlike-container .twitter-box, .addthis-box {
+	margin-right: 10px;
+}
+
+.box-vertical {
+	height: 90px;
+}
+
+h4 #tweetandlike-heading{
+	font-family:'Helvetica Neue',Arial,sans-serif;
+	font-size:16px !important;
+	font-weight:bold;
+	margin-bottom: 5px;
+}
+
+</style><script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#username=xa-4cace20d7db12615"></script>	<script type="text/javascript">
+	<!--
+	var addthis_config = {
+		services_exclude: 'twitter',
+		ui_cobrand: 'Tweet & Like'
+	}
+	-->
+	</script>
+<!-- Start WP Socializer | Social Buttons CSS File -->
+<link rel="stylesheet" type="text/css" media="all" href="http://www.pokemonelite2000.com/wp-content/plugins/wp-socializer/wp-socializer-buttons-css.css" /> 
+<!-- End WP Socializer | Social Buttons CSS File -->
+ <script LANGUAGE="JavaScript">
+ 
+ 
+ 
+ <!-- This script and many more are available free online at -->
+ 
+ <!-- The JavaScript Source!! http://javascript.internet.com -->
+ 
+ 
+ 
+ <!-- Begin
+ 
+ 
+ 
+ var maxAdNo = 5
+   var adNo
+ 
+ var myAd = new Array()
+ 
+ 
+ 
+ myAd[0] = '<a target=_blank href="http://www.pokemonelite2000.com/forum/forumdisplay.php?f=22"><img src=http://www.pokemonelite2000.com/ad_warseason6.jpg width="468" height="60" border="0"></a>'
+ 
+ myAd[1] = '<a target=_blank href="http://www.pokemonelite2000.com/forum/forumdisplay.php?f=37"><img src=http://www.pokemonelite2000.com/ad_urpg001.png width="468" height="60" border="0"></a>'
+ 
+ myAd[2] = '<a target=_blank href="http://www.pokemonelite2000.com/forum/forumdisplay.php?f=37"><img src=http://www.pokemonelite2000.com/ad_urpg.jpg width="468" height="60" border="0"></a>'
+ 
+ myAd[3] = '<a target=_blank href="http://pokemonelite2000.sayswap.com/affiliates/refer/15382"><img src=http://www.pokemonelite2000.com/sayswapbanner_2.jpg width="468" height="60" border="0"></a>'
+ 
+ myAd[4] = '<a target=_blank href="http://www.pokemonelite2000.com/event_2007regionals.html"><img src=http://www.pokemonelite2000.com/ad_2007regionals.jpg width="468" height="60" border="0"></a>'
+ 
+ myAd[5] = '<a target=_blank href="http://www.pokemonelite2000.com/event_gdc2007.html"><img src=http://www.pokemonelite2000.com/ad_2007gdc.jpg width="468" height="60" border="0"></a>'
+ 
+ 
+ 
+ //  End -->
+ 
+ </script>
+ </head>
+ <body>
+ <div align="center">
+ <div id="wrap">
+ 	<div id="header">
+ 		<span><a href="http://www.pokemonelite2000.com/">
+ <img border="0" src="http://www.pokemonelite2000.com/pe2klogo.jpg" width="550" height="52" align="left"></a></span>
+ 		<div id="menu">
+ 		<ul style="float: right;">
+ 			<li><a href="http://www.pokemonelite2000.com">Home</a></li>
+ 			<li><a href="http://www.pokemonelite2000.com/forum/">Forum</a></li>
+ 			<li><a href="http://www.pokemonelite2000.com/sprites.html">Sprite</a></li>
+ 		</ul>
+ 		</div>
+ 	</div>
+ 	<div id="header_below"></div>
+ <div id="contentad"><p align="center"><script type="text/javascript"><!--
+ google_ad_client = "pub-1169433100352272";
+ /* 728x90 */
+ google_ad_slot = "7303987608";
+ google_ad_width = 728;
+ google_ad_height = 90;
+ //-->
+ </script>
+ <script type="text/javascript"
+ src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+ </script></p><br></div>
+ 	<div id="content">
+ 
+ 				<div id="right">
+
+<div class="ltop"></div>
+			<div class="lmid">			<div class="textwidget"><center><a href="http://www.twitter.com/pe2k"><img src="http://twitter-badges.s3.amazonaws.com/follow_me-b.png" alt="Follow PE2K on Twitter"/></a>
+<br><br><a href="http://www.facebook.com/home.php?sk=group_177121162331956"><img src="http://www.pokemonelite2000.com/wp-content/uploads/2011/03/facebook.gif" alt="Join the PE2K Facebook Group"/></a>
+<br><br><img src="http://www.pokemonelite2000.com/feedsmallbutton.png"> <a href="http://www.pokemonelite2000.com/?feed=rss2"><img src="http://www.pokemonelite2000.com/rss2button.png"></a><br><br><img src="http://www.pokemonelite2000.com/feedsmallbutton.png"> <a href="http://www.pokemonelite2000.com/?feed=atom"><img src="http://www.pokemonelite2000.com/atombutton.png"></a></center></div>
+		</div>
+			<div class="lbot"></div><div class="ltop"></div>
+			<div class="lmid">
+			<h2>Black &amp; White Info</h2>			<div class="textwidget"><b>Featured</b><br>
+<a href="http://www.pokemonelite2000.com/bwwalkthroughintro">Black & White Walkthrough</a>
+<br>
+<br>
+<b>General Information</b>
+<br>
+<a href="http://www.pokemonelite2000.com/bw_gym_leaders">Major Battles Guide</a><br>
+<a href="http://www.pokemonelite2000.com/9823/black-white-complete-list-of-english-names">Complete List of English Names</a><br>
+<a href="http://www.pokemonelite2000.com/9898/pokemon-black-white-the-choice-isnt-always-that-way">Choosing Black or White</a>
+<br>
+<br>
+<b>Extra</b><br>
+<a href="http://www.pokemonelite2000.com/forum/forumdisplay.php?f=103">Discuss Black & White</a>
+<br>
+<a href="http://www.pokemonelite2000.com/?s=Black+White">Complete Coverage</a>
+<br>
+<a href=http://www.pokemonelite2000.com/sprites.html>Black & White Sprites</a>
+<br>
+<a href=http://www.pokemonelite2000.com/blackwhite-normal-animated>Animated Black & White Sprites</a></div>
+		</div>
+			<div class="lbot"></div><div class="ltop"></div>
+			<div class="lmid">
+			<h2>Pokemon TCG Online</h2>			<div class="textwidget"><a href="http://www.pokemonelite2000.com/pokemon_tcg_online">Overview</a>
+<br>
+<a href="http://www.youtube.com/watch?v=5Nii6cAyGlU" target="_blank">Demonstration Video</a>
+<br>
+<a href="http://www.pokemonelite2000.com/official-tcg-online-press-release">Official Press Release</a></div>
+		</div>
+			<div class="lbot"></div><div class="ltop"></div>
+			<div class="lmid">
+			<h2>Pokemon Release Dates</h2>			<div class="textwidget"><ul>
+<li><b>Global Link C-Gear Skins</b>
+<a href=http://www.pokemonelite2000.com/15748/deerling-c-gear-skin-available>Deerling (Spr):</a> Sept 1 - Oct 5<br>
+<a href=http://www.pokemonelite2000.com/14062/munna-c-gear-skin-date-confirmed>Munna:</a> May 12 - Oct 25<br>
+<a href=http://www.pokemonelite2000.com/15789/password-for-zoroark-c-gear-skin>Zoroark:</a> Until Jan 11, 2012<br>
+<a href=http://www.pokemonelite2000.com/15499/get-your-croagunk-c-gear-skin>Croagunk:</a> Until Mar 1, 2012<br>
+<a href=http://www.pokemonelite2000.com/14905/get-your-minccino-c-gear-skin>Minccino:</a> Until July 12, 2012<br>
+<li><a href=http://www.pokemonelite2000.com/14946/zoroark-master-of-illusions-dvd-heading-to-us-and-the-uk><b>Zoroark: Master of Illusions DVD</b></a><br>
+AUS: June 1<br>
+UK: August 29<br>
+US: September 20<br>
+<li><b>Snarl Zoroark Distribution</b><br>
+<a href=http://www.pokemonelite2000.com/15994/zoroark-distribution-heading-to-australia>AUS</a>: Sept 16 - Oct 16<br>
+<a href=http://www.pokemonelite2000.com/15877/zoroark-month-get-your-zoroark-from-toys-r-us>US</a>: Sept 18 - Sept 25<br>
+<li><a href=http://www.pokemonelite2000.com/15987/more-details-on-mewtwo-distribution-event><b>Mewtwo Distribution</b></a><br>
+JP: Sept 25 - Oct 31<br>
+<li><a href=http://www.pokemonelite2000.com/15970/dream-world-banette-to-be-available-this-october><b>Dream World Banette</b></a><br>
+US: October 31<br>
+<li><a href=http://www.pokemonelite2000.com/15077/super-pokemon-scramble-release-date-delayed-in-japan><b>Super Pokemon Scramble</b></a><br>
+JP: August 11<br>
+US: October 24<br>
+EU: December 2</ul></div>
+		</div>
+			<div class="lbot"></div><div class="ltop"></div>
+			<div class="lmid">
+			<h2>Categories</h2>		<ul>
+	<li class="cat-item cat-item-62"><a href="http://www.pokemonelite2000.com/category/anime" title="View all posts filed under Anime">Anime</a> (73)
+</li>
+	<li class="cat-item cat-item-12"><a href="http://www.pokemonelite2000.com/category/announcements" title="View all posts filed under Announcements">Announcements</a> (41)
+</li>
+	<li class="cat-item cat-item-63"><a href="http://www.pokemonelite2000.com/category/art" title="View all posts filed under Art">Art</a> (102)
+</li>
+	<li class="cat-item cat-item-3"><a href="http://www.pokemonelite2000.com/category/articles" title="View all posts filed under Articles">Articles</a> (166)
+</li>
+	<li class="cat-item cat-item-166"><a href="http://www.pokemonelite2000.com/category/asb" title="View all posts filed under ASB">ASB</a> (4)
+</li>
+	<li class="cat-item cat-item-6"><a href="http://www.pokemonelite2000.com/category/events" title="View all posts filed under Events">Events</a> (111)
+</li>
+	<li class="cat-item cat-item-1296"><a href="http://www.pokemonelite2000.com/category/fandom" title="View all posts filed under Fandom">Fandom</a> (31)
+</li>
+	<li class="cat-item cat-item-4"><a href="http://www.pokemonelite2000.com/category/forum" title="View all posts filed under Forum">Forum</a> (72)
+</li>
+	<li class="cat-item cat-item-7"><a href="http://www.pokemonelite2000.com/category/news" title="View all posts filed under News">News</a> (344)
+</li>
+	<li class="cat-item cat-item-5"><a href="http://www.pokemonelite2000.com/category/podcast" title="View all posts filed under Podcast">Podcast</a> (7)
+</li>
+	<li class="cat-item cat-item-1551"><a href="http://www.pokemonelite2000.com/category/pokemon-of-the-month" title="View all posts filed under Pokemon of the Month">Pokemon of the Month</a> (24)
+</li>
+	<li class="cat-item cat-item-1649"><a href="http://www.pokemonelite2000.com/category/the-members-spotlight" title="View all posts filed under The Member&#039;s Spotlight">The Member&#039;s Spotlight</a> (2)
+</li>
+	<li class="cat-item cat-item-9"><a href="http://www.pokemonelite2000.com/category/tcg" title="View all posts filed under Trading Card Game">Trading Card Game</a> (49)
+</li>
+	<li class="cat-item cat-item-11"><a href="http://www.pokemonelite2000.com/category/urpg" title="View all posts filed under URPG">URPG</a> (11)
+</li>
+	<li class="cat-item cat-item-8"><a href="http://www.pokemonelite2000.com/category/videogames" title="View all posts filed under Video Games">Video Games</a> (286)
+</li>
+	<li class="cat-item cat-item-779"><a href="http://www.pokemonelite2000.com/category/vulpix-news-report" title="View all posts filed under VULPIX News Report">VULPIX News Report</a> (5)
+</li>
+	<li class="cat-item cat-item-10"><a href="http://www.pokemonelite2000.com/category/war" title="View all posts filed under War">War</a> (3)
+</li>
+		</ul>
+</div>
+			<div class="lbot"></div><div class="ltop"></div>
+			<div class="lmid">
+			<h2>Features</h2>			<div class="textwidget"><b>Article Series</b>
+<br>
+<a href="http://www.pokemonelite2000.com/?s=Weekly+Anime">Weekly Anime Review</a>
+<br>
+<a href="http://www.pokemonelite2000.com/?s=Geoffrey+Pokemon+of+the+Week">Pokemon of the Week</a>
+<br>
+<a href="http://www.pokemonelite2000.com/?s=Review+of+type">Review of Pokemon Types</a>
+<br>
+<a href="http://www.pokemonelite2000.com/?s=Monday+Laughs">Monday Laughs</a>
+<br>
+<a href="http://www.pokemonelite2000.com/pokemoncomics">Pokemon Comics</a>
+<br><br>
+<b>Interactive Pokemon</b>
+<br>
+<a href="http://www.pokemonelite2000.com/forum/forumdisplay.php?f=83">Anime-Style Battling League</a>
+<br>
+<a href="http://www.pokemonelite2000.com/forum/forumdisplay.php?f=36">Pokemon Ultra RPG</a>
+<br>
+<a href="http://pokemonelite2000.com/forum/forumdisplay.php?f=124">PE2K WiFi League</a>
+<br>
+<a href="http://pokemonelite2000.com/forum/forumdisplay.php?f=119">Pokemon Online League</a>
+<br>
+<a href="http://www.pokemonelite2000.com/forum/showthread.php?t=102280">Virtual Pokemon Pet</a>
+<br>
+<a href="http://www.pokemonelite2000.com/forum/forumdisplay.php?f=77">WiFi Battling Center</a>
+<br>
+<a href="http://www.pokemonelite2000.com/forum/forumdisplay.php?f=78">WiFi Trading Center</a>
+</div>
+		</div>
+			<div class="lbot"></div><div class="ltop"></div>
+			<div class="lmid">			<div class="textwidget"><p align="center"><script type="text/javascript"><!--
+google_ad_client = "pub-1169433100352272";
+/* 200x200 */
+google_ad_slot = "7633924217";
+google_ad_width = 200;
+google_ad_height = 200;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script></p></div>
+		</div>
+			<div class="lbot"></div><div class="ltop"></div>
+			<div class="lmid">
+			<h2>Pokemon Information</h2>			<div class="textwidget"><b>GB/GBA</b><br>
+<a href="http://www.pokemonelite2000.com/pokedex.html">Pokedex</a><br>
+<a href="http://www.pokemonelite2000.com/rubysapphire.html">Pokemon Ruby/Sapphire</a><br>
+<a href="http://www.pokemonelite2000.com/fireredleafgreen.html">Pokemon FireRed/LeafGreen</a><br>
+<a href="http://www.pokemonelite2000.com/emerald.html">Pokemon Emerald</a><br>
+<a href="http://www.pokemonelite2000.com/goldsilver.html">Pokemon Gold/Silver</a><br>
+<a href="http://www.pokemonelite2000.com/crystal.html">Pokemon Crystal</a><br>
+<a href="http://www.pokemonelite2000.com/redblue.html">Pokemon Red/Blue</a><br>
+<a href="http://www.pokemonelite2000.com/pokemonyellow.html">Pokemon Yellow</a><br>
+<a href="http://www.pokemonelite2000.com/pokemonpinball.html">Pokemon Pinball</a><br>
+<a href="http://www.pokemonelite2000.com/pinballrs.html">Pokemon Pinball: RS</a><br>
+<a href="http://www.pokemonelite2000.com/pokemontcg.html">Pokemon TCG</a><br>
+<a href="http://www.pokemonelite2000.com/pokemongbavideo.html">Pokemon GBA Video</a><br>
+<a href="http://www.pokemonelite2000.com/hsgadvteambuilding.html">Advance Team Building</a><br>
+<a href="http://www.pokemonelite2000.com/gameshark.html">Game Shark Codes</a><br>
+<br>
+<b>Nintendo DS</b><br>
+<a href="http://www.pokemonelite2000.com/mysterydungeon.html">Pokemon Mystery Dungeon</a><br>
+<a href="http://www.pokemonelite2000.com/ranger.html">Pokemon Ranger</a><br>
+<a href="http://www.pokemonelite2000.com/diamondpearl.html">Pokemon Diamond/Pearl</a><br>
+<a href="http://www.pokemonelite2000.com/trozei.html">Pokemon Trozei</a><br>
+<a href="http://www.pokemonelite2000.com/pokemondash.html">Pokemon Dash</a><br>
+<a href="http://www.pokemonelite2000.com/pokeparkfishingrally.html">PokePark Fishing Rally</a><br>
+<br>
+<b>N64/GameCube/Wii</b><br>
+<a href="http://www.pokemonelite2000.com/battlerevolution.html">Pokemon Battle Revolution</a><br>
+<a href="http://www.pokemonelite2000.com/pokemonxd.html">Pokemon XD</a><br>
+<a href="http://www.pokemonelite2000.com/colosseum.html">Pokemon Colosseum</a><br>
+<a href="http://www.pokemonelite2000.com/pokemonbox.html">Pokemon Box: R/S</a><br>
+<a href="http://www.pokemonelite2000.com/pokemonchannel.html">Pokemon Channel</a><br>
+<a href="http://www.pokemonelite2000.com/pokemonstadium.html">Pokemon Stadium</a><br>
+<a href="http://www.pokemonelite2000.com/pokemonsnap.html">Pokemon Snap</a><br>
+<a href="http://www.pokemonelite2000.com/heyupikachu.html">Hey You, Pikachu</a><br>
+<br>
+<b>Trading Card Game</b><br>
+<a href="http://www.pokemonelite2000.com/tcgpreconstructed.html">Theme Decks</a><br>
+<a href="http://www.pokemonelite2000.com/strategygarage.html">Strategy Garage</a><br>
+<a href="http://www.pokemonelite2000.com/deckgarage.html">Deck Garage</a><br>
+<a href="http://www.pokemonelite2000.com/cards.html">Single Card Strategy</a><br>
+<br>
+<b>Show/Movies</b><br>
+<a href="http://www.pokemonelite2000.com/episodeguide.html">Episode Guide</a><br>
+<a href="http://www.pokemonelite2000.com/moviefirst.html">Pokemon: The First Movie</a><br>
+<a href="http://www.pokemonelite2000.com/moviesecond.html">Pokemon The Movie 2000</a><br>
+<a href="http://www.pokemonelite2000.com/moviethird.html">Pokemon 3 The Movie</a><br>
+<a href="http://www.pokemonelite2000.com/movreturns.html">Mewtwo Returns</a><br>
+<a href="http://www.pokemonelite2000.com/movie4ever.html">Pokemon 4Ever</a><br>
+<a href="http://www.pokemonelite2000.com/movieheroes.html">Pokemon Heroes</a><br>
+<a href="http://www.pokemonelite2000.com/movjirachiwishmaker.html">Jirachi Wish Maker</a><br>
+<a href="http://www.pokemonelite2000.com/movdestinydeoxys.html">Pokemon: Destiny Deoxys</a><br>
+<a href="http://www.pokemonelite2000.com/movlucarioandmew.html"></a><br>
+<a href="http://www.pokemonelite2000.com/movranger.html"></a><b>Pictures</b><br>
+<a href="http://www.pokemonelite2000.com/sprites.html">Sprite Resource</a><br>
+<a href="http://www.pokemonelite2000.com/animepictures.html">1-386 Anime Pictures</a><br>
+<a href="http://www.pokemonelite2000.com/sugimoripictures.html">1-386 Sugimori Pictures</a><br>
+<a href="http://www.pokemonelite2000.com/sugimorispictures.html">1-386 Sugimori Pictures (Shiny)</a><br>
+<a href="http://www.pokemonelite2000.com/anime151pictures.html">1-151 Anime Pictures</a><br>
+<br>
+<b>Special</b><br>
+<a href="http://www.pokemonelite2000.com/lyrics.html">Pokemon Lyrics</a><br>
+<a href="http://www.pokemonelite2000.com/dummies.html">Pokemon For Dummies</a><br>
+<a href="http://www.pokemonelite2000.com/engjapnames.html">English/Japanese Names</a><br>
+<br>
+<b>Rumors/Fakes</b><br>
+<a href="http://www.pokemonelite2000.com/rfmewcelebi.html">Mew and Celebi</a><br>
+<a href="http://www.pokemonelite2000.com/fakediamond.html">Diamond and Jade</a><br>
+<br>
+<b>Site</b><br>
+<a href="http://www.pokemonelite2000.com/forum">Forum</a><br>
+<a href="http://www.pokemonelite2000.com/contactinfo.html">Contact Info</a><br>
+<a  href="http://www.pokemonelite2000.com/about">About the Staff</a><br>
+<a href="http://www.pokemonelite2000.com/linktope2k.html">Link to PE2K</a><br>
+<a href="http://www.pokemonelite2000.com/homepage.html">Make It Your Homepage</a><br>
+<a href="http://www.pokemonelite2000.com/links.html">Pokemon Links</a><br>
+<a href="http://www.pokemonelite2000.com/newsarchive.html">News Archive</a><br>
+<br>
+<b>Other</b><br>
+<a href="http://www.pokemonelite2000.com/antivirusspyware.html">Anti-Virus/Spyware Tips</a><br></div>
+		</div>
+			<div class="lbot"></div><div class="ltop"></div>
+			<div class="lmid">
+			<h2>Archives</h2>		<select name="archive-dropdown" onchange='document.location.href=this.options[this.selectedIndex].value;'> <option value="">Select Month</option> 	<option value='http://www.pokemonelite2000.com/date/2011/10'> October 2011 &nbsp;(13)</option>
+	<option value='http://www.pokemonelite2000.com/date/2011/09'> September 2011 &nbsp;(41)</option>
+	<option value='http://www.pokemonelite2000.com/date/2011/08'> August 2011 &nbsp;(36)</option>
+	<option value='http://www.pokemonelite2000.com/date/2011/07'> July 2011 &nbsp;(37)</option>
+	<option value='http://www.pokemonelite2000.com/date/2011/06'> June 2011 &nbsp;(30)</option>
+	<option value='http://www.pokemonelite2000.com/date/2011/05'> May 2011 &nbsp;(38)</option>
+	<option value='http://www.pokemonelite2000.com/date/2011/04'> April 2011 &nbsp;(65)</option>
+	<option value='http://www.pokemonelite2000.com/date/2011/03'> March 2011 &nbsp;(89)</option>
+	<option value='http://www.pokemonelite2000.com/date/2011/02'> February 2011 &nbsp;(66)</option>
+	<option value='http://www.pokemonelite2000.com/date/2011/01'> January 2011 &nbsp;(41)</option>
+	<option value='http://www.pokemonelite2000.com/date/2010/12'> December 2010 &nbsp;(30)</option>
+	<option value='http://www.pokemonelite2000.com/date/2010/11'> November 2010 &nbsp;(31)</option>
+	<option value='http://www.pokemonelite2000.com/date/2010/10'> October 2010 &nbsp;(22)</option>
+	<option value='http://www.pokemonelite2000.com/date/2010/09'> September 2010 &nbsp;(18)</option>
+	<option value='http://www.pokemonelite2000.com/date/2010/02'> February 2010 &nbsp;(12)</option>
+	<option value='http://www.pokemonelite2000.com/date/2010/01'> January 2010 &nbsp;(6)</option>
+	<option value='http://www.pokemonelite2000.com/date/2009/12'> December 2009 &nbsp;(10)</option>
+	<option value='http://www.pokemonelite2000.com/date/2009/11'> November 2009 &nbsp;(1)</option>
+	<option value='http://www.pokemonelite2000.com/date/2009/10'> October 2009 &nbsp;(8)</option>
+	<option value='http://www.pokemonelite2000.com/date/2009/09'> September 2009 &nbsp;(14)</option>
+	<option value='http://www.pokemonelite2000.com/date/2009/08'> August 2009 &nbsp;(41)</option>
+	<option value='http://www.pokemonelite2000.com/date/2009/07'> July 2009 &nbsp;(10)</option>
+ </select>
+</div>
+			<div class="lbot"></div><div class="ltop"></div>
+			<div class="lmid"><form role="search" method="get" id="searchform" action="http://www.pokemonelite2000.com/" >
+	<div><label class="screen-reader-text" for="s">Search for:</label>
+	<input type="text" value="" name="s" id="s" />
+	<input type="submit" id="searchsubmit" value="Search" />
+	</div>
+	</form></div>
+			<div class="lbot"></div>
+		</div>
+
+
+
+<link rel="alternate" type="application/rss+xml" href="http://www.pokemonelite2000.com/?feed=rss2" title="PE2K RSS Feed" />
+<link rel="alternate" type="application/atom+xml" href="http://www.pokemonelite2000.com/?feed=atom" title="PE2K Atom Feed" />  <div id="left">
+    
+  			<div class="ptop"></div>
+  			<div class="pmid">
+  			<div class="post">
+  				<div class="post-head">
+  					<div class="title">Not Found</div>
+  					<div style="clear: both;"></div>
+  				</div>
+  				<div class="post-entry">
+  				you are looking for something that isn't here
+  				</div>
+  
+  			</div>
+  			</div>
+  			<div class="pbot"></div>
+  
+    <div class="nav-link">
+  	  </div>
+  
+  </div>
+  		<div style="clear: both;">&nbsp;</div>
+ 	</div>  	<div id="footer"><span style="float: left;">Theme by <a href="http://gotchance.com">Got Chance</a></span><span style="float: right;">Powered by <a href="http:/wordpress.org">Wordpress</a></span></div> </div> </div> </body> </html> <!--stats_footer_test--><script src="http://stats.wordpress.com/e-201141.js" type="text/javascript"></script>
+<script type="text/javascript">
+st_go({blog:'18100470',v:'ext',post:'0'});
+var load_cmc = function(){linktracker_init(18100470,0,2);};
+if ( typeof addLoadEvent != 'undefined' ) addLoadEvent(load_cmc);
+else load_cmc();
+</script>
