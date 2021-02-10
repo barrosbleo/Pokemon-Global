@@ -1,4 +1,11 @@
 <?php
+	//unset battle session if run out of battle
+	$exp = explode('/', $_SERVER["SCRIPT_NAME"]);
+	$filename = end($exp);
+	if ($filename != 'battle.php' && $filename != 'battle_user.php' && $filename != 'map_users.php'){
+		unset($_SESSION['battle']);
+	}
+
 	// count online users past 60 min
 	$oTime = time() - (60*60);
 	$query = "SELECT * FROM `users` WHERE `lastseen` >= '{$oTime}' ORDER BY `lastseen` DESC";
@@ -227,7 +234,7 @@ function clock(){
 	xhttp.open("GET", "<?php echo $general['path'];?>/modules/clock.php", true);
 	xhttp.send();
 }
-setInterval(clock, 1000);
+//setInterval(clock, 1000);
 </script>
 <div id="content">
 

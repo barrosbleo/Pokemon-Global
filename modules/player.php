@@ -8,9 +8,9 @@ function isLoggedIn(){
 }
 
 //check if player is in battle and then destroy battle session
-if ($filename != 'battle.php' && $filename != 'battle2.php' && $filename != 'map_users.php') {
+//if ($filename != 'battle.php' && $filename != 'battle2.php' && $filename != 'map_users.php') {
 	//unset($_SESSION['battle']);
-}
+//}
 
 ////some player checkups
 if (isset($_SESSION['userid'])) {
