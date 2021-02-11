@@ -64,6 +64,7 @@ if ($newSales > 0) {
 		<a href="/trade.php?a=vao"><?php echo $lang['side_right_trade_03'];?><?php echo $totalOffers;?></a>
 	</div>
 </li>
+<div id="tuto3hover"></div>
 </ul>
 
 <?php
@@ -80,6 +81,7 @@ if($_SESSION['userid']) {
 			<p><?php echo $lang['side_left_lvl'];?><?php echo expToLevel($userRow['trainer_exp']);?></p>
 		</div>
 	</li>
+<div id="tuto3hover"></div>
 </ul>
 <ul class="usr-inf frame left">
 	<li class="usr-inf-title"><a href="#"><?php echo $lang['side_left_title_02'];?></a></li>
@@ -97,6 +99,7 @@ if($_SESSION['userid']) {
 			<a href="/users.php?lref=10"><?php echo $lang['side_left_links_09'];?></a>
 		</div>		
 	</li>
+<div id="tuto3hover"></div>
 </ul>
 <?php
 }
