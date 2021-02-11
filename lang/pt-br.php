@@ -130,6 +130,36 @@ Este site não tem filiação com Nintendo, Creatures, ou GameFreak. <br />',
 	'header_submenu_12_03' => 'Hora da Sorte',
 	'header_title' => 'Pokemon Global - Versão Alpha - Pokemon MMORPG',
 	
+	//Tutorials
+	'tuto_0_title'	=>	'Bem vindo ao Mundo de Pokemon',
+	'tuto_0_txt1'	=>	'Olá! Sou o professor Carvalho.</br>Estou falando com você através do seu pokedex.',
+	'tuto_0_txt2'	=>	'Estive muito ocupado ultimamente, então solicitei que sua mãe lhe entregasse o seu pokedex e seu primeiro pokemon.',
+	
+	'tuto_1_txt1'	=>	'Há muitas criaturas espalhadas pelos quatro cantos do mundo. Elas são chamadas de pokemons',
+	'tuto_1_txt2'	=>	'Para algumas pessoas eles são como bichos de estimação, outras os utilizam para batalhas.',
+	
+	'tuto_2_txt1'	=>	'Para mim... Eu estudo os pokemons como uma profissão.',
+	
+	'tuto_3_txt1'	=>	'Eu criei o pokedex, para que os treinadores cataloguem todos os tipos de pokemons do mundo.',
+	'tuto_3_txt2'	=>	'Hoje ele possui muitos outros recursos...',
+	
+	'tuto_4_txt1'	=>	'Na parte destacada, temos suas informações, alem de alguns atalhos úteis.',
+	
+	'tuto_5_txt1'	=>	'Ao iniciar sua jornada pelo mundo, você irá se deparar com diversos pokemons diferentes.',
+	'tuto_5_txt2'	=>	'Você pode batalhar contra eles usando seus pokemons, ou pode jogar uma pokebola neles para capturá-los.',
+	
+	'tuto_6_txt1'	=>	'Lembre-se: pokemons fortes são mais difíceis de capturar. Enfraquece-lo primeiro deixa a captura muito mais fácil.',
+	'tuto_6_txt2'	=>	'Há muitos treinadores pelo mundo, você pode batalhar contra eles, e para isso vai precisar de pokemons cada vez mais fortes e poderosos.',
+	
+	'tuto_7_txt1'	=>	'Ao encontrar um treinador, você pode clicar em cima dele, uma janela do seu pokedex irá aparecer.</br>Nesta janela você pode adicioná-lo como amigo, ver suas informações ou, até mesmo, batalhar contra ele.',
+	
+	'tuto_8_txt1'	=>	'Alguns treinadores relatam terem visto alguns pokemons lendários ao redor do mundo, eu pessoalmente nunca vi um. Eles são muito raros!',
+	'tuto_8_txt2'	=>	'Para poder capturar pokemons lendários, primeiro você deve coletar todas as insígnias, e vencer a Liga Pokemon!</br> Você consegue uma insígnia sempre que vencer uma batalha contra um mestre de ginásio. A maioria das grandes cidades possuem um ginásio. Ao coletar as 8 insígnias da região você poderá ingressar na Liga Pokemon.',
+	
+	'tuto_9_txt1'	=>	'Bom, creio estar lhe tomando muito tempo, tenha uma boa sorte, e espero vê-lo em breve com o maior número de pokemons possível!!!',
+	
+	'tuto_button_1'	=>	'Continuar',
+	
 	//referral
 	'refl_maintxt' => 'Aqui você pode indicar seus amigos para o Pokémon Global e ganhar Pontos de Referência,
 quanto mais pontos de referência você obtém, mais Pokémon, itens ou outros prêmios você pode comprar na
