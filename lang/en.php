@@ -130,6 +130,35 @@ $lang = array(
 	'header_submenu_12_03' => 'Lucky Time',
 	'header_title' => 'Pokemon Global - Alpha Version - Pokemon MMORPG',
 
+	//Tutorials
+	'tuto_0_title'	=>	'Welcome to the Pokemon World',
+	'tuto_0_txt1'	=>	'Hello there! My name is Oak.</br>I\'m talking to you thru your pokedex.',
+	'tuto_0_txt2'	=>	'I\'ve been quite busy these days, so i asked your mother to give you your pokedex and you first pokemon.',
+	
+	'tuto_1_txt1'	=>	'This world is inhabited by creatures called pokemon!',
+	'tuto_1_txt2'	=>	'For some people, pokemon are pets. Other use them for fights.',
+	
+	'tuto_2_txt1'	=>	'Myself... I study pokemon as a profession.',
+	
+	'tuto_3_txt1'	=>	'The pokedex is my invention, It was built to record data on pokemon you see or caught.',
+	'tuto_3_txt2'	=>	'But today it has many other functionalities...',
+	
+	'tuto_4_txt1'	=>	'At the red shown sections bellow, there are your personal informations, plus some useful shortcuts.',
+	
+	'tuto_5_txt1'	=>	'At the beginning of your journey around the world, you\'re gonna face many different pokemons.',
+	'tuto_5_txt2'	=>	'You can battle them using your own pokemons, or you can throw them pokeball to catch them.',
+	
+	'tuto_6_txt1'	=>	'Remember: strong pokemons are harder to catch. Weakening it will make it easier to catch.',
+	'tuto_6_txt2'	=>	'There are many pokemon trainers around the world, you will battle them, and for that you will need increasingly strong and powerful pokemon.',
+	
+	'tuto_7_txt1'	=>	'When you find a trainer, you can clck on it, a window of your pokedex will appear.</br>In this window you can add him as a friend, see his information or even battle against him.',
+	
+	'tuto_8_txt1'	=>	'Some trainers report seeing some legendary pokemons around the world, I personally have never seen one. They are very rare!',
+	'tuto_8_txt2'	=>	'In order to capture legendary pokemons, you must first collect all the badges, and win the Pokemon League! </br> You get a badge whenever you win a battle against a gym master. Most large cities have a gym. By collecting the 8 badges in the region you can join the Pokemon League.',
+	
+	'tuto_9_txt1'	=>	'Well, I think it\'s taking a lot of time, have a good luck, and I hope to see you soon with as many pokemons as possible!!!',
+	
+	'tuto_button_1'	=>	'Continue',
 	//referral
 	'refl_maintxt' => 'Here you can refer your friends to Pokémon Global and earn Referral Points,
 	the more referral points you get, the more Pokémon, items or other prizes you can buy on

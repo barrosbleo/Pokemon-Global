@@ -59,6 +59,8 @@
 					echo '<style> ins { display: none !important; } </style>';
 				}		
 		?>
+		<div id="tutoFrame">
+</div>
 <nav class="navbar navbar-default" role="navigation">
 	<div class="container-fluid">
 	    <!-- Brand and toggle get grouped for better mobile display -->
@@ -234,8 +236,125 @@ function clock(){
 	xhttp.open("GET", "<?php echo $general['path'];?>/modules/clock.php", true);
 	xhttp.send();
 }
-//setInterval(clock, 1000);
+setInterval(clock, 1000);
 </script>
+<!--Tutorials-->
+<div id="tutoBox">
+
+</div>
+<script>
+var curTuto = "<?php echo $_SESSION['tuto'];?>";
+var tutoBox = document.getElementById('tutoBox');
+var tutoFrame = document.getElementById('tutoFrame');
+function getTuto(){
+	var xhttp = new XMLHttpRequest();
+	xhttp.onreadystatechange = function(){
+		if(this.readyState == 4 && this.status == 200){
+			if(parseInt(this.responseText) <= 9){
+				tutoFrame.style.display = "block";
+				tutoBox.style.display = "block";
+				switch(this.responseText){
+					case '0':
+					var html = '';
+					html += '<h3><?php echo $lang["tuto_0_title"];?></h3>';
+					html += '<p><?php echo $lang["tuto_0_txt1"];?></p>';
+					html += '<p><?php echo $lang["tuto_0_txt2"];?></p>';
+					html += '<center><button onclick="nextTuto()" class="tutoButton"><?php echo $lang["tuto_button_1"];?></button><center>';
+					tutoBox.innerHTML = html;
+					break;
+					case '1':
+					var html = '';
+					html += '<p><?php echo $lang["tuto_1_txt1"];?></p>';
+					html += '<p><?php echo $lang["tuto_1_txt2"];?></p>';
+					html += '<center><button onclick="nextTuto()" class="tutoButton"><?php echo $lang["tuto_button_1"];?></button><center>';
+					tutoBox.innerHTML = html;
+					break;
+					case '2':
+					var html = '';
+					html += '<p><?php echo $lang["tuto_2_txt1"];?></p>';
+					html += '<center><button onclick="nextTuto()" class="tutoButton"><?php echo $lang["tuto_button_1"];?></button><center>';
+					tutoBox.innerHTML = html;
+					break;
+					case '3':
+					var html = '';
+					html += '<p><?php echo $lang["tuto_3_txt1"];?></p>';
+					html += '<p><?php echo $lang["tuto_3_txt2"];?></p>';
+					html += '<center><button onclick="nextTuto()" class="tutoButton"><?php echo $lang["tuto_button_1"];?></button><center>';
+					tutoBox.innerHTML = html;
+					break;
+					case '4':
+					var html = '';
+					html += '<p><?php echo $lang["tuto_4_txt1"];?></p>';
+					html += '<center><button onclick="nextTuto()" class="tutoButton"><?php echo $lang["tuto_button_1"];?></button><center>';
+					tutoBox.innerHTML = html;
+					break;
+					case '5':
+					var html = '';
+					html += '<p><?php echo $lang["tuto_5_txt1"];?></p>';
+					html += '<p><?php echo $lang["tuto_5_txt2"];?></p>';
+					html += '<center><button onclick="nextTuto()" class="tutoButton"><?php echo $lang["tuto_button_1"];?></button><center>';
+					tutoBox.innerHTML = html;
+					break;
+					case '6':
+					var html = '';
+					html += '<p><?php echo $lang["tuto_6_txt1"];?></p>';
+					html += '<p><?php echo $lang["tuto_6_txt2"];?></p>';
+					html += '<center><button onclick="nextTuto()" class="tutoButton"><?php echo $lang["tuto_button_1"];?></button><center>';
+					tutoBox.innerHTML = html;
+					break;
+					case '7':
+					var html = '';
+					html += '<p><?php echo $lang["tuto_7_txt1"];?></p>';
+					html += '<p><?php echo $lang["tuto_7_txt2"];?></p>';
+					html += '<center><button onclick="nextTuto()" class="tutoButton"><?php echo $lang["tuto_button_1"];?></button><center>';
+					tutoBox.innerHTML = html;
+					break;
+					case '8':
+					var html = '';
+					html += '<p><?php echo $lang["tuto_8_txt1"];?></p>';
+					html += '<p><?php echo $lang["tuto_8_txt2"];?></p>';
+					html += '<center><button onclick="nextTuto()" class="tutoButton"><?php echo $lang["tuto_button_1"];?></button><center>';
+					tutoBox.innerHTML = html;
+					break;
+					case '9':
+					var html = '';
+					html += '<p><?php echo $lang["tuto_9_txt1"];?></p>';
+					html += '<p><?php echo $lang["tuto_9_txt2"];?></p>';
+					html += '<center><button onclick="nextTuto()" class="tutoButton"><?php echo $lang["tuto_button_1"];?></button><center>';
+					tutoBox.innerHTML = html;
+					break;
+				}
+			}
+		}
+	};
+	xhttp.open("GET", "<?php echo $general['path'];?>/modules/tutorial.php?id=<?php echo $uid;?>", true);
+	xhttp.send();
+}
+function nextTuto(){
+	var xhttp = new XMLHttpRequest();
+	xhttp.onreadystatechange = function(){
+		if(this.readyState == 4 && this.status == 200){
+			window.location.reload();
+		}
+	};
+	xhttp.open("GET", "<?php echo $general['path'];?>/modules/tutorial.php?func=next&id=<?php echo $uid;?>", true);
+	xhttp.send();
+}
+getTuto();
+if(curTuto == "4"){
+	var hover = document.querySelectorAll("#tuto3hover");
+	var i;
+	for(i = 0; i < hover.length; i++){
+		hover[i].style.display = "block";
+	}
+}
+
+
+
+</script>
+
+<!--tutorials end-->
+
 <div id="content">
 
 
