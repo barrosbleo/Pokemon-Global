@@ -16,6 +16,8 @@ $start_x = 235;
 $start_y = 32;
 $font_file = 'BRUSHSCI.ttf';
 $text = $user_row['username'] . ' #' . $user_row['id'];
+echo $text;
+die();
 imagettftext($card, 18, 0, $start_x, $start_y, $orange, $font_file, $text);
 
 
