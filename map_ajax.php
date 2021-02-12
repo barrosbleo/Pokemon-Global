@@ -18,10 +18,14 @@ switch ($map) {
 	break;
 	case '2':
 		$randomLevel = mt_rand(4, 11);//common poke lvl variation.
+		$ultraRareRandomLevel = mt_rand(8, 18);//rare poke lvl variation.
 		$rareRandomLevel = mt_rand(100, 138);//rare poke lvl variation.
 		$lowRareRandomLevel = mt_rand(8, 15);//low rare poke lvl variation.
 		$wildPokemon = array(
 			'Pidgey', 'Rattata', 'Sentret', 'Furret', 'Hoothoot'
+		);
+		$ultraRare = array(
+			''
 		);
 		$rare = array(
 			'Charizard', 'Dragonite'
@@ -35,10 +39,14 @@ switch ($map) {
 	break;
 	case '3':
 		$randomLevel = mt_rand(4, 11);//common poke lvl variation.
+		$rareRandomLevel = mt_rand(8, 18);//rare poke lvl variation.
 		$rareRandomLevel = mt_rand(100, 138);//rare poke lvl variation.
 		$lowRareRandomLevel = mt_rand(8, 15);//low rare poke lvl variation.
 		$wildPokemon = array(
 			'Pidgey', 'Rattata', 'Sentret', 'Furret', 'Hoothoot', 'Nidoran (f)', 'Nidoran (m)'
+		);
+		$ultraRare = array(
+			''
 		);
 		$rare = array(
 			'Charizard', 'Dragonite'
@@ -68,12 +76,88 @@ switch ($map) {
 	case '12':
 	break;
 	case '13':
+		$randomLevel = mt_rand(8, 18);//common poke lvl variation.
+		$rareRandomLevel = mt_rand(8, 18);//rare poke lvl variation.
+		$rareRandomLevel = mt_rand(20, 50);//rare poke lvl variation.
+		$lowRareRandomLevel = mt_rand(20, 45);//low rare poke lvl variation.
+		$wildPokemon = array(
+			'Rattata', 'Spearow', 'Sandshrew', 'Nidoran (f)', 'Nidoran (m)', 'Mankey'
+		);
+		$ultraRare = array(
+			''
+		);
+		$rare = array(
+			'Jigglypuff', 'Arbok', 'Clefairy'
+		);
+		$lowRare = array(
+			'Ekans', 'Fearow', 'Bellsprout', 'Raticate', 'Zubat', 'Pineco'
+		);
+		$legends = array(
+			'Mew'
+		);
 	break;
 	case '14':
+		$randomLevel = mt_rand(8, 18);//common poke lvl variation.
+		$ultraRareRandomLevel = mt_rand(8, 18);//rare poke lvl variation.
+		$rareRandomLevel = mt_rand(20, 50);//rare poke lvl variation.
+		$lowRareRandomLevel = mt_rand(20, 45);//low rare poke lvl variation.
+		$wildPokemon = array(
+			'Rattata', 'Spearow', 'Sandshrew', 'Nidoran (f)', 'Nidoran (m)', 'Mankey'
+		);
+		$ultraRare = array(
+			''
+		);
+		$rare = array(
+			'Jigglypuff', 'Arbok', 'Clefairy'
+		);
+		$lowRare = array(
+			'Ekans', 'Fearow', 'Bellsprout', 'Raticate', 'Zubat', 'Pineco'
+		);
+		$legends = array(
+			'Mew'
+		);
 	break;
 	case '15':
+		$randomLevel = mt_rand(8, 18);//common poke lvl variation.
+		$ultraRareRandomLevel = mt_rand(8, 18);//rare poke lvl variation.
+		$rareRandomLevel = mt_rand(20, 50);//rare poke lvl variation.
+		$lowRareRandomLevel = mt_rand(20, 45);//low rare poke lvl variation.
+		$wildPokemon = array(
+			'Rattata', 'Spearow', 'Sandshrew', 'Nidoran (f)', 'Nidoran (m)', 'Mankey'
+		);
+		$ultraRare = array(
+			''
+		);
+		$rare = array(
+			'Jigglypuff', 'Arbok', 'Clefairy'
+		);
+		$lowRare = array(
+			'Ekans', 'Fearow', 'Bellsprout', 'Raticate', 'Zubat', 'Pineco'
+		);
+		$legends = array(
+			'Mew'
+		);
 	break;
 	case '16':
+		$randomLevel = mt_rand(8, 18);//common poke lvl variation.
+		$ultraRareRandomLevel = mt_rand(8, 18);//rare poke lvl variation.
+		$rareRandomLevel = mt_rand(20, 50);//rare poke lvl variation.
+		$lowRareRandomLevel = mt_rand(20, 45);//low rare poke lvl variation.
+		$wildPokemon = array(
+			'Rattata', 'Spearow', 'Sandshrew', 'Nidoran (f)', 'Nidoran (m)', 'Mankey'
+		);
+		$ultraRare = array(
+			''
+		);
+		$rare = array(
+			'Jigglypuff', 'Arbok', 'Clefairy'
+		);
+		$lowRare = array(
+			'Ekans', 'Fearow', 'Bellsprout', 'Raticate', 'Zubat', 'Pineco'
+		);
+		$legends = array(
+			'Mew'
+		);
 	break;
 	case '17':
 	break;
@@ -116,12 +200,146 @@ switch ($map) {
 	case '36':
 	break;
 	case '37':
+		$randomLevel = mt_rand(8, 18);//common poke lvl variation.
+		$ultraRareRandomLevel = mt_rand(14, 28);//rare poke lvl variation.
+		$rareRandomLevel = mt_rand(20, 50);//rare poke lvl variation.
+		$lowRareRandomLevel = mt_rand(20, 45);//low rare poke lvl variation.
+		$wildPokemon = array(
+			'Caterpie', 'Weedle', 'Pidgey', 'Hoothoot'
+		);
+		$ultraRare = array(
+			'Bulbasaur'
+		);
+		$rare = array(
+			'Pikachu', 'Butterfree', 'Beedrill', 'Noctowl', 'Ariados', 'Ladyba', 'Oddish'
+		);
+		$lowRare = array(
+			'Metapod', 'Kakuna', 'Pidgeotto', 'Seedot', 'Spinarak', 'Bellsprout'
+		);
+		$legends = array(
+			'Mew'
+		);
 	break;
 	case '38':
+		$randomLevel = mt_rand(8, 18);//common poke lvl variation.
+		$ultraRareRandomLevel = mt_rand(14, 28);//rare poke lvl variation.
+		$rareRandomLevel = mt_rand(20, 50);//rare poke lvl variation.
+		$lowRareRandomLevel = mt_rand(20, 45);//low rare poke lvl variation.
+		$wildPokemon = array(
+			'Caterpie', 'Weedle', 'Pidgey', 'Hoothoot'
+		);
+		$ultraRare = array(
+			'Bulbasaur'
+		);
+		$rare = array(
+			'Pikachu', 'Butterfree', 'Beedrill', 'Noctowl', 'Ariados', 'Ladyba', 'Oddish'
+		);
+		$lowRare = array(
+			'Metapod', 'Kakuna', 'Pidgeotto', 'Seedot', 'Spinarak', 'Bellsprout'
+		);
+		$legends = array(
+			'Mew'
+		);
 	break;
 	case '39':
+		$randomLevel = mt_rand(8, 18);//common poke lvl variation.
+		$ultraRareRandomLevel = mt_rand(14, 28);//rare poke lvl variation.
+		$rareRandomLevel = mt_rand(20, 50);//rare poke lvl variation.
+		$lowRareRandomLevel = mt_rand(20, 45);//low rare poke lvl variation.
+		$wildPokemon = array(
+			'Caterpie', 'Weedle', 'Pidgey', 'Hoothoot'
+		);
+		$ultraRare = array(
+			'Bulbasaur'
+		);
+		$rare = array(
+			'Pikachu', 'Butterfree', 'Beedrill', 'Noctowl', 'Ariados', 'Ladyba', 'Oddish'
+		);
+		$lowRare = array(
+			'Metapod', 'Kakuna', 'Pidgeotto', 'Seedot', 'Spinarak', 'Bellsprout'
+		);
+		$legends = array(
+			'Mew'
+		);
 	break;
 	case '40':
+		$randomLevel = mt_rand(8, 18);//common poke lvl variation.
+		$ultraRareRandomLevel = mt_rand(14, 28);//rare poke lvl variation.
+		$rareRandomLevel = mt_rand(20, 50);//rare poke lvl variation.
+		$lowRareRandomLevel = mt_rand(20, 45);//low rare poke lvl variation.
+		$wildPokemon = array(
+			'Caterpie', 'Weedle', 'Pidgey', 'Hoothoot'
+		);
+		$ultraRare = array(
+			'Bulbasaur'
+		);
+		$rare = array(
+			'Pikachu', 'Butterfree', 'Beedrill', 'Noctowl', 'Ariados', 'Ladyba', 'Oddish'
+		);
+		$lowRare = array(
+			'Metapod', 'Kakuna', 'Pidgeotto', 'Seedot', 'Spinarak', 'Bellsprout'
+		);
+		$legends = array(
+			'Mew'
+		);
+	break;
+	case '41':
+		$randomLevel = mt_rand(8, 18);//common poke lvl variation.
+		$ultraRareRandomLevel = mt_rand(14, 28);//rare poke lvl variation.
+		$rareRandomLevel = mt_rand(20, 50);//rare poke lvl variation.
+		$lowRareRandomLevel = mt_rand(20, 45);//low rare poke lvl variation.
+		$wildPokemon = array(
+			'Caterpie', 'Weedle', 'Pidgey', 'Hoothoot'
+		);
+		$ultraRare = array(
+			'Bulbasaur'
+		);
+		$rare = array(
+			'Pikachu', 'Butterfree', 'Beedrill', 'Noctowl', 'Ariados', 'Ladyba', 'Oddish'
+		);
+		$lowRare = array(
+			'Metapod', 'Kakuna', 'Pidgeotto', 'Seedot', 'Spinarak', 'Bellsprout'
+		);
+		$legends = array(
+			'Mew'
+		);
+	break;
+	case '42':
+		$randomLevel = mt_rand(8, 18);//common poke lvl variation.
+		$ultraRareRandomLevel = mt_rand(14, 28);//rare poke lvl variation.
+		$rareRandomLevel = mt_rand(20, 50);//rare poke lvl variation.
+		$lowRareRandomLevel = mt_rand(20, 45);//low rare poke lvl variation.
+		$wildPokemon = array(
+			'Caterpie', 'Weedle', 'Pidgey', 'Hoothoot'
+		);
+		$ultraRare = array(
+			'Bulbasaur'
+		);
+		$rare = array(
+			'Pikachu', 'Butterfree', 'Beedrill', 'Noctowl', 'Ariados', 'Ladyba', 'Oddish'
+		);
+		$lowRare = array(
+			'Metapod', 'Kakuna', 'Pidgeotto', 'Seedot', 'Spinarak', 'Bellsprout'
+		);
+		$legends = array(
+			'Mew'
+		);
+	break;
+	case '43':
+	break;
+	case '44':
+	break;
+	case '45':
+	break;
+	case '46':
+	break;
+	case '47':
+	break;
+	case '48':
+	break;
+	case '49':
+	break;
+	case '50':
 	break;
     default:
 		die();
@@ -142,24 +360,29 @@ $conn->query("UPDATE `users` SET `map_num`='{$map}', `map_x`='{$x}', `map_y`='{$
 
 if (mt_rand(1, 100) <= 23) {//pokemon appear rate 23%
 //percentage rate
-//	$type =			mt_rand(1, 100) <= 5 ? 'Shiny ' : '' ;		//shiny appear rate 5%
-//	$type =			mt_rand(1, 100) <= 3 ? 'Snow ' : $type ;	//snow appear rate 3%
-//	$type =			mt_rand(1, 100) <= 2  ? 'Shadow ' : $type ;	//shadow appear rate 2%
-//	$isLegend =		mt_rand(1, 100) <= 1 ? true : false ;		//Legend appear rate 1%
-//	$isLowRare =	mt_rand(1, 100) <= 10 ? true : false ;		//Low Rare appear rate 10%
-//	$isRare =		mt_rand(1, 100) <= 5 ? true : false ;		//Rare appear rate 5%
+//	$type =				mt_rand(1, 100) <= 5 ? 'Shiny ' : '' ;		//shiny appear rate 5%
+//	$type =				mt_rand(1, 100) <= 3 ? 'Snow ' : $type ;	//snow appear rate 3%
+//	$type =				mt_rand(1, 100) <= 2  ? 'Shadow ' : $type ;	//shadow appear rate 2%
+//	$isLegend =			mt_rand(1, 100) <= 1 ? true : false ;		//Legend appear rate 1%
+//	$isLowRare =		mt_rand(1, 100) <= 10 ? true : false ;		//Low Rare appear rate 10%
+//	$isRare =			mt_rand(1, 100) <= 5 ? true : false ;		//Rare appear rate 5%
+//	$isUltraRare =		mt_rand(1, 100) <= 1 ? true : false ;		//Ultra Rare appear rate 1%
 //probability rate
-	$type =			mt_rand(1, 70) == 1 ? 'Shiny ' : '' ;		//shiny appear rate 1/100
-	$type =			mt_rand(1, 200) == 1 ? 'Snow ' : $type ;	//snow appear rate 1/200
-	$type =			mt_rand(1, 300) == 1  ? 'Shadow ' : $type ;	//shadow appear rate 1/300
-	$isLegend =		mt_rand(1, 500) == 1 ? true : false ;		//Legend appear rate 1/500
-	$isLowRare =	mt_rand(1, 50) == 1 ? true : false ;		//Low Rare appear rate 1/70
-	$isRare =		mt_rand(1, 250) == 1 ? true : false ;		//Rare appear rate 1/150
+	$type =				mt_rand(1, 70) == 1 ? 'Shiny ' : '' ;		//shiny appear rate 1/100
+	$type =				mt_rand(1, 200) == 1 ? 'Snow ' : $type ;	//snow appear rate 1/200
+	$type =				mt_rand(1, 300) == 1  ? 'Shadow ' : $type ;	//shadow appear rate 1/300
+	$isLegend =			mt_rand(1, 500) == 1 ? true : false ;		//Legend appear rate 1/500
+	$isLowRare =		mt_rand(1, 50) == 1 ? true : false ;		//Low Rare appear rate 1/70
+	$isRare =			mt_rand(1, 250) == 1 ? true : false ;		//Rare appear rate 1/150
+	$isUltraRare =		mt_rand(1, 500) == 1 ? true : false ;		//Ultra Rare appear rate 1/500
 	
 	
 	if ($isLegend && $_SESSION['catchLegneds']) {
 		$randomPokemon = $legends[ mt_rand(0, count($legends)-1) ];
 		$randomLevel = mt_rand(70, 90);//legend level variation
+	}elseif ($isUltraRare) {
+		$randomPokemon = $ultraRare[ mt_rand(0, count($ultraRare)-1) ];
+		$randomLevel = $ultraRareRandomLevel;//rare level variation
 	}elseif ($isRare) {
 		$randomPokemon = $rare[ mt_rand(0, count($rare)-1) ];
 		$randomLevel = $rareRandomLevel;//rare level variation
