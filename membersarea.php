@@ -27,10 +27,10 @@ $champRow = cleanHtml($champRow);
 $avatar = $champRow['avatar'];
 
 if (!filter_var($avatar, FILTER_VALIDATE_URL)) {
-	$avatar = 'http://localhost/rpg/'.$avatar;
+	$avatar = 'http://localhost/'.$avatar;
 	
 	if (!filter_var($avatar, FILTER_VALIDATE_URL) || empty($champRow['avatar'])) {
-		$avatar = 'http://localhost/rpg/images/trainers/032.png';
+		$avatar = 'http://localhost/images/trainers/032.png';
 	}
 }
 
