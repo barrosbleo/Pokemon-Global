@@ -55,6 +55,8 @@ for ($i=1; $i<=6; $i++) {
 	imagecopyresized($card, $source, $positions[$i]['x'] + $offset_x, $positions[$i]['y'] + $offset_y, 0, 0, $newwidth, $newheight, $width, $height);
 }
 $avatar_img = $user_row['avatar'];
+echo $avatar_img;
+die();
 $avatar = imagecreatefrompng($avatar_img);
 list($width, $height) = getimagesize($avatar_img);
 imagecopy($card, $avatar, 340 , 130 , 0, 0, $width, $height);
