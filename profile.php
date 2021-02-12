@@ -172,13 +172,14 @@ if(numRows($query, $conn) != 1) {
 	
 	if ($userRow['premium'] == 2) {
 		$premium = 'Yes';
-		$pre_img = '<br /><img src="/images/userbars/premium.png" />';
+		$pre_img = '<center><img src="/images/userbars/premium.png"/></center>';
 	} else {
 		$premium = 'No';
-		$pre_img = '';
+		$pre_img = '<center><img src="'.$userRow['userbar'].'"/></center>';
 	}
 ?>
 			<div class="profile">
+			<?php echo $pre_img;?>
 				<div class="trainer-card">
 					<div class="tc-img">
 						<div class="t-info"><?php echo cleanHtml($userRow['username']);?> #<?php echo cleanHtml($userRow['id']);?></div>
