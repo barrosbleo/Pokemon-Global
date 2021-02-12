@@ -17,7 +17,7 @@ $start_y = 32;
 $font_file = 'BRUSHSCI.ttf';
 $text = $user_row['username'] . ' #' . $user_row['id'];
 imagettftext($card, 18, 0, $start_x, $start_y, $orange, $font_file, $text);
-die();
+
 
 $positions = array(
 	'1' => array('x'=>'16', 'y'=>'81'),
