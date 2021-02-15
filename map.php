@@ -2163,8 +2163,8 @@ if (typeof map[newY] !== "undefined" && typeof map[newY][newX] !== "undefined" &
 			
 			var html = '';
 			html += '<span>';
-			html += '    <div style="margin-left: auto; margin-right: auto; background-image:url(\'images/mapbg/<?php echo $mapbg;?>.png\'); position: relative; background-position: center center; background-repeat:no-repeat;">';
-			html += '        <img src="images/pokemon/'+res.name+'.png" style="margin-bottom: 20px;" /><br />';
+			html += '    <div style="margin-left: auto; margin-right: auto; background-image:url(\'images/mapbg/<?php echo $mapbg;?>.png\'); background-position: center center; background-repeat:no-repeat;">';
+			html += '        <img src="images/pokemon/'+res.name+'.png"/><br />';
 			html += '    </div>';
 			html += '    <?php echo $lang["map_00"];?> <i>'+res.name+'</i> <?php echo $lang["map_01"];?>'+caught+'<br />';
 			html += '    <?php echo $lang["map_02"];?> '+res.level+'';
@@ -2179,8 +2179,7 @@ if (typeof map[newY] !== "undefined" && typeof map[newY][newX] !== "undefined" &
 		} else {
 			$("#result").html('<p class="not-found">'+res.failmsg+'</p>');
 		}
-                
-                
+		
 	});
 } 
 
