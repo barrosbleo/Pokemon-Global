@@ -158,6 +158,7 @@
             <li class="dropdown">
 				<a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo $lang['header_menu_11'];?> <span class="caret"></span></a>
 				<ul class="dropdown-menu" role="menu">
+					<li><a href="/forum/"><?php echo $lang['header_submenu_10_02'];?></a></li>
 					<li><a href="/staff.php"><?php echo $lang['header_submenu_11_01'];?></a></li>
 					<li><a href="/users.php"><?php echo $lang['header_submenu_11_02'];?></a></li>
 					<li><a href="/online.php"><?php echo $lang['header_submenu_11_03'];?>
