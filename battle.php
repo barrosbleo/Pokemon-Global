@@ -360,12 +360,57 @@ if ($_SESSION['battle']['screen'] == 'battle') {
 		);
 		
 		if (strpos($itemKey, '_ball') !== false && $_SESSION['battle']['wild'] === true) {
-			$chance = array(
-				'poke_ball'   => 40,
-				'great_ball'  => 60,
-				'ultra_ball'  => 85,
+			$opHpValue = round($opponentTeam[$onum]['hp'] / $opponentTeam[$onum]['maxhp'] * 100);
+			if ($opHpValue <= 10) {
+				$chance = array(
+				'poke_ball'   => 100,
+				'great_ball'  => 100,
+				'ultra_ball'  => 100,
 				'master_ball' => 100
 			);
+			}elseif ($opHpValue <= 20) {
+				$chance = array(
+				'poke_ball'   => 94,
+				'great_ball'  => 98,
+				'ultra_ball'  => 100,
+				'master_ball' => 100
+			);
+			}elseif ($opHpValue <= 30) {
+				$chance = array(
+				'poke_ball'   => 83,
+				'great_ball'  => 91,
+				'ultra_ball'  => 100,
+				'master_ball' => 100
+			);
+			}elseif ($opHpValue <= 40) {
+				$chance = array(
+				'poke_ball'   => 74,
+				'great_ball'  => 83,
+				'ultra_ball'  => 100,
+				'master_ball' => 100
+			);
+			}elseif ($opHpValue <= 60) {
+				$chance = array(
+				'poke_ball'   => 55,
+				'great_ball'  => 69,
+				'ultra_ball'  => 98,
+				'master_ball' => 100
+			);
+			}elseif ($opHpValue <= 75) {
+				$chance = array(
+				'poke_ball'   => 16,
+				'great_ball'  => 54,
+				'ultra_ball'  => 87,
+				'master_ball' => 100
+			);
+			}elseif ($opHpValue <= 100) {
+				$chance = array(
+				'poke_ball'   => 4,
+				'great_ball'  => 35,
+				'ultra_ball'  => 75,
+				'master_ball' => 98
+			);
+			}
 			$randChance = rand(1, 100);
 			
 			if ($userItems[$itemKey] >= 1) {				
@@ -411,7 +456,7 @@ if ($_SESSION['battle']['screen'] == 'battle') {
 		
 		$odamageDone = $odamageDone > $myTeam[$pnum]['hp'] ? $myTeam[$pnum]['hp'] : $odamageDone ;
 		
-		$myTeam[$pnum]['hp'] -= $odamageDone;
+		$myTeam[$pnum]['hp'] -= $odamageDone;//** Add damage to pokemon
 		
 		if ($omoveUsed == 'Explosion' || $omoveUsed == 'Self Destruct') {
 			$opponentTeam[$onum]['hp'] = 0;
