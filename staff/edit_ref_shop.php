@@ -72,7 +72,7 @@ if (isset($_POST['addPoke'])) {
 			</tr>
 		</table>
 	</form>
-<?
+<?php
 $errorPokeIds = array();
 $deletedPokemon = false;
 if (isset($_POST['save'])) {
@@ -141,7 +141,7 @@ $query = "SELECT * FROM `shop_ref` ORDER BY `price` ASC";
     <br /><br />
 <form method="post" style="padding: 0 10px;">
     <table class="pretty-table center center-text" style="width: 750px;">
-<?
+<?php
 $category = '';
 $i=0;
 $result = $conn->query($query);
