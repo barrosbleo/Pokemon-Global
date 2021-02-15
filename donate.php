@@ -13,9 +13,9 @@ printHeader($lang['donate_title']);
               
               
 <br> <?php echo $lang['donate_poke_title'];?> <br>
-<img src="images/pokemon/HauntedRayquaza.png" <br>
-<img src="images/pokemon/GoldenSuicune.png" <br>
-<img src="images/pokemon/GlitterPikachu.png" <br>
+<img src="images/pokemon/Snow Rayquaza.png" <br>
+<img src="images/pokemon/Golden Suicune.png" <br>
+<img src="images/pokemon/Glitter Pikachu.png" <br>
 <br>
 
 <table>
