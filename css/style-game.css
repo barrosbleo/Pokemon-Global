@@ -805,6 +805,12 @@ width:120px !important;
 .moveTable{
 	display:none;
 }
-
+#result{
+	position:relative;
+	height: 225px;
+}
+#result img{
+	margin-bottom:20px;
+}
 
 }
