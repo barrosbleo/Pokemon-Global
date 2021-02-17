@@ -2288,8 +2288,8 @@ function startTimer() {
 		//	alert(userData);
 			users = JSON.parse(userData);
 			removeUsersFromMap();
-			addUsersToMap();
 			addNPCToMap();
+			addUsersToMap();
 		});
 	}, 275);//tempo ms para recarregar std 1000 (1 segundo)
 }
