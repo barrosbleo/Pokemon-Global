@@ -36,7 +36,7 @@ if (isset($_POST['save'])) {
         $sqlTitle = cleanSql($title, $conn);
         $sqlContent = cleanSql($content, $conn);
 		$time = time();
-        $conn->query("UPDATE `news` SET `title`='{$sqlTitle}', `news`='{$sqlContent}', `bywho`='{$sqlPoster}', `date`='{$time}' WHERE `id`='1'");
+        $conn->query("UPDATE `news` SET `title`='{$sqlTitle}', `news`='{$sqlContent}', `bywho`='{$sqlPoster}', `date`='{$time}' WHERE `id`='3'");
     }
 }
 
@@ -48,7 +48,7 @@ echo '
 <form method="post">
     <table class="pretty-table center">
         <tr>
-            <th colspan="2">Edit News</th>
+            <th colspan="2">Edit News '.$row['id'].'</th>
         </tr>
         <tr>
             <td>Title:</td>
