@@ -2146,7 +2146,7 @@ sprite.src="/images/sprites/"+newSprite+".png";
 
 //display coords
 var coordinates = document.getElementById("coord");
-coordinates.innerHTML = "X:"+newX+" / Y:"+newY+ " map: <?php echo $map; ?>"; //display coord for dev
+//coordinates.innerHTML = "X:"+newX+" / Y:"+newY+ " map: <?php echo $map; ?>"; //display coord for dev
 
 //alert(newSprite);
 if (typeof map[newY] !== "undefined" && typeof map[newY][newX] !== "undefined" && (map[newY][newX] == 1 || map[newY][newX] > 10000 || map[newY][newX] < 0)) {
