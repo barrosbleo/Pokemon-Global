@@ -94,7 +94,7 @@ if($_SESSION['userid']) {
 			<a href="/sell_pokemon.php?lref=5"><?php echo $lang['side_left_links_04'];?></a>
 			<a href="/fix.php?lref=6"><?php echo $lang['side_left_links_05'];?></a>
 			<a href="/chatroom.php?lref=7"><?php echo $lang['side_left_links_06'];?></a>
-			<a href="http://forums.pkmnhelios.net/"><?php echo $lang['side_left_links_07'];?></a>
+			<a href="http://pkmglobal.online/forum/" target="_blank"><?php echo $lang['side_left_links_07'];?></a>
 			<a href="/online.php?lref=9"><?php echo $lang['side_left_links_08'];?></a>
 			<a href="/users.php?lref=10"><?php echo $lang['side_left_links_09'];?></a>
 		</div>		
