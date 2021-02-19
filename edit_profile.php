@@ -139,8 +139,19 @@ echo '
 					</center>
 				</td>
 			</tr>
-			
-						<tr>
+			<tr>
+				<th colspan="2" class="text-center">'.$lang['edit_profile_16'].'</th>
+			</tr>
+			<tr>
+				<td>
+				<select id="language" onchange="location = this.value" style="width:100px;">
+				<option>'.$lang['edit_profile_16'].'</option>
+				<option value="?lang=en">English<img src="/images/lang/en.png"></option>
+				<option value="?lang=pt-br">Português<img src="/images/lang/pt-br.png"></option>
+				</select>
+				</td>
+			</tr>
+			<tr>
 				<th colspan="2" class="text-center">'.$lang['edit_profile_14'].'</th>
 			</tr>
 			

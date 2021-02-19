@@ -113,6 +113,26 @@ if ((isset($_POST['find']) || isset($_GET['id'])) && $foundUser) {
             $errors[] = 'Number of released pokemon can not be negative.';
         }
         
+        $referals = (int) $_POST['referals'];
+        if ($referals < 0) {
+            $errors[] = 'Referal number can not be negative.';
+        }
+        
+        $map_num = (int) $_POST['map_num'];
+        if ($map_num < 0) {
+            $errors[] = 'Map number can not be negative.';
+        }
+		
+        $map_x = (int) $_POST['map_x'];
+        if ($map_x < 0) {
+            $errors[] = 'X map position can not be negative.';
+        }
+		
+        $map_y = (int) $_POST['map_y'];
+        if ($map_y < 0) {
+            $errors[] = 'Y map position can not be negative.';
+        }
+        
         $won = (int) $_POST['won'];
         if ($won < 0) {
             $errors[] = 'Battles won can not be negative.';
@@ -168,6 +188,10 @@ if ((isset($_POST['find']) || isset($_GET['id'])) && $foundUser) {
                     `lost`      = '{$lost}',
                     `email`     = '{$email}',
                     `lottery`   = '{$lottery}',
+                    `Referals`   = '{$referals}',
+                    `map_num`   = '{$map_num}',
+                    `map_x`   = '{$map_x}',
+                    `map_y`   = '{$map_y}',
                     `clan`      = '{$clanId}',
                     `clanxp`    = '{$clanexp}',
                     `rank` = '{$rank}',
@@ -195,6 +219,9 @@ if ((isset($_POST['find']) || isset($_GET['id'])) && $foundUser) {
                     <th colspan="2">Edit User</th>
                 </tr>
                 <tr>
+                    <th colspan="2">General Info</th>
+                </tr>
+                <tr>
                     <td>User ID:</td>
                     <td>'.$userInfo['id'].'</td>
                 </tr>
@@ -205,6 +232,40 @@ if ((isset($_POST['find']) || isset($_GET['id'])) && $foundUser) {
                 <tr>
                     <td>IP:</td>
                     <td><a href="user_ip.php?ip='.$userInfo['ip'].'">'.$userInfo['ip'].'</a></td>
+                </tr>
+                <tr>
+                    <td>Email:</td>
+                    <td><input type="text" name="email" value="'.$userInfo['email'].'" /></td>
+                </tr>
+				<tr>
+                    <td>Premium:</td>
+                    <td>
+                        <input type="radio" name="premium" value="2" '.($userInfo['premium'] == 2 ? 'checked="checked"' : '' ).' /> Yes<br />
+                        <input type="radio" name="premium" value="1" '.($userInfo['premium'] == 1 ? 'checked="checked"' : '' ).' /> No<br /><br />
+                        <span class="small">Make Premium user also change a userbar to premium!</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Signature:</td>
+                    <td><textarea name="signature" cols="20" rows="3">'.$userInfo['signature'].'</textarea></td>
+                </tr>           
+				<tr>
+                    <td>User bar:</td>
+                    <td><input name="userbar" cols="20" value="'.$userInfo['userbar'].'" /></td>
+                </tr>			
+				<tr>
+                    <td>Rank:</td>
+                    <td><input name="rank" value="'.$userInfo['rank'].'" /></td>
+                </tr>
+                <tr>
+                    <td>Entered Lottery:</td>
+                    <td>
+                        <input type="radio" name="lottery" value="1" '.($userInfo['lottery'] == 1 ? 'checked="checked"' : '' ).' /> Yes<br />
+                        <input type="radio" name="lottery" value="0" '.($userInfo['lottery'] == 0 ? 'checked="checked"' : '' ).' /> No
+                    </td>
+                </tr>
+                <tr>
+                    <th colspan="2">Cashing</th>
                 </tr>
                 <tr>
                     <td>Money:</td>
@@ -219,8 +280,33 @@ if ((isset($_POST['find']) || isset($_GET['id'])) && $foundUser) {
                     <td><input type="text" name="tokens" value="'.$userInfo['token'].'" /></td>
                 </tr>
                 <tr>
+                    <td>Referals:</td>
+                    <td><input type="text" name="referals" value="'.$userInfo['Referals'].'" /></td>
+                </tr>
+                <tr>
+                    <th colspan="2">Map</th>
+                </tr>
+                <tr>
+                    <td>Map Number:</td>
+                    <td><input type="text" name="map_num" value="'.$userInfo['map_num'].'" /></td>
+                </tr>
+                <tr>
+                    <td>Map X:</td>
+                    <td><input type="text" name="map_x" value="'.$userInfo['map_x'].'" /></td>
+                </tr>
+                <tr>
+                    <td>Map Y:</td>
+                    <td><input type="text" name="map_y" value="'.$userInfo['map_y'].'" /></td>
+                </tr>
+                <tr>
+                    <th colspan="2">Pokemons</th>
+                </tr>
+                <tr>
                     <td>Released:</td>
                     <td><input type="text" name="released" value="'.$userInfo['released'].'" /></td>
+                </tr>
+                <tr>
+                    <th colspan="2">Battles</th>
                 </tr>
                 <tr>
                     <td>Won:</td>
@@ -230,24 +316,8 @@ if ((isset($_POST['find']) || isset($_GET['id'])) && $foundUser) {
                     <td>Lost:</td>
                     <td><input type="text" name="lost" value="'.$userInfo['lost'].'" /></td>
                 </tr>
-				<tr>
-                    <td>Premium:</td>
-                    <td>
-                        <input type="radio" name="premium" value="2" '.($userInfo['premium'] == 2 ? 'checked="checked"' : '' ).' /> Yes<br />
-                        <input type="radio" name="premium" value="1" '.($userInfo['premium'] == 1 ? 'checked="checked"' : '' ).' /> No<br /><br />
-                        <span class="small">Make Premium user also change a userbar to premium!</span>
-                    </td>
-                </tr>
                 <tr>
-                    <td>Email:</td>
-                    <td><input type="text" name="email" value="'.$userInfo['email'].'" /></td>
-                </tr>
-                <tr>
-                    <td>Entered Lottery:</td>
-                    <td>
-                        <input type="radio" name="lottery" value="1" '.($userInfo['lottery'] == 1 ? 'checked="checked"' : '' ).' /> Yes<br />
-                        <input type="radio" name="lottery" value="0" '.($userInfo['lottery'] == 0 ? 'checked="checked"' : '' ).' /> No
-                    </td>
+                    <th colspan="2">Clans</th>
                 </tr>
                 <tr>
                     <td>Clan:</td>
@@ -258,16 +328,7 @@ if ((isset($_POST['find']) || isset($_GET['id'])) && $foundUser) {
                     <td><input type="text" name="clanexp" value="'.$userInfo['clanxp'].'" /></td>
                 </tr>
                 <tr>
-                    <td>Signature:</td>
-                    <td><textarea name="signature" cols="20" rows="3">'.$userInfo['signature'].'</textarea></td>
-                </tr>           
-				<tr>
-                    <td>User bar:</td>
-                    <td><input name="userbar" cols="20" value="'.$userInfo['userbar'].'" /></td>
-                </tr>			
-				<tr>
-                    <td>Rank:</td>
-                    <td><input name="rank" value="'.$userInfo['rank'].'" /></td>
+                    <th colspan="2">Banniment</th>
                 </tr>
                 <tr>
                     <td>Banned:</td>

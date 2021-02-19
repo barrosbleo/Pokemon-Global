@@ -309,6 +309,7 @@ $lang = array(
 	'edit_profile_13' => 'Character',
 	'edit_profile_14' => 'Signature',
 	'edit_profile_15' => 'Save',
+	'edit_profile_16' => 'Language',
 	
 	'avatar_updated' => 'Your avatar has been updated successfully!',
 	'choose_avatar' => 'Choose your avatar',

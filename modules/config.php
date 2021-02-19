@@ -14,7 +14,7 @@ $database['database'] = "u108578361_pkmglobal";		//database name
 
 //in game configs
 date_default_timezone_set("America/Sao_Paulo");		//game default timezone
-define('DEFAULT_STARTER_LEVEL', 15);				//starter pokemon level at account creation
+define('DEFAULT_STARTER_LEVEL', 5);				//starter pokemon level at account creation
 define('DEFAULT_STARTER_COLUMNS', 3);				//number of columns on register page
 define('DEFAULT_USER_MONEY', 20000);				//user money prize when register
 $pokemonNames = array(								//starter pokemon names
@@ -32,6 +32,15 @@ $pokemonNames = array(								//starter pokemon names
 	'Piplup',
 	'Snivy',
 	'Tepig',
-	'Oshawott'
+	'Oshawott',
+	'Chespin',
+	'Fennekin',
+	'Froakie'
+//	'Rowlet',
+//	'Litten',
+//	'Popplio',
+//	'Grookey',
+//	'Scorbunny',
+//	'Sobble'
 );
 ?>
