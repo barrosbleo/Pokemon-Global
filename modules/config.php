@@ -36,5 +36,11 @@ $pokemonNames = array(								//starter pokemon names
 	'Chespin',
 	'Fennekin',
 	'Froakie'
+//	'Rowlet',
+//	'Litten',
+//	'Popplio',
+//	'Grookey',
+//	'Scorbunny',
+//	'Sobble'
 );
 ?>
