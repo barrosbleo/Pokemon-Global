@@ -310,6 +310,7 @@ loja de referência.',
 	'edit_profile_13' => 'Personagem',
 	'edit_profile_14' => 'Assinatura',
 	'edit_profile_15' => 'Salvar',
+	'edit_profile_16' => 'Idioma',
 	
 	'avatar_updated' => 'Seu avatar foi atualizado com sucesso!',
 	'choose_avatar' => 'Escolha seu avatar',
