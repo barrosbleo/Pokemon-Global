@@ -25,6 +25,9 @@ foreach($pokemonNames as $name){
 						<div class="title" align="center"><?php echo $lang['register_title'];?></div>
 							<table style=" text-align: left;">
 								<tr class="block">
+									<p style="color:yellow"><?php echo $lang['register_email_txt'];?></p>
+								</tr>
+								<tr class="block">
 									<th><?php echo $lang['register_username'];?></th>
 									<td><input type="text" id="regUser" name="username" autofocus="on" /></td>
 								</tr>
