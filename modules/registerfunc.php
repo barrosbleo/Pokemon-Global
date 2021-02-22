@@ -18,14 +18,15 @@ if(isset($_POST['submit']) && $_POST['submit'] == "register"){
 	$sqlPokemon  = cleanSql($regStarter, $conn);
 	$sqlRefId  = cleanSql($refId, $conn);
 	$time        = time();
+	
 	$passwordlenth = 25;
-		$charset = 'abcdefghijklmnoprstovwxy1234567890';
+	$charset = 'abcdefghijklmnoprstovwxy1234567890';
 		
-		for ($x = 1; $x <= $passwordlenth; $x++) {
-			$rand = rand() % strlen($charset);
-			$temp = substr($charset, $rand, 1);
-			$key = $temp;
-		}
+	for ($x = 1; $x <= $passwordlenth; $x++) {
+		$rand = rand() % strlen($charset);
+		$temp = substr($charset, $rand, 1);
+		$key .= $temp;
+	}
 	
 	if(empty($regUser)){
 		$error = 1;
@@ -138,11 +139,11 @@ if(isset($_POST['submit']) && $_POST['submit'] == "register"){
 		$subject = $lang['register_verifmail_subject'];
 		$headers = $lang['register_verifmail_header'];
 		$body	= '
-			'.$lang['register_verifmail_txt1'].' '.$sqlUsername.',</br>
+			'.$lang['register_verifmail_txt1'].' '.$sqlUsername.'
 			'.$lang['register_verifmail_txt2'].'
 			
-			http://pkmglobal.online/register.php?key='.$key.'&username='.urlencode($sqlUsername).'</br></br>
-			'.$lang['register_verifmail_txt3']. $key .'</br>
+			http://pkmglobal.online/register.php?key='.$key.'&username='.urlencode($sqlUsername).'
+			'.$lang['register_verifmail_txt3']. $key .'
 			'.$lang['register_verifmail_txt4'].'
 		';		
 			
