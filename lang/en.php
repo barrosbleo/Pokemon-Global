@@ -66,11 +66,11 @@ $lang = array(
 	'register_captcha' => 'Captcha:',
 	'register_signup' => 'Register',
 	'register_verifmail_subject' => 'Register Pokemon Global .Online',
-	'register_verifmail_header' => 'From: Support Pokemon Global .Online - Do not respond.',
+	'register_verifmail_header' => 'De: support@pkmglobal.online',
 	'register_verifmail_txt1' => 'Thank you for joining with us, ',
-	'register_verifmail_txt2' => 'Your pokemon journey is about to start. Before you go ahead, you need to verify your email thru the following link:</br>',
+	'register_verifmail_txt2' => 'Your pokemon journey is about to start. Before you go ahead, you need to verify your email thru the following link:',
 	'register_verifmail_txt3' => 'If it asks for a serial key, there it is: ',
-	'register_verifmail_txt4' => 'Please check out our forum. If you have some questions or are having trouble in game, come and let us know thru the forum.</br>
+	'register_verifmail_txt4' => 'Please check out our forum. If you have some questions or are having trouble in game, come and let us know thru the forum.
 	Have a great gaming experience!',
 	
 	'verify_title' => 'Register confirmation',
