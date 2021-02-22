@@ -21,6 +21,11 @@ if(isset($_POST['submit']) && $_POST['submit'] == "log in"){
 		echo $lang['login_incorrect'];
 		exit();
 	}
+	if($userRow['verified'] == 0){
+		$error = 1;
+		echo $lang['login_email_verification'];
+		exit();
+	}
 	if($userRow['banned'] == 1){
 		$error = 1;
 		echo $lang['login_banned'];
