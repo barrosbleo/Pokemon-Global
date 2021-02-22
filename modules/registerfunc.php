@@ -18,6 +18,14 @@ if(isset($_POST['submit']) && $_POST['submit'] == "register"){
 	$sqlPokemon  = cleanSql($regStarter, $conn);
 	$sqlRefId  = cleanSql($refId, $conn);
 	$time        = time();
+	$passwordlenth = 25;
+		$charset = 'abcdefghijklmnoprstovwxy1234567890';
+		
+		for ($x = 1; $x <= $passwordlenth; $x++) {
+			$rand = rand() % strlen($charset);
+			$temp = substr($charset, $rand, 1);
+			$key = $temp;
+		}
 	
 	if(empty($regUser)){
 		$error = 1;
@@ -92,9 +100,9 @@ if(isset($_POST['submit']) && $_POST['submit'] == "register"){
 	//create account
 	if($error != 1){
 		$money = DEFAULT_USER_MONEY;
-		$conn->query("INSERT INTO `users` (`username`, `password`, `email`,`signup_date`, `money`, `ip`, `register_ip`, `ref_id`, `map_num`)
+		$conn->query("INSERT INTO `users` (`username`, `password`, `email`, `verify_key`, `signup_date`, `money`, `ip`, `register_ip`, `ref_id`, `map_num`)
 			VALUES
-			('{$sqlUsername}', '{$sqlPassword}', '{$sqlEmail}', '{$time}', '{$money}', '{$ip}', '{$ip}', '$sqlRefId', '1')");
+			('{$sqlUsername}', '{$sqlPassword}', '{$sqlEmail}', '{$key}', '{$time}', '{$money}', '{$ip}', '{$ip}', '$sqlRefId', '1')");
 		$uid = $conn->insert_id;
 		
 		$pokeQuery  = "SELECT * FROM `pokemon` WHERE `name`='{$regStarter}'";
@@ -125,6 +133,20 @@ if(isset($_POST['submit']) && $_POST['submit'] == "register"){
 				'5', '5', '5', '5', '5', '5', '5'
 			);
 		");
+		//send verification email
+		$to = $sqlEmail;
+		$subject = $lang['register_verifmail_subject'];
+		$headers = $lang['register_verifmail_header'];
+		$body	= '
+			'.$lang['register_verifmail_txt1'].' '.$sqlUsername.',</br>
+			'.$lang['register_verifmail_txt2'].'
+			
+			http://pkmglobal.online/register.php?key='.$key.'&username='.urlencode($sqlUsername).'</br></br>
+			'.$lang['register_verifmail_txt3']. $key .'</br>
+			'.$lang['register_verifmail_txt4'].'
+		';		
+			
+		mail($to, $subject, $body, $headers);
 		
 		if($sqlRefId >= 1){
 			$conn->query("UPDATE `users` SET `Referals`=`Referals`+1 WHERE `id`='{$sqlRefId}'");
