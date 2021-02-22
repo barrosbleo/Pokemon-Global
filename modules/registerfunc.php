@@ -142,7 +142,7 @@ if(isset($_POST['submit']) && $_POST['submit'] == "register"){
 			'.$lang['register_verifmail_txt1'].' '.$sqlUsername.'
 			'.$lang['register_verifmail_txt2'].'
 			
-			http://pkmglobal.online/register.php?key='.$key.'&username='.urlencode($sqlUsername).'
+			http://pkmglobal.online/verifyMail.php?key='.$key.'&username='.urlencode($sqlUsername).'
 			'.$lang['register_verifmail_txt3']. $key .'
 			'.$lang['register_verifmail_txt4'].'
 		';		
