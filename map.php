@@ -6,6 +6,13 @@ if (!isLoggedIn()) {
     redirect('index.php');
 }
 
+//log fix player pos btn
+if(isset($_GET['fixpos'])){
+	$time = date('d-m-Y h:m');
+	$logMsg = 'The user -' . $uid . '- has used the fix button at ' . $time . PHP_EOL;
+	commonLog('fixPosBtnLog.txt', $logMsg);
+}
+
 $map = (int) base64_decode($_GET['map']);
 $string = base64_encode($map);
 $uid = (int) $_SESSION['userid'];
@@ -2378,7 +2385,7 @@ function unlockPlayerPos(){
 	var uMap = "<?php echo $string;?>";
 	var uX = "<?php echo $saveX;?>";
 	var uY = "<?php echo $saveY;?>";
-	window.location = 'map.php?map='+uMap+'&x='+uX+'&y='+uY;
+	window.location = 'map.php?map='+uMap+'&x='+uX+'&y='+uY+'&fixpos=1';
 }
 
 function checkKeysUp(evt) {

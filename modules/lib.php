@@ -20,6 +20,7 @@ include('fetcharray.php');
 include('fetchobject.php');
 include('doquery.php');
 include('cleansql.php');
+include('logFunc.php');
 
 //general modules and functionalities
 include('general.php');
