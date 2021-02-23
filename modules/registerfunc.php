@@ -141,11 +141,11 @@ if(isset($_POST['submit']) && $_POST['submit'] == "register"){
 		$headers .= "MIME-Version: 1.0\r\n";
 		$headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
 		$body	= '<html><body>
-			'.$lang['register_verifmail_txt1'].' '.$sqlUsername.'
-			'.$lang['register_verifmail_txt2'].'
+			'.$lang['register_verifmail_txt1'].' '.$sqlUsername.'.</br></br>
+			'.$lang['register_verifmail_txt2'].'</br>
 			
-			http://pkmglobal.online/verifyMail.php?key='.$key.'&username='.urlencode($sqlUsername).'
-			'.$lang['register_verifmail_txt3']. $key .'
+			http://pkmglobal.online/verifyMail.php?key='.$key.'&username='.urlencode($sqlUsername).'</br>
+			'.$lang['register_verifmail_txt3']. '</br>' . $key .'</br>
 			'.$lang['register_verifmail_txt4'].'
 		</body></html>
 		';		
