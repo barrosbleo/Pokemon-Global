@@ -137,9 +137,9 @@ if(isset($_POST['submit']) && $_POST['submit'] == "register"){
 		//send verification email
 		$to = $sqlEmail;
 		$subject = $lang['register_verifmail_subject'];
-		$headers = $lang['register_verifmail_header'];
-		$headers .= "MIME-Version: 1.0\r\n";
+		$headers = "MIME-Version: 1.0\r\n";
 		$headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
+		$headers .= $lang['register_verifmail_header'];
 		$body	= '<html><body>
 			'.$lang['register_verifmail_txt1'].' '.$sqlUsername.'.</br></br>
 			'.$lang['register_verifmail_txt2'].'</br>
