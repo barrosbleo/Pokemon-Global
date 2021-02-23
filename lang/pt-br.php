@@ -68,9 +68,9 @@ Você poderá fazer outro cadastro em 24 horas. ',
 	'register_verifmail_subject' => 'Cadastro Pokemon Global .Online',
 	'register_verifmail_header' => 'De: support@pkmglobal.online \r\n',
 	'register_verifmail_txt1' => 'Obrigado por se cadastrar, ',
-	'register_verifmail_txt2' => 'Sua jornada pokemon esta prestes a começar. Para entrar no mundo pokemon, basta seguir o link abaixo e verificar seu email:</br>',
+	'register_verifmail_txt2' => 'Sua jornada pokemon esta prestes a começar. </br>Para entrar no mundo pokemon, basta seguir o link abaixo e verificar seu email:',
 	'register_verifmail_txt3' => 'Caso seja necessário informar a chave de acesso, ela está aqui: ',
-	'register_verifmail_txt4' => 'Não esqueça de verificar nosso forum, e caso tenha alguma dúvida ou enfrente algum problema no jogo, você também pode nos notificar por lá.
+	'register_verifmail_txt4' => 'Não esqueça de verificar nosso forum, e caso tenha alguma dúvida ou enfrente algum problema no jogo, você também pode nos notificar por lá.</br>
 	Tenha um bom jogo!',
 	
 	'verify_title' => 'Confirmação de cadastro',
