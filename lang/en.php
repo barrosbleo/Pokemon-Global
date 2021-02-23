@@ -264,6 +264,7 @@ $lang = array(
 	'donate_footer' => 'Donations',
 	
 	'map_key_explanation' => 'Use the arrow keys on your keyboard or touch map borders to explore!',
+	'map_unlock_btn' => 'Unlock player position',
 	'map_users' => 'Users on this map:',
 	'map_leg_explanation' => 'To capture legendary pokemons first you need to get all badges and be Elite 4!',
 	'map_can_catch_leg' => 'You can capture legendary pokemons!',
