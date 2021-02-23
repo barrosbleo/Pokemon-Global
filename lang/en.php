@@ -68,10 +68,10 @@ $lang = array(
 	'register_verifmail_subject' => 'Register Pokemon Global .Online',
 	'register_verifmail_header' => 'De: support@pkmglobal.online \r\n',
 	'register_verifmail_txt1' => 'Thank you for joining with us, ',
-	'register_verifmail_txt2' => 'Your pokemon journey is about to start.</br> Before you go ahead, you need to verify your email thru the following link:',
-	'register_verifmail_txt3' => 'If it asks for a serial key, there it is: ',
-	'register_verifmail_txt4' => 'Please check out our forum. If you have some questions or are having trouble in game, come and let us know thru the forum.</br>
-	Have a great gaming experience!',
+	'register_verifmail_txt2' => '<tr>Your pokemon journey is about to start.</tr> <tr>Before you go ahead, you need to verify your email thru the following link:</tr>',
+	'register_verifmail_txt3' => '<tr>If it asks for a serial key, there it is:</tr>',
+	'register_verifmail_txt4' => '<tr>Please check out our forum. If you have some questions or are having trouble in game, come and let us know thru the forum.</tr>
+	<tr>Have a great gaming experience!</tr>',
 	
 	'verify_title' => 'Register confirmation',
 	'verify_label_1' => 'Username',
