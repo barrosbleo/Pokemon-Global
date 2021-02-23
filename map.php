@@ -2117,6 +2117,8 @@ if($user['map_lastseen'] <= $minsAgo && $user['id'] != $uid){
 	continue;
 }	
 if ($user['id'] == $uid) {
+	$saveX = $startX;
+	$saveY = $startY;
 	$startX = $user['map_x'];
 	$startY = $user['map_y'];
 	$onMap = true;
@@ -2224,7 +2226,7 @@ sprite.src="/images/sprites/"+newSprite+".png";
 
 //display coords
 var coordinates = document.getElementById("coord");
-coordinates.innerHTML = "X:"+newX+" / Y:"+newY+ " map: <?php echo $map; ?>"; //display coord for dev
+//coordinates.innerHTML = "X:"+newX+" / Y:"+newY+ " map: <?php echo $map; ?>"; //display coord for dev
 
 //alert(newSprite);
 if (typeof map[newY] !== "undefined" && typeof map[newY][newX] !== "undefined" && (map[newY][newX] == 1 || map[newY][newX] > 10000 || map[newY][newX] < 0)) {
@@ -2372,6 +2374,12 @@ function startTimer() {
 	}, 275);//tempo ms para recarregar std 1000 (1 segundo)//275 is a good number
 }
 
+function unlockPlayerPos(){
+	var uMap = "<?php echo $string;?>";
+	var uX = "<?php echo $saveX;?>";
+	var uY = "<?php echo $saveY;?>";
+	window.location = 'map.php?map='+uMap+'&x='+uX+'&y='+uY;
+}
 
 function checkKeysUp(evt) {
 	if(evt.keyCode == 13){
@@ -2410,7 +2418,8 @@ window.addEventListener('keydown', checkKeysDown, false);
 <table class="maptable">
 	<tr>
 		<td>
-			<small><?php echo $lang['map_key_explanation'];?></small>
+			<small><?php echo $lang['map_key_explanation'];?></small></br>
+			<button class="smallbutton" onclick='unlockPlayerPos()'><?php echo $lang['map_unlock_btn'];?></button>
 			<div class="team">
 				<?php
 					$query = "SELECT * FROM `users` WHERE `id`='{$uid}'";

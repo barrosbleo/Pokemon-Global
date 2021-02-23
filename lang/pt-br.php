@@ -265,6 +265,7 @@ loja de referência.',
 	'donate_footer' => 'Doações',
 	
 	'map_key_explanation' => 'Use as teclas de setas no seu teclado ou toque nas bordas do mapa para explorar!',
+	'map_unlock_btn' => 'Destravar jogador',
 	'map_users' => 'Usuários neste mapa:',
 	'map_leg_explanation' => 'Para capturar pokemons lendários primeiro você precisa obter todas as insígnias e ser Elite 4!',
 	'map_can_catch_leg' => 'Você pode capturar pokemons lendários!',
