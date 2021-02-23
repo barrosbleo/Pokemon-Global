@@ -146,10 +146,10 @@ if(isset($_POST['submit']) && $_POST['submit'] == "register"){
 		<table>
 		
 			<tr>'.$lang['register_verifmail_txt1'].' '.$sqlUsername.'.</tr></br>
-			'.$lang['register_verifmail_txt2'].'</br>
+			'.$lang['register_verifmail_txt2'].'
 			
-			http://pkmglobal.online/verifyMail.php?key='.$key.'&username='.urlencode($sqlUsername).'</br>
-			'.$lang['register_verifmail_txt3']. '</br>' . $key .'</br>
+			<tr>http://pkmglobal.online/verifyMail.php?key='.$key.'&username='.urlencode($sqlUsername).'</tr>
+			'.$lang['register_verifmail_txt3']. '<tr>' . $key .'</tr>
 			'.$lang['register_verifmail_txt4'].'
 		</table>
 		</body>
