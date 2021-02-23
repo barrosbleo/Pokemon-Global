@@ -22,7 +22,7 @@ if(isset($_GET['key']) && isset($_GET['username'])){
 		exit();
 	}
 	if($error != 1){
-		$query = "UPDATE TABLE users SET verified = '1' WHERE username = '{$username}'";
+		$query = "UPDATE users SET verified = '1' WHERE username = '{$username}'";
 		$result = $conn->query($query);
 		echo '<p class="successF">'.$lang['verify_done'].'</p>';
 		echo '<script>setInterval(function(){ window.location.href = "https://pkmglobal.online"; }, 3000);</script>';
