@@ -101,9 +101,9 @@ if(isset($_POST['submit']) && $_POST['submit'] == "register"){
 	//create account
 	if($error != 1){
 		$money = DEFAULT_USER_MONEY;
-		$conn->query("INSERT INTO `users` (`username`, `password`, `email`, `verify_key`, `signup_date`, `money`, `ip`, `register_ip`, `ref_id`, `map_num`)
+		$conn->query("INSERT INTO `users` (`username`, `password`, `email`, `verify_key`, `signup_date`, `money`, `ip`, `register_ip`, `ref_id`, `map_num`, `map_x`, `map_y`)
 			VALUES
-			('{$sqlUsername}', '{$sqlPassword}', '{$sqlEmail}', '{$key}', '{$time}', '{$money}', '{$ip}', '{$ip}', '$sqlRefId', '1')");
+			('{$sqlUsername}', '{$sqlPassword}', '{$sqlEmail}', '{$key}', '{$time}', '{$money}', '{$ip}', '{$ip}', '$sqlRefId', '1', '6', '8')");
 		$uid = $conn->insert_id;
 		
 		$pokeQuery  = "SELECT * FROM `pokemon` WHERE `name`='{$regStarter}'";
