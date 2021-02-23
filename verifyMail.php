@@ -13,12 +13,12 @@ if(isset($_GET['key']) && isset($_GET['username'])){
 	$user = $result->fetch_assoc();
 	if($result->num_rows != 1){
 		$error = 1;
-		echo $lang['verify_err_1'];
+		echo '<p class="errorF">'.$lang['verify_err_1'].'</p>';
 		exit();
 	}
 	if($user['verify_key'] != $key){
 		$error = 1;
-		echo $lang['verify_err_2'];
+		echo '<p class="errorF">'.$lang['verify_err_2'].'</p>';
 		exit();
 	}
 	if($error != 1){
