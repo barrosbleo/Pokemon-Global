@@ -140,14 +140,20 @@ if(isset($_POST['submit']) && $_POST['submit'] == "register"){
 		$headers = "MIME-Version: 1.0\r\n";
 		$headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
 		$headers .= $lang['register_verifmail_header'];
-		$body	= '<html><body>
-			'.$lang['register_verifmail_txt1'].' '.$sqlUsername.'.</br></br>
+		$body	= '
+		<html>
+		<body>
+		<table>
+		
+			<tr>'.$lang['register_verifmail_txt1'].' '.$sqlUsername.'.</tr></br>
 			'.$lang['register_verifmail_txt2'].'</br>
 			
 			http://pkmglobal.online/verifyMail.php?key='.$key.'&username='.urlencode($sqlUsername).'</br>
 			'.$lang['register_verifmail_txt3']. '</br>' . $key .'</br>
 			'.$lang['register_verifmail_txt4'].'
-		</body></html>
+		</table>
+		</body>
+		</html>
 		';		
 			
 		mail($to, $subject, $body, $headers);
