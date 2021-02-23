@@ -493,7 +493,8 @@ p.successF { background: #68AF3B; }
 
 @media screen and (max-width: 600px) {
 	.lang {
-		display: none;
+		top:60px;
+		display: block;
 	}
 	
 	.welcome {
