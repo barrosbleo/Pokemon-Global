@@ -15,7 +15,7 @@ $moves['Dark'] = $moves['Ghost'];
 $moves['Steel'] = $moves['Rock'];
 // print_r($moves);
 
-$query = "select * from `pokemon` WHERE `move1`='Scratch' AND `move2`='Scratch' AND `move3`='Scratch' AND `move4`='Scratch'";
+$query = "select * from `pokedex` WHERE `move1`='Scratch' AND `move2`='Scratch' AND `move3`='Scratch' AND `move4`='Scratch'";
 $result = $conn->query($query);
 while ($row = $result->fetch_assoc()) {
 	if (!empty($row['type1'])) {
@@ -30,7 +30,7 @@ while ($row = $result->fetch_assoc()) {
 		$move4 = $moves[$row['type2']][ array_rand($moves[$row['type2']]) ];
 	}
 	if ($move1!='' && $move2!='' && $move3!='' && $move4!='') {
-$conn->query("update `pokemon` set `move1`='{$move1}', `move2`='{$move2}', `move3`='{$move3}', `move4`='{$move4}' WHERE `id`='{$row['id']}';");
+$conn->query("update `pokedex` set `move1`='{$move1}', `move2`='{$move2}', `move3`='{$move3}', `move4`='{$move4}' WHERE `id`='{$row['id']}';");
 	}
 }
 
