@@ -1,3 +1,30 @@
+Install process:
+htaccess - Place site url on RewriteRule(just comment the line if its running local)** don't forget to check if you're configured http or https
+modules/config.php - Set mysql connection
+
+
+----------------------------------------------------------------
+-------------------------POKEMON GLOBAL-------------------------
+------------------------PENDING  COMMITS------------------------
+---------------------------LUKE-OWNER---------------------------
+----------------------------------------------------------------
+
+
+
+
+
+
+----------------------------------------------------------------
+-------------------------POKEMON GLOBAL-------------------------
+---------------------------FOUND BUGS---------------------------
+-------------------------V 1.0.0 Alpha1-------------------------
+---------------------------08/31/2020---------------------------
+---------------------------LUKE-OWNER---------------------------
+----------------------------------------------------------------
+//lista de bugs
+online members crashed when there are 3+ members online
+some starters have no moves (missing pokemon on table)
+
 ----------------------------------------------------------------
 -------------------------POKEMON GLOBAL-------------------------
 ---------------------------TO DO LIST---------------------------
@@ -6,7 +33,53 @@
 ---------------------------LUKE-OWNER---------------------------
 ----------------------------------------------------------------
 
-1 - Change _footer.php informations						Done	01/09/2020
+16 - Complete lottery system							Undone
+42 - Labyrinth map for events							Undone
+53 - Create clan by NPC									Undone
+55 - Add like system									Undone
+56 - Real money reward for month winners				Undone
+67 - Add Equipe recruitment notes						Undone
+69 - Onclick npc says something							Undone
+Moderate - 74 - Player can repeat many battles with offline player	Undone
+76 - Add Cpanel lottery config							Undone
+78 - Back focus to map when send msg					Undone
+79 - Select pokemon on shop by cliking on its image		Undone
+81 - Set every pokemon func to pokedex table			Undone
+82 - Edit pokedex thru staff panel						Undone
+83 - Fix pokedex pokemon evolutions						Undone
+85 - Each starter defines the starter region			Undone
+87 - Do not show another player at first house			Undone
+88 - Add at least 8 sprites								Undone
+90 - Create the secret prize at hidden path on map 10	Undone
+91 - Pokemon needs to go to pokemon center to heal		Undone
+93 - Add movements to sprites							Undone
+95 - Eliminate unverified accounts after 10 days		Undone
+96 - Eliminate unactive accounts after 90 days			Undone
+97 - Send daily merchan emails							Undone
+98 - Send email after 5, 20, 30, 60 days of inactivity	Undone
+99 - Log fixplayposbtn thru database					Undone
+100 - Edit user mod or admin by admins panel			Undone
+101 - Eliminate dependencies of table pokemon and delete it		Done	02/03/2021
+102 - Use pokedex to give user pokemon from snow machine		Undone
+103 - Use pokedex to give user pokemon from promo		Undone
+104 - 		Undone
+105 - 		Undone
+106 - 		Undone
+107 - 		Undone
+108 - 		Undone
+109 - 		Undone
+
+
+
+----------------------------------------------------------------
+-------------------------POKEMON GLOBAL-------------------------
+---------------------------DONE  LIST---------------------------
+-------------------------V 1.0.0 Alpha1-------------------------
+---------------------------08/31/2020---------------------------
+---------------------------LUKE-OWNER---------------------------
+----------------------------------------------------------------
+
+1 - Change footer informations							Done	01/09/2020
 2 - Remove or change Helios League						Done	01/09/2020
 3 - Treainer Card page not printing name				Done	09/10/2020
 4 - Avatar is not changing								Done	01/09/2020
@@ -14,178 +87,82 @@
 6 - Bugfix - Pokedex selection							Done	01/09/2020
 7 - Change referral link refl.php						Done	01/09/2020
 8 - Change legalinfo.php informations					Done	01/09/2020
-9 - Create global chatroom								Undone	
+9 - Create global chatroom								Done	04/02/2021
 10 - Remove Follow pokeHelios membersarea.php			Done	01/09/2020
 11 - Alter Account-News & Updates to Members area		Done	01/09/2020
 12 - Place Account-Members area at the top				Done	01/09/2020
-13 - Clans section is not working						Done	03/09/2020 //add session_auto_start = 1 php.ini
+13 - Clans section is not working						Done	03/09/2020
 14 - Remove Battles section								Done	02/09/2020
-15 - Fight gym leaders entering into gym by map			Undone	
-16 - Bugfix - lottery is not working					Undone	
+15 - Fight gym leaders entering into gym by map			Done	09/02/2021
 17 - Remake donate.php page								Done	28/09/2020
 18 - Change money drop rate								Done	02/09/2020
 19 - Change pokemon appear rate							Done	02/09/2020
-20 - Change pokemon by map								Undone	
-21 - Create quest system								Undone
-22 - Need help section need to be rebuilt				Undone	
+20 - Change pokemon by map								Done	02/09/2020
+21 - Create quest system								Done	10/12/2020
+22 - Need help section needs to be rebuilt				Done	03/02/2021
 23 - Change staff list informations						Done	17/09/2020
 24 - Remove facebook link from community section		Done	02/09/2020
 25 - Remake Rules texts									Done	01/09/2020
 26 - Remake Legal Info texts							Done	01/09/2020
-27 - 50/50 is not working								Undone	
-28 - Review daily prizes								Undone	
-29 - Review luck hour prizes							Undone	
+27 - 50/50 is not working								Done	02/02/2021
+28 - Review daily prizes								Done	02/02/2021
+29 - Review luck hour prizes							Done	02/02/2021
 30 - Add portuguese translations						Done	28/09/2020
-31 - Add config section where player can change Lang	Undone	
+31 - Add config section where player can change Lang	Done	24/02/2021
 32 - Make 10 first maps									Done	17/09/2020
 33 - Make enfermary map									Done	15/09/2020
 34 - Make Shop map										Done	15/09/2020
-35 - Make Rock gym map									Undone
+35 - Make Rock gym map									Done	09/02/2021
 36 - Add map's local chatroom							Done	09/09/2020
 37 - Remove Helios Pokemon								Done	03/09/2020
-38 - Bugfix -	refl.php has php errors					Done	01/09/2020
+38 - Bugfix - refl.php has php errors					Done	01/09/2020
 39 - Create new logo									Done	07/09/2020
-40 - File Missing Nidoran (F) image						Done	03/09/2020
+40 - File Missing Nidoran (f) image						Done	03/09/2020
 41 - File Missing Nidoran (m) image						Done	03/09/2020
-42 - Labyrinth map for events							Undone	
 43 - Nidoran's mini sprite is missing					Done	08/09/2020
 44 - Back top map after fight is not working			Done	08/09/2020
 45 - Catch rate is very low								Done	07/09/2020
 46 - Remove battle captcha								Done	08/09/2020
 47 - Add pokemon name at register page					Done	09/09/2020
-48 - Gender bug in Nidoran male and female				Undone	
+48 - Gender bug in Nidoran male and female				Done	02/03/2021
 49 - Register sys is not recording starting map			Done	08/09/2020
 50 - Add adm access										Done	09/09/2020
 51 - Add moderator access								Done	09/09/2020
 52 - Add maps' names									Done	28/09/2020
-53 - 													Undone	
-54 - Every special pokemon have their img name miscor.	Undone	
-55 - Add like system									Undone	
-56 - Real money reward for month winners				Undone	
+54 - Every special pokemon have their img name miscor.	Done	03/02/2021
 57 - Set another redirect for map's default				Done	29/09/2020
-58 - Positionate movement arrows above map's img		Undone	
-59 - Test password_forgot.php							Undone	
+58 - Positionate movement arrows above map's img		Done	01/02/2021
+59 - Ajax update users on map							Done	02/02/2021
 60 - Config poke shop									Done	08/10/2020
 61 - Battle init screen not showing lvl or hp			Done	01/10/2020
-62 - Make forum											Undone	
+62 - Make forum											Done	04/02/2021
 63 - Find a new host									Done	07/10/2020
 64 - Buy domain											Done	07/10/2020
-65 - Change tags mysql to mysqli						Undone	
-66 - eliminate short_open_tag from files				Undone	
-67 - Add Equipe recruitment notes						Undone	
+65 - Change tags mysql to mysqli						Done	20/01/2021
+66 - eliminate short_open_tag from files				Done	10/01/2021
 68 - Move token Shop to Stores section					Done	09/10/2020
-69 - Onclick npc says something							Undone	
 70 - Player can talk with npc only when aproach			Done	08/01/2021
-71 - Add Unlock Player Position Btn(with usage log)		Undone	
-72 - Players can add themselves as friends				Undone	
-73 - When entering battle training battle still running	Undone	
-74 - Player can repeat many battles with offline player	Undone	
-75 - Block battling no pokemon players					Undone	
-76 - 			Undone	
-77 - 			Undone	
-78 - 			Undone	
-79 - 			Undone	
+71 - Add Unlock Player Position Btn(with usage log)		Done	23/02/2021
+72 - Players can add themselves as friends				Done	02/03/2021
+73 - When entering battle training battle still running	Done	10/02/2021
+75 - Block battling no pokemon players					Done	11/02/2021
+77 - Login with enter button							Done	05/02/2021
+80 - Complete change_team system						Done	03/02/2021
+84 - Add rare pokemon catch rate						Done	09/02/2021
+86 - Register with enter button							Done	05/02/2021
+89 - Random level by map								Done	09/02/2021
+92 - Tutorials											Done	11/02/2021
+94 - Add email verification system						Done	23/02/2021
+101 - Eliminate dependencies of table 'pokemon' and delete it	Done	02/03/2021
 
-chat is not working
-testar 50/50
-mypokedex.php has image with broken link
-old_header.php could it be deleted?
-pokedex45.php is it actually required?
+
 
 study composer by google+
 estudar sobre xss(possivelmente um ataque)
-corrigir o cleanHTML
-
-1 - conectar mysql e mysqli
-2 - trocar as tagas do mysql para mysqli
-3 - eliminar conexão mysql
+refazer todos os arquivos
 
 
-----------------------------------------------------------------
--------------------------POKEMON GLOBAL-------------------------
--------------------------CHANGED  FILES-------------------------
--------------------------V 1.0.1 Alpha1-------------------------
----------------------------08/01/2021---------------------------
----------------------------LUKE-OWNER---------------------------
-----------------------------------------------------------------
-
-map.php
-add npc table into database
-css/style-game.css
-_footer.php
-_header.php
-bank.php
-change_avatar.php
-chatroom.php
-dailyprize.php
-derp.php
-donate.php
-fiftyfifty.php
-happen.php
-header.php
-index.php
-legalinfo.php
-login.php
-lostpass.php
-luckyhour.php
-new_pm.php
-password_forgot.php
-password_reset.php
-pokedex.php
-pokeshop.php
-profile.php
-refl.php
-register.php
-roll_dice.php
-rules.php
-staff.php
-test2.php
-updates.php
-user_notifications2.php
-user_notifications.php
-
-
-----------------------------------------------------------------
--------------------------POKEMON GLOBAL-------------------------
--------------------------CHANGED  FILES-------------------------
--------------------------V 1.0.2 Alpha1-------------------------
----------------------------08/01/2021---------------------------
----------------------------LUKE-OWNER---------------------------
-----------------------------------------------------------------
-
-/logs
-map.php
-quest.php
-index.php
-_header.php
-_footer.php
-.htaccess (antes de atualizar verificar variáveis existentes no arquivo do pkmglobal.online)
-config.php
-membersarea.php
-lang/en.php
-lang/pt-br.php
-functions.php
-quests/Edmund.php
-quests/questUpdt.php
-css/style-game.css
-user_notifications2.php
-add user_quests table into database
-add type column (varchar 255) into user_pokemon
-add gender column (varchar 255) into pokedex
-
-
-
-----------------------------------------------------------------
--------------------------POKEMON GLOBAL-------------------------
--------------------------MYSQLI   FILES-------------------------
----------------------------08/01/2021---------------------------
----------------------------LUKE-OWNER---------------------------
-----------------------------------------------------------------
-
-
-
-
-
+actualy pokemon table only is used for wild appearings
 
 ----------------------------------------------------------------
 -------------------------POKEMON GLOBAL-------------------------
@@ -194,6 +171,8 @@ add gender column (varchar 255) into pokedex
 ---------------------------08/31/2020---------------------------
 ---------------------------LUKE-OWNER---------------------------
 ----------------------------------------------------------------
+https://pokemondb.net/pokedex/all
+https://wiki.pokemon-vortex.com/wiki/Unown_(Qm)
 Normal		742
 Crystal		1
 Cursed		1
@@ -208,3 +187,16 @@ Mega		30
 Rainbow		2
 Shadow		82
 Shiny		649
+
+missing pokemons on table
+Aegislash
+Doublade
+Honedge
+NidoranF
+NidoranM
+Sylveon
+Mesprittrial(not found on pokemondb.net)
+Fineon(not found on pokemondb.net)
+Xerneas
+Pancham
+Pangoro
