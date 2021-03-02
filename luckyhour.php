@@ -26,7 +26,7 @@ $hitrows1 = "SELECT * FROM `lucky_hour`";
 $hitrows = numRows($hitrows1, $conn);
 
 $pid = rand(1, 713);
-$pokemon = "SELECT * FROM `pokemon` WHERE `id` = '$pid'";
+$pokemon = "SELECT * FROM `pokedex` WHERE `id` = '$pid'";
 $pokemon = fetchObj($pokemon, $conn);
 $level = 5;
 $exp = levelToExp($level);

@@ -69,7 +69,7 @@ switch ($_GET['d']) {
 	break;
 }
 
-$query = "SELECT `id` FROM `pokemon` ORDER BY `id` ASC LIMIT 1";
+$query = "SELECT `id` FROM `pokedex` ORDER BY `id` ASC LIMIT 1";
 $lastId = fetchAssoc($query, $conn);
 $lastId = $lastId['id'];
 
@@ -80,7 +80,7 @@ for ($i=0;$i<$numPokes;$i++ ){
 	$randomLevel = mt_rand($minLevel, $maxLevel);
 	$type        = mt_rand(1, 5) == 3 ? 'Shiny ' : '' ;
 	
-	$query   = "SELECT * FROM `pokemon` WHERE `id`>={$randId} AND `name`!='' LIMIT 1";
+	$query   = "SELECT * FROM `pokedex` WHERE `id`>={$randId} AND `name`!='' LIMIT 1";
 	$pokeRow = fetchAssoc($query, $conn);
 	
 	$pokeRow['name']  = $type.$pokeRow['name'];

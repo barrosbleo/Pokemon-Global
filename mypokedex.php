@@ -12,7 +12,7 @@ $query = "
 		IF ((SELECT `id` FROM `user_pokemon` WHERE `name`=CONCAT('Shiny ', `pokemon`.`name`) AND `uid`='{$uid}' LIMIT 1), 1, 0) as `caught_shiny`,
 		IF ((SELECT `id` FROM `user_pokemon` WHERE `name`=CONCAT('Snow ', `pokemon`.`name`) AND `uid`='{$uid}' LIMIT 1), 1, 0) as `caught_snow`
 	FROM
-		`pokemon`
+		`pokedex`
 	ORDER BY `pokemon`.`name` ASC
 ";
 
