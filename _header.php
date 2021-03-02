@@ -158,12 +158,12 @@
             <li class="dropdown">
 				<a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo $lang['header_menu_11'];?> <span class="caret"></span></a>
 				<ul class="dropdown-menu" role="menu">
-					<li><a href="/forum/" target="_blank"><?php echo $lang['header_submenu_10_02'];?></a></li>
+					<li><a href="/forum/"><?php echo $lang['header_submenu_10_02'];?></a></li>
 					<li><a href="/staff.php"><?php echo $lang['header_submenu_11_01'];?></a></li>
 					<li><a href="/users.php"><?php echo $lang['header_submenu_11_02'];?></a></li>
 					<li><a href="/online.php"><?php echo $lang['header_submenu_11_03'];?>
 						<span class="count online">&nbsp; - &nbsp;<?php echo $online?></span></a></li>
-					<li><a href="/chatroom.php" target="_blank"><?php echo $lang['header_submenu_11_04'];?></a></li>
+					<li><a href="https://discord.com/invite/ZENSZBzcC6" target="_blank"><?php echo $lang['header_submenu_11_04'];?></a></li>
 					<!--<li><a href="http://www.facebook.com/duskrpg">Facebook</a></li>-->
 					<li><a href="/rules.php"><?php echo $lang['header_submenu_11_05'];?></a></li>
 					<!--<li><a href="/legalinfo.php"><?php //echo $lang['header_submenu_11_06'];?></a></li>-->
@@ -375,7 +375,8 @@ if(curTuto == "4"){
 				<li><p onclick="loadPage('login');"><span></span><?php echo $lang['menu_login'];?></p></li>
 				<li><p onclick="loadPage('register');"><span></span><?php echo $lang['menu_register'];?></p></li>
 				<li><p onclick="loadPage('news');"><span></span><?php echo $lang['menu_news'];?></p></li>
-				<li><p onclick="loadPage('chatroom');"><span></span><?php echo $lang['menu_chatroom'];?></p></li>
+				<!--<li><p onclick="loadPage('chatroom');"><span></span><?php //echo $lang['menu_chatroom'];?></p></li>-->
+				<li><a href="https://discord.com/invite/ZENSZBzcC6" target="_blank"><p><span></span><?php echo $lang['menu_chatroom'];?></p></a></li>
 			</ul>
 		</div>	
 
