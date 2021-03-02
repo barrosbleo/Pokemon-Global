@@ -51,7 +51,7 @@ if (isset($_SESSION['lastseen']) && (time() - $_SESSION['lastseen'] > 1800)) {
 function giveUserPokemonByName($uid, $pokeName, $level = 5, $prefix = '', $conn) {
 
 	$pokeName = cleanSql($pokeName, $conn);
-	$query = "SELECT * FROM `pokemon` WHERE `name`='{$pokeName}' LIMIT 1";
+	$query = "SELECT * FROM `pokedex` WHERE `name`='{$pokeName}' LIMIT 1";
 	
 	if (numRows($query, $conn) == 0) {
 		return false;

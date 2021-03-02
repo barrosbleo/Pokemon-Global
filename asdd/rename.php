@@ -1,7 +1,7 @@
 <?php
 include('../modules/lib.php');
 
-$q = "SELECT * FROM `pokemon`";
+$q = "SELECT * FROM `pokedex`";
 $result = $conn->query($q);
 while ($row = $result->fetch_assoc()) {
 	//echo $row['num'] . ' - ' . $row['name'] . '<br/>';

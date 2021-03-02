@@ -725,7 +725,7 @@ if (mt_rand(1, 100) <= 23) {//pokemon appear rate 23%
 		$randomPokemon = $wildPokemon[ mt_rand(0, count($wildPokemon)-1) ];
 	}
 	
-	$query = "SELECT * FROM `pokemon` WHERE `name`='{$randomPokemon}' LIMIT 1";
+	$query = "SELECT * FROM `pokedex` WHERE `name`='{$randomPokemon}' LIMIT 1";
 	
 	if (numRows($query, $conn) == 1) {
 		$pokeRow = fetchAssoc($query, $conn);

@@ -106,7 +106,7 @@ if(isset($_POST['submit']) && $_POST['submit'] == "register"){
 			('{$sqlUsername}', '{$sqlPassword}', '{$sqlEmail}', '{$key}', '{$time}', '{$money}', '{$ip}', '{$ip}', '$sqlRefId', '1', '6', '8')");
 		$uid = $conn->insert_id;
 		
-		$pokeQuery  = "SELECT * FROM `pokemon` WHERE `name`='{$regStarter}'";
+		$pokeQuery  = "SELECT * FROM `pokedex` WHERE `name`='{$regStarter}'";
 		$pokemonRow = fetchAssoc($pokeQuery, $conn);
 		$level = DEFAULT_STARTER_LEVEL;
 		$exp   = levelToExp($level);

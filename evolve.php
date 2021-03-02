@@ -109,7 +109,7 @@ if (isset($_GET['eid'])) {
 				</table>
 			';
 			
-			$q = "SELECT * FROM `pokemon` WHERE `name`='{$epokemon['after']}'";
+			$q = "SELECT * FROM `pokedex` WHERE `name`='{$epokemon['after']}'";
 			$moves = fetchAssoc($q, $conn);
 			$moveSql = '';
 			
@@ -141,7 +141,7 @@ if (isset($_GET['eid'])) {
 	} else {
 		$result = $conn->query($query);
 		while ($epokemon = $result->fetch_assoc()) {
-			$q = "SELECT * FROM `pokemon` WHERE `name`='{$epokemon['after']}'";
+			$q = "SELECT * FROM `pokedex` WHERE `name`='{$epokemon['after']}'";
 			$moves = fetchAssoc($q, $conn);
 			echo '
 				<hr style="width: 500px; margin: 0 auto;" />

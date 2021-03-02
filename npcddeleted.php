@@ -47,7 +47,7 @@ $cells = array();
 
 for ($i=0;$i<$numPokes;$i++ ){
 
-	$query   = "SELECT * FROM `pokemon` WHERE `id`>={$pokeid} AND `name`!='' LIMIT 1";
+	$query   = "SELECT * FROM `pokedex` WHERE `id`>={$pokeid} AND `name`!='' LIMIT 1";
 	$pokeRow = fetchAssoc($query, $conn);
 	
 	$pokeRow['name']  = $type.$pokeRow['name'];

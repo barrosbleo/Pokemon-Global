@@ -17,7 +17,7 @@ if (isset($_GET['leader'])) {
 			$level = $pokeArray['level'];
 			$type = isset($pokeArray['type']) ? $pokeArray['type'].' ' : '' ;
 			
-			$query = "SELECT * FROM `pokemon` WHERE `name`='{$name}' LIMIT 1";		
+			$query = "SELECT * FROM `pokedex` WHERE `name`='{$name}' LIMIT 1";		
 			$_SESSION['battle']['opponent'][$i] = fetchAssoc($query, $conn);
 			$_SESSION['battle']['opponent'][$i]['name'] = $type.$name;
 			$_SESSION['battle']['opponent'][$i]['level'] = $level;
