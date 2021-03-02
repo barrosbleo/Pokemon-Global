@@ -1,5 +1,5 @@
  <?php
- //guess this is for cancel all user trades
+ //this is for cancel all user trades
  //move this to staff section
 die();
 include('modules/lib.php');
@@ -7,8 +7,14 @@ include('modules/lib.php');
 $query = "select * from `offer_pokemon`";
 
 $result = $conn->query($query);
-while ($row = $result->fetch_assoc()) {
+while ($row = $result->fetch_assoc()) 
+if($row['name'] == "Nidoran (f)"){
+	$row['gender'] = 2;
+}elseif($row['name'] == "Nidoran (m)"){
+	$row['gender'] = 1;
+}else{
 	$row['gender'] = rand(0, 2);
+}
 	$query2 = $conn->query("
 		INSERT INTO `user_pokemon` (
 		`uid`, `name`, `level`, `exp`, `move1`, `move2`, `move3`, `move4`, `gender`
