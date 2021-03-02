@@ -32,10 +32,10 @@ $pokemonNames = array(								//starter pokemon names
 	'Piplup',
 	'Snivy',
 	'Tepig',
-	'Oshawott',
-	'Chespin',
-	'Fennekin',
-	'Froakie'
+	'Oshawott'
+//	'Chespin',
+//	'Fennekin',
+//	'Froakie'
 //	'Rowlet',
 //	'Litten',
 //	'Popplio',
