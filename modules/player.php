@@ -84,7 +84,13 @@ function giveUserPokemon($uid, $name, $level, $exp, $move1, $move2, $move3, $mov
 	$move2 = cleanSql($move2, $conn);
 	$move3 = cleanSql($move3, $conn);
 	$move4 = cleanSql($move4, $conn);
-	$gender = rand(0, 2);
+	if($name == "Nidoran (f)"){
+	$gender = 2;
+	}elseif($name == "Nidoran (m)"){
+		$gender = 1;
+	}else{
+		$gender = rand(0, 2);
+	}
 	
 	$conn->query("
 		INSERT INTO `user_pokemon` (
