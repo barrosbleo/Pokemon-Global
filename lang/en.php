@@ -1383,7 +1383,7 @@ the future there will be ranks for who caught the most pokemons.',
 	'quest_2_title' => 'Pallet Girl',
 	'quest_2_text' => 'Are you a pokemon trainer?</br>
 	I wanna be a great trainer too, you know, when i get the age for that.</br>
-	Hope you earn all badges and come bake to Pallet as a great champion!</br>
+	Hope you earn all badges and come back to Pallet as a great champion!</br>
 	Have a good luck in your journey!</br></br>',
 
 	//quest 3 (Pallet Guy)
