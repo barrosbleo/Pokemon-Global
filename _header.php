@@ -129,6 +129,7 @@
 				<ul class="dropdown-menu" role="menu">
 					<li><a href="/dailyprize.php"><?php echo $lang['header_submenu_12_02'];?></a></li>
 					<li><a href="/luckyhour.php"><?php echo $lang['header_submenu_12_03'];?></a></li>
+					<li><a href="/slots.php"><?php echo $lang['slots_title'];?></a></li>
 					<li><a href="/fiftyfifty.php"><?php echo $lang['header_submenu_12_01'];?></a></li>
 					<li><a href="/snow_machine.php"><?php echo $lang['header_submenu_07_01'];?></a></li>
 					<li><a href="/donate.php"><?php echo $lang['header_submenu_07_03'];?></a></li>
