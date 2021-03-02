@@ -202,7 +202,17 @@ if(numRows($query, $conn) != 1) {
 					<a href="card.php?id=<?php echo urlencode($userRow['id']);?>"><?php echo $lang['profile_19'];?></a>
 				</td>
 				<td>
+				<?php
+				if($uid == $_SESSION['userid']){
+				?>
+					<a href="#"><?php echo $lang['profile_15'];?></a>
+					<?php
+				}else{
+				?>
 					<a href="profile.php?id=<?php echo $uid;?>&friend=req"><?php echo $lang['profile_15'];?></a>
+					<?php
+				}
+					?>
 				</td>
 				<td>
 					<a href="messages.php?p=new&uid=<?php echo urlencode($userRow['id']);?>"><?php echo $lang['profile_13'];?></a>

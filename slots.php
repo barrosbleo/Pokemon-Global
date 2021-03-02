@@ -10,7 +10,7 @@ include '_header.php';
 printHeader($lang['slots_title']);
 $uid = (int) $_SESSION['userid'];
 $userMoney = getUserMoney($uid, $conn);
-$pokeArr = array('Bulbasaur', 'Gengar', 'Voltorb', 'Cleffa', 'Zubat', 'Golem', 'Squirtle', 'Pichu', 'Koffing', 'Charmander');
+$pokeArr = array('Bulbasaur', 'Gengar', 'Celebi', 'Cleffa', 'Mewtwo', 'Golem', 'Squirtle', 'Pichu', 'Koffing', 'Charmander');
 $betAmounts = array(1, 5, 10, 25, 50, 75, 100, 1000, 10000, 100000, 1000000);
 
 if (isset($_POST['pull'], $_POST['bet']) && in_array($_POST['bet'], $betAmounts) && $_POST['bet'] <= $userMoney) {
@@ -89,7 +89,7 @@ echo '
 		<select name="bet">
 			'.$optionTags.'
 		</select>
-		<input type="submit" name="pull" value="'.$lang['slots_04'].'" />
+		<input type="submit" class="smallbutton" name="pull" value="'.$lang['slots_04'].'" />
 	</form>
 	<br />
 	<span style="font-size: 80%;">'.$lang['slots_05'].'</span>
