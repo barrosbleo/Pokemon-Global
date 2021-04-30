@@ -80,6 +80,10 @@
 				<a href="/map.php?map=<?php echo base64_encode($_SESSION['player']['map_num']);?>" class="dropdown-toggle"><?php echo $lang['header_menu_01'];?></span></a>
 			</li>
 			
+			<li class="dropdown">
+				<a href="/gyms.php" class="dropdown-toggle"><?php echo $lang['header_submenu_04_01'];?></span></a>
+			</li>
+			
             <li class="dropdown">
 				<a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo $lang['header_menu_02'];?> <span class="caret"></span></a>
 				<ul class="dropdown-menu" role="menu">

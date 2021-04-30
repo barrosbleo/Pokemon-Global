@@ -87,6 +87,8 @@ if($_SESSION['userid']) {
 	<li class="usr-inf-title"><a href="#"><?php echo $lang['side_left_title_02'];?></a></li>
 	<li>
 		<div class="info-box">
+			<a href="/shop.php"><?php echo $lang['header_submenu_06_01'];?></a>
+			<a href="/gyms.php"><?php echo $lang['header_submenu_04_01'];?></a>
 			<a href="/quest.php?page=active"><?php echo $lang['side_left_links_00'];?></a>
 			<a href="/auction.php?lref=1"><?php echo $lang['side_left_links_01'];?></a>
 			<a href="/view_box.php?lref=3"><?php echo $lang['side_left_links_02'];?></a>
