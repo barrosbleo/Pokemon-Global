@@ -85,7 +85,7 @@ echo'
 		           <img style="width:110px;" src="images/pokemon/'.$p_class->evolution.'.png">
 		    </td>';
 			}
-			echo';
+			echo'
 		  </tr>
 		</table>
 </center>';
