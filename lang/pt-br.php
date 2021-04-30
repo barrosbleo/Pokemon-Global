@@ -153,34 +153,34 @@ Este site não tem filiação com Nintendo, Creatures, ou GameFreak. <br />',
 	'tuto_0_txt1'	=>	'Olá! Sou o professor Carvalho.</br>Estou falando com você através do seu pokedex.',
 	'tuto_0_txt2'	=>	'Estive muito ocupado ultimamente, então solicitei que sua mãe lhe entregasse o seu pokedex e seu primeiro pokemon.',
 	
-	'tuto_1_txt1'	=>	'Há muitas criaturas espalhadas pelos quatro cantos do mundo. Elas são chamadas de pokemons',
+	'tuto_1_txt1'	=>	'Há muitas criaturas espalhadas pelos quatro cantos do mundo. Elas são chamadas de pokemon',
 	'tuto_1_txt2'	=>	'Para algumas pessoas eles são como bichos de estimação, outras os utilizam para batalhas.',
 	
-	'tuto_2_txt1'	=>	'Para mim... Eu estudo os pokemons como uma profissão.',
+	'tuto_2_txt1'	=>	'Para mim... Eu estudo os pokemon como uma profissão.',
 	
-	'tuto_3_txt1'	=>	'Eu criei o pokedex, para que os treinadores cataloguem todos os tipos de pokemons do mundo.',
+	'tuto_3_txt1'	=>	'Eu criei o pokedex, para que os treinadores cataloguem todos os tipos de pokemon do mundo.',
 	'tuto_3_txt2'	=>	'Hoje ele possui muitos outros recursos...',
 	
 	'tuto_4_txt1'	=>	'Na parte destacada, temos suas informações, alem de alguns atalhos úteis.',
 	
-	'tuto_5_txt1'	=>	'Ao iniciar sua jornada pelo mundo, você irá se deparar com diversos pokemons diferentes.',
-	'tuto_5_txt2'	=>	'Você pode batalhar contra eles usando seus pokemons, ou pode jogar uma pokebola neles para capturá-los.',
+	'tuto_5_txt1'	=>	'Ao iniciar sua jornada pelo mundo, você irá se deparar com diversos pokemon diferentes.',
+	'tuto_5_txt2'	=>	'Você pode batalhar contra eles usando seus pokemon, ou pode jogar uma pokebola neles para capturá-los.',
 	
-	'tuto_6_txt1'	=>	'Lembre-se: pokemons fortes são mais difíceis de capturar. Enfraquece-lo primeiro deixa a captura muito mais fácil.',
-	'tuto_6_txt2'	=>	'Há muitos treinadores pelo mundo, você pode batalhar contra eles, e para isso vai precisar de pokemons cada vez mais fortes e poderosos.',
+	'tuto_6_txt1'	=>	'Lembre-se: pokemon fortes são mais difíceis de capturar. Enfraquece-lo primeiro deixa a captura muito mais fácil.',
+	'tuto_6_txt2'	=>	'Há muitos treinadores pelo mundo, você pode batalhar contra eles, e para isso vai precisar de pokemon cada vez mais fortes e poderosos.',
 	
 	'tuto_7_txt1'	=>	'Ao encontrar um treinador, você pode clicar em cima dele, uma janela do seu pokedex irá aparecer.</br>Nesta janela você pode adicioná-lo como amigo, ver suas informações ou, até mesmo, batalhar contra ele.',
 	
-	'tuto_8_txt1'	=>	'Alguns treinadores relatam terem visto alguns pokemons lendários ao redor do mundo, eu pessoalmente nunca vi um. Eles são muito raros!',
-	'tuto_8_txt2'	=>	'Para poder capturar pokemons lendários, primeiro você deve coletar todas as insígnias, e vencer a Liga Pokemon!</br> Você consegue uma insígnia sempre que vencer uma batalha contra um mestre de ginásio. A maioria das grandes cidades possuem um ginásio. Ao coletar as 8 insígnias da região você poderá ingressar na Liga Pokemon.',
+	'tuto_8_txt1'	=>	'Alguns treinadores relatam terem visto alguns pokemon lendários ao redor do mundo, eu pessoalmente nunca vi um. Eles são muito raros!',
+	'tuto_8_txt2'	=>	'Para poder capturar pokemon lendários, primeiro você deve coletar todas as insígnias, e vencer a Liga Pokemon!</br> Você consegue uma insígnia sempre que vencer uma batalha contra um mestre de ginásio. A maioria das grandes cidades possuem um ginásio. Ao coletar as 8 insígnias da região você poderá ingressar na Liga Pokemon.',
 	
-	'tuto_9_txt1'	=>	'Bom, creio estar lhe tomando muito tempo, tenha uma boa sorte, e espero vê-lo em breve com o maior número de pokemons possível!!!',
+	'tuto_9_txt1'	=>	'Bom, creio estar lhe tomando muito tempo, tenha uma boa sorte, e espero vê-lo em breve com o maior número de pokemon possível!!!',
 	
 	'tuto_button_1'	=>	'Continuar',
 	
 	//slider
 	'slider_txt_0'	=>	'Seja bem vindo ao PGO',
-	'slider_txt_1'	=>	'Faça uma doação e receba bonus de experiência Premium e Tokens para trocar por pokemons exclusivos',
+	'slider_txt_1'	=>	'Faça uma doação e receba bonus de experiência Premium e Tokens para trocar por pokemon exclusivos',
 	'slider_txt_2'	=>	'Lembre-se, Pokemons enfraquecidos são mais fáceis de capturar!!!',
 	'slider_txt_3'	=>	'Acesse nosso canal no Discord e esteja sempre em contato com os jogadores e a equipe.',
 	'slider_txt_4'	=>	'Ficou preso no mapa? Clique no botão abaixo do mapa!',
@@ -249,7 +249,7 @@ loja de referência.',
 	
 	'donate_title' => 'Doações',
 	'donate_txt' => 'IMPORTANTE! <br>
-     Você pode fazer uma doação para obter novos e poderosos pokemons que não podem ser encontrados no mapa,</br>
+     Você pode fazer uma doação para obter novos e poderosos pokemon que não podem ser encontrados no mapa,</br>
 	 nem obtidos através de promoções. Se você doar 12 $ ou mais, você se torna Premium com benefícios!!<br>',
 	'donate_values' => '5 $  = 50 tokens ou 350 coins <br>
                    12 $ = 150 tokens ou 800 coins <br> (12 $ ou mais te da estatus Premium)
@@ -275,9 +275,9 @@ loja de referência.',
 	'map_key_explanation' => 'Use as teclas de setas no seu teclado ou toque nas bordas do mapa para explorar!',
 	'map_unlock_btn' => 'Destravar jogador',
 	'map_users' => 'Usuários neste mapa:',
-	'map_leg_explanation' => 'Para capturar pokemons lendários primeiro você precisa obter todas as insígnias e ser Elite 4!',
-	'map_can_catch_leg' => 'Você pode capturar pokemons lendários!',
-	'map_cant_catch_leg' => 'Você <strong>não pode</strong> capturar pokemons lendários!',
+	'map_leg_explanation' => 'Para capturar pokemon lendários primeiro você precisa obter todas as insígnias e ser Elite 4!',
+	'map_can_catch_leg' => 'Você pode capturar pokemon lendários!',
+	'map_cant_catch_leg' => 'Você <strong>não pode</strong> capturar pokemon lendários!',
 	
 	'membersarea_title' => 'Área de membros',
 	'membersarea_currentpromo' => 'Promoção do Mês',
@@ -810,7 +810,7 @@ Tempo até a próxima hora de sorte: ',
 	'mypokedex_00' => 'Aqui você pode ver todos os Pokémon que você tentou
  pegar durante a sua jornada Pokémon. Lembre-se de que não temos limites de
  quantos pokémons podem ser capturados, então vá em frente e pegue tantos quanto você puder.
- Quem sabe talvez no futuro haverá ranking para quem pegou mais pokemons.',
+ Quem sabe talvez no futuro haverá ranking para quem pegou mais pokemon.',
 	'mypokedex_01' => 'Nome',
 	'mypokedex_02' => 'Normal',
 	'mypokedex_03' => 'Shiny',
@@ -1386,7 +1386,7 @@ http://pokeglobal.com/chatroom.php ',
 	Certamente seu pai estaria muito feliz também.</br>
 	Sua jornada está começando então espero que já tenha recebido o seu primeiro pokemon. 
 	Este mundo é enorme, espero receber muitos cartões postais seus!</br>
-	Lembrou de pegar sua pokedex? Ela contém todas as informações úteis sobre pokemons.</br>
+	Lembrou de pegar sua pokedex? Ela contém todas as informações úteis sobre pokemon.</br>
 	Vou sentir muito a sua falta!</br></br>',
 	
 	//quest 2 (Pallet Girl)
