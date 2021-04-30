@@ -115,7 +115,7 @@
             <li class="dropdown">
 				<a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo $lang['header_menu_06'];?> <span class="caret"></span></a>
 				<ul class="dropdown-menu" role="menu">
-					<!--<li><a href="/shop.php"><?php// echo $lang['header_submenu_06_01'];?></a></li>-->
+					<li><a href="/shop.php"><?php echo $lang['header_submenu_06_01'];?></a></li>
 					<li><a href="/shop_pokemon.php"><?php echo $lang['header_submenu_06_02'];?></a></li>
 					<li><a href="/token_shop.php"><?php echo $lang['header_submenu_07_04'];?></a></li>
 					<li><a href="/sell_pokemon.php"><?php echo $lang['header_submenu_06_03'];?></a></li>
@@ -181,6 +181,31 @@
 	</div>
 </nav>
 
+<div id="slider"></div>
+<script>
+var slider = document.getElementById('slider');
+var txt = [];
+var count = 1;
+txt[0] = "<spam><?php echo $lang['slider_txt_0'];?></spam>";
+txt[1] = "<spam><a href='/donate.php'><?php echo $lang['slider_txt_1'];?></a></spam>";
+txt[2] = "<spam><?php echo $lang['slider_txt_2'];?></spam>";
+txt[3] = "<spam><a href='https://discord.gg/ZENSZBzcC6' target='blank'><?php echo $lang['slider_txt_3'];?></a></spam>";
+txt[4] = "<spam><?php echo $lang['slider_txt_4'];?></spam>";
+txt[5] = "<spam><?php echo $lang['slider_txt_5'];?></spam>";
+
+function writeSlider(){
+	//alert(count);
+	if(count >= (txt.length)-1){
+		count = 0;
+	}else{
+		count += 1;
+	}
+	slider.innerHTML = txt[count];
+}
+slider.innerHTML = txt[0];
+setInterval(writeSlider, 20000);
+
+</script>
 <?php
 	$usersQuery = "SELECT `poke1` FROM `users` WHERE id='{$_SESSION['userid']}'";
 	if ($usersQuery) {
