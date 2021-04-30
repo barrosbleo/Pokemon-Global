@@ -163,18 +163,18 @@ $lang = array(
 	
 	'tuto_4_txt1'	=>	'At the red shown sections bellow, there are your personal informations, plus some useful shortcuts.',
 	
-	'tuto_5_txt1'	=>	"At the beginning of your journey around the world, you\'re gonna face many different pokemons.",
-	'tuto_5_txt2'	=>	'You can battle them using your own pokemons, or you can throw them pokeball to catch them.',
+	'tuto_5_txt1'	=>	"At the beginning of your journey around the world, you\'re gonna face many different pokemon.",
+	'tuto_5_txt2'	=>	'You can battle them using your own pokemon, or you can throw them pokeball to catch them.',
 	
-	'tuto_6_txt1'	=>	'Remember: strong pokemons are harder to catch. Weakening it will make it easier to catch.',
+	'tuto_6_txt1'	=>	'Remember: strong pokemon are harder to catch. Weakening it will make it easier to catch.',
 	'tuto_6_txt2'	=>	'There are many pokemon trainers around the world, you will battle them, and for that you will need increasingly strong and powerful pokemon.',
 	
-	'tuto_7_txt1'	=>	'When you find a trainer, you can clck on it, a window of your pokedex will appear.</br>In this window you can add him as a friend, see his information or even battle against him.',
+	'tuto_7_txt1'	=>	'When you find a trainer, you can click on it, a window of your pokedex will appear.</br>In this window you can add him as a friend, see his information or even battle against him.',
 	
-	'tuto_8_txt1'	=>	'Some trainers report seeing some legendary pokemons around the world, I personally have never seen one. They are very rare!',
-	'tuto_8_txt2'	=>	'In order to capture legendary pokemons, you must first collect all the badges, and win the Pokemon League! </br> You get a badge whenever you win a battle against a gym master. Most large cities have a gym. By collecting the 8 badges in the region you can join the Pokemon League.',
+	'tuto_8_txt1'	=>	'Some trainers report seeing some legendary pokemon around the world, I personally have never seen one. They are very rare!',
+	'tuto_8_txt2'	=>	'In order to capture legendary pokemon, you must first collect all the badges, and win the Pokemon League! </br> You get a badge whenever you win a battle against a gym master. Most large cities have a gym. By collecting the 8 badges in the region you can join the Pokemon League.',
 	
-	'tuto_9_txt1'	=>	'Well, I think it\s taking a lot of time, have a good luck, and I hope to see you soon with as many pokemons as possible!!!',
+	'tuto_9_txt1'	=>	'Well, I think it\s taking a lot of time, have a good luck, and I hope to see you soon with as many pokemon as possible!!!',
 	
 	'tuto_button_1'	=>	'Continue',
 	
@@ -249,7 +249,7 @@ $lang = array(
 	
 	'donate_title' => 'Donations',
 	'donate_txt' => 'IMPORTANT! <br>
-     You can make a donation to obtain new and powerful pokemons that cannot be found on the map, </br>
+     You can make a donation to obtain new and powerful pokemon that cannot be found on the map, </br>
 	nor obtained through promotions. If you donate R$ 12 or more, you become Premium with benefits !! <br> ',
 	'donate_values' => '5 $ = 50 tokens or 350 coins <br>
                    12 $ = 150 tokens or 800 coins <br> (12 $ or more gives you a Premium status)<br>
@@ -275,9 +275,9 @@ $lang = array(
 	'map_key_explanation' => 'Use the arrow keys on your keyboard or touch map borders to explore!',
 	'map_unlock_btn' => 'Unlock player position',
 	'map_users' => 'Users on this map:',
-	'map_leg_explanation' => 'To capture legendary pokemons first you need to get all badges and be Elite 4!',
-	'map_can_catch_leg' => 'You can capture legendary pokemons!',
-	'map_cant_catch_leg' => 'You <strong> cannot </strong> capture legendary pokemons!',
+	'map_leg_explanation' => 'To capture legendary pokemon first you need to get all badges and be Elite 4!',
+	'map_can_catch_leg' => 'You can capture legendary pokemon!',
+	'map_cant_catch_leg' => 'You <strong> cannot </strong> capture legendary pokemon!',
 
 	'membersarea_title' => 'Members area',
 	'membersarea_currentpromo' => 'Promotion of the Month',
@@ -808,7 +808,7 @@ This is a automated password response, please do not reply to this email!',
 	//mypokedex
 	'mypokedex_00' => 'Here you can see all the pokemon you managed 
 to catch during your time in the Pokemon Planet RPG. Remember we dont have limits of how much pokemon can be caught so go ahead and catch many as you. Who knows maybe in
-the future there will be ranks for who caught the most pokemons.',
+the future there will be ranks for who caught the most pokemon.',
 	'mypokedex_01' => 'Name',
 	'mypokedex_02' => 'Normal',
 	'mypokedex_03' => 'Shiny',
@@ -1385,7 +1385,7 @@ the future there will be ranks for who caught the most pokemons.',
 	Certainly your dad would be so happy too.</br>
 	Your journey is starting so I hope you already got your first pokemon. 
 	It is a huge world, please remember me wherever you go!</br>
-	Do not forget to take your pokedex! It contains every kind of informations about pokemons.</br>
+	Do not forget to take your pokedex! It contains every kind of informations about pokemon.</br>
 	I\'m missing you already!</br></br>',
 	
 	//quest 2 (Pallet Girl)
