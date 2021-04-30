@@ -178,6 +178,14 @@ Este site não tem filiação com Nintendo, Creatures, ou GameFreak. <br />',
 	
 	'tuto_button_1'	=>	'Continuar',
 	
+	//slider
+	'slider_txt_0'	=>	'Seja bem vindo ao PGO',
+	'slider_txt_1'	=>	'Faça uma doação e receba bonus de experiência Premium e Tokens para trocar por pokemons exclusivos',
+	'slider_txt_2'	=>	'Lembre-se, Pokemons enfraquecidos são mais fáceis de capturar!!!',
+	'slider_txt_3'	=>	'Acesse nosso canal no Discord e esteja sempre em contato com os jogadores e a equipe.',
+	'slider_txt_4'	=>	'Ficou preso no mapa? Clique no botão abaixo do mapa!',
+	'slider_txt_5'	=>	'Você pode mandar suas ideias e sugestões no nosso fórum!',
+	
 	//referral
 	'refl_maintxt' => 'Aqui você pode indicar seus amigos para o Pokémon Global e ganhar Pontos de Referência,
 quanto mais pontos de referência você obtém, mais Pokémon, itens ou outros prêmios você pode comprar na
