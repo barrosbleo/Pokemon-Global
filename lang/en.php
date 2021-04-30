@@ -177,6 +177,15 @@ $lang = array(
 	'tuto_9_txt1'	=>	'Well, I think it\s taking a lot of time, have a good luck, and I hope to see you soon with as many pokemons as possible!!!',
 	
 	'tuto_button_1'	=>	'Continue',
+	
+	//slider
+	'slider_txt_0'	=>	'Welcome to PGO',
+	'slider_txt_1'	=>	'Make a donation and earn Experience bonus and Tokens. You could buy exclusive pokemon!!!',
+	'slider_txt_2'	=>	'Note: Weak pokemon are easier to catch!!!',
+	'slider_txt_3'	=>	'Access out Discord channel and chat with friends and Staff.',
+	'slider_txt_4'	=>	'Have you been stuck on the map? Click the button bellow the map!',
+	'slider_txt_5'	=>	'You can send suggestions and opinions in the forum!',
+	
 	//referral
 	'refl_maintxt' => 'Here you can refer your friends to Pokémon Global and earn Referral Points,
 	the more referral points you get, the more Pokémon, items or other prizes you can buy on

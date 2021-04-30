@@ -702,7 +702,7 @@ Você pode reivindicar uma vez a cada 24 horas! e você pode ganhar prêmios com
 
 
 //rebattle
-	'rebattle_title' => 'Academias',
+	'rebattle_title' => 'Ginásios',
 	'rebattle_00' => 'Batalhar novamente',
 
 
