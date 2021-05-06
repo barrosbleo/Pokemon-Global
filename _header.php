@@ -46,6 +46,18 @@
 		<?php if (isset($_SESSION['userid'])) $style = '-game'; else $style = ''; ?>			
 		<?php $version = rand(1,10000); ?>
 		<link rel="stylesheet" href="/css/style<?php echo $eventStyle.$style;?>.css?ver=<?php echo $version;?>">
+		
+		<!-- Hotjar Tracking Code for pkmglobal.online -->
+<script>
+    (function(h,o,t,j,a,r){
+        h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+        h._hjSettings={hjid:2387071,hjsv:6};
+        a=o.getElementsByTagName('head')[0];
+        r=o.createElement('script');r.async=1;
+        r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+        a.appendChild(r);
+    })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+</script>
 	</head>
 	<body>
 		<?php
