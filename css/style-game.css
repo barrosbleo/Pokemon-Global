@@ -410,7 +410,7 @@ textarea{
 	width:100%;
 	text-align:center;
 }
-/*make map responsivity*/
+/*make maps responsivity*/
 #map{
 	position:relative;
 	width:100%;
@@ -422,12 +422,25 @@ textarea{
 	display:block;
 	padding-bottom:100%;
 }
+#moveTableCtn{
+	position:absolute;
+	width:100%;
+	background-size:100% 100%;
+	background-repeat:no-repeat !important;
+}
+#moveTableCtn::after{
+	content:"";
+	display:block;
+	padding-bottom:100%;
+}
 .moveTable{
 	position:absolute;
+	right:0px;
+	bottom:0px;
 	width:210px;
 	color:#000;
 	z-index:1001;
-	opacity:0.7;
+	opacity:0.6;
 }
 .moveTable td{
 	height:70px;
