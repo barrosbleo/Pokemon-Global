@@ -2275,6 +2275,7 @@ if (!isset($_SESSION['admin']) || $_SESSION['admin'] != 1) {
 
 <div id="coord">
 </div>
+<div id="moveTableCtn">
 <table class="moveTable">
 <tr>
 <td colspan="3">
@@ -2298,6 +2299,7 @@ if (!isset($_SESSION['admin']) || $_SESSION['admin'] != 1) {
 </td>
 </tr>
 </table>
+</div>
 <center>
 <div id="map" style="background-image: url('/images/maps/<?php echo $map;?>.png');">
 <img src="/images/sprites/<?php echo $mySprite;?>.png" id="mySprite" title="<?php echo cleanHtml($_SESSION['username']);?>"/>
@@ -2448,7 +2450,7 @@ function addNPCToMap() {
 		image.src = 'images/sprites/'+ npc.sprite +'.png';
 		image.title = npc.npcname;
 		image.style.position = 'absolute';
-		image.style.zIndex = '1005';
+		image.style.zIndex = '1009';
 		image.style.top = ((npc.y*spriteImgMove)-diffSpriteWH) + 'px';
 		image.style.left = (npc.x*spriteImgMove) + 'px';
 		image.onclick = function(npc) {
