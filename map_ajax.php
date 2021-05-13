@@ -177,9 +177,9 @@ switch ($map) {
 		$rareRandomLevel = mt_rand(100, 138);//rare poke lvl variation.
 		$lowRareRandomLevel = mt_rand(8, 15);//low rare poke lvl variation.
 		$wildPokemon = array(
-			'Pidgey', 'Rattata', 'Sentret', 'Furret', 'Hoothoot', 'Caterpie', 'Weedle', 'Nidoran (f)', 'Nidoran (m)', 'Meowth',
-			'Horsea', 'Staryu', 'Ledyba', 'Spinarak', 'Poochyena', 'Zigzagoon', 'Seedot', 'Azurill', 'Electrike', 'Gulpin',
-			'Carvanha', 'Spoink', 'Trapinch'
+			'Pidgey', 'Spearow', 'Rattata', 'Sentret', 'Furret', 'Hoothoot', 'Metapod', 'Kakuna', 'Nidoran (f)', 'Nidoran (m)',
+			'Ledyba', 'Spinarak', 'Venonat', 'Zigzagoon', 'Seedot', 'Mankey', 'Electrike', 'Gulpin',
+			'Carvanha', 'Spoink', 'Abra'
 		);
 		$ultraRare = array(
 			'Cyndaquil', 'Totodile', 'Squirtle', 'Charmander', 'Bulbasaur', 'Croconaw', 'Togepi', 'Larvitar',
@@ -187,43 +187,45 @@ switch ($map) {
 			
 		);
 		$rare = array(
-			'Dragonite', 'Persian', 'Psyduck', 'Growlithe', 'Mr. Mime', 'Electabuzz', 'Eevee', 'Pichu', 'Cleffa', 'Teddiursa'
+			'Dragonite', 'Persian', 'Electabuzz', 'Eevee', 'Pichu', 'Cleffa', 'Teddiursa',
+			'Pidgeot', 'Fearow', 'Raichu', 'Vulpix'
 		);
 		$lowRare = array(
-			'Spinarak', 'Pidgeotto', 'Bellsprout', 'Pikachu', 'Sandshrew', 'Abra', 'Farfetch d', 'Starmie', 'Tangela', 'Dratini',
-			'Chikorita', 'Chinchou', 'Natu', 'Marill', 'Pineco', 'Lotad', 'Nincada', 'Roselia', 'Aron'
+			'Spinarak', 'Pidgeotto', 'Bellsprout', 'Pikachu', 'Sandshrew', 'Abra', 'Farfetch d', 'Oddish',
+			'Chikorita', 'Natu', 'Marill', 'Pineco', 'Lotad', 'Nincada', 'Roselia', 'Butterfree', 'Beedrill'
 		);
 		$legends = array(
 			'Mew', 'Articuno', 'Zapdos', 'Moltres', 'Celebi'
 		);
 	break;
 	case '8':
-		$randomLevel = mt_rand(4, 11);//common poke lvl variation.
-		$ultraRareRandomLevel = mt_rand(20, 25);//rare poke lvl variation.
+		$randomLevel = mt_rand(14, 25);//common poke lvl variation.
+		$ultraRareRandomLevel = mt_rand(35, 50);//rare poke lvl variation.
 		$rareRandomLevel = mt_rand(100, 138);//rare poke lvl variation.
-		$lowRareRandomLevel = mt_rand(8, 15);//low rare poke lvl variation.
+		$lowRareRandomLevel = mt_rand(20, 32);//low rare poke lvl variation.
 		$wildPokemon = array(
-			'Pidgey', 'Rattata', 'Sentret', 'Furret', 'Hoothoot', 'Caterpie', 'Weedle', 'Nidoran (f)', 'Nidoran (m)', 'Meowth',
-			'Horsea', 'Staryu', 'Ledyba', 'Spinarak', 'Poochyena', 'Zigzagoon', 'Seedot', 'Azurill', 'Electrike', 'Gulpin',
-			'Carvanha', 'Spoink', 'Trapinch'
+			'Pidgey', 'Sentret', 'Furret', 'Hoothoot', 'Caterpie', 'Weedle', 'Nidoran (f)', 'Nidoran (m)',
+			'Gulpin', 'Bellsprout', 'Natu', 'Mareep', 'Aipom', 'Sunkern', 
+			'Spoink', 'Trapinch'
 		);
 		$ultraRare = array(
-			'Cyndaquil', 'Totodile', 'Squirtle', 'Charmander', 'Bulbasaur', 'Croconaw', 'Togepi', 'Larvitar',
-			'Treecko', 'Torchic', 'Mudkip'
+			'Chikorita', 'Cyndaquil', 'Totodile', 'Squirtle', 'Charmander', 'Bulbasaur', 'Croconaw', 'Togepi', 'Larvitar',
+			'Treecko', 'Torchic', 'Mudkip', 'Scyther', 'Togepi'
 			
 		);
 		$rare = array(
-			'Dragonite', 'Persian', 'Psyduck', 'Growlithe', 'Mr. Mime', 'Electabuzz', 'Eevee', 'Pichu', 'Cleffa', 'Teddiursa'
+			'Dragonite', 'Grimer', 'Electabuzz', 'Porygon', 'Pichu', 'Cleffa', 'Cubone', 'Hitmonlee', 'Tauros'
 		);
 		$lowRare = array(
-			'Spinarak', 'Pidgeotto', 'Bellsprout', 'Pikachu', 'Sandshrew', 'Abra', 'Farfetch d', 'Starmie', 'Tangela', 'Dratini',
-			'Chikorita', 'Chinchou', 'Natu', 'Marill', 'Pineco', 'Lotad', 'Nincada', 'Roselia', 'Aron'
+			'Weepinbell', 'Pidgeotto', 'Doduo', 'Sandshrew', 'Eevee', 'Farfetch d', 'Exeggcute', 'Tangela', 'Dratini',
+			'Chikorita', 'Voltorb', 'Natu', 'Marill', 'Pineco', 'Lotad', 'Nincada', 'Roselia', 'Pinsir', 'Ditto', 'Yanma',
+			'Sneasel'
 		);
 		$legends = array(
 			'Mew', 'Articuno', 'Zapdos', 'Moltres', 'Celebi'
 		);
 	break;
-	case '9':
+	case '9'://proximo para atualizar
 		$randomLevel = mt_rand(4, 11);//common poke lvl variation.
 		$ultraRareRandomLevel = mt_rand(20, 25);//rare poke lvl variation.
 		$rareRandomLevel = mt_rand(100, 138);//rare poke lvl variation.
