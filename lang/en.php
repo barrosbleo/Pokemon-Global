@@ -93,7 +93,7 @@ $lang = array(
 	This site has no affiliation with Nintendo, Creatures, or GameFreak. <br /> ',
 	
 	//header menus
-	'header_menu_01' => 'World',
+	'header_menu_01' => 'Explore!',
 	'header_menu_02' => 'Account',
 	'header_submenu_02_01' => 'My Profile',
 	'header_submenu_02_02' => 'Edit Profile',

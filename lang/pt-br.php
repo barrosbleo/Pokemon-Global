@@ -93,7 +93,7 @@ Você poderá fazer outro cadastro em 24 horas. ',
 Este site não tem filiação com Nintendo, Creatures, ou GameFreak. <br />',
 	
 	//header menus
-	'header_menu_01' => 'Mundo',
+	'header_menu_01' => 'Explorar!',
 	'header_menu_02' => 'Conta',
 	'header_submenu_02_01' => 'Meu Perfil',
 	'header_submenu_02_02' => 'Editar Perfil',
