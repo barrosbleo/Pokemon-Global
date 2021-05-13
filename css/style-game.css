@@ -853,6 +853,9 @@ width:120px !important;
 #info-box{
 	background:linear-gradient(#333333, #1c1c1c, #333333);
 }
+#moveTableCtn{
+	display:none;
+}
 .moveTable{
 	display:none;
 }
