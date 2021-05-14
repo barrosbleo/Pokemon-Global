@@ -26,8 +26,8 @@ $lang = array(
 	'menu_news' => 'Novidades',
 	
 	'welcome_about' => '
-		<a href="register.php">Pokemon Global</a> é um mundo vasto, repleto de criaturas únicas para você capturar e batalhar.</br>
-		Depois do <a href="register.php">cadastro</a>, você embarcará em uma jornada fascinante cheias de aventuras. Explore todo o mundo, faça amigos, e tenha muita diversão!',
+		<a onclick="loadPage(\'login\');">Pokemon Global</a> é um mundo vasto, repleto de criaturas únicas para você capturar e batalhar.</br>
+		Depois do <a onclick="loadPage(\'register\');">cadastro</a>, você embarcará em uma jornada fascinante cheias de aventuras. Explore todo o mundo, faça amigos, e tenha muita diversão!',
 	'welcome_news_title' => 'Notícias e atualizações',
 	'welcome_news_by' => 'Postado por: ',
 	
