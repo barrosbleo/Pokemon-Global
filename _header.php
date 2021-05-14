@@ -89,7 +89,7 @@
 	<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 		<ul class="nav navbar-nav navbar-left">
 			<li class="dropdown">
-				<a href="/map.php?map=<?php echo base64_encode($_SESSION['player']['map_num']);?>" class="dropdown-toggle"><?php echo $lang['header_menu_01'];?></span></a>
+				<a href="/map.php?map=<?php echo base64_encode($_SESSION['player']['map_num']);?>" class="dropdown-toggle" style="color:#ff9900 !important; font-size:18px !important;"><?php echo $lang['header_menu_01'];?></span></a>
 			</li>
 			
 			<li class="dropdown">
