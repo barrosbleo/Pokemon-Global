@@ -46,6 +46,18 @@
 		<?php if (isset($_SESSION['userid'])) $style = '-game'; else $style = ''; ?>			
 		<?php $version = rand(1,10000); ?>
 		<link rel="stylesheet" href="/css/style<?php echo $eventStyle.$style;?>.css?ver=<?php echo $version;?>">
+		
+		<!-- Hotjar Tracking Code for pkmglobal.online -->
+<script>
+    (function(h,o,t,j,a,r){
+        h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+        h._hjSettings={hjid:2387071,hjsv:6};
+        a=o.getElementsByTagName('head')[0];
+        r=o.createElement('script');r.async=1;
+        r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+        a.appendChild(r);
+    })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+</script>
 	</head>
 	<body>
 		<?php
@@ -77,7 +89,7 @@
 	<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 		<ul class="nav navbar-nav navbar-left">
 			<li class="dropdown">
-				<a href="/map.php?map=<?php echo base64_encode($_SESSION['player']['map_num']);?>" class="dropdown-toggle"><?php echo $lang['header_menu_01'];?></span></a>
+				<a href="/map.php?map=<?php echo base64_encode($_SESSION['player']['map_num']);?>" class="dropdown-toggle" style="color:#ff9900 !important; font-size:18px !important;"><?php echo $lang['header_menu_01'];?></span></a>
 			</li>
 			
 			<li class="dropdown">
