@@ -26,8 +26,8 @@ $lang = array(
 	'menu_news' => 'News',
 	
 	'welcome_about' => '
-		<a href="register.php">Pokemon Global</a> is a vast world, filled with unique creatures for you to capture and battle.</br>
-		After <a href="register.php">registration</a>, you will embark on a fascinating journey full of adventures. Explore the world, make friends, and have lots of fun!',
+		<a onclick="loadPage(\'login\');">Pokemon Global</a> is a vast world, filled with unique creatures for you to capture and battle.</br>
+		After <a onclick="loadPage(\'register\');">registration</a>, you will embark on a fascinating journey full of adventures. Explore the world, make friends, and have lots of fun!',
 	'welcome_news_title' => 'News & Updates',
 	'welcome_news_by' => 'Post by: ',
 	
