@@ -305,6 +305,7 @@ function getTuto(){
 					html += '<p><?php echo $lang["tuto_0_txt1"];?></p>';
 					html += '<p><?php echo $lang["tuto_0_txt2"];?></p>';
 					html += '<center><button onclick="nextTuto(1)" class="tutoButton"><?php echo $lang["tuto_button_1"];?></button><center>';
+					html += '<center><button onclick="nextTuto(2)" class="tutoButton"><?php echo $lang["tuto_button_2"];?></button><center>';
 					tutoBox.innerHTML = html;
 					break;
 					case '1':
@@ -312,12 +313,14 @@ function getTuto(){
 					html += '<p><?php echo $lang["tuto_1_txt1"];?></p>';
 					html += '<p><?php echo $lang["tuto_1_txt2"];?></p>';
 					html += '<center><button onclick="nextTuto(1)" class="tutoButton"><?php echo $lang["tuto_button_1"];?></button><center>';
+					html += '<center><button onclick="nextTuto(2)" class="tutoButton"><?php echo $lang["tuto_button_2"];?></button><center>';
 					tutoBox.innerHTML = html;
 					break;
 					case '2':
 					var html = '';
 					html += '<p><?php echo $lang["tuto_2_txt1"];?></p>';
 					html += '<center><button onclick="nextTuto(1)" class="tutoButton"><?php echo $lang["tuto_button_1"];?></button><center>';
+					html += '<center><button onclick="nextTuto(2)" class="tutoButton"><?php echo $lang["tuto_button_2"];?></button><center>';
 					tutoBox.innerHTML = html;
 					break;
 					case '3':
@@ -325,12 +328,14 @@ function getTuto(){
 					html += '<p><?php echo $lang["tuto_3_txt1"];?></p>';
 					html += '<p><?php echo $lang["tuto_3_txt2"];?></p>';
 					html += '<center><button onclick="nextTuto(1)" class="tutoButton"><?php echo $lang["tuto_button_1"];?></button><center>';
+					html += '<center><button onclick="nextTuto(2)" class="tutoButton"><?php echo $lang["tuto_button_2"];?></button><center>';
 					tutoBox.innerHTML = html;
 					break;
 					case '4':
 					var html = '';
 					html += '<p><?php echo $lang["tuto_4_txt1"];?></p>';
 					html += '<center><button onclick="nextTuto(1)" class="tutoButton"><?php echo $lang["tuto_button_1"];?></button><center>';
+					html += '<center><button onclick="nextTuto(2)" class="tutoButton"><?php echo $lang["tuto_button_2"];?></button><center>';
 					tutoBox.innerHTML = html;
 					break;
 					case '5':
@@ -338,6 +343,7 @@ function getTuto(){
 					html += '<p><?php echo $lang["tuto_5_txt1"];?></p>';
 					html += '<p><?php echo $lang["tuto_5_txt2"];?></p>';
 					html += '<center><button onclick="nextTuto(1)" class="tutoButton"><?php echo $lang["tuto_button_1"];?></button><center>';
+					html += '<center><button onclick="nextTuto(2)" class="tutoButton"><?php echo $lang["tuto_button_2"];?></button><center>';
 					tutoBox.innerHTML = html;
 					break;
 					case '6':
@@ -345,6 +351,7 @@ function getTuto(){
 					html += '<p><?php echo $lang["tuto_6_txt1"];?></p>';
 					html += '<p><?php echo $lang["tuto_6_txt2"];?></p>';
 					html += '<center><button onclick="nextTuto(1)" class="tutoButton"><?php echo $lang["tuto_button_1"];?></button><center>';
+					html += '<center><button onclick="nextTuto(2)" class="tutoButton"><?php echo $lang["tuto_button_2"];?></button><center>';
 					tutoBox.innerHTML = html;
 					break;
 					case '7':
@@ -352,6 +359,7 @@ function getTuto(){
 					html += '<p><?php echo $lang["tuto_7_txt1"];?></p>';
 					html += '<p><?php echo $lang["tuto_7_txt2"];?></p>';
 					html += '<center><button onclick="nextTuto(1)" class="tutoButton"><?php echo $lang["tuto_button_1"];?></button><center>';
+					html += '<center><button onclick="nextTuto(2)" class="tutoButton"><?php echo $lang["tuto_button_2"];?></button><center>';
 					tutoBox.innerHTML = html;
 					break;
 					case '8':
@@ -359,6 +367,7 @@ function getTuto(){
 					html += '<p><?php echo $lang["tuto_8_txt1"];?></p>';
 					html += '<p><?php echo $lang["tuto_8_txt2"];?></p>';
 					html += '<center><button onclick="nextTuto(1)" class="tutoButton"><?php echo $lang["tuto_button_1"];?></button><center>';
+					html += '<center><button onclick="nextTuto(2)" class="tutoButton"><?php echo $lang["tuto_button_2"];?></button><center>';
 					tutoBox.innerHTML = html;
 					break;
 					case '9':
