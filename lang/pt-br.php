@@ -6,7 +6,7 @@ $lang = array(
 
 	'meta_description' => 'Venha se divertir explorando esse mundo vasto de pokémons! Capture, faça amigos, divirta-se!',
 
-	'lang_beta' => 'Idiomas BETA teste',
+	'lang_beta' => 'Selecione seu idioma',
 	'lang_en' => 'English',
 	'lang_pt-br' => 'Português',
 	'lang_es' => 'Español',
@@ -61,7 +61,7 @@ Você poderá fazer outro cadastro em 24 horas. ',
 	'register_pwd' => 'Senha <small> (mínimo de 6 caracteres) </small>:',
 	'register_pwd_again' => 'Senha novamente:',
 	'register_email' => 'Endereço de e-mail:',
-	'register_email_txt' => 'Você deve usar um email válido. Após o cadastro será necessário verificar seu email antes de entrar no jogo!',
+	'register_email_txt' => 'Você deve usar um email válido. Após o cadastro será necessário verificar seu email antes de entrar no jogo! Lembre-se de verificar a caixa de Spam.',
 	'register_starter' => 'Pokemon inicial:',
 	'register_captcha' => 'Captcha:',
 	'register_signup' => 'Cadastrar-se',
