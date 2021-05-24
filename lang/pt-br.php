@@ -177,6 +177,7 @@ Este site não tem filiação com Nintendo, Creatures, ou GameFreak. <br />',
 	'tuto_9_txt1'	=>	'Bom, creio estar lhe tomando muito tempo, tenha uma boa sorte, e espero vê-lo em breve com o maior número de pokemon possível!!!',
 	
 	'tuto_button_1'	=>	'Continuar',
+	'tuto_button_2'	=>	'Não preciso de tutoriais',
 	
 	//slider
 	'slider_txt_0'	=>	'Seja bem vindo ao PGO',

@@ -177,6 +177,7 @@ $lang = array(
 	'tuto_9_txt1'	=>	'Well, I think it\s taking a lot of time, have a good luck, and I hope to see you soon with as many pokemon as possible!!!',
 	
 	'tuto_button_1'	=>	'Continue',
+	'tuto_button_2'	=>	'Do not need tutorials',
 	
 	//slider
 	'slider_txt_0'	=>	'Welcome to PGO',
