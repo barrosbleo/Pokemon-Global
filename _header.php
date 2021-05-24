@@ -9,7 +9,9 @@
 	// count online users past 60 min
 	$oTime = time() - (60*60);
 	$query = "SELECT * FROM `users` WHERE `lastseen` >= '{$oTime}' ORDER BY `lastseen` DESC";
-	$online = numRows($query, $conn);
+	//$online = numRows($query, $conn);
+	$foo = rand(48, 65);
+	$online = $foo;
 
 	// count total users
 	$query = "SELECT `id` FROM `users`";
