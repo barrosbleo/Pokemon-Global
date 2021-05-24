@@ -6,7 +6,7 @@ $lang = array(
 
 	'meta_description' => 'Venha se divertir explorando esse mundo vasto de pokémons! Capture, faça amigos, divirta-se!',
 
-	'lang_beta' => 'Languages BETA testing',
+	'lang_beta' => 'Select your language',
 	'lang_en' => 'English',
 	'lang_pt-br' => 'Português',
 	'lang_es' => 'Español',
@@ -61,7 +61,7 @@ $lang = array(
 	'register_pwd' => 'Password <small> (minimum 6 characters) </small>:',
 	'register_pwd_again' => 'Password again:',
 	'register_email' => 'Email address:',
-	'register_email_txt' => 'Please fill in a valid email. After registration you must verify your email to enter the game!',
+	'register_email_txt' => 'Please fill in a valid email. After registration you must verify your email to enter the game! Please remember to check your Spam mail inbox.',
 	'register_starter' => 'Initial Pokemon:',
 	'register_captcha' => 'Captcha:',
 	'register_signup' => 'Register',
