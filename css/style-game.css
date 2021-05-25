@@ -85,13 +85,32 @@ select {
 	animation:jump 1.2s infinite;
 }
 @keyframes jump {
-	0% { transform: scale(1.25, 0.75); }
-	50% { transform: scale(1, 1); }
-	55% { transform: translate(0%, -5%) rotate(15deg); }
-	60% { transform: translate(0%, -5%) rotate(-15deg); }
-	65% { transform: translate(0%, -5%) rotate(15deg); }
-	70% { transform: translate(0%, -5%) rotate(-15deg); }
-	100% { transform: scale(1.25, 0.75); }
+	0%{transform:scale(1.25, 0.75);}
+	50%{transform:scale(1, 1);}
+	55%{transform:translate(0%, -5%) rotate(15deg);}
+	60%{transform:translate(0%, -5%) rotate(-15deg);}
+	65%{transform:translate(0%, -5%) rotate(15deg);}
+	70%{transform:translate(0%, -5%) rotate(-15deg);}
+	100%{transform:scale(1.25, 0.75);}
+}
+.balloon{
+	position:absolute;
+	width:95px;
+	height:33px;
+	top:40px;
+	left:30px;
+	background:url(../images/layout/balloon.png);
+	padding:11px;
+	color:#FFFFFF;
+	text-align:bottom;
+	font-size:15px;
+	animation:balloon 2s infinite;
+}
+@keyframes balloon{
+	0%{transform:scale(0.8,0.8);}
+	30%{transform:scale(1,1);}
+	60%{transform:scale(1,1);}
+	100%{transform:scale(0.8,0.8);}
 }
 /*Shortcuts*/
 ul.usr-inf{
