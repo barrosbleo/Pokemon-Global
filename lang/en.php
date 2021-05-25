@@ -147,6 +147,8 @@ $lang = array(
 	'header_submenu_12_02' => 'Daily Prize',
 	'header_submenu_12_03' => 'Lucky Time',
 	'header_title' => 'Pokemon Global - Alpha Version - Pokemon MMORPG',
+	
+	'worldball' => 'Explore!',
 
 	//Tutorials
 	'tuto_0_title'	=>	'Welcome to the Pokemon World',

@@ -148,6 +148,8 @@ Este site não tem filiação com Nintendo, Creatures, ou GameFreak. <br />',
 	'header_submenu_12_03' => 'Hora da Sorte',
 	'header_title' => 'Pokemon Global - Versão Alpha - Pokemon MMORPG',
 	
+	'worldball' => 'Explorar!',
+	
 	//Tutorials
 	'tuto_0_title'	=>	'Bem vindo ao Mundo de Pokemon',
 	'tuto_0_txt1'	=>	'Olá! Sou o professor Carvalho.</br>Estou falando com você através do seu pokedex.',
