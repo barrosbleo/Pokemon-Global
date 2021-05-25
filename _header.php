@@ -85,7 +85,11 @@
 			<span class="icon-bar"></span>
 			<span class="icon-bar"></span>
 		  </button>
-		  <a class="navbar-brand" href="/map.php?map=<?php echo base64_encode($_SESSION['player']['map_num']);?>"><div class="img"></div></a>
+		  <a class="navbar-brand" href="/map.php?map=<?php echo base64_encode($_SESSION['player']['map_num']);?>"><div class="img"></div>
+		  <div class="balloon">
+				<?php echo $lang['worldball'];?>
+		</div>
+		</a>
 		</div>
 	
 	<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
