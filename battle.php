@@ -681,14 +681,14 @@ if ($_SESSION['battle']['screen'] == 'battle') {
 	}		
 	
 	$team = &$_SESSION['battle']['team'];
-	$randMoney = rand(round($olevel*2.3), round($olevel*$money_premium));
+	$randMoney = rand(round($olevel*2.3), round($olevel*$money_premium)) * BATTLE_MONEY_MULTIPLIER;
 	
 	if ($randMoney < 1) {
-		$randMoney = mt_rand(75,150);
+		$randMoney = mt_rand(75,150) * BATTLE_MONEY_MULTIPLIER;
 	}
 	
 	if ($randMoney > 150) {
-		$randMoney = mt_rand(250,1000);
+		$randMoney = mt_rand(250,1000) * BATTLE_MONEY_MULTIPLIER;
 	}
 	
 	$conn->query("UPDATE `users` SET `money`=`money`+{$randMoney} WHERE `id`='{$uid}'");
