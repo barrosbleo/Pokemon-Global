@@ -73,6 +73,10 @@ select {
 .dropdown-menu a:hover{
 	border:solid 1px;
 }
+.navbar-brand{
+	width:50px;
+	background:url(../images/layout/worldball.png) 49px 49px;
+}
 /*Shortcuts*/
 ul.usr-inf{
 	position:relative;
