@@ -687,7 +687,7 @@ if ($_SESSION['battle']['screen'] == 'battle') {
 		$randMoney = mt_rand(75,150) * BATTLE_MONEY_MULTIPLIER;
 	}
 	
-	if ($randMoney > 150) {
+	if ($randMoney > 1100) {
 		$randMoney = mt_rand(250,1000) * BATTLE_MONEY_MULTIPLIER;
 	}
 	
