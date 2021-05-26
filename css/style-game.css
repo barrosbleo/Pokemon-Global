@@ -191,7 +191,7 @@ ul.usr-inf .usr-inf-title{
 	display:block;
 	position:relative;
 	bottom:19px;
-	width:70%;
+	width:98%;
 	height:22px;
 	white-space:nowrap;
 	margin:auto;
@@ -203,7 +203,7 @@ ul.usr-inf .usr-inf-title{
 #slider spam{
 	display:inline-block;
 	padding-left:100%;
-	animation: slider 20s linear infinite;
+	animation: slider 18s linear infinite;
 }
 #slider spam:hover{
 	display:inline-block;
