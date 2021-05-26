@@ -842,6 +842,7 @@ ul.usr-inf.frame{
 	position:relative;
 	width:70%;
 	height:22px;
+	bottom:0;
 	white-space:nowrap;
 	margin:auto;
 	border:solid 1px rgba(41,78,135,0.5);
