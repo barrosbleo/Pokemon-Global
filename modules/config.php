@@ -17,7 +17,7 @@ date_default_timezone_set("America/Sao_Paulo");		//game default timezone
 define('DEFAULT_STARTER_LEVEL', 15);				//starter pokemon level at account creation
 define('DEFAULT_STARTER_COLUMNS', 3);				//number of columns on register page
 define('DEFAULT_USER_MONEY', 20000);				//user money prize when register
-define('BATTLE_MONEY_MULTIPLIER', 4);				//battle money drop multip. Default: 2
+define('BATTLE_MONEY_MULTIPLIER', 7);				//battle money drop multip. Default: 2
 $pokemonNames = array(								//starter pokemon names
 	'Bulbasaur',
 	'Charmander',
