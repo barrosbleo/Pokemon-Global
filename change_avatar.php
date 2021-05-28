@@ -7,25 +7,13 @@ if (!isLoggedin()) {
         
 include("_header.php");
 $uid = (int) $_SESSION['userid'];
-        
-        /*
-        // why is this here? i can not see where it is used!
-        // also mysql_select_db should be mysql_fetch_assoc ;-)
-        // - asdd
-        //
-	$user = cleanSql($_SESSION['username'], $conn);
-	$info = mysql_select_db(mysql_query("SELECT * FROM `users` WHERE `username` = '$user'"));      
-	$user = $info['username'];
-        $userid = $info['id'];
-	$password2 = $info['password'];
-	*/
 ?>
 <center>
 
 <?php
 
 if(isset($_POST['update'], $_POST['avatar'])) {
-	$avatar = cleanSql('http://localhost/'.$_POST['avatar'], $conn);
+	$avatar = cleanSql('https://pkmglobal.online/'.$_POST['avatar'], $conn);
 	$update = $conn->query("UPDATE `users` SET `avatar`= '$avatar' WHERE `id`='$uid'");
 	echo $lang['avatar_updated'];
 }
