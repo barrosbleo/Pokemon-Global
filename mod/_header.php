@@ -14,7 +14,7 @@ if (!defined('GOT_CONFIG')) {
 	
 	<div id="wrapper">
 		<div id="header">
-			<h1>Pok&eacute;mon Helios Mod Panel</h1>
+			<h1>Pok&eacute;mon Global Mod Panel</h1>
 		</div>
 		
 		<div id="left-navigation">
@@ -29,8 +29,9 @@ if (!defined('GOT_CONFIG')) {
 			</ul>
 			<ul>
 				<li><h3>Mod Links</h3></li>
-				<li><a href="index.php">Admin Home</a></li>
+				<li><a href="index.php">Moderator Home</a></li>
 				<li><a href="ae_sprite.php">Add/Edit Sprite</a></li>
+				<li><a href="quest_plan.php">Quest Request</a></li>
 			</ul>
 		</div>
 		
