@@ -14,6 +14,7 @@ if(isset($_POST['submit'])){
 	
 	$questName = $_POST['questName'];
 	$npcImg = $_POST['npcImg'];
+	$mapImg = $_POST['mapImg'];
 	$intro = $_POST['intro'];
 	$intro2 = $_POST['intro2'];
 	$requirements = $_POST['requirements'];
@@ -23,6 +24,7 @@ if(isset($_POST['submit'])){
 	
 	$sqlQuestName = cleanSql(trim($questName), $conn);
 	$sqlNpcImg = cleanSql(trim($npcImg), $conn);
+	$sqlMapImg = cleanSql(trim($mapImg), $conn);
 	$sqlIntro = cleanSql(trim($intro), $conn);
 	$sqlIntro2 = cleanSql(trim($intro2), $conn);
 	$sqlRequirements = cleanSql(trim($requirements), $conn);
@@ -38,9 +40,9 @@ if(isset($_POST['submit'])){
 	//if($_POST[''] == ""){$error = 1; echo'<script>alert("");</script>';}
 	
 	if($error != 1){
-		$conn->query("INSERT INTO `quest_planner` (`creator`, `name`, `npc_img`, `intro`, `requirements`, `accompTxt`, `intro2`, `requirements2`, `accompTxt2`)
+		$conn->query("INSERT INTO `quest_planner` (`creator`, `name`, `npc_img`, `map_img`, `intro`, `requirements`, `accompTxt`, `intro2`, `requirements2`, `accompTxt2`)
 			VALUES
-			('{$uid}', '{$sqlQuestName}', '{$sqlNpcImg}', '{$sqlIntro}', '{$sqlRequirements}', '{$sqlAcompTxt}', '{$sqlIntro2}', '{$sqlRequirements2}', '{$sqlAcompTxt2}')");
+			('{$uid}', '{$sqlQuestName}', '{$sqlNpcImg}', '{$sqlMapImg}', '{$sqlIntro}', '{$sqlRequirements}', '{$sqlAcompTxt}', '{$sqlIntro2}', '{$sqlRequirements2}', '{$sqlAcompTxt2}')");
 		
 		echo "success";
 		
@@ -73,6 +75,19 @@ echo '
 				}
 				echo'</select>
 				<img id="npcImg" src="../images/sprites/1.png"/>
+				</td>
+	    </tr>
+            <tr>
+                <td>Where Npc will be located:</td>
+            	<td>
+				<select name="mapImg" id="mapId">';
+				for($i = 1; $i <=70; $i++){
+					echo'
+					<option value="'.$i.'">'.$i.'</option>
+					';
+				}
+				echo'</select>
+				<img id="mapImg" src="../images/maps/1.png"/>
 				</td>
 	    </tr>
 	    <tr>
@@ -130,7 +145,13 @@ function showNpcImg(){
 	var npcImg = document.getElementById("npcImg");
 	npcImg.src = "../images/sprites/"+npcId.value+".png";
 }
-setInterval(function(){showNpcImg();}, 100);
+function showMapImg(){
+	var mapId = document.getElementById("mapId");
+	//alert(mapId.value);
+	var mapImg = document.getElementById("mapImg");
+	mapImg.src = "../images/maps/"+mapId.value+".png";
+}
+setInterval(function(){showNpcImg();showMapImg();}, 100);
 </script>
 <?php
 include '_footer.php';

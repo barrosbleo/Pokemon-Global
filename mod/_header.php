@@ -7,7 +7,7 @@ if (!defined('GOT_CONFIG')) {
 ?><!DOCTYPE html>
 <html>
 <head>
-	<title>Pok&eacute;mon Helios Mod Panel</title>
+	<title>Pok&eacute;mon Global Mod Panel</title>
 	<link rel="stylesheet" type="text/css" href="./css/style.css?<?php echo rand(1, 9999999); ?>">
 </head>
 <body>
