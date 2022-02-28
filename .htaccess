@@ -5,9 +5,9 @@ RewriteCond %{REQUEST_FILENAME}\.php -f
 RewriteRule ^(.*)$ $1.php
 
 # CONFIGURAR UTILIZAÇÃO DO HTTPS
-RewriteEngine On
-RewriteCond %{SERVER_PORT} 80
-RewriteRule ^(.*)$ https://pkm.lbcgi.com/$1 [R,L]
+#RewriteEngine On
+#RewriteCond %{SERVER_PORT} 80
+#RewriteRule ^(.*)$ https://pkm.lbcgi.com/$1 [R,L]
 
 #Speed up pages
 <IfModule mod_deflate.c>
